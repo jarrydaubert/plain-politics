@@ -1,98 +1,55 @@
-# UK Policy Explainer: Idea Brief
+# Political Intelligence Platform: Idea Brief
 
 Last updated: February 20, 2026
 
 ## One-Line Concept
-A plain-English UK law and policy explainer that gives fast, source-backed answers users can verify in seconds.
+A UK-focused, source-first political intelligence platform that helps users compare parties, policies, donors, and voting behavior with auditable AI explanations.
 
 ## Problem
-People struggle to separate:
-1. What the law currently is
-2. What government guidance says
-3. What official data shows
-4. What parties are proposing
-
-Current sources are either authoritative but hard to parse, or easy to consume but low-trust and partisan.
+Political information is fragmented across official publications, parliamentary records, and media summaries. Users can rarely:
+1. Compare party positions in one place.
+2. Verify claims against primary sources quickly.
+3. Track policy changes over time with confidence.
+4. Distinguish clear evidence from weak or missing evidence.
 
 ## Why This Matters Now
-1. Trust in news and online political content is fragmented.
-2. Political debates move faster than most people can verify claims.
-3. UK public data and legal sources are open enough to power a reliable product.
+1. Trust in political content remains fragmented.
+2. UK political information volume is high, while source verification is costly for users.
+3. Retrieval-first AI plus transparent provenance now makes auditable explainers practical at MVP budget.
 
-## Product Positioning
-Not: "AI truth app" or "neutral politics app."
+## v1 Scope (UK)
+1. Compare view for side-by-side party issue comparison.
+2. Policies tracker with versioning and diff views.
+3. Ask AI with grounded citations and uncertainty handling.
+4. Money explorer for donor analysis.
+5. Calendar of key political events.
+6. Anonymous-first alignment quiz with transparent scoring.
+7. Methodology and source directory pages.
+8. Baseline observability and data quality controls.
 
-Yes: "The UK law-and-policy source layer, in plain English."
+## Phase Plan
+1. Phase 1 (core trust engine): Compare, Policies, Ask AI, Methodology/Sources, baseline observability.
+2. Phase 2 (expansion): Money, Calendar, Dashboard enhancements, Quiz hardening.
 
-## Primary User
-Informed but time-constrained UK adults who ask practical policy questions and want evidence, not hot takes.
+## Trust and Compliance Principles
+1. Source-first and citation-gated answers.
+2. Public data treated as personal data when identifiable.
+3. Anonymous-by-default flows for sensitive interactions.
+4. Explicit consent before storing political-opinion signals.
+5. Corrections workflow and public-facing methodology.
 
-## Core User Jobs
-1. Get a direct answer quickly.
-2. Verify where that answer came from.
-3. Understand uncertainty and what is still disputed.
-4. Track what changed since last week.
+## Product Differentiator
+1. Claim-to-citation traceability for factual output.
+2. Source trust tiers with explicit coverage gaps.
+3. Neutrality standards applied as operational QA rules.
+4. Freshness policies and visible `last verified` indicators.
 
-## v1 Scope
-In scope:
-1. Natural-language question answering
-2. Source-backed responses with clear labels (law, guidance, data, policy)
-3. "Show exact clause" verification
-4. Change tracking and last-reviewed timestamps
-5. Topic follow via weekly digest
+## Success Signals (90 Days)
+1. Citation CTR >= 25% on AI answers.
+2. Answer support rate >= 95% for factual sentences.
+3. Citation relevance QA pass rate >= 90%.
+4. Freshness SLA adherence >= 95%.
+5. User trust signal (`well-supported answer`) >= 70%.
 
-Out of scope:
-1. Community moderation
-2. Claim-verdict engine ("true/misleading/etc.")
-3. Push alerts
-4. Political profiling or recommendations
-5. Party ranking/scorecards
-
-## Domain Wedge
-Start with employment rights for pilot safety and repeatable demand, then expand to immigration and housing after trust signals are strong.
-
-## Trust Model (Core Moat)
-1. Strict source hierarchy with primary sources first
-2. Mandatory citation gating (no citation, no answer)
-3. Public corrections policy and visible correction log
-4. Answer version history and audit trail
-5. Explicit "what is unclear or disputed" section in every answer
-
-## Monetization Strategy
-Phase 1:
-1. Free consumer product for trust and reach
-2. Grants, sponsorship with governance safeguards, and impact-aligned funding
-
-Phase 2:
-1. B2B/API access for media, civil society, and research teams
-2. White-label widgets and monitoring alerts
-
-Consumer subscriptions are optional later, not the initial dependency.
-
-## Go-To-Market
-1. SEO pages around high-intent questions
-2. Shareable source cards for social/WhatsApp
-3. Embeds for journalists and newsletters
-4. Partnerships with civic and education organizations
-
-## Success Metrics
-1. Accuracy: >=90% materially correct audited answers
-2. Speed: median answer under 15 seconds
-3. Verification behavior: >=30% source click-through
-4. Retention: >=25% 7-day repeat usage
-5. Trust: low complaint rate and fast correction turnaround
-
-## Major Risks
-1. Legal liability from incorrect high-stakes answers
-2. Perceived bias from framing and omissions
-3. Rapid policy/legal change causing stale answers
-4. Competitor and platform pressure from major AI and government tools
-
-## Risk Mitigations
-1. Legal review workflow for sensitive topics
-2. Clear labeling and uncertainty handling in every response
-3. Source freshness SLAs and automated stale-answer checks
-4. Incident response + correction playbook
-
-## 12-Month Outcome Target
-Become the default verification layer for UK policy questions among engaged users, with measurable trust and a defensible source-and-corrections brand.
+## Core Risk
+Data ingestion and normalization quality is the highest operational risk; source formatting drift and publication lag must be treated as first-class engineering work.
