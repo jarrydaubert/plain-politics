@@ -58,17 +58,20 @@ The timing is material in the current UK parliamentary cycle: public trust and m
 4. Store prompt/version audit logs for traceability.
 
 ## 9) Success Metrics (90 days)
-1. WAU >= 20% of MAU.
-2. Citation click-through rate >= 25% on AI answers.
-3. Quiz completion rate >= 60%.
-4. 30-day return rate >= 30%.
-5. 100% of AI fact answers contain at least one valid source citation.
-6. Privacy request SLA <= 30 days.
-7. Answer support rate >= 95% of factual sentences linked to supporting source chunks.
-8. Citation relevance QA pass rate >= 90% on weekly sampled answers.
-9. Freshness SLA adherence >= 95% by dataset type.
-10. Correction rate and correction turnaround are tracked and reported.
-11. User trust signal (`well-supported answer`) >= 70%.
+Primary decision metrics:
+1. Citation click-through rate >= 25% on AI answers.
+2. Answer support rate >= 95% of factual sentences linked to supporting source chunks.
+3. Citation relevance QA pass rate >= 90% on weekly sampled answers.
+4. Freshness SLA adherence >= 95% by dataset type.
+5. 30-day return rate >= 30%.
+
+Secondary diagnostics (tracked, but not primary go/no-go gates):
+1. WAU/MAU ratio.
+2. Quiz completion rate.
+3. Privacy request SLA <= 30 days.
+4. 100% of AI fact answers include at least one valid citation link.
+5. Correction rate and correction turnaround.
+6. User trust signal (`well-supported answer`).
 
 ## 10) Launch Gates
 1. Data pipelines passing freshness checks.
@@ -89,7 +92,7 @@ The timing is material in the current UK parliamentary cycle: public trust and m
 8. Security baseline: endpoint rate limiting, prompt injection controls, and source-domain allowlist enforcement.
 9. Caching strategy: scheduled/static revalidation for public data pages aligned to dataset freshness policy.
 10. Model routing policy: classify request complexity and route to lower-cost models by default, escalating to higher-cost reasoning models only when required.
-11. Embedding policy: support local/open embedding models and managed providers behind a common interface.
+11. Embedding policy: support local/open embedding models and managed providers behind a common interface; default MVP embedding model is `BAAI/bge-small-en-v1.5` (384 dimensions).
 12. Semantic answer cache for repeated public queries with TTL/invalidation tied to source freshness and correction events.
 
 ## 12) Source Trust Framework
@@ -152,8 +155,14 @@ The timing is material in the current UK parliamentary cycle: public trust and m
 1. Source ingestion modes: official APIs where available, structured scraping where allowed, and manual curation fallback.
 2. Each source must record ingestion mode, robots.txt outcome, and parser version.
 3. Pipeline stages: fetch -> normalize -> provenance attach -> quality checks -> publish.
-4. Queue/retry behavior must be idempotent and failure-tolerant for repeatable runs.
-5. Policy/manifesto processing uses semantic chunking with overlap to preserve claim context for retrieval.
+4. MVP execution model is sequential scheduled jobs with idempotent retries (no dedicated queue required at launch).
+5. Upgrade trigger to queue-backed workers: any two of these sustained for 7 days -> >20% failed retries, >30 minute backlog after schedule window, or >2 critical freshness breaches/week.
+6. Policy/manifesto processing uses semantic chunking with overlap to preserve claim context for retrieval.
+
+## 22) Known Retrieval Trade-Off and Upgrade Trigger
+1. MVP lexical retrieval uses Postgres full-text search for cost and simplicity.
+2. Known limitation: legal/political terminology ranking quality may degrade on complex long-form queries.
+3. Upgrade trigger: if benchmark relevance or support-rate targets are missed for 2 consecutive release cycles, evaluate dedicated lexical engine options.
 
 ---
 
@@ -186,7 +195,7 @@ Acceptance criteria:
 6. Issue selector is backed by canonical policy taxonomy labels.
 7. Each row shows source recency (`last verified`) and coverage status (`strong`, `partial`, `none`).
 8. View supports shareable compare links with selected parties/theme encoded.
-9. Where voting records conflict with stated party policy text, UI shows discrepancy indicator with linked evidence.
+9. Phase 2 stretch: where voting records conflict with stated party policy text, UI shows discrepancy indicator with linked evidence.
 
 ## FEAT-003 Policies Tracker
 User story: As a user, I can inspect manifesto positions and track changes over time.
@@ -269,6 +278,7 @@ Acceptance criteria:
 5. Each feature page links back to methodology.
 6. Methodology changelog captures dated updates to scoring, sourcing, and retrieval policies.
 7. Source inclusion/removal criteria and correction policy are published.
+8. Architecture/product trade-off decisions are maintained in a lightweight decision log.
 
 ## FEAT-009 Privacy, Consent, and Rights Workflows
 User story: As a user, I can control my data and exercise privacy rights.

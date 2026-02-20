@@ -16,11 +16,11 @@ Launch a UK-focused, source-first political intelligence MVP with auditable AI a
 Deliverables:
 1. Methodology draft v1
 2. Canonical data model + migration scripts
-3. Ingestion pipeline v1 with scheduled runs
+3. Ingestion pipeline v1 with scheduled sequential runs and idempotent retries
 
 ### Phase 2: Core Trust Engine (Weeks 3-6)
 1. Build `Policies` tracker with versioning, diff, and correction workflow hooks.
-2. Build `Compare` with canonical taxonomy selection and coverage indicators.
+2. Build `Compare` with canonical taxonomy selection and coverage indicators (discrepancy flagging deferred).
 3. Build `Ask AI` grounded pipeline with structured schema and citation enforcement.
 
 Deliverables:
@@ -52,6 +52,7 @@ Deliverables:
 1. Ingestion and source quality gates are mandatory before front-end feature launch.
 2. Compare and Policies must be stable before Dashboard dependency rollout.
 3. Ask AI release requires passing citation and groundedness benchmark thresholds.
+4. Discrepancy indicators (vote vs stated policy) are Phase 2 stretch work after vote-policy mapping quality is validated.
 
 ## Launch Gates (Must Pass)
 1. Data freshness checks passing across active datasets.
@@ -63,6 +64,11 @@ Deliverables:
 
 ## Post-Beta Priorities
 1. Quiz hardening with explicit consent pathways.
-2. Improve donor entity resolution and trend quality.
-3. Expand source coverage and taxonomy depth.
-4. Optimize model routing and cache hit rates for cost control.
+2. Vote-to-policy discrepancy indicators with methodology and QA thresholds.
+3. Improve donor entity resolution and trend quality.
+4. Expand source coverage and taxonomy depth.
+5. Optimize model routing and cache hit rates for cost control.
+
+## Operational Upgrade Triggers
+1. Introduce queue-backed workers if retry failure/backlog/freshness thresholds are breached.
+2. Evaluate dedicated lexical search engine if retrieval benchmark targets miss for two consecutive release cycles.

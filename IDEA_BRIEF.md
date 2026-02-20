@@ -49,7 +49,12 @@ Political information is fragmented across official publications, parliamentary 
 2. Answer support rate >= 95% for factual sentences.
 3. Citation relevance QA pass rate >= 90%.
 4. Freshness SLA adherence >= 95%.
-5. User trust signal (`well-supported answer`) >= 70%.
+5. 30-day return rate >= 30%.
+
+Secondary diagnostics:
+1. User trust signal (`well-supported answer`).
+2. Quiz completion rate.
+3. Privacy request SLA.
 
 ## Core Risk
 Data ingestion and normalization quality is the highest operational risk; source formatting drift and publication lag must be treated as first-class engineering work.

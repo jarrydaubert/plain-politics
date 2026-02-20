@@ -27,7 +27,8 @@ Last updated: February 20, 2026
 3. Model routing by query complexity:
    - lower-cost models by default
    - higher-cost reasoning models only when needed.
-4. Response schema baseline:
+4. Default embedding model: `BAAI/bge-small-en-v1.5` (384 dimensions), with provider-backed fallback via common interface.
+5. Response schema baseline:
    - `answer`
    - `confidence`
    - `claims[]`
@@ -41,10 +42,11 @@ Last updated: February 20, 2026
 4. Freshness-aware retrieval thresholds by query type.
 
 ### Ingestion and Jobs
-1. Scheduled ingestion via GitHub Actions cron + queue-based processing.
+1. MVP execution model: scheduled ingestion via GitHub Actions cron with sequential jobs and idempotent retries.
 2. Ingestion modes: API, compliant scraping, manual curation fallback.
 3. Idempotent pipeline: fetch -> normalize -> provenance attach -> quality checks -> publish.
 4. Robots policy checks and parser-version tracking on all source jobs.
+5. Queue-backed workers are introduced only when retry/freshness thresholds breach upgrade triggers.
 
 ### Caching and Cost Control
 1. Semantic answer cache for repeated public queries.
@@ -58,6 +60,11 @@ Last updated: February 20, 2026
 3. Retrieval quality benchmarks (top-k relevance, support rate).
 4. Parser drift alerts and golden dataset checks.
 5. Trace-level debugging for retrieval context and selected citations.
+
+## Known Trade-Offs and Upgrade Triggers
+1. Lexical retrieval on Postgres full-text is a cost-efficient default but can under-rank complex legal/policy phrasing.
+2. Trigger for dedicated lexical engine evaluation: benchmark relevance/support targets missed for two consecutive release cycles.
+3. Trigger for queue infrastructure: sustained retry failures, schedule-window backlog growth, or repeated freshness breaches.
 
 ## Security and Compliance Baseline
 1. Rate limits, abuse filters, and domain allowlists.
