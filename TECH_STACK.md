@@ -1,7 +1,5 @@
 # Political Intelligence Platform: Technical Stack
 
-Last updated: February 20, 2026
-
 ## Architecture Goals
 1. Retrieval-first answers with strict source grounding.
 2. Low-latency UX with streaming where applicable.
@@ -63,7 +61,7 @@ Last updated: February 20, 2026
 
 ## Known Trade-Offs and Upgrade Triggers
 1. Lexical retrieval on Postgres full-text is a cost-efficient default but can under-rank complex legal/policy phrasing.
-2. Trigger for dedicated lexical engine evaluation: benchmark relevance/support targets missed for two consecutive release cycles.
+2. Trigger for dedicated lexical engine evaluation: benchmark relevance/support targets are repeatedly missed.
 3. Trigger for queue infrastructure: sustained retry failures, schedule-window backlog growth, or repeated freshness breaches.
 
 ## Security and Compliance Baseline

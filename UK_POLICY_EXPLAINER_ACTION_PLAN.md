@@ -1,14 +1,11 @@
 # Political Intelligence Platform: Action Plan
 
-Start date: February 23, 2026
-Target: Public beta by May 2026
-
 ## Objective
 Launch a UK-focused, source-first political intelligence MVP with auditable AI answers, strong provenance, and privacy-safe defaults.
 
-## 12-Week Execution Plan
+## Execution Plan
 
-### Phase 1: Foundation and Ingestion (Weeks 1-2)
+### Phase 1: Foundation and Ingestion
 1. Finalize source trust framework, taxonomy v1, and provenance schema.
 2. Stand up ingestion jobs for primary UK sources and snapshot storage.
 3. Ship baseline quality controls: broken-link checks, freshness checks, parser version tracking.
@@ -18,7 +15,7 @@ Deliverables:
 2. Canonical data model + migration scripts
 3. Ingestion pipeline v1 with scheduled sequential runs and idempotent retries
 
-### Phase 2: Core Trust Engine (Weeks 3-6)
+### Phase 2: Core Trust Engine
 1. Build `Policies` tracker with versioning, diff, and correction workflow hooks.
 2. Build `Compare` with canonical taxonomy selection and coverage indicators (discrepancy flagging deferred).
 3. Build `Ask AI` grounded pipeline with structured schema and citation enforcement.
@@ -28,7 +25,7 @@ Deliverables:
 2. Ask AI API + UI with streaming and uncertainty handling
 3. Claim-to-citation validation and no-orphan-claim guardrails
 
-### Phase 3: Quality, Security, and Beta Hardening (Weeks 7-9)
+### Phase 3: Quality, Security, and Beta Hardening
 1. Add observability dashboards, golden dataset checks, and retrieval benchmarks.
 2. Implement abuse controls, rate limits, and privacy workflows baseline.
 3. Run closed beta; triage critical findings and correction backlog.
@@ -38,7 +35,7 @@ Deliverables:
 2. FEAT-009 baseline workflows (form + inbox + SLA tracking)
 3. Closed beta report with remediation plan
 
-### Phase 4: Expansion and Launch Prep (Weeks 10-12)
+### Phase 4: Expansion and Launch Prep
 1. Add `Money` explorer and `Calendar` v1.
 2. Add `Dashboard` aggregation and SEO metadata hardening.
 3. Finalize launch gates, legal sign-off artifacts, and go-live runbook.
@@ -71,4 +68,4 @@ Deliverables:
 
 ## Operational Upgrade Triggers
 1. Introduce queue-backed workers if retry failure/backlog/freshness thresholds are breached.
-2. Evaluate dedicated lexical search engine if retrieval benchmark targets miss for two consecutive release cycles.
+2. Evaluate dedicated lexical search engine if retrieval benchmark targets are repeatedly missed.

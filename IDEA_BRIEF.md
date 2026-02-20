@@ -1,7 +1,5 @@
 # Political Intelligence Platform: Idea Brief
 
-Last updated: February 20, 2026
-
 ## One-Line Concept
 A UK-focused, source-first political intelligence platform that helps users compare parties, policies, donors, and voting behavior with auditable AI explanations.
 
@@ -44,12 +42,12 @@ Political information is fragmented across official publications, parliamentary 
 3. Neutrality standards applied as operational QA rules.
 4. Freshness policies and visible `last verified` indicators.
 
-## Success Signals (90 Days)
+## Success Signals
 1. Citation CTR >= 25% on AI answers.
 2. Answer support rate >= 95% for factual sentences.
 3. Citation relevance QA pass rate >= 90%.
 4. Freshness SLA adherence >= 95%.
-5. 30-day return rate >= 30%.
+5. Return rate >= 30%.
 
 Secondary diagnostics:
 1. User trust signal (`well-supported answer`).

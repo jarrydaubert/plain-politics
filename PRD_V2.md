@@ -1,13 +1,11 @@
 # Political Intelligence Platform v2 - One-Page PRD
 
-Last updated: February 20, 2026
-
 ## 1) Product Objective
 Build a neutral, source-first political intelligence platform that helps users compare parties, policies, donors, and voting behavior, with AI explanations that always cite evidence.
 
 ## 2) Problem Statement
 Political information is fragmented, hard to compare, and often presented without source transparency. Users need a single place to get verified, understandable, and current public political information.
-The timing is material in the current UK parliamentary cycle: public trust and media fragmentation increase the need for source-linked, auditable political explainers.
+Public trust and media fragmentation increase the need for source-linked, auditable political explainers.
 
 ## 3) Target Users
 1. General voters.
@@ -57,18 +55,18 @@ The timing is material in the current UK parliamentary cycle: public trust and m
 3. AI output must be neutral in tone and non-persuasive.
 4. Store prompt/version audit logs for traceability.
 
-## 9) Success Metrics (90 days)
+## 9) Success Metrics
 Primary decision metrics:
 1. Citation click-through rate >= 25% on AI answers.
 2. Answer support rate >= 95% of factual sentences linked to supporting source chunks.
-3. Citation relevance QA pass rate >= 90% on weekly sampled answers.
+3. Citation relevance QA pass rate >= 90% on sampled answers.
 4. Freshness SLA adherence >= 95% by dataset type.
-5. 30-day return rate >= 30%.
+5. Return rate >= 30%.
 
 Secondary diagnostics (tracked, but not primary go/no-go gates):
 1. WAU/MAU ratio.
 2. Quiz completion rate.
-3. Privacy request SLA <= 30 days.
+3. Privacy request SLA within policy threshold.
 4. 100% of AI fact answers include at least one valid citation link.
 5. Correction rate and correction turnaround.
 6. User trust signal (`well-supported answer`).
@@ -108,11 +106,11 @@ Secondary diagnostics (tracked, but not primary go/no-go gates):
 3. Source snapshots are stored for critical records to mitigate link rot and support audits.
 
 ## 14) Freshness and Verification Policy
-1. Party policy pages: verify at least daily.
+1. Party policy pages: verify on scheduled recurring cadence.
 2. Donations: refresh on source publication cadence with stale threshold monitoring.
-3. Events/calendar: verify at least daily.
+3. Events/calendar: verify on scheduled recurring cadence.
 4. Manifestos: static baseline with ad hoc re-check on detected updates.
-5. Votes/parliamentary records: refresh per available session/data feed cadence.
+5. Votes/parliamentary records: refresh per available session/data-feed cadence.
 6. UI must show `last verified` and stale badges where thresholds are exceeded.
 
 ## 15) Neutrality Standard (Operational)
@@ -156,13 +154,13 @@ Secondary diagnostics (tracked, but not primary go/no-go gates):
 2. Each source must record ingestion mode, robots.txt outcome, and parser version.
 3. Pipeline stages: fetch -> normalize -> provenance attach -> quality checks -> publish.
 4. MVP execution model is sequential scheduled jobs with idempotent retries (no dedicated queue required at launch).
-5. Upgrade trigger to queue-backed workers: any two of these sustained for 7 days -> >20% failed retries, >30 minute backlog after schedule window, or >2 critical freshness breaches/week.
+5. Upgrade trigger to queue-backed workers: sustained threshold breach on failed retries, backlog, or repeated critical freshness breaches.
 6. Policy/manifesto processing uses semantic chunking with overlap to preserve claim context for retrieval.
 
 ## 22) Known Retrieval Trade-Off and Upgrade Trigger
 1. MVP lexical retrieval uses Postgres full-text search for cost and simplicity.
 2. Known limitation: legal/political terminology ranking quality may degrade on complex long-form queries.
-3. Upgrade trigger: if benchmark relevance or support-rate targets are missed for 2 consecutive release cycles, evaluate dedicated lexical engine options.
+3. Upgrade trigger: if benchmark relevance or support-rate targets are repeatedly missed, evaluate dedicated lexical engine options.
 
 ---
 
@@ -179,7 +177,7 @@ Acceptance criteria:
 5. Empty state is shown when a widget has no data.
 6. Dashboard layout is responsive and usable across mobile and desktop breakpoints.
 7. Each item shows source-count and coverage badge.
-8. `Recent` windows are explicitly defined and documented (for example, default 30 days).
+8. `Recent` windows are explicitly defined, documented, and configurable.
 9. Stale badge appears when freshness threshold is exceeded.
 10. Time to Interactive (TTI) target is defined and monitored (p75 <= 3.5s).
 
@@ -298,7 +296,7 @@ User story: As an operator, I can detect stale, broken, or low-quality data befo
 Acceptance criteria:
 1. Ingestion jobs emit success/failure metrics and latency.
 2. Freshness monitors alert when dataset exceeds stale threshold.
-3. Broken-source link checker runs daily and reports failures.
+3. Broken-source link checker runs on scheduled cadence and reports failures.
 4. AI citation validator blocks publish if citation URL is missing/invalid.
 5. Crawler and ingestion jobs record robots.txt policy checks and skip disallowed paths.
 6. Incident dashboard displays current pipeline and API health.
