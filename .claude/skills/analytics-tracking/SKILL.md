@@ -1,0 +1,359 @@
+---
+name: analytics-tracking
+description: When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager," "GTM," "analytics implementation," or "tracking plan." For A/B test measurement, see ab-test-setup.
+metadata:
+  version: 1.2.0
+---
+
+# Analytics Tracking
+
+You are an expert in analytics implementation and measurement. Your goal is to help set up tracking that provides actionable insights for marketing and product decisions.
+
+## Initial Assessment
+
+**Check for product marketing context first:**
+If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
+Before implementing tracking, understand:
+
+1. **Business Context** - What decisions will this data inform? What are key conversions?
+2. **Current State** - What tracking exists? What tools are in use?
+3. **Technical Context** - What's the tech stack? Any privacy/compliance requirements?
+
+---
+
+## Core Principles
+
+### 1. Track for Decisions, Not Data
+- Every event should inform a decision
+- Avoid vanity metrics
+- Quality > quantity of events
+
+### 2. Start with the Questions
+- What do you need to know?
+- What actions will you take based on this data?
+- Work backwards to what you need to track
+
+### 3. Name Things Consistently
+- Naming conventions matter
+- Establish patterns before implementing
+- Document everything
+
+### 4. Maintain Data Quality
+- Validate implementation
+- Monitor for issues
+- Clean data > more data
+
+---
+
+## Tracking Plan Framework
+
+### Structure
+
+```
+Event Name | Category | Properties | Trigger | Notes
+---------- | -------- | ---------- | ------- | -----
+```
+
+### Event Types
+
+| Type | Examples |
+|------|----------|
+| Pageviews | Automatic, enhanced with metadata |
+| User Actions | Button clicks, form submissions, feature usage |
+| System Events | Signup completed, purchase, subscription changed |
+| Custom Conversions | Goal completions, funnel stages |
+
+**For comprehensive event lists**: See [references/event-library.md](references/event-library.md)
+
+---
+
+## Event Naming Conventions
+
+### Recommended Format: Object-Action
+
+```
+signup_completed
+button_clicked
+form_submitted
+article_read
+checkout_payment_completed
+```
+
+### Best Practices
+- Lowercase with underscores
+- Be specific: `cta_hero_clicked` vs. `button_clicked`
+- Include context in properties, not event name
+- Avoid spaces and special characters
+- Document decisions
+
+---
+
+## Essential Events
+
+### Marketing Site
+
+| Event | Properties |
+|-------|------------|
+| cta_clicked | button_text, location |
+| form_submitted | form_type |
+| signup_completed | method, source |
+| demo_requested | - |
+
+### Product/App
+
+| Event | Properties |
+|-------|------------|
+| onboarding_step_completed | step_number, step_name |
+| feature_used | feature_name |
+| purchase_completed | plan, value |
+| subscription_cancelled | reason |
+
+**For full event library by business type**: See [references/event-library.md](references/event-library.md)
+
+---
+
+## Event Properties
+
+### Standard Properties
+
+| Category | Properties |
+|----------|------------|
+| Page | page_title, page_location, page_referrer |
+| User | user_id, user_type, account_id, plan_type |
+| Campaign | source, medium, campaign, content, term |
+| Product | product_id, product_name, category, price |
+
+### Best Practices
+- Use consistent property names
+- Include relevant context
+- Don't duplicate automatic properties
+- Avoid PII in properties
+
+---
+
+## GA4 Implementation
+
+### Quick Setup
+
+1. Create GA4 property and data stream
+2. Install gtag.js or GTM
+3. Enable enhanced measurement
+4. Configure custom events
+5. Mark conversions in Admin
+
+### Custom Event Example
+
+```javascript
+gtag('event', 'signup_completed', {
+  'method': 'email',
+  'plan': 'free'
+});
+```
+
+**For detailed GA4 implementation**: See [references/ga4-implementation.md](references/ga4-implementation.md)
+
+---
+
+## Google Tag Manager
+
+### Container Structure
+
+| Component | Purpose |
+|-----------|---------|
+| Tags | Code that executes (GA4, pixels) |
+| Triggers | When tags fire (page view, click) |
+| Variables | Dynamic values (click text, data layer) |
+
+### Data Layer Pattern
+
+```javascript
+dataLayer.push({
+  'event': 'form_submitted',
+  'form_name': 'contact',
+  'form_location': 'footer'
+});
+```
+
+**For detailed GTM implementation**: See [references/gtm-implementation.md](references/gtm-implementation.md)
+
+---
+
+## UTM Parameter Strategy
+
+### Standard Parameters
+
+| Parameter | Purpose | Example |
+|-----------|---------|---------|
+| utm_source | Traffic source | google, newsletter |
+| utm_medium | Marketing medium | cpc, email, social |
+| utm_campaign | Campaign name | spring_sale |
+| utm_content | Differentiate versions | hero_cta |
+| utm_term | Paid search keywords | running+shoes |
+
+### Naming Conventions
+- Lowercase everything
+- Use underscores or hyphens consistently
+- Be specific but concise: `blog_footer_cta`, not `cta1`
+- Document all UTMs in a spreadsheet
+
+---
+
+## Debugging and Validation
+
+### Testing Tools
+
+| Tool | Use For |
+|------|---------|
+| GA4 DebugView | Real-time event monitoring |
+| GTM Preview Mode | Test triggers before publish |
+| Browser Extensions | Tag Assistant, dataLayer Inspector |
+
+### Validation Checklist
+
+- [ ] Events firing on correct triggers
+- [ ] Property values populating correctly
+- [ ] No duplicate events
+- [ ] Works across browsers and mobile
+- [ ] Conversions recorded correctly
+- [ ] No PII leaking
+
+### Common Issues
+
+| Issue | Check |
+|-------|-------|
+| Events not firing | Trigger config, GTM loaded |
+| Wrong values | Variable path, data layer structure |
+| Duplicate events | Multiple containers, trigger firing twice |
+
+---
+
+## Privacy and Compliance
+
+### Considerations
+- Cookie consent required in EU/UK/CA
+- No PII in analytics properties
+- Data retention settings
+- User deletion capabilities
+
+### Implementation
+- Use consent mode (wait for consent)
+- IP anonymization
+- Only collect what you need
+- Integrate with consent management platform
+
+---
+
+## Output Format
+
+### Tracking Plan Document
+
+```markdown
+# [Site/Product] Tracking Plan
+
+## Overview
+- Tools: GA4, GTM
+- Last updated: [Date]
+
+## Events
+
+| Event Name | Description | Properties | Trigger |
+|------------|-------------|------------|---------|
+| signup_completed | User completes signup | method, plan | Success page |
+
+## Custom Dimensions
+
+| Name | Scope | Parameter |
+|------|-------|-----------|
+| user_type | User | user_type |
+
+## Conversions
+
+| Conversion | Event | Counting |
+|------------|-------|----------|
+| Signup | signup_completed | Once per session |
+```
+
+---
+
+## Task-Specific Questions
+
+1. What tools are you using (GA4, Mixpanel, etc.)?
+2. What key actions do you want to track?
+3. What decisions will this data inform?
+4. Who implements - dev team or marketing?
+5. Are there privacy/consent requirements?
+6. What's already tracked?
+
+---
+
+## Tool Integrations
+
+For implementation, see the [tools registry](../../tools/REGISTRY.md). Key analytics tools:
+
+| Tool | Best For | MCP | Guide |
+|------|----------|:---:|-------|
+| **GA4** | Web analytics, Google ecosystem | ✓ | [ga4.md](../../tools/integrations/ga4.md) |
+| **Mixpanel** | Product analytics, event tracking | - | [mixpanel.md](../../tools/integrations/mixpanel.md) |
+| **Amplitude** | Product analytics, cohort analysis | - | [amplitude.md](../../tools/integrations/amplitude.md) |
+| **PostHog** | Open-source analytics, session replay | - | [posthog.md](../../tools/integrations/posthog.md) |
+| **Segment** | Customer data platform, routing | - | [segment.md](../../tools/integrations/segment.md) |
+
+---
+
+## Related Skills
+
+- **ab-test-setup**: For experiment tracking
+- **seo-audit**: For organic traffic analysis
+- **page-cro**: For conversion optimization (uses this data)
+
+## Politics Platform Context
+
+The Politics Platform is a free civic information tool with no user accounts, no purchases, and no subscriptions. Analytics must reflect this model.
+
+### Planned Analytics Stack
+- **Vercel Analytics** + **Vercel Speed Insights** in root layout (privacy-preserving)
+- **GA4 (gtag.js, no GTM)** with consent gating
+- Shared tracking helper in a central analytics module
+
+### Consent Model
+- Cookie consent banner with accept/decline
+- GA4 defaults to denied storage; upgrades only `analytics_storage` after consent
+- Vercel Analytics are privacy-preserving by design (no consent gate needed)
+- 12-month consent expiry
+
+### Canonical Conversion Events
+| Funnel | Event | Key Properties |
+|--------|-------|----------------|
+| Compare | `compare_viewed` | `issue_slug`, `parties_shown` |
+| Compare | `compare_party_expanded` | `issue_slug`, `party` |
+| Explain | `explainer_viewed` | `topic_slug`, `source_tier` |
+| Ask AI | `ai_question_asked` | `question_category`, `has_answer` |
+| Ask AI | `ai_citation_clicked` | `question_slug`, `source_domain`, `source_tier` |
+| Ask AI | `ai_answer_rated` | `question_slug`, `rating` (helpful/not) |
+| Policy | `policy_diff_viewed` | `party`, `policy_slug`, `version_count` |
+| MP/Donor | `profile_viewed` | `entity_type`, `entity_slug` |
+| Content | `source_link_clicked` | `page_type`, `source_url`, `source_tier` |
+| Content | `newsletter_subscribed` | `signup_location` |
+| Platform | `methodology_viewed` | `section` |
+
+### Event Naming Rules
+- Canonical event list lives in project docs
+- Use `object_action` format (lowercase with underscores)
+- Include context in properties, not event name
+- Every event alias must have a removal item in backlog
+
+### Privacy Constraints
+- No user accounts: do **not** introduce `user_id`, `plan_type`, or `account_id`
+- Never send exact query text to analytics — use categorized/bucketed fields
+- Never send personally identifiable source URLs that could identify research patterns
+- Use centralized `trackEvent()` helper so consent gating remains centralized
+
+### Success Metric Mapping
+| PRD Metric | Analytics Event(s) | Calculation |
+|------------|-------------------|-------------|
+| Citation CTR >= 25% | `ai_citation_clicked` / `ai_question_asked` | Clicks on citations / total AI answers viewed |
+| Answer support rate >= 95% | Internal QA pipeline (not analytics) | Automated claim-to-citation validation |
+| Freshness SLA >= 95% | Ingestion pipeline metrics (not analytics) | % of sources updated within SLA |
+| 30-day return rate >= 30% | GA4 cohort analysis | Returning visitors within 30 days |
+| Citation relevance QA >= 90% | Internal QA pipeline | Automated relevance scoring |
