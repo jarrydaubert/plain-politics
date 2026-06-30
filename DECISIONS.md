@@ -1,4 +1,4 @@
-# Decision Log
+# UK Policy Explainer Decision Log
 
 ## DEC-001: Canonical Product Spec
 - Decision: `PRD_V2.md` is the canonical product specification.
@@ -6,32 +6,42 @@
 - Impact: Other docs (`IDEA_BRIEF.md`, `TECH_STACK.md`, `UK_POLICY_EXPLAINER_ACTION_PLAN.md`) must remain aligned to PRD v2.
 
 ## DEC-002: MVP Architecture Baseline
-- Decision: Use Next.js 16.x + Supabase Postgres/pgvector + Vercel AI SDK + GitHub Actions.
-- Rationale: Low operational overhead, budget-friendly launch path, and strong support for citation-grounded RAG workflows.
+- Decision: Use Next.js + Supabase Postgres + scheduled TypeScript ingestion jobs + GitHub Actions or equivalent scheduling.
+- Rationale: Low operational overhead, budget-friendly launch path, and strong support for source-backed public information pages.
 - Alternatives considered: Prior FastAPI/AWS/OpenSearch-heavy path.
 - Why not chosen: Higher ops complexity and cost for initial MVP.
 
-## DEC-003: Retrieval Strategy
-- Decision: Start with hybrid retrieval (Postgres full-text + pgvector).
-- Rationale: Minimizes infrastructure and simplifies early delivery.
-- Known trade-off: Postgres lexical ranking can underperform on complex legal/policy phrasing.
-- Revisit trigger: If retrieval benchmark relevance/support misses target repeatedly, evaluate dedicated lexical engine.
+## DEC-003: Search Strategy
+- Decision: Start with Postgres full-text search plus structured filters.
+- Rationale: Minimizes infrastructure and fits a public information site with known entities, topics, and source types.
+- Known trade-off: Full-text search may need tuning as source documents and records grow.
+- Revisit trigger: If users cannot reliably find parties, policies, sources, or polling records, evaluate a dedicated search engine.
 
 ## DEC-004: Ingestion Execution Model
 - Decision: MVP uses sequential scheduled jobs with idempotent retries (no dedicated queue at launch).
 - Rationale: Reduces moving parts while source volume is still manageable.
 - Revisit trigger: Introduce queue-backed workers if retry failure/backlog/freshness thresholds are breached.
 
-## DEC-005: Embedding Default
-- Decision: Default embedding model is `BAAI/bge-small-en-v1.5` (384 dimensions), behind provider-agnostic interface.
-- Rationale: Good quality/cost profile for MVP and easy migration path to managed alternatives.
-- Revisit trigger: Switch/upgrade if benchmark relevance fails target or latency/cost profile degrades.
+## DEC-005: Informational Site Scope
+- Decision: Keep the current product scope to source-backed public information pages, search, charts, maps, tables, and editorial/template summaries.
+- Rationale: The user need is a live informational website using public sources, plain-English editorial/template summaries, charts, maps, and tables.
+- Revisit trigger: Only revisit if the product has reliable source ingestion, provenance, editorial QA, and a clearly justified user need that cannot be met with structured search and templates.
 
 ## DEC-006: Success Metrics Prioritization
-- Decision: Use 5 primary decision metrics (citation CTR, answer support, citation relevance QA, freshness SLA, return rate); keep remaining metrics as secondary diagnostics.
+- Decision: Use 5 primary decision metrics (source-link CTR, source coverage, source relevance QA, freshness SLA, return rate); keep remaining metrics as secondary diagnostics.
 - Rationale: Small team needs clear go/no-go signals without over-instrumenting early execution.
 
 ## DEC-007: Compare Discrepancy Scope
 - Decision: Vote-vs-policy discrepancy indicators are Phase 2 stretch scope.
 - Rationale: High user value but high methodology and data quality complexity.
 - Revisit trigger: Promote when vote ingestion and vote-policy mapping quality are stable in production benchmarks.
+
+## DEC-008: Product Positioning
+- Decision: Position the product as a free UK politics information tracker.
+- Rationale: Competitive research shows polling, parliamentary, donor, fact-checking, and paid monitoring products exist in fragments. The opportunity is to connect them with source-backed plain-English summaries, charts, maps, tables, freshness, and visible uncertainty.
+- Impact: Product pages should emphasise tracked change, evidence, freshness, and confidence rather than generic political summaries.
+
+## DEC-009: Phase 0 Before Full MVP
+- Decision: Build a narrow proof-of-thesis slice before attempting the full 10-feature MVP.
+- Rationale: The hardest product risk is whether users trust source-backed political information in practice. A small vertical slice proves this faster than broad feature coverage.
+- Impact: Early implementation should focus on one policy area, a few parties, authoritative sources, source excerpts, Party Profiles, Compare, plain-English explainers, and source panels.

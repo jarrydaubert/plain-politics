@@ -1,7 +1,28 @@
-# Political Intelligence Platform: Action Plan
+# UK Policy Explainer: Action Plan
 
 ## Objective
-Launch a UK-focused, source-first political intelligence MVP with auditable AI answers, strong provenance, and privacy-safe defaults.
+Launch a UK-focused, source-first political information MVP with plain-English party/policy pages, live public-source tracking, strong provenance, and privacy-safe defaults.
+
+## Current Strategic Read
+
+The repo has strong planning, methodology, and governance standards. The main gap is not more principles; it is a working proof that turns those standards into a usable product.
+
+Before attempting the full MVP, build a narrow proof-of-thesis slice. See `docs/strategy/phase-0-proof-of-thesis.md`.
+
+## Phase 0: Proof Of Thesis
+
+1. Choose one policy area and a small set of parties.
+2. Define two to three authoritative source families.
+3. Build source ingestion, provenance storage, source excerpts, and freshness states for that tiny corpus.
+4. Ship Party Profiles, a Compare view, plain-English explainers, and source panels over only that corpus.
+5. Treat `cannot verify from available public sources` as a valid product state.
+
+Deliverables:
+1. Source list and source contracts
+2. Minimal provenance schema
+3. Source panel with exact source excerpts
+4. Source-backed Search/Explainers prototype
+5. Methodology page for the slice
 
 ## Execution Plan
 
@@ -18,12 +39,12 @@ Deliverables:
 ### Phase 2: Core Trust Engine
 1. Build `Policies` tracker with versioning, diff, and correction workflow hooks.
 2. Build `Compare` with canonical taxonomy selection and coverage indicators (discrepancy flagging deferred).
-3. Build `Ask AI` grounded pipeline with structured schema and citation enforcement.
+3. Build `Search and Explainers` with structured source references and coverage-gap handling.
 
 Deliverables:
 1. Policies and Compare MVP views
-2. Ask AI API + UI with streaming and uncertainty handling
-3. Claim-to-citation validation and no-orphan-claim guardrails
+2. Search and Explainers UI with source references and uncertainty handling
+3. Source-reference validation and no-unsupported-claim guardrails
 
 ### Phase 3: Quality, Security, and Beta Hardening
 1. Add observability dashboards, golden dataset checks, and retrieval benchmarks.
@@ -48,12 +69,12 @@ Deliverables:
 ## Feature Sequencing Rule
 1. Ingestion and source quality gates are mandatory before front-end feature launch.
 2. Compare and Policies must be stable before Dashboard dependency rollout.
-3. Ask AI release requires passing citation and groundedness benchmark thresholds.
+3. Search/Explainers release requires passing source-reference and coverage-gap checks.
 4. Discrepancy indicators (vote vs stated policy) are Phase 2 stretch work after vote-policy mapping quality is validated.
 
 ## Launch Gates (Must Pass)
 1. Data freshness checks passing across active datasets.
-2. AI citation enforcement tests passing.
+2. Source-reference validation tests passing.
 3. Abuse/security controls enabled.
 4. Legal and privacy review complete for sensitive flows.
 5. Editorial neutrality standards validated.
@@ -64,7 +85,7 @@ Deliverables:
 2. Vote-to-policy discrepancy indicators with methodology and QA thresholds.
 3. Improve donor entity resolution and trend quality.
 4. Expand source coverage and taxonomy depth.
-5. Optimize model routing and cache hit rates for cost control.
+5. Optimize caching and ingestion scheduling for cost control.
 
 ## Operational Upgrade Triggers
 1. Introduce queue-backed workers if retry failure/backlog/freshness thresholds are breached.

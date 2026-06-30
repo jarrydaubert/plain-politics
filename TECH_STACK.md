@@ -1,78 +1,99 @@
-# Political Intelligence Platform: Technical Stack
+# UK Policy Explainer: Technical Stack
 
 ## Architecture Goals
-1. Retrieval-first answers with strict source grounding.
-2. Low-latency UX with streaming where applicable.
-3. Strong provenance, auditability, and correction workflows.
-4. Budget-efficient operation through model routing and caching.
 
-## Recommended Stack (v2)
+1. Live, source-backed public information pages.
+2. Strong provenance from displayed facts back to source snapshots.
+3. Fast, accessible charts, maps, tables, and plain-English summaries.
+4. Scheduled ingestion from public APIs, public datasets, and compliant source pages.
+5. Simple infrastructure that can be audited and operated cheaply.
+
+## Recommended Stack
 
 ### Frontend
-1. Next.js 16.x (App Router, React Server Components) + TypeScript.
-2. Tailwind CSS + accessible component primitives.
-3. SSR/ISR and scheduled revalidation for fast, indexable pages.
 
-### Backend and Data
-1. Supabase Postgres as system of record.
-2. `pgvector` for semantic retrieval embeddings.
-3. Hybrid retrieval: Postgres full-text + vector similarity.
-4. Source snapshot storage for auditability and link-rot resilience.
+1. Next.js App Router with TypeScript.
+2. React Server Components where they simplify data-backed pages.
+3. Tailwind CSS for styling.
+4. Accessible component primitives.
+5. URL state and server-rendered data first; add client state libraries only when a workflow clearly needs them.
 
-### AI Layer
-1. Vercel AI SDK with structured output contracts.
-2. Provider abstraction (no hard lock to one model vendor).
-3. Model routing by query complexity:
-   - lower-cost models by default
-   - higher-cost reasoning models only when needed.
-4. Default embedding model: `BAAI/bge-small-en-v1.5` (384 dimensions), with provider-backed fallback via common interface.
-5. Response schema baseline:
-   - `answer`
-   - `confidence`
-   - `claims[]`
-   - `citations[]`
-   - `uncertainty_reason`
+### Data And Backend
 
-### Retrieval and Grounding
-1. Source trust framework enforced at retrieval time.
-2. Semantic chunking with overlap for policy/manifesto documents.
-3. Claim-to-citation mapping; no orphan factual claims.
-4. Freshness-aware retrieval thresholds by query type.
+1. Supabase Postgres as the system of record.
+2. Postgres full-text search for site search.
+3. Structured tables for parties, policy areas, policy positions, manifestos, source documents, source snapshots, source excerpts, displayed facts, donations, votes, bills, debates, events, pollsters, polls, poll results, polling averages, constituencies, ingestion runs, and parser versions.
+4. Source snapshots or immutable excerpts for auditability and link-rot resilience.
+5. Zod schemas for source contracts, parser outputs, and public API responses.
 
-### Ingestion and Jobs
-1. MVP execution model: scheduled ingestion via GitHub Actions cron with sequential jobs and idempotent retries.
-2. Ingestion modes: API, compliant scraping, manual curation fallback.
-3. Idempotent pipeline: fetch -> normalize -> provenance attach -> quality checks -> publish.
-4. Robots policy checks and parser-version tracking on all source jobs.
-5. Queue-backed workers are introduced only when retry/freshness thresholds breach upgrade triggers.
+### Ingestion And Jobs
 
-### Caching and Cost Control
-1. Semantic answer cache for repeated public queries.
-2. Cache key normalization with minimal/stripped user-identifiable text.
-3. TTL + invalidation tied to source freshness and correction events.
-4. Token usage and cost telemetry per request class.
+1. Scheduled TypeScript ingestion jobs via GitHub Actions, Vercel Cron, or Supabase scheduled functions.
+2. Ingestion modes: official APIs, public data downloads, compliant scraping, and manual curation fallback.
+3. Idempotent pipeline: fetch -> snapshot -> parse -> normalize -> attach provenance -> validate -> publish.
+4. Robots policy checks, licence/terms notes, and parser-version tracking on relevant source jobs.
+5. Polling ingestion stores fieldwork dates, pollster, client where available, sample size, population, method, geography, question wording, and full-tables links where available.
+6. Queue-backed workers are introduced only when retry, backlog, or freshness thresholds require them.
 
-### Observability and Quality
-1. App/API error and latency monitoring.
-2. Ingestion job health + freshness alerts.
-3. Retrieval quality benchmarks (top-k relevance, support rate).
-4. Parser drift alerts and golden dataset checks.
-5. Trace-level debugging for retrieval context and selected citations.
+### Charts, Maps, And Tables
 
-## Known Trade-Offs and Upgrade Triggers
-1. Lexical retrieval on Postgres full-text is a cost-efficient default but can under-rank complex legal/policy phrasing.
-2. Trigger for dedicated lexical engine evaluation: benchmark relevance/support targets are repeatedly missed.
+1. Use a chart library such as Nivo, Recharts, or Tremor for common charts.
+2. Use MapLibre for interactive maps when geographic views are needed.
+3. Use accessible table equivalents for chart and map data.
+4. Keep chart data stored as structured records, not screenshots or static prose.
+
+### Search And Content Rendering
+
+1. Use Postgres full-text search and structured filters for parties, policies, sources, votes, donations, events, and polling records.
+2. Plain-English summaries should be editorially written or template-rendered from reviewed structured data.
+3. Each summary block should map to source references or show a coverage gap.
+4. Search snippets must not introduce facts that are not present in indexed records.
+
+### Caching And Performance
+
+1. Use static generation or scheduled revalidation for public data pages where possible.
+2. Tie cache invalidation to ingestion runs and source freshness.
+3. Keep API responses compact and typed.
+4. Track p75 page load and core route latency.
+
+### Observability And Quality
+
+1. Ingestion job health, duration, and failure alerts.
+2. Freshness monitors by dataset type.
+3. Parser drift checks.
+4. Broken-source link checks.
+5. Golden dataset checks for expected records.
+6. Source-reference validation for public pages.
+
+### Testing And Tooling
+
+1. Bun for package/runtime workflow.
+2. Bun test or Vitest for unit and integration tests.
+3. Playwright for smoke and accessibility-critical flows.
+4. Biome for formatting and linting.
+5. TypeScript strict mode.
+6. Source-reference tests for public pages and summaries.
+
+## Known Trade-Offs And Upgrade Triggers
+
+1. Postgres full-text search is a simple starting point but may need tuning as records grow.
+2. Trigger for dedicated search evaluation: users cannot reliably find parties, policies, sources, or polling records through structured filters and full-text search.
 3. Trigger for queue infrastructure: sustained retry failures, schedule-window backlog growth, or repeated freshness breaches.
+4. Trigger for client state library: complex comparison/filtering workflows become hard to express with URL state and server-rendered data.
 
-## Security and Compliance Baseline
-1. Rate limits, abuse filters, and domain allowlists.
+## Security And Compliance Baseline
+
+1. Rate limits and abuse controls on public endpoints and forms.
 2. Encryption in transit and at rest.
 3. Audit logs for admin/editorial actions.
-4. Consent-first handling for special-category risk flows.
+4. Consent-first handling for political-opinion signals.
+5. No server environment variables exposed to client components.
 
-## CI/CD and Release Gates
-1. Unit + integration test suite.
-2. Playwright E2E smoke tests.
-3. Lighthouse CI for performance and basic SEO health.
-4. AI contract tests for schema/citation/fallback behavior.
-5. RAG evaluation benchmarks (groundedness/faithfulness) required before release.
+## CI/CD And Release Gates
+
+1. Unit and integration test suite.
+2. Playwright smoke tests.
+3. Accessibility checks for core views.
+4. Source-reference validation.
+5. Ingestion contract tests.
+6. Performance checks for core public pages.

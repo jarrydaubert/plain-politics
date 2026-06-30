@@ -31,7 +31,7 @@ Skills are sourced from [coreyhaines31/marketingskills](https://github.com/corey
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
-| ai-seo | 1.2.0 | 2026-02-20 |
+| ai-seo | 1.2.1 | 2026-06-30 |
 | analytics-tracking | 1.2.0 | 2026-02-20 |
 | programmatic-seo | 1.2.0 | 2026-02-20 |
 | schema-markup | 1.2.0 | 2026-02-20 |
@@ -71,6 +71,9 @@ From the upstream repo (v1.2.0), these skills are available to port when needed:
 - email-sequence
 
 ## Recent Changes
+
+### 2026-06-30
+- Updated ai-seo inventory entry to match `metadata.version: 1.2.1` in `.claude/skills/ai-seo/SKILL.md`.
 
 ### 2026-02-20
 - Initial skill port from upstream marketingskills repo.
