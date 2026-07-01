@@ -23,14 +23,14 @@ import {
 
 const beginnerTopics = [
   {
-    description: "See what the main UK parties are, then open each profile as coverage grows.",
-    href: "/parties",
-    title: "Understand the parties"
-  },
-  {
     description: "Learn what words like division, sitting, recess, whip and PMQs mean.",
     href: "/glossary",
     title: "Learn the basics"
+  },
+  {
+    description: "See the current Commons party balance from official Parliament data.",
+    href: "/parties",
+    title: "Understand the parties"
   },
   {
     description: "See Commons seats, upcoming business and recent votes in one place.",
@@ -65,15 +65,15 @@ export default async function HomePage() {
               British politics, at a glance
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/82 sm:mt-6 sm:text-lg sm:leading-8">
-              A plain-English snapshot of Parliament, parties, polls and public sources, updated as
-              the evidence changes.
+              A plain-English snapshot of Parliament, parties, local records and public sources,
+              updated as the evidence changes.
             </p>
             <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
               <Link
                 className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[var(--accent-strong)] transition hover:bg-[var(--surface-soft)]"
-                href="/parties"
+                href="/glossary"
               >
-                Understand the parties
+                Learn the basics
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
               <Link
@@ -84,9 +84,9 @@ export default async function HomePage() {
               </Link>
               <Link
                 className="inline-flex items-center gap-2 rounded-md border border-white/24 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/12"
-                href="/glossary"
+                href="/my-area"
               >
-                Learn the basics
+                Find my MP
               </Link>
             </div>
           </div>
@@ -106,8 +106,8 @@ export default async function HomePage() {
               ))}
             </div>
             <p className="hidden max-w-3xl text-sm leading-6 text-white/72 sm:block">
-              Commons and calendar figures come from official UK Parliament APIs. Polling is shown
-              only when a reviewed public source is connected.
+              Commons and calendar figures come from official UK Parliament APIs. Polling and policy
+              comparison stay out of v1 until reviewed sources are ready.
             </p>
           </div>
         </div>
@@ -336,10 +336,10 @@ async function getHeroSnapshot() {
         value: recentDivision ? truncateText(recentDivision.Title, 34) : "Checking"
       },
       {
-        detail: "No reviewed public polling feed is connected yet",
-        icon: <BarChart3 aria-hidden="true" size={16} />,
-        label: "Latest polling",
-        value: "Planned"
+        detail: "Official and public sources are linked where used",
+        icon: <BookOpenText aria-hidden="true" size={16} />,
+        label: "Source links",
+        value: "Included"
       },
       {
         detail: checkedAt ? "UK Parliament API fetch time" : "Parliament feeds unavailable",

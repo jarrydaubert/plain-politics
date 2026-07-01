@@ -209,6 +209,125 @@ export const glossaryTerms: GlossaryTerm[] = [
     term: "Recess",
     whyItMatters:
       "Recess helps explain why fewer votes or debates may appear during certain weeks of the year."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "The Speaker chairs debates in the House of Commons, calls MPs to speak, and is expected to be politically impartial while in the chair.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Speaker",
+    whyItMatters:
+      "Beginners hear the Speaker named often during debates and PMQs, but the Speaker is not speaking for a party in that role."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "The Government is usually formed by the party, or parties, that can command support in the House of Commons and run government departments.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Government",
+    whyItMatters:
+      "It explains why one party may be responsible for ministers, budgets and most bills while others scrutinise them."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "The Opposition is made up of MPs and parties that are not in government. The largest opposition party is called the Official Opposition.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Opposition",
+    whyItMatters:
+      "Opposition parties do not run departments, but they question ministers, debate bills and offer alternatives."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "The Cabinet is the senior group of government ministers who lead major departments and help decide government policy.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Cabinet",
+    whyItMatters:
+      "Cabinet roles explain who is publicly responsible for areas such as health, education, home affairs and the Treasury."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "The Prime Minister is the head of the UK Government and appoints ministers to run government departments.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Prime Minister",
+    whyItMatters:
+      "The Prime Minister is central to government decisions, but Parliament still debates, scrutinises and votes on laws."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "The Shadow Cabinet is a team from the Official Opposition that follows government departments and challenges ministers on those areas.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Shadow Cabinet",
+    whyItMatters:
+      "Shadow roles help users understand who is responding to the government from the main opposition party."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "A backbencher is an MP or Lord who is not a government minister or opposition frontbench spokesperson.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Backbencher",
+    whyItMatters:
+      "Backbenchers can still speak, vote, sit on committees and raise constituency issues."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "A coalition government is formed when two or more parties share government, usually because no single party has enough seats to govern alone.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Coalition",
+    whyItMatters: "Coalitions explain why parties may compromise on policies after an election."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "Devolution means some powers are held by elected bodies in Scotland, Wales and Northern Ireland instead of being decided only at Westminster.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Devolution",
+    whyItMatters:
+      "It helps users understand why health, education or transport may be decided differently in different parts of the UK."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "Left wing is a broad political label. It often points toward more emphasis on equality, public services and a larger role for the state in the economy, but the meaning changes by country and issue.",
+    sourceName: "TIME explainer on left and right",
+    sourceUrl: "https://time.com/5673239/left-right-politics-origins/",
+    term: "Left wing",
+    whyItMatters:
+      "The label is a shortcut, not a full explanation. People and parties can hold left-wing views on one issue and different views on another."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "Right wing is a broad political label. It often points toward more emphasis on tradition, private enterprise and a smaller economic role for the state, but the meaning changes by country and issue.",
+    sourceName: "TIME explainer on left and right",
+    sourceUrl: "https://time.com/5673239/left-right-politics-origins/",
+    term: "Right wing",
+    whyItMatters:
+      "The label is often used loosely or as an insult, so Plain Politics should explain specific policies instead of relying on the label alone."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "Centre or centrist describes political positions that sit between, or deliberately mix, ideas commonly described as left wing and right wing.",
+    sourceName: "TIME explainer on left and right",
+    sourceUrl: "https://time.com/5673239/left-right-politics-origins/",
+    term: "Centre / centrist",
+    whyItMatters:
+      "Centre does not automatically mean neutral or moderate on every issue, so users still need the policy detail."
   }
 ];
 

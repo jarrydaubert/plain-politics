@@ -15,6 +15,10 @@ const sourceLinks = [
   {
     name: "Electoral Commission voting and elections",
     url: "https://www.electoralcommission.org.uk/voting-and-elections"
+  },
+  {
+    name: "TIME explainer on left and right",
+    url: "https://time.com/5673239/left-right-politics-origins/"
   }
 ] as const;
 
@@ -33,7 +37,8 @@ export default function GlossaryPage() {
           <h1 className="mt-5 text-4xl font-semibold">Political glossary</h1>
           <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
             Plain-English explanations for the jargon, procedures and traditions that appear across
-            UK politics. Each entry points back to an official public source.
+            UK politics. Each entry points back to a public source, with official sources preferred
+            where they exist.
           </p>
         </div>
 
