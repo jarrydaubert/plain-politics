@@ -1,6 +1,6 @@
 # Competitive Landscape Tracker
 
-Last reviewed: 2026-06-30
+Last reviewed: 2026-07-01
 
 ## Positioning Hypothesis
 
@@ -68,6 +68,37 @@ Build the calmest, clearest place to answer:
 | DeHavilland | <https://www.dehavilland.co.uk/> | Political monitoring and policy intelligence for public-affairs teams. | Alerts, briefings, policy issue tracking, organisation/stakeholder mapping. | Free source-backed public tracker with transparent methodology. |
 | Vuelio | <https://www.vuelio.com/uk/> | Media, stakeholder, and political monitoring for communications teams. | Alerting, contact/stakeholder database patterns, monitoring workflow. | Avoid CRM/lobbying emphasis; focus on public evidence and user trust. |
 
+## International Civic Product Benchmarks
+
+These are not direct UK competitors, but they show useful product patterns from civic information tools in other countries.
+
+| Product | Country / Region | Source | What It Does Well | What To Borrow | Caution For UK Policy Explainer |
+|---|---|---|---|---|---|
+| Policy.nz | New Zealand | <https://policy.nz/> | Local-election guide that starts from area/election, compares candidates and policies, supports favourites, and uses simple voter-facing language. | Address/postcode-led onboarding, compare-by-topic cards, local-only favourites/research trail, clear "not telling you how to vote" copy. | Candidate questionnaires are labour-heavy and election-cycle dependent. |
+| Vote Smart | United States | <https://justfacts.votesmart.org/> | Candidate and official profiles across biographies, votes, positions, ratings, statements, funding, RSS, and API products. | Standard profile tabs, "enter politician or zip code" search, issue-position source discipline, RSS/data reuse patterns. | Some API/data access may be commercial; avoid importing interest-group ratings as neutral truth. |
+| Ballotpedia | United States | <https://ballotpedia.org/> | Large political encyclopedia covering candidates, elections, ballot measures, offices, and local races. | Encyclopedia depth, reusable page templates, ballot/local election explainers, issue pages that can be updated over time. | Scale requires a real editorial operation; do not copy wiki-like breadth before the corpus exists. |
+| GovTrack | United States | <https://www.govtrack.us/> | Tracks bills, members, votes, and lets users follow legislative activity. | Bill/member tracking, follow/alert mental model, public data reuse, and long-run archives. | Ranking/report-card style features can become politically contentious unless methodology is very tight. |
+| Open States / Plural Open | United States | <https://docs.openstates.org/> | Standardises legislative data across many jurisdictions and provides API/bulk downloads. | Public API, bulk data downloads, source standardisation, contribution workflows, and open issue reporting. | Data infrastructure is valuable later; not a v1 homepage feature. |
+| Represent by OpenNorth | Canada | <https://represent.opennorth.ca/> | Postal-code/address lookup for elected officials and districts across federal, provincial, and municipal levels, with free API and downloads. | "Find my representatives" as infrastructure, multi-level government mapping, downloadable/open data posture. | UK version should be clear whether it covers Westminster only or also devolved/local government. |
+| They Vote For You | Australia | <https://theyvoteforyou.org.au/> | Postcode/name MP lookup, issue-oriented voting records, policies, divisions, recent edits, open data, and API. | Simple question-led homepage, recent edits/change history, API/licensing page, issue pages that explain votes in plain language. | Avoid overstating that formal votes equal everything an MP does; show records without automatic judgement. |
+| OpenAustralia Foundation | Australia | <https://oaf.org.au/> | Frames civic tools as public digital infrastructure and reports public usage metrics. | Public-good framing, donation support, service metrics, and a collection of focused tools rather than one overloaded interface. | Keep funding/donation asks secondary until the product has public value. |
+| Wahl-O-Mat | Germany | <https://www.wahl-o-mat.de/> | Mass-market civic questionnaire with party responses, archives, high public awareness, and education materials. | Gamified issue-learning path, archived election editions, classroom/teacher explainers, and transparent question process. | Do not present as voting advice; UK product should be "learn where parties stand", not "who should I vote for". |
+| smartvote | Switzerland | <https://smartvote.ch/> | Candidate/list matching, current/upcoming/archive elections, smartspider thematic charts, smartmap position maps, and published methodology. | Visual issue profiles, election archive, candidate/party participation stats, and methodology-backed charts. | Position maps and match percentages need careful explanation and should stay out of v1.0.0. |
+| abgeordnetenwatch.de | Germany | <https://www.abgeordnetenwatch.de/> | Public questions to representatives, moderated Q&A, voting records, side-income/lobbying transparency, and candidate checks. | Moderated public question model, representative profile depth, and transparency/research stories. | Public Q&A requires moderation, legal process, and abuse handling; future feature, not v1. |
+
+## International Patterns To Borrow
+
+1. Lead with the user's context: postcode, address, constituency, election, issue, or "I do not know where to start".
+2. Make the homepage a guided route, not a directory. The best comparators ask a simple question first.
+3. Use local-only favourites, saved cards, or a research trail so exploration feels game-like without accounts or political profiling.
+4. Keep trust and methodology visible but secondary: About, source drawers, source pages, corrections, and help text, not the first hero message.
+5. Treat feeds, recent edits, and change history as retention features. They bring people back without persuasion.
+6. Build reusable profile templates for MPs, parties, constituencies, policies, bills, sources, and glossary terms.
+7. Offer public data and downloads once records are reviewed enough to reuse.
+8. Keep any questionnaire educational first: show issue trade-offs and source-backed positions before any match score.
+9. Prefer "show me what happened" over "tell me what to think"; avoid ranking politicians or parties without a published methodology.
+10. Archive past elections, explainers, source snapshots, and changes so the site becomes more valuable with time.
+
 ## Upstream Source Standards To Borrow
 
 ### British Polling Council Disclosure Metadata
@@ -106,6 +137,10 @@ Prefer official sources for canonical records:
 6. From Full Fact: visible uncertainty, correction culture, and evidence discipline.
 7. From paid political intelligence tools: monitoring, alerts, entity tracking, and stakeholder-style navigation.
 8. From Democracy Club: civic-public-good posture and accessible voter-first UX.
+9. From Policy.nz and Represent: local lookup as the first meaningful action.
+10. From Wahl-O-Mat and smartvote: gamified civic learning, but with clear "not voting advice" limits.
+11. From They Vote For You and GovTrack: recent edits, follows, alerts, and public data reuse.
+12. From Open States and OpenAustralia: public infrastructure posture, APIs, downloads, and contribution/error reporting.
 
 ## Differentiation Strategy
 
@@ -154,3 +189,8 @@ For each review, record:
 - Created initial competitive landscape.
 - Identified the main gap as a free, public, source-backed tracker combining polls, policy, donations, votes, party profiles, and plain-English explainers.
 - Added source standards for polling metadata and official public data.
+
+### 2026-07-01
+
+- Added international civic product benchmarks from New Zealand, the United States, Canada, Australia, Germany, and Switzerland.
+- Reframed borrowed UX ideas around local-first onboarding, guided exploration, local-only favourites, change history, public data, and educational gamification.

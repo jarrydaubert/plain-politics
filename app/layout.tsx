@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "UK Policy Explainer",
   description:
-    "A source-backed UK politics information tracker for parties, policies, polling, votes and donations."
+    "A beginner-friendly UK politics starter for finding your MP, learning Parliament terms, and checking public sources."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

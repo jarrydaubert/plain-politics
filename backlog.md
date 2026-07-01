@@ -40,7 +40,7 @@ Definition of done:
 1. Public Vercel URL exists with Cloudflare DNS/domain configured.
 2. Home page clearly explains the site is for people who do not know politics but want to understand it.
 3. Postcode starter resolves constituency, current MP, party, Commons membership start date, and source links without storing raw postcode by default.
-4. Live Parliament page, glossary, sources, and methodology pages are linked from global navigation.
+4. Live Parliament page, glossary, sources, and about pages are linked from global navigation.
 5. Public pages contain no demo data presented as real public data.
 6. Contact/corrections email route exists through Cloudflare Email Routing.
 7. Live data has empty, loading, stale, failed, and unavailable states.

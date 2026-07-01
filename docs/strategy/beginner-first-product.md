@@ -45,6 +45,24 @@ Avoid:
 4. Language that implies the site knows how the user should vote.
 5. Any stored political preference profile without explicit consent and DPIA coverage.
 
+## International Patterns Behind This
+
+Useful patterns from other countries:
+
+1. Policy.nz: start from the voter's local election, compare candidates/policies in plain language, and allow favourites without pretending to decide the vote.
+2. Represent by OpenNorth: treat postcode/address lookup as core civic infrastructure, not a side widget.
+3. Wahl-O-Mat and smartvote: questionnaires can make civic learning feel playful, but only when the method is transparent and the result is framed as information rather than instruction.
+4. They Vote For You and GovTrack: change history, follows, alerts, public data, and API access turn a reference site into a recurring habit.
+5. OpenAustralia and Open States: public civic data becomes more valuable when it is reusable, downloadable, and open to correction.
+
+Implication for this UK product:
+
+```text
+Borrow the engagement mechanics, not the persuasion framing.
+```
+
+The UK version should feel like a guided civic learning map: local first, source-backed, easy to leave and return to, and playful enough that a beginner keeps exploring.
+
 ## Data Reality Check
 
 Feasible first:
