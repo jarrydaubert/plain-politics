@@ -1,0 +1,27 @@
+{
+  "installCommand": "bun install --frozen-lockfile",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.plainpolitics.co.uk"
+        }
+      ],
+      "destination": "https://plainpolitics.co.uk/",
+      "statusCode": 308
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.plainpolitics.co.uk"
+        }
+      ],
+      "destination": "https://plainpolitics.co.uk/:path*",
+      "statusCode": 308
+    }
+  ]
+}

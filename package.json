@@ -8,13 +8,18 @@
     "build": "next build",
     "start": "next start",
     "format": "biome format --write .",
+    "format:check": "biome format .",
     "lint": "biome lint .",
-    "check": "biome check .",
+    "lint:biome": "biome lint .",
     "typecheck": "next typegen && tsc --noEmit",
     "fix-all": "biome check --write . && bun run typecheck",
     "test": "bun test tests/unit",
     "test:no-coverage": "bun test tests/unit",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test --reporter=blob",
+    "check:repo": "bun run format:check && bun run lint:biome && bun run typecheck && bun run test:no-coverage",
+    "check": "bun run check:repo && bun run build",
+    "ci": "bun run check"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.110.0",
@@ -36,5 +41,6 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "typescript": "6.0.3"
-  }
+  },
+  "packageManager": "bun@1.3.14"
 }

@@ -65,13 +65,24 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 Use the project commands documented in `AGENTS.md`:
 
 ```bash
+bun install --frozen-lockfile
 bun run dev
 bun run fix-all
+bun run check:repo
+bun run check
 bun run test:no-coverage
 bun run test
 bun run test:e2e
 bun run build
 ```
+
+## DevOps
+
+- GitHub Actions runs CI on pushes and pull requests to `main`: Bun frozen install, lockfile guard, live env-file guard, Biome format/lint, TypeScript, unit tests, and production build.
+- CodeQL scans JavaScript/TypeScript on pushes, pull requests, and a weekly schedule.
+- Playwright smoke tests run in CI as a non-blocking job while the live-source surface settles.
+- Production should deploy from GitHub to Vercel. Cloudflare manages `plainpolitics.co.uk` DNS and email routing.
+- `vercel.json` pins Bun frozen installs and redirects `www.plainpolitics.co.uk` to `plainpolitics.co.uk`.
 
 ## Live Source Hooks
 
