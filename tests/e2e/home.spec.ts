@@ -4,9 +4,10 @@ test("home page renders the source-backed tracker shell", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("link", { name: "Plain Politics home" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /start with where you live/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /start with my area/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /where do you want to start/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /british politics, at a glance/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /understand the parties/i }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: /see parliament today/i }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: /start from the landscape/i })).toBeVisible();
   await expect(page.getByText(/0 of 4 complete/i)).toBeVisible();
   await expect(page.getByLabel(/UK date and time/i)).toBeVisible();
   await expect(page.getByText(/not affiliated with any political party/i)).toBeVisible();
