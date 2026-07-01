@@ -64,6 +64,8 @@
 4. Broken-source link checks.
 5. Golden dataset checks for expected records.
 6. Source-reference validation for public pages.
+7. Operator email alerts for source failures, freshness breaches, parser drift, recovery events, and daily health digests.
+8. Cloudflare-compatible alert path: Email Routing for operator addresses, Workers/Cron for lightweight health checks, KV or Postgres for cooldown state, and verified destination email sends where the Cloudflare plan allows it.
 
 ### Testing And Tooling
 

@@ -123,6 +123,22 @@ Initial datapoints:
 12. Coverage state: strong, partial, no verified source.
 13. Change status: new, changed, removed, unchanged.
 
+## Glossary And Civic Tradition Datapoints
+
+Sources: UK Parliament glossary, UK Parliament learning pages, Electoral Commission voting guidance, GOV.UK where relevant.
+
+Initial datapoints:
+
+1. Term.
+2. Plain-English definition.
+3. Category: Parliament, elections, parties, procedure, or traditions.
+4. Why it matters in product context.
+5. Official source URL.
+6. Source publisher and source tier.
+7. Last checked timestamp.
+8. Related pages where the term should appear inline.
+9. Review status and version history.
+
 ## Manifesto Datapoints
 
 1. Manifesto title.

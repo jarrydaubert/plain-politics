@@ -174,6 +174,29 @@ Review needed:
 3. Rules for when an activity is allowed to be described as locally relevant.
 4. Evidence drawer coverage for each activity row.
 
+### Official Glossary And Civic Learning Sources
+
+Sources: <https://www.parliament.uk/site-information/glossary/>, <https://www.parliament.uk/about/how/>, <https://www.electoralcommission.org.uk/voting-and-elections>
+
+Likely datapoints:
+
+1. Political or parliamentary term.
+2. Official definition or explanatory source page.
+3. Plain-English product definition.
+4. Category: Parliament, elections, parties, procedures, or traditions.
+5. Related product pages where the term should be explained inline.
+
+Why it matters:
+
+The beginner journey fails if users meet terms such as division, whip, written question, by-election, manifesto, or Royal Assent and have to leave the site to understand them.
+
+Review needed:
+
+1. Source hierarchy for terms that appear in multiple official sources.
+2. Editorial review to simplify without changing meaning.
+3. Accessibility pattern for inline definitions and glossary links.
+4. Versioning when official source wording changes.
+
 ### UK Parliament Bills
 
 Source: <https://bills.parliament.uk/>

@@ -130,6 +130,24 @@ export const sourceHooks: SourceHook[] = [
     status: "candidate"
   },
   {
+    access: "Official public webpages. Initial glossary page is statically curated from them.",
+    caveat:
+      "Definitions should be simplified carefully and reviewed when official source wording changes.",
+    datapoints: [
+      "Term and category",
+      "Plain-English definition",
+      "Why the term matters",
+      "Official source URL",
+      "Related product pages for inline help"
+    ],
+    name: "Political glossary and traditions",
+    powers: ["Glossary page", "Inline help", "Beginner civic journey"],
+    priority: "Live now",
+    publisher: "UK Parliament and Electoral Commission",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    status: "hooked"
+  },
+  {
     access: "Official Parliament source. Treat as candidate API or structured page ingestion.",
     caveat: "Needs endpoint mapping and source-span extraction before summaries are trusted.",
     datapoints: [
@@ -284,6 +302,18 @@ export const datapointGroups: DatapointGroup[] = [
     description:
       "The beginner on-ramp: start from a postcode and explain who represents the user in plain English.",
     title: "My area"
+  },
+  {
+    datapoints: [
+      "Term and category",
+      "Plain-English definition",
+      "Why it matters",
+      "Official source URL",
+      "Related pages for inline explanation"
+    ],
+    description:
+      "The shared vocabulary layer that helps beginners understand political jargon and traditions.",
+    title: "Glossary"
   },
   {
     datapoints: [

@@ -21,6 +21,8 @@ Start with my postcode or an issue, explain the basics, show the public evidence
 5. The user can open the evidence behind any factual claim.
 6. The user can jump sideways to the party, constituency, policy area, or source page.
 7. The user always has an obvious way back to the previous level.
+8. The user can open a glossary page for political jargon, procedures, and traditions without losing their place.
+9. The user can move from a glossary term to a fuller evergreen explainer when the subject deserves more than a short definition.
 
 ## Light Gamification
 
@@ -33,6 +35,7 @@ Allowed mechanics:
 3. Badges or completion states for learning and source-checking.
 4. Streak-like prompts for `What changed this week`, without shaming or addiction loops.
 5. Short quizzes that test civic understanding or help users explore policy trade-offs.
+6. Glossary progress such as `learn five Parliament terms`, with local-only state.
 
 Avoid:
 
@@ -74,3 +77,5 @@ Safer v1 wording:
 4. Use the same page structure for parties, MPs, constituencies, policies, and sources to avoid favouritism.
 5. Keep the tone plain and friendly without becoming childish or condescending.
 6. Show gaps openly. `Cannot verify from available public sources` is a trust feature.
+7. Treat the glossary as part of navigation, not as a separate dictionary: link terms from pages where users encounter them.
+8. Use recurring civic explainers as annual return points: State Opening, PMQs, sessions, recess, Budget, party conferences, election deadlines, and major parliamentary traditions.

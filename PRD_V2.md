@@ -345,6 +345,32 @@ Acceptance criteria:
 6. Search result snippets never invent unsupported facts.
 7. Explainer pages show `last checked`, source count, source tiers, and correction history where relevant.
 
+## FEAT-007A Political Glossary And Traditions
+
+User story: As a beginner, I can understand political jargon, parliamentary procedure, election terms, and traditions without leaving the site.
+
+Acceptance criteria:
+
+1. Glossary page is linked from global navigation.
+2. Entries are grouped by Parliament, elections, parties, and traditions.
+3. Each entry has a plain-English definition, why it matters, and a source link.
+4. Glossary sources prioritize official UK Parliament, Electoral Commission, GOV.UK, and other approved civic sources.
+5. Jargon-heavy pages link relevant terms inline or from nearby help text.
+6. Glossary entries use neutral wording and avoid party-coded examples unless source context requires them.
+
+## FEAT-007B Evergreen Civic Explainers
+
+User story: As a beginner, I can read clear, source-backed explainers for recurring political events and traditions such as State Opening, PMQs, parliamentary sessions, recess, elections, and the Budget.
+
+Acceptance criteria:
+
+1. Explainers are linked from glossary, calendar, search, and relevant public-record pages.
+2. Each explainer includes a plain-English summary, timeline, key terms, source links, and related records.
+3. Annual explainers can show upcoming, live, and archived states.
+4. Published dates and event status come from approved public sources.
+5. Pages show `last checked` and `source updated` where available.
+6. Explainers avoid prediction, partisan interpretation, and unsupported tradition lore.
+
 ## FEAT-008 Methodology And Sources
 
 User story: As a user, I can understand how data and summaries are produced.
@@ -388,6 +414,8 @@ Acceptance criteria:
 8. Parser drift alerts fire when extraction quality drops after source layout changes.
 9. Search quality metrics are tracked on benchmark queries.
 10. Lightweight public status reporting for critical service health is available at launch.
+11. Operator email alerts exist for ingestion failures, freshness breaches, parser drift, source-contract failures, recovery events, and daily digest summaries.
+12. Alerting uses verified admin destinations and a documented Cloudflare-compatible path before relying on paid transactional email.
 
 ## FEAT-011 Polling And Momentum Tracker
 

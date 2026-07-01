@@ -271,6 +271,42 @@ Definition of done:
 4. Unsupported queries return nearest source-backed topics or `No verified source available`.
 5. Search benchmark dataset exists for core topics and parties.
 
+### 14A. Political Glossary And Traditions
+
+Status: `In progress`
+
+Depends on: `#14 Search And Explainers`
+
+Why: Beginner users need jargon explained without leaving the product, especially on MP, Parliament, vote, election, and tradition-heavy pages.
+
+Definition of done:
+
+1. Frontend glossary page exists and is linked from the global navigation.
+2. Terms include Parliament, elections, parties, procedures, and traditions.
+3. Each definition is plain English, neutral, and source-backed.
+4. Terms can be linked from entity pages, evidence drawers, and beginner journeys.
+5. Entries include why the term matters in context, not only a dictionary definition.
+6. Source set prioritizes official sources such as UK Parliament and the Electoral Commission.
+7. E2E smoke test verifies the glossary page renders and includes source references.
+
+### 14B. Evergreen Civic Explainers
+
+Status: `Planned`
+
+Depends on: `#8 Upcoming Dates And Civic Calendar`, `#14A Political Glossary And Traditions`
+
+Why: Recurring political events such as State Opening, PMQs, parliamentary sessions, recesses, the Budget, elections, and party conferences are high-interest moments where beginners need plain-English context.
+
+Definition of done:
+
+1. Editorial calendar exists for recurring civic explainers.
+2. First four explainers cover State Opening, PMQs, parliamentary sessions/sittings, and how a general election works.
+3. Each explainer includes plain-English summary, timeline, key terms, source links, and related pages.
+4. Explainers switch from evergreen context to `live now` when a source-backed date is announced.
+5. After the event, pages retain `what happened` context and link to source records.
+6. No explainer publishes unsourced dates, process claims, or interpretations.
+7. Internal links connect explainers to glossary terms, calendar entries, Parliament pages, and change-feed items.
+
 ## P2 - Popularity, Money, And Context
 
 ### 15. Polling And Popularity Tracker
@@ -538,3 +574,21 @@ Definition of done:
 3. Broken link checks run on scheduled cadence.
 4. Accessibility smoke checks cover core pages.
 5. Release checklist includes neutrality, privacy, source freshness, and performance checks.
+
+### 31. API Health Email Alerts
+
+Status: `Planned`
+
+Depends on: `#1 Persist Live Source Hooks To Supabase`, `#2 Scheduled Data Refresh Cadences`, `#24 Source Hook Registry`
+
+Why: Source ingestion will fail quietly unless operators get useful alerts. Email should highlight failures and freshness breaches without creating alert fatigue.
+
+Definition of done:
+
+1. Every ingestion source reports success, failure, unchanged, records changed, duration, next expected run, and error class.
+2. Alert rules cover API failure, schema/contract failure, parser drift, repeated empty results, source freshness breach, and recovery after failure.
+3. Emails are sent only for exceptions, recoveries, and a daily digest; successful individual calls do not send email.
+4. Cloudflare free-tier-compatible design is documented: verified admin destination addresses, Email Routing, Worker/Cron health checks, and KV cooldowns where available.
+5. Alerts include source name, failing URL or endpoint family, last successful run, failure count, freshness impact, and link to operator detail.
+6. Alert dedupe and cooldown prevent repeated emails for the same failing source.
+7. Tests cover alert creation, dedupe, recovery email, and daily digest summary.

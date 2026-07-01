@@ -6,6 +6,7 @@ const navItems = [
   { href: "/policies", label: "Policies" },
   { href: "/parliament", label: "Parliament" },
   { href: "/polls", label: "Polls" },
+  { href: "/glossary", label: "Glossary" },
   { href: "/sources", label: "Sources" },
   { href: "/methodology", label: "Methodology" }
 ] as const;
