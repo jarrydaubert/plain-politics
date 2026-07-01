@@ -44,4 +44,19 @@
 ## DEC-009: Phase 0 Before Full MVP
 - Decision: Build a narrow proof-of-thesis slice before attempting the full 10-feature MVP.
 - Rationale: The hardest product risk is whether users trust source-backed political information in practice. A small vertical slice proves this faster than broad feature coverage.
-- Impact: Early implementation should focus on one policy area, a few parties, authoritative sources, source excerpts, Party Profiles, Compare, plain-English explainers, and source panels.
+- Impact: Early implementation should focus on a postcode-led beginner journey, one policy area, a few parties, authoritative sources, source excerpts, Party Profiles, Compare, plain-English explainers, and source panels.
+
+## DEC-010: Beginner-First Product Surface
+- Decision: Treat "I know nothing about politics, help me start" as the primary public product journey.
+- Rationale: A static database of parties, changes, and source records is useful but not enough for general voters. The strongest on-ramp is a guided route from postcode or issue to plain-English basics, source-backed public records, and deeper research paths.
+- Impact: Home, navigation, copy, and feature prioritization should privilege `Start Here`, postcode lookup, glossary support, and easy routes back out of deep research pages.
+
+## DEC-011: Postcode-Led Local Context
+- Decision: Prioritize a `my area` starter that resolves postcode to constituency, current MP, party, Commons membership start date, and recent public parliamentary activity.
+- Rationale: Local relevance is the clearest beginner hook and can be powered by public sources such as postcodes.io, the UK Parliament Members API, and the Commons Votes API.
+- Impact: Raw postcodes should be processed transiently by default. Public pages must distinguish parliamentary activity from verified local impact unless a source directly supports the local claim.
+
+## DEC-012: Learning Gamification, Not Persuasion
+- Decision: Use light gamification only to reward learning, source-checking, and exploration.
+- Rationale: Game mechanics can make the product more approachable, but political preference nudges, ideological scores, and party-coded rewards would undermine neutrality and trust.
+- Impact: Acceptable mechanics include beginner modules, progress states, source-checking badges, glossary unlocks, and weekly `what changed` prompts. Do not reward movement toward a party or imply voting advice.

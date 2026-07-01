@@ -2,45 +2,48 @@
 
 ## 1) Product Objective
 
-Build a neutral, source-first UK politics information tracker that helps users understand what parties stand for, what their manifestos and public policy positions say, how popular they are, and how public political evidence changes over time.
+Build a neutral, source-first, beginner-friendly UK politics information tracker that helps users understand political basics, start from their postcode or an issue, see who represents them, what parties stand for, how popular they are, and how public political evidence changes over time.
 
 The product is informational only. It uses public sources, structured data, plain-English editorial/template summaries, charts, maps, tables, and source links.
 
 ## 2) Problem Statement
 
-Political information is fragmented across polling trackers, official publications, parliamentary records, donor registers, party websites, and media summaries. Users need one clear place to understand parties, policies, popularity, donations, votes, and events in plain English with visible sources and freshness.
+Political information is fragmented across polling trackers, official publications, parliamentary records, donor registers, party websites, and media summaries. Many users also do not know the vocabulary or where to start. Users need one clear place to begin locally, understand parties, policies, popularity, donations, votes, and events in plain English with visible sources and freshness.
 
 ## 3) Target Users
 
-1. General voters.
+1. Politics beginners and general voters.
 2. Journalists and researchers.
 3. Civics educators and students.
 4. Policy professionals.
 
 ## 4) Jobs To Be Done
 
-1. Understand what each party stands for in plain English.
-2. Compare party positions by issue.
-3. Read manifesto and policy summaries with links to originals.
-4. Track polling movement and popularity without mistaking noise for certainty.
-5. Understand who funds parties and when.
-6. Check relevant votes, bills, debates, and public records.
-7. See upcoming political events.
-8. Export or share verified information with source links.
+1. Start with my postcode and understand my constituency, current MP, and their public parliamentary record.
+2. Learn political basics in plain English without being talked down to.
+3. Understand what each party stands for in plain English.
+4. Compare party positions by issue.
+5. Read manifesto and policy summaries with links to originals.
+6. Track polling movement and popularity without mistaking noise for certainty.
+7. Understand who funds parties and when.
+8. Check relevant votes, bills, debates, and public records.
+9. See upcoming political events.
+10. Export or share verified information with source links.
 
 ## 5) Scope
 
-1. Home dashboard.
-2. Party profiles.
-3. Polling and momentum tracker.
-4. Compare view.
-5. Policies and manifesto tracker.
-6. Money and donor explorer.
-7. Parliament tracker for selected votes, bills, and debates.
-8. Calendar of key political events.
-9. Anonymous-first alignment quiz, if retained.
-10. Methodology and sources.
-11. Geographic scope: UK national parties and UK public institutional sources for v1.
+1. Home dashboard with a clear `Start Here` route for beginners.
+2. Postcode `my area` starter for constituency, current MP, and public parliamentary record.
+3. Party profiles.
+4. Polling and momentum tracker.
+5. Compare view.
+6. Policies and manifesto tracker.
+7. Money and donor explorer.
+8. Parliament tracker for selected votes, bills, and debates.
+9. Calendar of key political events.
+10. Anonymous-first alignment quiz or civic knowledge check, if retained.
+11. Methodology and sources.
+12. Geographic scope: UK national parties and UK public institutional sources for v1.
 
 ## 6) Out Of Scope
 
@@ -50,6 +53,7 @@ Political information is fragmented across polling trackers, official publicatio
 4. Micro-targeted political advertising.
 5. User accounts for Phase 0.
 6. Native mobile app.
+7. Gamified persuasion, ideological scoring, or mechanics that nudge users toward a party.
 
 ## 7) Compliance and Privacy Requirements
 
@@ -70,6 +74,8 @@ Political information is fragmented across polling trackers, official publicatio
 4. `Cannot verify from available public sources` is a first-class product state.
 5. Source freshness must be visible where it affects interpretation.
 6. Users must be able to reach the original public record from each material claim, figure, or datapoint.
+7. Gamified flows must reward learning, source-checking, and exploration, never party preference or ideological movement.
+8. Postcode lookups should be anonymous by default and should not imply local impact unless a source directly supports the local claim.
 
 ## 9) Success Metrics
 
@@ -309,19 +315,21 @@ Acceptance criteria:
 4. User can export a single event as ICS conforming to iCalendar (`RFC 5545`).
 5. Past events are archived and still searchable.
 
-## FEAT-006 Alignment Quiz (Anonymous-First)
+## FEAT-006 Guided Civic Check (Anonymous-First)
 
-User story: As a user, I can complete an issue quiz and view alignment results without creating an account.
+User story: As a user who does not know where to start, I can complete a guided civic check that teaches vocabulary, explains issues, and optionally compares my answers to source-backed party positions without creating an account.
 
 Acceptance criteria:
 
-1. Quiz supports anonymous completion.
-2. Result page shows ranked alignment with transparent scoring method.
-3. Result page links to source-backed policy positions used in scoring.
-4. No special-category data is persisted unless explicit consent is captured.
-5. Consent capture event is logged with timestamp and policy version when opted in.
-6. Results include cross-party agreement areas to reduce single-party framing.
-7. Core scoring runs deterministically and can execute client-side for anonymous mode.
+1. Check supports anonymous completion.
+2. First version may run as a civic learning path before any party-alignment scoring is enabled.
+3. If alignment scoring is enabled, result page shows ranked alignment with transparent scoring method.
+4. Result page links to source-backed policy positions used in scoring or to coverage gaps.
+5. No special-category data is persisted unless explicit consent is captured.
+6. Consent capture event is logged with timestamp and policy version when opted in.
+7. Results include cross-party agreement areas to reduce single-party framing.
+8. Core scoring runs deterministically and can execute client-side for anonymous mode.
+9. Gamified mechanics reward learning, checking sources, and completing modules, not party preference.
 
 ## FEAT-007 Search And Plain-English Explainers
 

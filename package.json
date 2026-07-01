@@ -1,0 +1,40 @@
+{
+  "name": "uk-policy-explainer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "fix-all": "biome check --write . && bun run typecheck",
+    "test": "bun test tests/unit",
+    "test:no-coverage": "bun test tests/unit",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.0",
+    "@tailwindcss/postcss": "4.3.2",
+    "lucide-react": "1.22.0",
+    "maplibre-gl": "5.24.0",
+    "next": "16.2.9",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "recharts": "3.9.1",
+    "tailwindcss": "4.3.2",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.1",
+    "@playwright/test": "1.61.1",
+    "@types/bun": "1.3.14",
+    "@types/node": "26.0.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "typescript": "6.0.3"
+  }
+}

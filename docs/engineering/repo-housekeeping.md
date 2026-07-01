@@ -2,19 +2,20 @@
 
 ## Current Shape
 
-The repository is currently documentation-first. There is no `package.json`, Next.js app, Supabase migration directory, or test runner configuration yet.
+The repository now has a documentation layer plus an early Bun/Next.js app scaffold. The first live source hooks call official UK Parliament APIs, and the first Supabase migration defines the provenance-first schema.
 
 ## Housekeeping Rules
 
-1. Keep root planning docs stable until the app scaffold exists.
+1. Keep root planning docs aligned with the actual app state.
 2. Put methodology and operational standards under `docs/`.
-3. Keep `.claude/skills/VERSIONS.md` aligned with skill frontmatter.
+3. Keep source hook planning in `docs/strategy/source-hooks.md`.
 4. Do not add generated build output, dependency folders, local env files, or reports to Git.
-5. When implementation begins, create the expected Bun scripts before relying on the commands in `AGENTS.md`.
+5. Keep Bun scripts in `package.json` aligned with `AGENTS.md`.
+6. Any public factual datapoint must have a source path before it renders.
 
-## Suggested App Scaffold Targets
+## App Scaffold Baseline
 
-When ready to scaffold the product app, add:
+The baseline scaffold should keep these parts in place:
 
 - `package.json`
 - `bun.lock`
@@ -24,11 +25,15 @@ When ready to scaffold the product app, add:
 - `playwright.config.*`
 - `biome.json`
 - `.env.example`
-- source ingestion scripts and source contracts
+- source contracts
+- source hook registry
 
-## Validation For Documentation-Only Changes
+## Validation
 
 1. Confirm the Git diff only includes intended files.
-2. Check local Markdown links.
-3. Check dates and target milestones are not stale.
-4. Check no private credentials or local-only paths are introduced.
+2. Run `bun run fix-all` when TS/JS/CSS changes.
+3. Run `bun run test:no-coverage` for code changes.
+4. Run `bun run build` for app-shell or route changes.
+5. Run `bun run test:e2e` for route or user-flow changes.
+6. Check dates and target milestones are not stale.
+7. Check no private credentials or local-only paths are introduced.

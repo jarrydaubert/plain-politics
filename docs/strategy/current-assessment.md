@@ -4,31 +4,43 @@ Last updated: 2026-06-30
 
 ## Short Synopsis
 
-UK Policy Explainer is a free, source-backed UK politics information tracker. It should help users understand what parties stand for, what their manifestos say, how popular they are, and what changed across polls, policies, donations, votes, and public records.
+UK Policy Explainer is a free, source-backed, beginner-friendly UK politics starter and information tracker. It should help users who know little or nothing about politics start from their postcode or an issue, understand who represents them, what parties stand for, how popular they are, and what changed across polls, policies, donations, votes, and public records.
 
 The strongest version is not a pundit, prediction engine, or campaign tool. It is a calm public reference layer over political evidence:
 
-1. What does this party stand for?
-2. What does its manifesto or official policy page say?
-3. How popular is the party in public polling?
-4. What changed recently?
-5. Which source proves it?
-6. How fresh is the evidence?
-7. What evidence is missing?
+1. Where do I start if I know nothing about politics?
+2. Who is my MP and what constituency am I in?
+3. What does this party stand for?
+4. What does its manifesto or official policy page say?
+5. How popular is the party in public polling?
+6. What changed recently?
+7. Which source proves it?
+8. How fresh is the evidence?
+9. What evidence is missing?
 
 ## What The Repo Is Today
 
-This is currently a planning and operating-standards repo. It contains product requirements, architecture direction, methodology, quality gates, and competitive research. It does not yet contain application code.
+This is now a planning, operating-standards, and early application repo. It contains product requirements, architecture direction, methodology, quality gates, competitive research, a Bun/Next.js scaffold, a Supabase migration, tests, and the first live UK Parliament source hooks.
 
-Not yet present:
+Now present:
 
 1. `package.json`
 2. Next.js app scaffold
-3. Supabase schema or migrations
-4. ingestion jobs
-5. tests
-6. CI configuration
-7. deployed prototype
+3. Supabase schema migration
+4. Bun test and Playwright configuration
+5. Typed source contracts
+6. Official UK Parliament source hooks for Commons party seats, current member samples, and recent divisions
+7. Source/datapoint catalogue pages and docs
+
+Still not yet present:
+
+1. Deployed prototype
+2. Persistent ingestion jobs
+3. Database-backed rendering from Supabase
+4. CI configuration
+5. Editorial/reviewer UI
+6. Full source excerpt drawer
+7. Real manifesto or polling ingestion
 
 ## What Is Already Well Specified
 
@@ -45,23 +57,23 @@ Already specified:
 7. Competitive gap and source standards in `docs/market/competitive-landscape.md`.
 8. Product requirements and success metrics in `PRD_V2.md`.
 
-The main problem is not lack of principles. The main problem is that these principles are not executable yet.
+The main problem is no longer lack of scaffolding. The main problem is turning the first live hooks into persistent ingestion, stored provenance, and user-facing source inspection.
 
 ## Real Gaps
 
 The highest-value gaps are implementation-grade specificity and proof:
 
-1. No deployed product or working prototype.
-2. No database schema, migrations, or source adapter contracts.
-3. No named first source list with ingestion method, cadence, and legal/robots status.
+1. No deployed product yet.
+2. Live hooks render in memory; they do not yet persist through Supabase.
+3. No scheduled ingestion jobs.
 4. No hard freshness thresholds by dataset.
-5. No automated source-reference test harness.
-6. No source excerpt validator.
+5. Source-reference tests exist for schemas, but not yet for rendered pages or all public claims.
+6. No source excerpt validator for parsed text spans.
 7. No search benchmark dataset.
 8. No editorial review state machine.
 9. No reviewer workflow or correction UI.
-10. No source panel UI showing exact source excerpts.
-11. No public polling average methodology.
+10. Source panels show provenance metadata, but not a full evidence drawer with exact highlighted spans.
+11. No public polling average implementation.
 12. No product instrumentation plan tied to privacy constraints.
 
 ## Strategic Opportunity
@@ -74,16 +86,19 @@ The market is fragmented:
 4. Fact-checkers explain selected claims.
 5. Paid public-affairs tools monitor policy and stakeholders.
 
-The opportunity is to connect those evidence streams into one free public information product.
+The opportunity is to connect those evidence streams into one free public information product that feels approachable for beginners and useful for people who want to go deeper.
 
 The product should not try to be the deepest version of every category. It should be the clearest connective layer:
 
-1. Party profiles in plain English.
-2. Manifesto and policy summaries with source links.
-3. Polling movement with uncertainty.
-4. Donations with reporting-period context.
-5. Votes and parliamentary records linked to party pages and policy areas.
-6. Visible gaps where evidence is weak or missing.
+1. A postcode-led `my area` starting point.
+2. Plain-English guided paths for beginners.
+3. Light gamification that rewards learning, source-checking, and exploration.
+4. Party profiles in plain English.
+5. Manifesto and policy summaries with source links.
+6. Polling movement with uncertainty.
+7. Donations with reporting-period context.
+8. Votes and parliamentary records linked to party pages and policy areas.
+9. Visible gaps where evidence is weak or missing.
 
 ## Product Bet
 
@@ -103,14 +118,16 @@ Build one narrow vertical slice before expanding the full MVP.
 
 Suggested proof-of-thesis slice:
 
-1. One policy area, such as housing, NHS, immigration, or tax.
-2. Four to five UK parties.
-3. Two to three Tier 1 source types, such as manifesto pages, official party policy pages, Hansard, or Commons votes.
-4. Party profile cards with plain-English source-backed summaries.
-5. Compare view with coverage states.
-6. Search and explainer pages over only the ingested corpus.
-7. Source panel with exact excerpts.
-8. Methodology page explaining source tiers, freshness, polling caveats, and uncertainty.
+1. Postcode to constituency/current MP using a reviewed public source.
+2. A beginner `Start Here` path explaining the MP, constituency, party, and one or two recent public records.
+3. One policy area, such as housing, NHS, immigration, or tax.
+4. Four to five UK parties.
+5. Two to three Tier 1 source types, such as manifesto pages, official party policy pages, Hansard, Commons votes, or written questions.
+6. Party profile cards with plain-English source-backed summaries.
+7. Compare view with coverage states.
+8. Search and explainer pages over only the ingested corpus.
+9. Source panel with exact excerpts.
+10. Methodology page explaining source tiers, freshness, polling caveats, and uncertainty.
 
 Polling belongs in the product vision, but it should not block Phase 0 unless source access and metadata are straightforward.
 
@@ -120,12 +137,13 @@ Polling belongs in the product vision, but it should not block Phase 0 unless so
 2. Polling movement is shown with uncertainty, sample metadata, and fieldwork dates.
 3. The dashboard distinguishes signal from noise.
 4. Coverage gaps are visible and neutrally worded.
-5. Users can search public political information without unsupported summaries.
-6. Source freshness is visible at record and dataset level.
-7. Corrections are public, dated, and linked to affected records.
-8. Neutrality checks are part of QA, not an afterthought.
-9. The product feels fast, clear, civic, and restrained.
-10. The free public product remains distinct from lobbying or campaign workflows.
+5. Users can start with their postcode, learn who represents them, and understand the public record without creating an account.
+6. Users can search public political information without unsupported summaries.
+7. Source freshness is visible at record and dataset level.
+8. Corrections are public, dated, and linked to affected records.
+9. Neutrality checks are part of QA, not an afterthought.
+10. The product feels fast, clear, civic, and lightly rewarding to explore.
+11. The free public product remains distinct from lobbying or campaign workflows.
 
 ## Watch-Outs
 

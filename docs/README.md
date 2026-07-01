@@ -8,7 +8,7 @@ This directory holds operating standards and implementation-support material for
 - `quality/` - release gates and feature readiness checks.
 - `engineering/` - repository, data model, and implementation housekeeping notes.
 - `market/` - competitive landscape and product-positioning tracking.
-- `strategy/` - current assessment, product thesis, and proof-of-thesis slice.
+- `strategy/` - current assessment, beginner-first product direction, source hooks, datapoints, product thesis, and proof-of-thesis slice.
 
 ## Canonical Root Docs
 
