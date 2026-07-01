@@ -93,41 +93,41 @@ export const sourceHooks: SourceHook[] = [
   },
   {
     access:
-      "Open public API plus official Parliament location search. Verified with a sample postcode.",
+      "Open public API plus official Parliament location search. Called client-side from /my-area so the raw postcode is not sent to the app server.",
     caveat:
-      "Postcodes are sensitive location data in practice, so the first product should process them transiently and avoid storing raw lookups by default.",
+      "Postcodes are sensitive location data in practice. The v1 lookup is transient and does not yet create server-side snapshots or excerpts.",
     datapoints: [
       "Normalized postcode",
       "Westminster parliamentary constituency",
       "Constituency code",
       "Local authority and ward where available",
       "Current MP, party and Commons membership start date",
-      "Source retrieval URL, snapshot hash and excerpt path"
+      "Source URLs checked"
     ],
     name: "Postcode to constituency and MP",
     powers: ["Beginner start here", "My area page", "Constituency pages"],
-    priority: "Candidate next",
+    priority: "Live now",
     publisher: "postcodes.io and UK Parliament Members API",
     sourceUrl: "https://api.postcodes.io/",
-    status: "candidate"
+    status: "hooked"
   },
   {
-    access: "Open official API endpoints. Member vote endpoint verified with a sample member.",
+    access: "Open official API endpoints. Called client-side from /my-area after an MP is found.",
     caveat:
-      "This shows public parliamentary activity, not automatic proof of local impact. Local relevance needs explicit source support.",
+      "This shows public parliamentary activity, not automatic proof of local impact. It does not yet create server-side snapshots or excerpts.",
     datapoints: [
       "Recent member votes",
       "Division title, date and vote totals",
       "Written questions where exposed by member endpoints",
-      "Member or constituency links where verified",
-      "Source retrieval URL, snapshot hash and excerpt path"
+      "Member activity caveat",
+      "Source URLs checked"
     ],
     name: "MP public record starter",
     powers: ["My area page", "MP detail pages", "Beginner civic journey"],
-    priority: "Candidate next",
+    priority: "Live now",
     publisher: "UK Parliament Members API and Commons Votes API",
     sourceUrl: "https://members-api.parliament.uk/",
-    status: "candidate"
+    status: "hooked"
   },
   {
     access: "Official public webpages. Initial glossary page is statically curated from them.",

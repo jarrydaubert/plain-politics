@@ -189,7 +189,7 @@ Definition of done:
 
 ### 9. Postcode To My Area Starter
 
-Status: `Next`
+Status: `In progress`
 
 Depends on: `#1 Persist Live Source Hooks To Supabase`
 

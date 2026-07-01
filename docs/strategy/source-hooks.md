@@ -123,13 +123,13 @@ Product use:
 3. Bill and policy timelines.
 4. Election-day and sitting-day context around the UK time/date navbar.
 
-## Candidate Next
-
 ### Postcode And Constituency Lookup
 
 Sources: <https://api.postcodes.io/>, <https://members-api.parliament.uk/>
 
-Likely datapoints:
+Implemented in: `src/components/my-area-lookup.tsx`, `app/my-area/page.tsx`
+
+Current datapoints:
 
 1. Normalized postcode.
 2. Westminster parliamentary constituency name.
@@ -139,46 +139,53 @@ Likely datapoints:
 6. Current MP party.
 7. Commons membership start date.
 8. Parliament profile link where available.
+9. Source URLs checked.
 
 Why it matters:
 
 This is the best beginner on-ramp: start from where the user lives, then explain who represents them and what public sources say.
 
-Review needed:
+Still needed:
 
 1. Privacy handling for postcodes.
 2. Fallback behaviour for invalid, partial, new, or ambiguous postcodes.
 3. Source precedence between postcode lookup and Parliament location search.
 4. Northern Ireland, devolved, and boundary-edge handling.
+5. Persisted source snapshots and excerpts once ingestion moves behind the server pipeline.
 
 ### MP Public Record Starter
 
 Sources: <https://members-api.parliament.uk/>, <https://commonsvotes-api.parliament.uk/>
 
-Likely datapoints:
+Implemented in: `src/components/my-area-lookup.tsx`, `app/my-area/page.tsx`
+
+Current datapoints:
 
 1. Recent member votes.
 2. Division title, date, vote totals, and member vote.
 3. Recent written questions where exposed by member endpoints.
-4. Debate, committee, bill, or event involvement where source mapping is reliable.
-5. Local relevance label: direct local source, constituency mention, member activity, or no local link verified.
+4. Source URLs checked.
+5. Local relevance caveat: public record activity, not automatic proof of local impact.
 
 Why it matters:
 
 Users care more about "what has my representative done publicly?" than abstract national records. This should show the record without overclaiming local impact.
 
-Review needed:
+Still needed:
 
 1. Endpoint coverage and pagination.
 2. Plain-English labels for parliamentary procedure.
 3. Rules for when an activity is allowed to be described as locally relevant.
 4. Evidence drawer coverage for each activity row.
+5. Debate, committee, bill, or event involvement where source mapping is reliable.
 
 ### Official Glossary And Civic Learning Sources
 
 Sources: <https://www.parliament.uk/site-information/glossary/>, <https://www.parliament.uk/about/how/>, <https://www.electoralcommission.org.uk/voting-and-elections>
 
-Likely datapoints:
+Implemented in: `src/data/glossary.ts`, `app/glossary/page.tsx`
+
+Current datapoints:
 
 1. Political or parliamentary term.
 2. Official definition or explanatory source page.
@@ -196,6 +203,8 @@ Review needed:
 2. Editorial review to simplify without changing meaning.
 3. Accessibility pattern for inline definitions and glossary links.
 4. Versioning when official source wording changes.
+
+## Candidate Next
 
 ### UK Parliament Bills
 

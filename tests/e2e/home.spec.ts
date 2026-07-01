@@ -3,10 +3,34 @@ import { expect, test } from "@playwright/test";
 test("home page renders the source-backed tracker shell", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /plain-english uk politics/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /view parties/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /polling movement/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /start with where you live/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /start with my area/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /barebones public launch/i })).toBeVisible();
   await expect(page.getByLabel(/UK date and time/i)).toBeVisible();
+});
+
+test("my area page renders the postcode starter", async ({ page }) => {
+  await page.goto("/my-area");
+
+  await expect(page.getByRole("heading", { name: /start with your area/i })).toBeVisible();
+  await expect(page.getByLabel(/enter a postcode/i)).toBeVisible();
+  await expect(page.getByRole("button", { name: /find my mp/i })).toBeVisible();
+  await expect(page.getByText(/does not store your postcode/i)).toBeVisible();
+});
+
+test("my area lookup resolves a sample postcode", async ({ page }) => {
+  await page.goto("/my-area");
+
+  await page.getByLabel(/enter a postcode/i).fill("SW1A 1AA");
+  await page.getByRole("button", { name: /find my mp/i }).click();
+
+  await expect(
+    page.getByRole("heading", { name: /cities of london and westminster/i })
+  ).toBeVisible({
+    timeout: 15000
+  });
+  await expect(page.getByText(/public record, not automatic local impact/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /sources checked/i })).toBeVisible();
 });
 
 test("parliament page renders live source-backed tables", async ({ page }) => {

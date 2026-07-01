@@ -2,10 +2,8 @@ import Link from "next/link";
 import { UkTimeClock } from "@/components/uk-time-clock";
 
 const navItems = [
-  { href: "/parties", label: "Parties" },
-  { href: "/policies", label: "Policies" },
+  { href: "/my-area", label: "My area" },
   { href: "/parliament", label: "Parliament" },
-  { href: "/polls", label: "Polls" },
   { href: "/glossary", label: "Glossary" },
   { href: "/sources", label: "Sources" },
   { href: "/methodology", label: "Methodology" }
