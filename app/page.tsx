@@ -21,7 +21,7 @@ const beginnerTopics = [
   },
   {
     description: "Read what this site does, what it avoids, and how to report corrections.",
-    href: "/methodology",
+    href: "/about",
     title: "What is this site?"
   }
 ] as const;
@@ -154,7 +154,7 @@ export default function HomePage() {
             </p>
             <Link
               className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
-              href="/methodology"
+              href="/about"
             >
               Read more about the site
               <ArrowRight aria-hidden="true" size={16} />

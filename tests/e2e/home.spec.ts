@@ -105,6 +105,14 @@ test("sources page renders hook inventory and datapoint groups", async ({ page }
   await expect(page.getByRole("heading", { name: "Polling and popularity" }).first()).toBeVisible();
 });
 
+test("about page explains the site without technical framing", async ({ page }) => {
+  await page.goto("/about");
+
+  await expect(page.getByRole("heading", { name: /about this site/i })).toBeVisible();
+  await expect(page.getByText(/without spin, predictions or voting advice/i)).toBeVisible();
+  await expect(page.getByText(/postcode lookups are not stored/i)).toBeVisible();
+});
+
 test("glossary page renders sourced political terms", async ({ page }) => {
   await page.goto("/glossary");
 
