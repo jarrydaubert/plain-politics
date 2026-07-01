@@ -194,7 +194,7 @@ Politics Platform is a UK-focused, source-first political intelligence platform 
 - **Policy tracker** (`/policy/[party]/[policy]`): `Article` with `dateModified`, `BreadcrumbList`
 - **MP profiles** (`/mp/[name]`): `Person`, `BreadcrumbList`
 - **Donor profiles** (`/donor/[entity]`): `Organization` or `Person`, `BreadcrumbList`
-- **Ask AI pages** (`/ask/[question]`): `FAQPage`, `BreadcrumbList`
+- **Question pages** (future `/questions/[question]`): `FAQPage`, `BreadcrumbList`
 - **Blog posts**: `BlogPosting`, `BreadcrumbList`
 
 ### Politics Platform-Specific Rules
@@ -202,7 +202,7 @@ Politics Platform is a UK-focused, source-first political intelligence platform 
 - No `aggregateRating` — only add when backed by real, verifiable reviews
 - `Organization.sameAs` should list verified social profiles only
 - `dateModified` is critical for policy pages — must reflect actual content update, not build time
-- `Article.author` should reference the platform organization, not individual AI
+- `Article.author` should reference Plain Politics or a named human author only when there is a real editorial owner
 - Source citation URLs in schema should point to primary sources (legislation.gov.uk, hansard.parliament.uk) where applicable
 - `BreadcrumbList.item` must be canonical page URLs (no hash fragments)
 - No schema on `noindex` utility pages unless there is explicit business need

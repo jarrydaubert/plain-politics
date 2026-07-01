@@ -11,6 +11,9 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 - Product requirements: `PRD_V2.md`
 - Architecture decisions: `DECISIONS.md`
 - Technical baseline: `TECH_STACK.md`
+- Brand identity: `docs/brand/logo.md`
+- GBrain usage policy: `docs/engineering/gbrain.md`
+- Vercel plugin skill policy: `docs/engineering/vercel-plugin-skills.md`
 - Delivery plan: `PLAIN_POLITICS_ACTION_PLAN.md`
 - Delivery backlog: `backlog.md`
 - Methodology standards: `docs/methodology/`

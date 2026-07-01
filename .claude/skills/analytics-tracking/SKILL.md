@@ -309,51 +309,51 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key analy
 
 ## Politics Platform Context
 
-The Politics Platform is a free civic information tool with no user accounts, no purchases, and no subscriptions. Analytics must reflect this model.
+Plain Politics is a free civic information tool with no user accounts, no purchases, and no subscriptions. Analytics must help us improve beginner journeys without collecting political opinions, exact postcode inputs, raw search text, or other high-risk personal data.
 
 ### Planned Analytics Stack
-- **Vercel Analytics** + **Vercel Speed Insights** in root layout (privacy-preserving)
-- **GA4 (gtag.js, no GTM)** with consent gating
-- Shared tracking helper in a central analytics module
+- **Vercel Analytics** and **Vercel Speed Insights** in root layout for privacy-preserving product and performance signals
+- **Cloudflare Web Analytics** as a possible DNS-side supplement once the domain is live
+- **Plausible or Umami** only if we later need richer privacy-safe funnels
+- **No GA4 for v1** unless explicitly re-approved with consent gating and a documented reason
+- Shared tracking helper in a central analytics module so event names and redaction rules stay consistent
 
 ### Consent Model
-- Cookie consent banner with accept/decline
-- GA4 defaults to denied storage; upgrades only `analytics_storage` after consent
-- Vercel Analytics are privacy-preserving by design (no consent gate needed)
-- 12-month consent expiry
+- Prefer cookieless analytics that do not require a banner
+- If a cookie-based tool is ever added, default to denied storage until explicit consent
+- Never use ad pixels, retargeting tags, or political audience-building
 
-### Canonical Conversion Events
+### Canonical Product Events
 | Funnel | Event | Key Properties |
 |--------|-------|----------------|
-| Compare | `compare_viewed` | `issue_slug`, `parties_shown` |
-| Compare | `compare_party_expanded` | `issue_slug`, `party` |
-| Explain | `explainer_viewed` | `topic_slug`, `source_tier` |
-| Ask AI | `ai_question_asked` | `question_category`, `has_answer` |
-| Ask AI | `ai_citation_clicked` | `question_slug`, `source_domain`, `source_tier` |
-| Ask AI | `ai_answer_rated` | `question_slug`, `rating` (helpful/not) |
-| Policy | `policy_diff_viewed` | `party`, `policy_slug`, `version_count` |
-| MP/Donor | `profile_viewed` | `entity_type`, `entity_slug` |
-| Content | `source_link_clicked` | `page_type`, `source_url`, `source_tier` |
-| Content | `newsletter_subscribed` | `signup_location` |
+| Starter Path | `starter_step_completed` | `step_id`, `page_type` |
+| My Area | `postcode_lookup_started` | `source` |
+| My Area | `postcode_lookup_completed` | `result_type`, `constituency_region` only if coarse and non-identifying |
+| Glossary | `glossary_term_viewed` | `term_slug`, `category` |
+| Parliament | `parliament_surface_viewed` | `surface`, `source_status` |
+| Sources | `source_catalogue_viewed` | `source_group` |
+| Content | `source_link_clicked` | `page_type`, `source_domain`, `source_tier` |
+| Content | `evidence_drawer_opened` | `page_type`, `claim_type` |
 | Platform | `methodology_viewed` | `section` |
 
 ### Event Naming Rules
 - Canonical event list lives in project docs
-- Use `object_action` format (lowercase with underscores)
+- Use `object_action` format, lowercase with underscores
 - Include context in properties, not event name
 - Every event alias must have a removal item in backlog
 
 ### Privacy Constraints
-- No user accounts: do **not** introduce `user_id`, `plan_type`, or `account_id`
-- Never send exact query text to analytics — use categorized/bucketed fields
-- Never send personally identifiable source URLs that could identify research patterns
-- Use centralized `trackEvent()` helper so consent gating remains centralized
+- No user accounts: do not introduce `user_id`, `plan_type`, or `account_id`
+- Never send exact postcode, raw query text, or political opinion answers to analytics
+- Never send personally identifying source URLs that could expose a research pattern
+- Use categorized, bucketed, or page-level fields instead of free text
+- Use centralized `trackEvent()` helper so redaction remains centralized
 
 ### Success Metric Mapping
-| PRD Metric | Analytics Event(s) | Calculation |
-|------------|-------------------|-------------|
-| Citation CTR >= 25% | `ai_citation_clicked` / `ai_question_asked` | Clicks on citations / total AI answers viewed |
-| Answer support rate >= 95% | Internal QA pipeline (not analytics) | Automated claim-to-citation validation |
-| Freshness SLA >= 95% | Ingestion pipeline metrics (not analytics) | % of sources updated within SLA |
-| 30-day return rate >= 30% | GA4 cohort analysis | Returning visitors within 30 days |
-| Citation relevance QA >= 90% | Internal QA pipeline | Automated relevance scoring |
+| PRD Metric | Analytics Signal | Calculation |
+|------------|------------------|-------------|
+| Beginner journey completion | Starter path events | Completed steps / started sessions |
+| My Area usefulness | Lookup completion and subsequent navigation | Completed lookups with next-page engagement |
+| Source engagement | `source_link_clicked` and `evidence_drawer_opened` | Evidence interactions / eligible page views |
+| Freshness SLA >= 95% | Ingestion pipeline metrics, not analytics | % of sources updated within SLA |
+| 30-day return signal | Privacy-safe repeat-visit estimate where available | Returning visits without user-level political profiling |

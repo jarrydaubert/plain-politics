@@ -6,7 +6,8 @@ This directory holds operating standards and implementation-support material for
 
 - `methodology/` - source trust, source-reference, neutrality, and privacy standards.
 - `quality/` - release gates and feature readiness checks.
-- `engineering/` - repository, data model, Cloudflare free-tier notes, and implementation housekeeping notes.
+- `brand/` - logo, palette, and identity-system notes.
+- `engineering/` - repository, data model, GBrain policy, Cloudflare free-tier notes, Vercel plugin skill policy, and implementation housekeeping notes.
 - `market/` - competitive landscape and product-positioning tracking.
 - `strategy/` - current assessment, v1.0.0 scope, beginner-first product direction, civic explainer calendar, source hooks, datapoints, product thesis, and proof-of-thesis slice.
 

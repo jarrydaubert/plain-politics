@@ -76,7 +76,21 @@ Skill docs live in `.claude/skills/`. Version history: `.claude/skills/VERSIONS.
 ### Engineering & Quality
 - `engineering` — Next.js/React/TS performance patterns and Supabase
 - `accessibility` — WCAG 2.2 AA compliance
-- `analytics-tracking` — GA4, Vercel Analytics, event tracking
+- `analytics-tracking` — privacy-safe analytics, Vercel Analytics, Speed Insights, and event tracking
+
+### GBrain Policy
+- GBrain may be used as local operator memory for prior decisions, strategy, and reusable patterns.
+- Do not use GBrain as evidence for political claims, source freshness, legal/privacy decisions, or production behavior.
+- Do not store postcode lookups, raw search text, quiz answers, or political opinion signals in GBrain.
+- Canonical truth remains git, source files, approved docs, primary public sources, migrations, and verification artifacts.
+- Full policy: `docs/engineering/gbrain.md`.
+
+### Vercel Plugin Skill Policy
+- Use now: `deployments-cicd`, `vercel-cli`, `env-vars`, `verification`, `nextjs`, `react-best-practices`, `turbopack`, `vercel-functions`, and `vercel-firewall`.
+- Use later or with care: `next-cache-components`, `runtime-cache`, `vercel-storage`, `routing-middleware`, `marketplace`, `next-upgrade`, `auth`, `workflow`, and `shadcn`.
+- Avoid for v1: `ai-gateway`, `ai-sdk`, `chat-sdk`, `eve`, `vercel-agent`, `vercel-connect`, and `vercel-sandbox`; Plain Politics v1 has no AI product surface.
+- Removed locally from the Vercel plugin cache: `microfrontends`, `next-forge`, `bootstrap`, and `knowledge-update`.
+- Full audit: `docs/engineering/vercel-plugin-skills.md`.
 
 ### Upstream Source
 Skills are sourced from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills). See `.claude/skills/VERSIONS.md` for sync history and available skills to port.

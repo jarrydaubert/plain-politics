@@ -3,7 +3,7 @@ import { expect, type Page, test } from "@playwright/test";
 test("home page renders the source-backed tracker shell", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("link", { exact: true, name: "Plain Politics" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Plain Politics home" })).toBeVisible();
   await expect(page.getByRole("heading", { name: /start with where you live/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /start with my area/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /where do you want to start/i })).toBeVisible();
