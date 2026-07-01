@@ -1,4 +1,4 @@
-# UK Policy Explainer v2 Product Requirements
+# Plain Politics v2 Product Requirements
 
 ## 1) Product Objective
 

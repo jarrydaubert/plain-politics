@@ -14,7 +14,7 @@ export function SiteHeader() {
     <header className="border-b border-[var(--border)] bg-[var(--surface)]">
       <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
         <Link className="text-lg font-semibold tracking-tight" href="/">
-          UK Policy Explainer
+          Plain Politics
         </Link>
 
         <div className="flex flex-1 items-center justify-end gap-4">

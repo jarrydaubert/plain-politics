@@ -4,7 +4,7 @@ Last updated: 2026-06-30
 
 ## Short Synopsis
 
-UK Policy Explainer is a free, source-backed, beginner-friendly UK politics starter and information tracker. It should help users who know little or nothing about politics start from their postcode or an issue, understand who represents them, what parties stand for, how popular they are, and what changed across polls, policies, donations, votes, and public records.
+Plain Politics is a free, source-backed, beginner-friendly UK politics starter and information tracker. It should help users who know little or nothing about politics start from their postcode or an issue, understand who represents them, what parties stand for, how popular they are, and what changed across polls, policies, donations, votes, and public records.
 
 The strongest version is not a pundit, prediction engine, or campaign tool. It is a calm public reference layer over political evidence:
 

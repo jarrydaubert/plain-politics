@@ -1,6 +1,6 @@
 # Methodology
 
-This directory is the operating source of truth for how UK Policy Explainer evaluates, stores, cites, and explains public political information.
+This directory is the operating source of truth for how Plain Politics evaluates, stores, cites, and explains public political information.
 
 ## Standards
 

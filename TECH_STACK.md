@@ -1,4 +1,4 @@
-# UK Policy Explainer: Technical Stack
+# Plain Politics: Technical Stack
 
 ## Architecture Goals
 

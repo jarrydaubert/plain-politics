@@ -2,7 +2,7 @@
 
 ## Purpose
 
-UK Policy Explainer handles political information and may process user interactions that reveal political opinions. Privacy-safe defaults are required before any implementation work.
+Plain Politics handles political information and may process user interactions that reveal political opinions. Privacy-safe defaults are required before any implementation work.
 
 ## Defaults
 

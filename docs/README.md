@@ -1,6 +1,6 @@
 # Documentation
 
-This directory holds operating standards and implementation-support material for UK Policy Explainer.
+This directory holds operating standards and implementation-support material for Plain Politics.
 
 ## Sections
 
@@ -17,5 +17,5 @@ The canonical product and planning docs remain at the repository root:
 - `../PRD_V2.md`
 - `../DECISIONS.md`
 - `../TECH_STACK.md`
-- `../UK_POLICY_EXPLAINER_ACTION_PLAN.md`
+- `../PLAIN_POLITICS_ACTION_PLAN.md`
 - `../IDEA_BRIEF.md`

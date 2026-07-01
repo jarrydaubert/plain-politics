@@ -1,6 +1,6 @@
-# UK Policy Explainer
+# Plain Politics
 
-UK Policy Explainer is a UK-focused, source-first politics starter and information tracker. The product goal is to help people who know little or nothing about politics understand the basics, start from their postcode or an issue they care about, see who represents them, what parties stand for, how popular they are, and what changed across public political evidence.
+Plain Politics is a UK-focused, source-first politics starter and information tracker. The product goal is to help people who know little or nothing about politics understand the basics, start from their postcode or an issue they care about, see who represents them, what parties stand for, how popular they are, and what changed across public political evidence.
 
 ## Current State
 
@@ -11,7 +11,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 - Product requirements: `PRD_V2.md`
 - Architecture decisions: `DECISIONS.md`
 - Technical baseline: `TECH_STACK.md`
-- Delivery plan: `UK_POLICY_EXPLAINER_ACTION_PLAN.md`
+- Delivery plan: `PLAIN_POLITICS_ACTION_PLAN.md`
 - Delivery backlog: `backlog.md`
 - Methodology standards: `docs/methodology/`
 - Strategy and current assessment: `docs/strategy/`
@@ -38,7 +38,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 |-- IDEA_BRIEF.md
 |-- PRD_V2.md
 |-- TECH_STACK.md
-|-- UK_POLICY_EXPLAINER_ACTION_PLAN.md
+|-- PLAIN_POLITICS_ACTION_PLAN.md
 |-- backlog.md
 |-- app/
 |-- docs/

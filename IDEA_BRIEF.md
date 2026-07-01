@@ -1,4 +1,4 @@
-# UK Policy Explainer: Idea Brief
+# Plain Politics: Idea Brief
 
 ## One-Line Concept
 A free, source-backed, beginner-friendly UK politics starter that helps people understand the basics, start from their postcode, learn who represents them, see what parties stand for, and track what changed across polls, policies, donors, votes, and public records.

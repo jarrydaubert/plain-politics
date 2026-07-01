@@ -4,7 +4,7 @@ Last reviewed: 2026-07-01
 
 ## Positioning Hypothesis
 
-UK Policy Explainer should become a free, source-backed UK politics information tracker that explains what parties stand for, what their manifestos say, how popular they are, and what changed across polls, policies, donors, votes, and public records.
+Plain Politics should become a free, source-backed UK politics information tracker that explains what parties stand for, what their manifestos say, how popular they are, and what changed across polls, policies, donors, votes, and public records.
 
 The current market appears fragmented. Polling trackers, parliamentary transparency tools, donor registers, fact-checking organisations, and paid public-affairs monitoring platforms each cover part of the need. The opportunity is to combine the best parts into one public, neutral, source-backed information product.
 
@@ -22,7 +22,7 @@ Build the calmest, clearest place to answer:
 
 ### Polling, Forecasts, and Momentum
 
-| Product | Source | What It Does Well | What To Borrow | Gap For UK Policy Explainer |
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
 |---|---|---|---|---|
 | Electoral Calculus | <https://www.electoralcalculus.co.uk/homepage.html> | UK polling, predictions, seat-level projections, maps, and archives. | Poll-of-polls, trend history, seat projection labels, archive depth. | Pair polling with policy, donor, vote, and source-explanation layers. |
 | Financial Times UK elections poll tracker | <https://www.ft.com/content/ec11dcb6-4f53-4215-a1a1-0b72b4bc7e29> | Polished polling tracker and leadership approval presentation. | Clean trend visualisation, restrained editorial tone, leadership ratings. | Free public access and source-level explainability. |
@@ -31,7 +31,7 @@ Build the calmest, clearest place to answer:
 
 ### Parliamentary Transparency
 
-| Product | Source | What It Does Well | What To Borrow | Gap For UK Policy Explainer |
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
 |---|---|---|---|---|
 | TheyWorkForYou | <https://www.theyworkforyou.com/> | MP pages, debates, written answers, votes, interests, and alerts. | Person-centric navigation, plain-language parliamentary discovery, alert model. | Connect voting records to party profiles, policy positions, polling movement, and source-backed summaries. |
 | TheyWorkForYou API | <https://www.theyworkforyou.com/api/> | Programmatic access to parliamentary data. | Reuse as possible upstream/source option, subject to terms and usage limits. | Need own provenance, source snapshots, and neutral methodology on top. |
@@ -42,26 +42,26 @@ Build the calmest, clearest place to answer:
 
 ### Political Finance and Donors
 
-| Product | Source | What It Does Well | What To Borrow | Gap For UK Policy Explainer |
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
 |---|---|---|---|---|
 | Electoral Commission Registers Search | <https://search.electoralcommission.org.uk/> | Official search for political finance, parties, campaigners, donations, loans, and spending records. | Canonical finance source, donor history, recipient filters, publication-lag labels. | Better charts, entity resolution, trend summaries, and links to political context. |
 
 ### Fact-Checking and Evidence Organisations
 
-| Product | Source | What It Does Well | What To Borrow | Gap For UK Policy Explainer |
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
 |---|---|---|---|---|
-| Full Fact | <https://fullfact.org/> | Public fact-checking and evidence-led explainers. | Editorial discipline, corrections culture, clear uncertainty handling. | UK Policy Explainer should not rate claims true/false by default; it should track sourced political evidence and changes. |
+| Full Fact | <https://fullfact.org/> | Public fact-checking and evidence-led explainers. | Editorial discipline, corrections culture, clear uncertainty handling. | Plain Politics should not rate claims true/false by default; it should track sourced political evidence and changes. |
 
 ### Election and Candidate Information
 
-| Product | Source | What It Does Well | What To Borrow | Gap For UK Policy Explainer |
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
 |---|---|---|---|---|
 | Democracy Club | <https://democracyclub.org.uk/> | Civic election data and public democratic information infrastructure. | Public-good posture, election data partnerships, candidate/election data model inspiration. | Broader ongoing politics tracker across polls, policy, votes, donors, and plain-English explainers. |
 | WhoCanIVoteFor | <https://whocanivotefor.co.uk/> | Candidate and election lookup for voters. | Location-based election discovery and accessible civic UX. | Persistent tracker after election day and source-backed policy intelligence. |
 
 ### Paid Political Intelligence and Public Affairs
 
-| Product | Source | What It Does Well | What To Borrow | Gap For UK Policy Explainer |
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
 |---|---|---|---|---|
 | Dods Political Intelligence | <https://www.dodspoliticalintelligence.com/> | Professional political monitoring, policy analysis, stakeholder intelligence, and public-affairs support. | Monitoring workflows, stakeholder/entity tracking, alerting, expert analysis patterns. | Free public access, open methodology, neutral civic framing, and source-backed public information. |
 | PolicyMogul | <https://policymogul.com/> | Public-affairs platform for monitoring and engagement. | Monitoring feeds, stakeholder views, public-affairs workflow ideas. | Public civic product rather than professional lobbying workflow. |
@@ -72,7 +72,7 @@ Build the calmest, clearest place to answer:
 
 These are not direct UK competitors, but they show useful product patterns from civic information tools in other countries.
 
-| Product | Country / Region | Source | What It Does Well | What To Borrow | Caution For UK Policy Explainer |
+| Product | Country / Region | Source | What It Does Well | What To Borrow | Caution For Plain Politics |
 |---|---|---|---|---|---|
 | Policy.nz | New Zealand | <https://policy.nz/> | Local-election guide that starts from area/election, compares candidates and policies, supports favourites, and uses simple voter-facing language. | Address/postcode-led onboarding, compare-by-topic cards, local-only favourites/research trail, clear "not telling you how to vote" copy. | Candidate questionnaires are labour-heavy and election-cycle dependent. |
 | Vote Smart | United States | <https://justfacts.votesmart.org/> | Candidate and official profiles across biographies, votes, positions, ratings, statements, funding, RSS, and API products. | Standard profile tabs, "enter politician or zip code" search, issue-position source discipline, RSS/data reuse patterns. | Some API/data access may be commercial; avoid importing interest-group ratings as neutral truth. |
@@ -144,7 +144,7 @@ Prefer official sources for canonical records:
 
 ## Differentiation Strategy
 
-UK Policy Explainer should not try to be the best standalone polling model, the deepest parliamentary database, or a paid public-affairs CRM. It should win by connecting these evidence streams in a way normal users can trust.
+Plain Politics should not try to be the best standalone polling model, the deepest parliamentary database, or a paid public-affairs CRM. It should win by connecting these evidence streams in a way normal users can trust.
 
 The product should differentiate on:
 

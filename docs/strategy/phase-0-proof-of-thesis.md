@@ -6,7 +6,7 @@ Last updated: 2026-06-30
 
 Phase 0 exists to prove the core trust experience before attempting the full MVP. v1.0.0 is the first barebones public release inside Phase 0, and policy-area comparison follows after that on a feature branch. It should answer one question:
 
-Can UK Policy Explainer turn a small set of public political sources into a useful, neutral, plain-English politics starter that beginners can use and trust?
+Can Plain Politics turn a small set of public political sources into a useful, neutral, plain-English politics starter that beginners can use and trust?
 
 ## Scope
 

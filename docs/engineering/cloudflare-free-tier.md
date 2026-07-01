@@ -8,6 +8,8 @@ This note captures what the project can reasonably leverage from Cloudflare whil
 
 Cloudflare is not the planned app host. The Next.js application should deploy to Vercel. Cloudflare's role is domain/DNS, Email Routing, email aliases, and optional lightweight health-alert helpers.
 
+Domain status: `plainpolitics.co.uk` is owned for the public launch.
+
 ## Relevant Cloudflare Capabilities
 
 1. Cloudflare Email Routing is available on Free and Paid plans. It can route incoming email for addresses such as `corrections@`, `health@`, or `contact@` to verified destination addresses.
@@ -36,6 +38,12 @@ Recommended flow:
 5. The Worker sends email only to verified admin destination addresses.
 6. KV or Supabase stores alert cooldown state so repeated failures do not create email floods.
 7. Email Routing handles inbound addresses such as `corrections@` and `health@`.
+
+Public launch aliases:
+
+1. `hello@plainpolitics.co.uk` for general contact.
+2. `corrections@plainpolitics.co.uk` for public corrections and source issues.
+3. `health@plainpolitics.co.uk` for operator health alerts if Cloudflare Worker checks are enabled.
 
 Alert email types:
 

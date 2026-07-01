@@ -1,4 +1,4 @@
-# UK Policy Explainer: Action Plan
+# Plain Politics: Action Plan
 
 ## Objective
 Launch a UK-focused, source-first political information MVP with plain-English party/policy pages, live public-source tracking, strong provenance, and privacy-safe defaults.

@@ -4,7 +4,7 @@ Last updated: 2026-06-30
 
 ## Purpose
 
-This document tracks public data feeds UK Policy Explainer can use for a free, current, source-backed politics tracker.
+This document tracks public data feeds Plain Politics can use for a free, current, source-backed politics tracker.
 
 Use this status language:
 

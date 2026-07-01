@@ -2,7 +2,7 @@
 
 Last updated: 2026-07-01
 
-This is the living backlog for UK Policy Explainer. It captures product ideas, data hooks, technical work, and research tasks before they disappear into chat history.
+This is the living backlog for Plain Politics. It captures product ideas, data hooks, technical work, and research tasks before they disappear into chat history.
 
 ## Status Legend
 

@@ -16,7 +16,7 @@ export default function AboutPage() {
       </Link>
       <h1 className="mt-6 text-4xl font-semibold">About this site</h1>
       <p className="mt-4 leading-7 text-[var(--muted)]">
-        UK Policy Explainer is a plain-English starter for people who want to understand UK politics
+        Plain Politics is a plain-English starter for people who want to understand UK politics
         without spin, predictions or voting advice.
       </p>
       <div className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">

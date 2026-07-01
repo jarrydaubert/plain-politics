@@ -4,7 +4,7 @@ Last updated: 2026-06-30
 
 ## Purpose
 
-Polling should help users understand movement in public opinion without overstating certainty. UK Policy Explainer should show polling trends with source metadata, uncertainty, and clear separation between evidence and prediction.
+Polling should help users understand movement in public opinion without overstating certainty. Plain Politics should show polling trends with source metadata, uncertainty, and clear separation between evidence and prediction.
 
 ## Core Rules
 

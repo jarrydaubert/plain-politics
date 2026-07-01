@@ -1,4 +1,4 @@
-# AGENTS.md - UK Policy Explainer
+# AGENTS.md - Plain Politics
 
 This file defines how coding agents should work in this repo. Keep it short and keep it true.
 
@@ -90,7 +90,7 @@ See project root for:
 - `README.md` — Repo entry point and current state
 - `PRD_V2.md` — Product requirements
 - `TECH_STACK.md` — Technical baseline
-- `UK_POLICY_EXPLAINER_ACTION_PLAN.md` — Phased execution plan
+- `PLAIN_POLITICS_ACTION_PLAN.md` — Phased execution plan
 - `IDEA_BRIEF.md` — Project brief and success metrics
 - `docs/strategy/` — Current assessment and Phase 0 proof-of-thesis guidance
 - `docs/market/` — Competitive landscape tracker

@@ -4,7 +4,7 @@ Last updated: 2026-06-30
 
 ## Purpose
 
-This catalogue lists the public political datapoints UK Policy Explainer should aim to collect, normalize, display, and trace back to source records.
+This catalogue lists the public political datapoints Plain Politics should aim to collect, normalize, display, and trace back to source records.
 
 The first implementation principle is:
 

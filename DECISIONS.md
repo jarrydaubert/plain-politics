@@ -1,9 +1,9 @@
-# UK Policy Explainer Decision Log
+# Plain Politics Decision Log
 
 ## DEC-001: Canonical Product Spec
 - Decision: `PRD_V2.md` is the canonical product specification.
 - Rationale: Consolidates reviewer-verified corrections into one source of truth.
-- Impact: Other docs (`IDEA_BRIEF.md`, `TECH_STACK.md`, `UK_POLICY_EXPLAINER_ACTION_PLAN.md`) must remain aligned to PRD v2.
+- Impact: Other docs (`IDEA_BRIEF.md`, `TECH_STACK.md`, `PLAIN_POLITICS_ACTION_PLAN.md`) must remain aligned to PRD v2.
 
 ## DEC-002: MVP Architecture Baseline
 - Decision: Use Next.js + Supabase Postgres + scheduled TypeScript ingestion jobs + GitHub Actions or equivalent scheduling.
