@@ -6,6 +6,8 @@ Last updated: 2026-07-01
 
 This note captures what the project can reasonably leverage from Cloudflare while keeping operator email alerts cheap.
 
+Cloudflare is not the planned app host. The Next.js application should deploy to Vercel. Cloudflare's role is domain/DNS, Email Routing, email aliases, and optional lightweight health-alert helpers.
+
 ## Relevant Cloudflare Capabilities
 
 1. Cloudflare Email Routing is available on Free and Paid plans. It can route incoming email for addresses such as `corrections@`, `health@`, or `contact@` to verified destination addresses.
@@ -23,16 +25,17 @@ Sources checked:
 
 ## Recommended Alerting Shape
 
-Use Cloudflare for lightweight operator alerts, not as the full data pipeline at first.
+Use Cloudflare for lightweight operator alerts, not app hosting or the full data pipeline.
 
 Recommended flow:
 
-1. Ingestion jobs write source health to Supabase.
-2. A small health endpoint exposes a signed, operator-only summary of source status.
-3. A Cloudflare Worker Cron Trigger checks the health endpoint on a modest cadence.
-4. The Worker sends email only to verified admin destination addresses.
-5. KV or Supabase stores alert cooldown state so repeated failures do not create email floods.
-6. Email Routing handles inbound addresses such as `corrections@` and `health@`.
+1. Vercel hosts the Next.js app and preview deployments.
+2. Ingestion jobs write source health to Supabase.
+3. A small Vercel-hosted health endpoint exposes a signed, operator-only summary of source status.
+4. A Cloudflare Worker Cron Trigger can check the health endpoint on a modest cadence.
+5. The Worker sends email only to verified admin destination addresses.
+6. KV or Supabase stores alert cooldown state so repeated failures do not create email floods.
+7. Email Routing handles inbound addresses such as `corrections@` and `health@`.
 
 Alert email types:
 
@@ -46,6 +49,7 @@ Avoid:
 2. Public transactional email on Cloudflare Free unless the recipient is a verified destination address.
 3. Treating Cloudflare Email Routing as a general outbound email provider.
 4. Storing raw postcodes, user queries, or political preference data in alert payloads.
+5. Reopening Cloudflare Pages/Workers app hosting unless Vercel becomes a real blocker.
 
 ## Upgrade Trigger
 

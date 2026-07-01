@@ -27,6 +27,26 @@ Every implementation task should meet these before it is considered done:
 
 ## P0 - Keep The Foundation Honest
 
+### 0. v1.0.0 Barebones Public Launch
+
+Status: `Next`
+
+Depends on: `#4 Global UK Date And Time`, `#9 Postcode To My Area Starter`, `#14A Political Glossary And Traditions`, `#24 Source Hook Registry`, `#30 CI And Release Gates`, `#32 Vercel Preview Deployment`
+
+Why: The first public release should prove the beginner-first site can launch, explain itself, resolve a postcode, show live public records, expose sources, and accept corrections without waiting for policy-area comparison.
+
+Definition of done:
+
+1. Public Vercel URL exists with Cloudflare DNS/domain configured.
+2. Home page clearly explains the site is for people who do not know politics but want to understand it.
+3. Postcode starter resolves constituency, current MP, party, Commons membership start date, and source links without storing raw postcode by default.
+4. Live Parliament page, glossary, sources, and methodology pages are linked from global navigation.
+5. Public pages contain no demo data presented as real public data.
+6. Contact/corrections email route exists through Cloudflare Email Routing.
+7. Live data has empty, loading, stale, failed, and unavailable states.
+8. Build, unit tests, E2E smoke, and release checks pass.
+9. Policy-area comparison, manifesto ingestion, polling, donations, alignment scoring, accounts, and change feeds are explicitly excluded.
+
 ### 1. Persist Live Source Hooks To Supabase
 
 Status: `Next`
@@ -205,11 +225,11 @@ Definition of done:
 
 ### 11. Manifesto And Policy Ingestion
 
-Status: `Next`
+Status: `Planned`
 
 Depends on: `#5 Snapshot-First Parser Architecture`
 
-Why: Manifestos and official policy pages are the source base for party explanations, comparison, and the alignment check.
+Why: Manifestos and official policy pages are the source base for party explanations and comparison, but this belongs on a feature branch after the barebones v1.0.0 launch.
 
 Definition of done:
 
@@ -592,3 +612,20 @@ Definition of done:
 5. Alerts include source name, failing URL or endpoint family, last successful run, failure count, freshness impact, and link to operator detail.
 6. Alert dedupe and cooldown prevent repeated emails for the same failing source.
 7. Tests cover alert creation, dedupe, recovery email, and daily digest summary.
+
+### 32. Vercel Preview Deployment
+
+Status: `Next`
+
+Depends on: `#30 CI And Release Gates`
+
+Why: The project needs a live preview URL so real users can test whether the beginner-first journey is understandable and trustworthy.
+
+Definition of done:
+
+1. Vercel project is connected to the repository.
+2. Production and preview deploys run `bun install`, `bun run build`, and the required smoke checks.
+3. Environment variables are documented in `.env.example` and configured in Vercel.
+4. Cloudflare DNS points the domain or subdomain to Vercel.
+5. Preview URL is added to the README or deployment notes.
+6. Deployment notes clarify that Cloudflare is used for DNS/domain/email, not app hosting.

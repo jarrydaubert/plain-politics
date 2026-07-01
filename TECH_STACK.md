@@ -10,6 +10,13 @@
 
 ## Recommended Stack
 
+### Hosting And Domain
+
+1. Vercel hosts the Next.js application and preview deployments.
+2. Cloudflare handles domain registration or DNS, Email Routing, and email aliases such as `contact@`, `corrections@`, and `health@`.
+3. Cloudflare Workers/Cron may be used for lightweight operator health checks and verified-admin alert emails, but not as the primary app runtime.
+4. Revisit Cloudflare app hosting only if there is a deliberate runtime migration plan and the Next.js/Supabase behaviour is revalidated.
+
 ### Frontend
 
 1. Next.js App Router with TypeScript.
@@ -65,7 +72,7 @@
 5. Golden dataset checks for expected records.
 6. Source-reference validation for public pages.
 7. Operator email alerts for source failures, freshness breaches, parser drift, recovery events, and daily health digests.
-8. Cloudflare-compatible alert path: Email Routing for operator addresses, Workers/Cron for lightweight health checks, KV or Postgres for cooldown state, and verified destination email sends where the Cloudflare plan allows it.
+8. Cloudflare-compatible alert path: Email Routing for operator addresses, optional Workers/Cron for lightweight health checks, KV or Postgres for cooldown state, and verified destination email sends where the Cloudflare plan allows it.
 
 ### Testing And Tooling
 

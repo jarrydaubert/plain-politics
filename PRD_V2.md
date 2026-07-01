@@ -32,6 +32,18 @@ Political information is fragmented across polling trackers, official publicatio
 
 ## 5) Scope
 
+v1.0.0 barebones public launch:
+
+1. Public Vercel deployment with Cloudflare DNS/domain and email aliases.
+2. Home dashboard with a clear `Start Here` route for beginners.
+3. Postcode `my area` starter for constituency, current MP, and public parliamentary record.
+4. Political glossary and core civic traditions.
+5. Parliament tracker for selected live records.
+6. Methodology, sources, visible limits, and correction/contact route.
+7. Geographic scope: UK national public institutional sources where free/public access is available.
+
+Post-v1 product scope:
+
 1. Home dashboard with a clear `Start Here` route for beginners.
 2. Postcode `my area` starter for constituency, current MP, and public parliamentary record.
 3. Party profiles.
@@ -54,6 +66,7 @@ Political information is fragmented across polling trackers, official publicatio
 5. User accounts for Phase 0.
 6. Native mobile app.
 7. Gamified persuasion, ideological scoring, or mechanics that nudge users toward a party.
+8. Party policy comparison, manifesto ingestion, polling averages, donations, and alignment scoring for v1.0.0.
 
 ## 7) Compliance and Privacy Requirements
 
@@ -113,7 +126,7 @@ Secondary diagnostics:
 5. Ingestion: scheduled TypeScript jobs using official APIs, public data downloads, compliant scraping, or manual curation fallback.
 6. Search: Postgres full-text search and structured filters.
 7. Visualisation: chart and map libraries for tables, bars, trends, and constituency/geographic views.
-8. Deployment: Vercel for web runtime and GitHub Actions or scheduled jobs for ingestion.
+8. Deployment: Vercel for web runtime and previews; GitHub Actions, Vercel Cron, or scheduled jobs for ingestion; Cloudflare for domain/DNS and email routing.
 9. Observability: ingestion job logs, freshness monitors, parser drift checks, and broken-link checks.
 10. Testing: Bun test or Vitest, Playwright, Biome, and source-reference validation.
 

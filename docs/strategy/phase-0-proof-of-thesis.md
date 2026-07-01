@@ -4,7 +4,7 @@ Last updated: 2026-06-30
 
 ## Purpose
 
-Phase 0 exists to prove the core trust experience before attempting the full MVP. It should answer one question:
+Phase 0 exists to prove the core trust experience before attempting the full MVP. v1.0.0 is the first barebones public release inside Phase 0, and policy-area comparison follows after that on a feature branch. It should answer one question:
 
 Can UK Policy Explainer turn a small set of public political sources into a useful, neutral, plain-English politics starter that beginners can use and trust?
 
@@ -15,21 +15,26 @@ Keep Phase 0 deliberately small.
 Recommended scope:
 
 1. One postcode-led `my area` journey.
-2. One policy area.
-3. Four to five parties.
+2. Beginner cards for MP, constituency, party, and one recent public record.
+3. UK date/time, glossary, sources, and methodology pages.
 4. Two to three authoritative source families.
-5. Beginner cards for MP, constituency, party, and one recent public record.
-6. Party profile cards.
-7. One Compare view.
-8. Search and plain-English explainer pages over the ingested records.
-9. One source panel.
-10. One methodology page.
+5. Search and plain-English explainer pages over only records that are actually supported.
+6. One source panel or source detail pattern.
+7. One deployed public preview.
+
+After v1.0.0, add the first policy-area feature branch:
+
+1. One policy area.
+2. Four to five parties.
+3. Party profile cards.
+4. One Compare view.
+5. Source excerpts for every policy position.
 
 Polling is optional in Phase 0. Include it only if source access, licence/terms, and required metadata are straightforward.
 
 ## Candidate Policy Areas
 
-Pick one:
+Pick one after v1.0.0:
 
 1. Housing
 2. NHS and health
@@ -58,17 +63,15 @@ Polling metadata should follow British Polling Council disclosure expectations w
 
 ## Minimum Experience
 
-The prototype should include:
+The v1.0.0 prototype should include:
 
-1. A tracker view showing the selected issue, parties, coverage, and last checked dates.
-2. A postcode starter that shows constituency, current MP, party, membership start date, and recent source-backed public records.
-3. A beginner path with light progress mechanics such as `find your MP`, `decode a vote`, `check a source`, and `learn a term`.
-4. Party profile cards explaining each included party in plain English.
-5. A comparison view showing party positions in the same structure.
-6. Search and explainer pages that never make unsupported claims.
-7. A source panel that shows exact source excerpts.
-8. A source detail page or panel with publisher, URL, tier, retrieved date, published date, and freshness state.
-9. A methodology page explaining what is and is not covered.
+1. A postcode starter that shows constituency, current MP, party, membership start date, and recent source-backed public records.
+2. A beginner path with light progress mechanics such as `find your MP`, `decode a vote`, `check a source`, and `learn a term`.
+3. Glossary and civic tradition explanations.
+4. Live Parliament records and upcoming business where official APIs support them.
+5. Search and explainer pages that never make unsupported claims.
+6. A source detail pattern with publisher, URL, tier, retrieved date, published date, and freshness state.
+7. A methodology page explaining what is and is not covered.
 
 ## Success Criteria
 
@@ -76,11 +79,10 @@ Phase 0 succeeds if:
 
 1. 100% of factual summary sections have source references.
 2. Unsupported topics produce a clear cannot-verify or coverage-gap response.
-3. Each policy position links to an exact source excerpt or a clear coverage gap.
-4. Users can understand why evidence is strong, partial, stale, or missing.
-5. A politics beginner can complete the first journey without knowing terms such as division, sitting, whip, or manifesto beforehand.
-6. The system can be refreshed without manual rewrites of the UI.
-7. The team can add a second issue area using the same pattern.
+3. Users can understand why evidence is strong, partial, stale, or missing.
+4. A politics beginner can complete the first journey without knowing terms such as division, sitting, whip, or manifesto beforehand.
+5. The system can be refreshed without manual rewrites of the UI.
+6. The team can add the first policy area on a feature branch using the same source pattern.
 
 ## Non-Goals
 
@@ -95,6 +97,7 @@ Do not include in Phase 0:
 7. Paid/public-affairs workflow features.
 8. Broad scraping of unreviewed source domains.
 9. Gamified persuasion or ideological scoring.
+10. Policy-area comparison as a v1.0.0 blocker.
 
 ## Build Order When Ready
 

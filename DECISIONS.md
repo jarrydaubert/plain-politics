@@ -60,3 +60,13 @@
 - Decision: Use light gamification only to reward learning, source-checking, and exploration.
 - Rationale: Game mechanics can make the product more approachable, but political preference nudges, ideological scores, and party-coded rewards would undermine neutrality and trust.
 - Impact: Acceptable mechanics include beginner modules, progress states, source-checking badges, glossary unlocks, and weekly `what changed` prompts. Do not reward movement toward a party or imply voting advice.
+
+## DEC-013: Vercel App Hosting, Cloudflare Domain And Email
+- Decision: Host the Next.js application on Vercel. Use Cloudflare for domain/DNS, Email Routing, and optional lightweight operator health-alert helpers.
+- Rationale: Vercel is the simplest and most native runtime for the Next.js App Router stack already in the repo. Cloudflare remains valuable for DNS, domain management, inbound email aliases, verified admin alert delivery, and small Worker/Cron checks.
+- Impact: Do not treat Cloudflare Pages/Workers as the primary app host unless this decision is explicitly revisited. Deployment docs should optimise for Vercel previews first.
+
+## DEC-014: v1.0.0 Barebones Before Policy Areas
+- Decision: v1.0.0 is a barebones public foundation release, not the first policy-area comparison release.
+- Rationale: The fastest useful launch is a beginner-first, postcode-led site with glossary, live Parliament records, sources, methodology, contact/corrections, and deployable infrastructure. Policy areas, manifestos, polling, donations, and alignment scoring add source and editorial complexity that should not block the first public URL.
+- Impact: The first policy area stays in the backlog and should be built on a feature branch after v1.0.0 is live and reviewable.
