@@ -1,41 +1,30 @@
-import { ArrowRight, DatabaseZap, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpenText, CalendarDays, MapPin } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-const launchMetrics = [
-  { label: "Live Parliament hooks", value: "4" },
-  { label: "Glossary terms", value: "21" },
-  { label: "Primary source families", value: "3" },
-  { label: "Accounts needed", value: "0" }
-];
-
-const sourceReferences = [
+const beginnerTopics = [
   {
-    publisher: "UK Parliament",
-    tier: "Tier 1",
-    title: "UK Parliament Members API",
-    url: "https://members-api.parliament.uk/"
+    description: "Find your constituency, current MP, recent votes and written questions.",
+    href: "/my-area",
+    title: "Who represents me?"
   },
   {
-    publisher: "UK Parliament",
-    tier: "Tier 1",
-    title: "UK Parliament Commons Votes API",
-    url: "https://commonsvotes-api.parliament.uk/"
+    description: "Learn what words like division, sitting, recess, whip and PMQs mean.",
+    href: "/glossary",
+    title: "What does that word mean?"
   },
   {
-    publisher: "postcodes.io",
-    tier: "Public civic data",
-    title: "Postcode lookup API",
-    url: "https://api.postcodes.io/"
+    description: "See Commons seats, upcoming business and recent votes in one place.",
+    href: "/parliament",
+    title: "What is Parliament doing?"
   },
   {
-    publisher: "UK Parliament",
-    tier: "Tier 1",
-    title: "UK Parliament What's On API",
-    url: "https://whatson-api.parliament.uk/calendar/events/list.json"
+    description: "Read what this site does, what it avoids, and how to report corrections.",
+    href: "/methodology",
+    title: "What is this site?"
   }
-];
+] as const;
 
 export default function HomePage() {
   return (
@@ -46,8 +35,8 @@ export default function HomePage() {
             Know nothing about UK politics? Start with where you live.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Find your MP, decode the words, see live public records and check the sources without
-            needing an account or a politics degree.
+            Find your MP, learn the words people keep using, and see what Parliament is doing
+            without needing an account or a politics degree.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -70,13 +59,13 @@ export default function HomePage() {
           <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
             <MapPin aria-hidden="true" size={23} />
           </div>
-          <h2 className="mt-5 text-2xl font-semibold">The v1.0.0 path</h2>
+          <h2 className="mt-5 text-2xl font-semibold">A simple first route</h2>
           <div className="mt-5 grid gap-3">
             {[
               "Enter postcode",
               "Find constituency and current MP",
-              "Read recent public records",
-              "Open glossary and source links"
+              "Read recent votes and questions",
+              "Learn unfamiliar terms as you go"
             ].map((step, index) => (
               <div
                 className="flex items-center gap-3 border-t border-[var(--border)] pt-3"
@@ -92,47 +81,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-[var(--border)] bg-[var(--surface)]">
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 py-6 md:grid-cols-4">
-          {launchMetrics.map((item) => (
-            <div key={item.label} className="py-2">
-              <div className="text-3xl font-semibold">{item.value}</div>
-              <div className="mt-1 text-sm text-[var(--muted)]">{item.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <h2 className="text-2xl font-semibold">Barebones public launch</h2>
+            <h2 className="text-2xl font-semibold">Where do you want to start?</h2>
             <p className="mt-3 max-w-xl leading-7 text-[var(--muted)]">
-              The first version is deliberately narrow: help a beginner start locally, understand
-              the terms, inspect public records and see where the information came from.
+              Choose a simple question. You can go deeper whenever something catches your interest.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            <LaunchCard
-              description="Resolve postcode to constituency and current MP using public sources."
-              href="/my-area"
-              title="My area"
-            />
-            <LaunchCard
-              description="Plain-English terms for votes, sessions, PMQs, Black Rod and more."
-              href="/glossary"
-              title="Glossary"
-            />
-            <LaunchCard
-              description="Live official hooks for Commons party state, members, business and divisions."
-              href="/parliament"
-              title="Parliament"
-            />
-            <LaunchCard
-              description="A transparent source catalogue for what is live, candidate or under review."
-              href="/sources"
-              title="Sources"
-            />
+            {beginnerTopics.map((topic) => (
+              <LaunchCard
+                description={topic.description}
+                href={topic.href}
+                key={topic.href}
+                title={topic.title}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -140,22 +105,22 @@ export default function HomePage() {
       <section className="bg-[var(--surface-soft)]">
         <div className="mx-auto grid max-w-7xl gap-5 px-6 py-12 md:grid-cols-3">
           <InfoPanel
-            description="The first version starts with a postcode because local relevance beats abstract categories."
+            description="Use your postcode to make politics feel less abstract."
             href="/my-area"
             icon={<MapPin aria-hidden="true" size={22} />}
             title="Start locally"
           />
           <InfoPanel
-            description="Every public fact should point back to an official source or show a clear gap."
-            href="/sources"
-            icon={<DatabaseZap aria-hidden="true" size={22} />}
-            title="Show the source"
+            description="Glossary entries explain the terms that make politics feel harder than it is."
+            href="/glossary"
+            icon={<BookOpenText aria-hidden="true" size={22} />}
+            title="Decode the jargon"
           />
           <InfoPanel
-            description="No predictions, no tactical voting advice, no ideological scoring and no accounts for launch."
+            description="Upcoming business and recent votes help you follow the rhythm of Westminster."
             href="/parliament"
-            icon={<ShieldCheck aria-hidden="true" size={22} />}
-            title="Stay neutral"
+            icon={<CalendarDays aria-hidden="true" size={22} />}
+            title="Follow what happens"
           />
         </div>
       </section>
@@ -163,42 +128,37 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="text-xl font-semibold">Coming after v1.0.0</h2>
+            <h2 className="text-xl font-semibold">Popular explainers to add next</h2>
             <div className="mt-4 grid gap-3">
               {[
-                "First policy area on a feature branch",
-                "Manifesto and party policy ingestion",
-                "Polling tracker once source rules are settled",
-                "Change feed and subscriptions"
+                "What happens at State Opening?",
+                "What is PMQs?",
+                "How does a general election work?",
+                "What does it mean when Parliament is in recess?"
               ].map((item) => (
                 <div
                   className="flex items-center justify-between border-t border-[var(--border)] pt-3"
                   key={item}
                 >
                   <span className="font-medium">{item}</span>
-                  <span className="text-sm text-[var(--muted)]">Later</span>
+                  <span className="text-sm text-[var(--muted)]">Planned</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="text-xl font-semibold">Source references</h2>
-            <div className="mt-4 grid gap-3">
-              {sourceReferences.map((source) => (
-                <a
-                  className="block border-t border-[var(--border)] pt-3 transition hover:text-[var(--accent)]"
-                  href={source.url}
-                  key={source.url}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <span className="block font-medium">{source.title}</span>
-                  <span className="mt-1 block text-sm text-[var(--muted)]">
-                    {source.publisher} - {source.tier}
-                  </span>
-                </a>
-              ))}
-            </div>
+            <h2 className="text-xl font-semibold">What this site avoids</h2>
+            <p className="mt-3 leading-7 text-[var(--muted)]">
+              It does not predict elections, tell you how to vote, rank your politics, or pretend a
+              public record proves more than it does.
+            </p>
+            <Link
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
+              href="/methodology"
+            >
+              Read more about the site
+              <ArrowRight aria-hidden="true" size={16} />
+            </Link>
           </div>
         </div>
       </section>

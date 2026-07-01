@@ -2,10 +2,10 @@ import Link from "next/link";
 
 const principles = [
   "No source means no factual claim.",
-  "Plain-English summaries are presentation, not the source of truth.",
-  "Every displayed fact should trace back to source documents, snapshots and excerpts.",
-  "Polling movement must show fieldwork dates and uncertainty caveats.",
-  "Coverage gaps are valid product states."
+  "Public records are shown carefully, without guessing motive or local impact.",
+  "The site does not predict elections or tell people how to vote.",
+  "Postcode lookups are not stored by default.",
+  "Corrections and missing evidence should be visible."
 ];
 
 export default function MethodologyPage() {
@@ -14,16 +14,17 @@ export default function MethodologyPage() {
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
-      <h1 className="mt-6 text-4xl font-semibold">Methodology</h1>
+      <h1 className="mt-6 text-4xl font-semibold">About this site</h1>
       <p className="mt-4 leading-7 text-[var(--muted)]">
-        UK Policy Explainer is built around public-source traceability. The initial technical
-        scaffold stores source documents, immutable snapshots, source excerpts and displayed facts
-        as separate concepts.
+        UK Policy Explainer is a plain-English starter for people who want to understand UK politics
+        without spin, predictions or voting advice.
       </p>
       <div className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-        <h2 className="text-xl font-semibold">Source chain</h2>
-        <p className="mt-3 rounded-md bg-[var(--surface-soft)] p-4 font-mono text-sm">
-          source_document -&gt; source_snapshot -&gt; source_excerpt -&gt; display_fact
+        <h2 className="text-xl font-semibold">How to read it</h2>
+        <p className="mt-3 leading-7 text-[var(--muted)]">
+          Start with a local question, then follow the words, public records and source links as far
+          as you want to go. When the site cannot verify something from public evidence, it should
+          say so.
         </p>
       </div>
       <ul className="mt-6 grid gap-3">

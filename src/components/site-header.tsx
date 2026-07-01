@@ -6,7 +6,7 @@ const navItems = [
   { href: "/parliament", label: "Parliament" },
   { href: "/glossary", label: "Glossary" },
   { href: "/sources", label: "Sources" },
-  { href: "/methodology", label: "Methodology" }
+  { href: "/methodology", label: "About" }
 ] as const;
 
 export function SiteHeader() {

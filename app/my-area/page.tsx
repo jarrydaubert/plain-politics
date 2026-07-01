@@ -1,4 +1,4 @@
-import { BookOpenText, DatabaseZap, MapPin } from "lucide-react";
+import { BookOpenText, Landmark, MapPin } from "lucide-react";
 import Link from "next/link";
 import { MyAreaLookup } from "@/components/my-area-lookup";
 
@@ -16,16 +16,16 @@ export default function MyAreaPage() {
           </div>
           <h1 className="mt-5 text-4xl font-semibold">Start with your area</h1>
           <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-            Enter a postcode to find the Westminster constituency, current MP and recent public
-            parliamentary activity returned by official public sources.
+            Enter a postcode to find your Westminster constituency, current MP, recent votes and
+            written questions.
           </p>
         </div>
 
         <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <h2 className="text-lg font-semibold">What this page can and cannot say</h2>
+          <h2 className="text-lg font-semibold">What you will see</h2>
           <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-            It can show official records. It cannot automatically prove local impact, motive or
-            whether a promise was kept. Where the evidence is missing, the page should say so.
+            A simple starter view: your seat, your MP, a few recent public records and the words you
+            might need to understand them.
           </p>
         </aside>
       </section>
@@ -47,12 +47,12 @@ export default function MyAreaPage() {
         </Link>
         <Link
           className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:border-[var(--accent)]"
-          href="/sources"
+          href="/parliament"
         >
-          <DatabaseZap aria-hidden="true" className="text-[var(--accent)]" size={22} />
-          <h2 className="mt-4 text-lg font-semibold">Check the sources</h2>
+          <Landmark aria-hidden="true" className="text-[var(--accent)]" size={22} />
+          <h2 className="mt-4 text-lg font-semibold">See Parliament</h2>
           <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-            See which public APIs and datasets power the first version of the site.
+            Browse Commons seats, upcoming business and recent votes.
           </p>
         </Link>
       </section>

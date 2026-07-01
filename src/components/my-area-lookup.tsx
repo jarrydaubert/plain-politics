@@ -74,6 +74,7 @@ type PostcodeLookupResponse = {
       parliamentary_constituency_2024?: string | null;
     };
     parliamentary_constituency: string | null;
+    parliamentary_constituency_2024?: string | null;
     postcode: string;
   } | null;
   status: number;
@@ -155,8 +156,9 @@ export function MyAreaLookup() {
           </button>
         </div>
         <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-          This lookup runs in your browser against public APIs. The app does not store your postcode
-          by default.
+          Your postcode is sent directly from your browser to postcodes.io, then the normalized
+          postcode is sent to the UK Parliament Members API to find your MP. It is never sent to or
+          stored by us.
         </p>
       </form>
 
@@ -173,19 +175,23 @@ export function MyAreaLookup() {
 async function lookupMyArea(postcode: string): Promise<MyAreaLookupResult> {
   const encodedPostcode = encodeURIComponent(postcode);
   const postcodeUrl = `${POSTCODES_API_BASE}/${encodedPostcode}`;
-  const memberUrl = `${MEMBERS_API_BASE}/Members/Search?Location=${encodedPostcode}&House=1&skip=0&take=1`;
 
-  const [postcodeResult, memberResult] = await Promise.all([
-    fetchJson<PostcodeLookupResponse>(postcodeUrl),
-    fetchJson<MemberSearchResponse>(memberUrl)
-  ]);
+  const postcodeResult = await fetchJson<PostcodeLookupResponse>(postcodeUrl, {
+    notFoundMessage: "That postcode was not found. Check it and try again."
+  });
 
   const postcodeData = postcodeResult.result;
-  const member = memberResult.items?.[0]?.value;
+  const constituencyName =
+    postcodeData?.parliamentary_constituency_2024 ?? postcodeData?.parliamentary_constituency;
 
-  if (!postcodeData?.parliamentary_constituency) {
+  if (!postcodeData || !constituencyName) {
     throw new Error("That postcode was not found in the public postcode data.");
   }
+
+  const encodedResolvedPostcode = encodeURIComponent(postcodeData.postcode);
+  const memberUrl = `${MEMBERS_API_BASE}/Members/Search?Location=${encodedResolvedPostcode}&House=1&skip=0&take=1`;
+  const memberResult = await fetchJson<MemberSearchResponse>(memberUrl);
+  const member = memberResult.items?.[0]?.value;
 
   if (!member) {
     throw new Error("No current Commons MP was returned for that postcode.");
@@ -207,7 +213,7 @@ async function lookupMyArea(postcode: string): Promise<MyAreaLookupResult> {
         postcodeData.codes?.parliamentary_constituency ??
         null,
       district: postcodeData.admin_district,
-      name: postcodeData.parliamentary_constituency,
+      name: constituencyName,
       postcode: postcodeData.postcode,
       ward: postcodeData.admin_ward
     },
@@ -223,8 +229,15 @@ async function lookupMyArea(postcode: string): Promise<MyAreaLookupResult> {
   };
 }
 
-async function fetchJson<T>(url: string): Promise<T> {
+async function fetchJson<T>(
+  url: string,
+  options: Readonly<{ notFoundMessage?: string }> = {}
+): Promise<T> {
   const response = await fetch(url);
+
+  if (response.status === 404 && options.notFoundMessage) {
+    throw new Error(options.notFoundMessage);
+  }
 
   if (!response.ok) {
     throw new Error(`Public source request failed with status ${response.status}.`);
