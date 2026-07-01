@@ -1,6 +1,7 @@
 import { BookOpenText, Landmark, MapPin } from "lucide-react";
 import Link from "next/link";
 import { MyAreaLookup } from "@/components/my-area-lookup";
+import { StarterProgress } from "@/components/starter-progress";
 
 export default function MyAreaPage() {
   return (
@@ -21,13 +22,16 @@ export default function MyAreaPage() {
           </p>
         </div>
 
-        <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <h2 className="text-lg font-semibold">What you will see</h2>
-          <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-            A simple starter view: your seat, your MP, a few recent public records and the words you
-            might need to understand them.
-          </p>
-        </aside>
+        <div className="grid gap-4">
+          <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
+            <h2 className="text-lg font-semibold">What you will see</h2>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              A simple starter view: your seat, your MP, a few recent public records and the words
+              you might need to understand them.
+            </p>
+          </aside>
+          <StarterProgress compact currentStep="my-area" />
+        </div>
       </section>
 
       <section className="mt-10">

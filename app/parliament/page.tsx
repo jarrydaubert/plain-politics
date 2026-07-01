@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StarterProgress } from "@/components/starter-progress";
 import {
   getCommonsMembersSample,
   getCommonsPartySeatCounts,
@@ -36,6 +37,9 @@ export default async function ParliamentPage() {
             <div className="mt-1 text-sm text-[var(--muted)]">
               Commons seats represented in source response
             </div>
+          </div>
+          <div className="mt-4">
+            <StarterProgress compact currentStep="parliament" />
           </div>
         </section>
 

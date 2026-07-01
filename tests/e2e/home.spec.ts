@@ -7,6 +7,7 @@ test("home page renders the source-backed tracker shell", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /start with where you live/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /start with my area/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /where do you want to start/i })).toBeVisible();
+  await expect(page.getByText(/0 of 4 complete/i)).toBeVisible();
   await expect(page.getByLabel(/UK date and time/i)).toBeVisible();
   await expect(page.getByText(/not affiliated with any political party/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /corrections@plainpolitics.co.uk/i })).toBeVisible();
@@ -18,6 +19,7 @@ test("my area page renders the postcode starter", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /start with your area/i })).toBeVisible();
   await expect(page.getByLabel(/enter a postcode/i)).toBeVisible();
   await expect(page.getByRole("button", { name: /find my mp/i })).toBeVisible();
+  await expect(page.getByText(/1 of 4 complete/i)).toBeVisible();
   await expect(page.getByText(/never sent to or stored by us/i)).toBeVisible();
 });
 

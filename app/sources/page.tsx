@@ -1,5 +1,6 @@
 import { DatabaseZap, ExternalLink, ListChecks } from "lucide-react";
 import Link from "next/link";
+import { StarterProgress } from "@/components/starter-progress";
 import { datapointGroups, type SourceHook, sourceHooks } from "@/data/source-catalogue";
 
 const statusLabels: Record<SourceHook["status"], string> = {
@@ -26,10 +27,13 @@ export default function SourcesPage() {
             datapoints worth tracking before any heavier product features.
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <MetricCard label="Official hooks live" value={hooked.length.toString()} />
-          <MetricCard label="Candidate feeds" value={candidates.length.toString()} />
-          <MetricCard label="Datapoint groups" value={datapointGroups.length.toString()} />
+        <div className="grid gap-4">
+          <div className="grid gap-4 sm:grid-cols-3">
+            <MetricCard label="Official hooks live" value={hooked.length.toString()} />
+            <MetricCard label="Candidate feeds" value={candidates.length.toString()} />
+            <MetricCard label="Datapoint groups" value={datapointGroups.length.toString()} />
+          </div>
+          <StarterProgress compact currentStep="sources" />
         </div>
       </section>
 

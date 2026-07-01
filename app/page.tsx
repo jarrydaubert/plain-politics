@@ -2,6 +2,7 @@ import { ArrowRight, BookOpenText, CalendarDays, MapPin } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { StarterProgress } from "@/components/starter-progress";
 
 const beginnerTopics = [
   {
@@ -55,30 +56,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm">
-          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
-            <MapPin aria-hidden="true" size={23} />
-          </div>
-          <h2 className="mt-5 text-2xl font-semibold">A simple first route</h2>
-          <div className="mt-5 grid gap-3">
-            {[
-              "Enter postcode",
-              "Find constituency and current MP",
-              "Read recent votes and questions",
-              "Learn unfamiliar terms as you go"
-            ].map((step, index) => (
-              <div
-                className="flex items-center gap-3 border-t border-[var(--border)] pt-3"
-                key={step}
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--accent-soft)] text-sm font-semibold text-[var(--accent-strong)]">
-                  {index + 1}
-                </span>
-                <span className="text-sm font-medium">{step}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <StarterProgress />
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-12">

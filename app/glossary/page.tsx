@@ -1,5 +1,6 @@
 import { BookOpenText, ExternalLink, GraduationCap } from "lucide-react";
 import Link from "next/link";
+import { StarterProgress } from "@/components/starter-progress";
 import { glossaryCategories, glossaryTerms } from "@/data/glossary";
 
 const sourceLinks = [
@@ -36,18 +37,21 @@ export default function GlossaryPage() {
           </p>
         </div>
 
-        <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <div className="flex items-start gap-3">
-            <GraduationCap aria-hidden="true" className="mt-1 text-[var(--accent)]" size={22} />
-            <div>
-              <h2 className="text-lg font-semibold">Beginner-first rule</h2>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Any page that uses parliamentary jargon should either explain it inline or link
-                here, so users can go deep without getting trapped.
-              </p>
+        <div className="grid gap-4">
+          <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
+            <div className="flex items-start gap-3">
+              <GraduationCap aria-hidden="true" className="mt-1 text-[var(--accent)]" size={22} />
+              <div>
+                <h2 className="text-lg font-semibold">Beginner-first rule</h2>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                  Any page that uses parliamentary jargon should either explain it inline or link
+                  here, so users can go deep without getting trapped.
+                </p>
+              </div>
             </div>
-          </div>
-        </aside>
+          </aside>
+          <StarterProgress compact currentStep="glossary" />
+        </div>
       </section>
 
       <section className="mt-10">
