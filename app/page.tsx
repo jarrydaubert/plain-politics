@@ -52,13 +52,13 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-[var(--accent-strong)] text-white">
         <Image
           alt=""
-          className="object-cover"
+          className="object-cover object-center"
           fill
           priority
           sizes="100vw"
           src="/parliament-hero.webp"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,31,58,0.97)_0%,rgba(7,31,58,0.9)_42%,rgba(7,31,58,0.58)_74%,rgba(7,31,58,0.44)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,31,58,0.96)_0%,rgba(7,31,58,0.88)_44%,rgba(7,31,58,0.62)_72%,rgba(7,31,58,0.5)_100%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-10 sm:gap-10 sm:py-12 lg:grid-cols-[0.95fr_1.05fr] lg:py-16">
           <div className="flex max-w-3xl flex-col justify-center">
             <h1 className="text-4xl font-semibold leading-tight tracking-normal md:text-6xl">
@@ -70,8 +70,9 @@ export default async function HomePage() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
               <Link
-                className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[var(--accent-strong)] transition hover:bg-[var(--surface-soft)]"
+                className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold transition hover:bg-[var(--surface-soft)]"
                 href="/glossary"
+                style={{ color: "var(--accent-strong)" }}
               >
                 Learn the basics
                 <ArrowRight aria-hidden="true" size={18} />

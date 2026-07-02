@@ -63,7 +63,25 @@ export function SiteFooter() {
             >
               Open Government Licence
             </a>{" "}
-            where applicable.
+            where applicable. Hero photo:{" "}
+            <a
+              className="font-medium text-[var(--accent)] hover:text-[var(--accent-strong)]"
+              href="https://commons.wikimedia.org/wiki/File:Houses_of_Parliament_in_2022_(cropped).jpg"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Houses of Parliament in 2022
+            </a>{" "}
+            by Terry Ott, licensed under{" "}
+            <a
+              className="font-medium text-[var(--accent)] hover:text-[var(--accent-strong)]"
+              href="https://creativecommons.org/licenses/by/2.0/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              CC BY 2.0
+            </a>
+            .
           </p>
         </div>
       </div>

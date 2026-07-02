@@ -5,6 +5,9 @@ test("home page renders the source-backed tracker shell", async ({ page }) => {
 
   await expect(page.getByRole("link", { name: "Plain Politics home" })).toBeVisible();
   await expect(page.getByRole("heading", { name: /british politics, at a glance/i })).toBeVisible();
+  const primaryHeroLink = page.getByRole("link", { name: /learn the basics/i }).first();
+  await expect(primaryHeroLink).toBeVisible();
+  await expect(primaryHeroLink).not.toHaveCSS("color", "rgb(255, 255, 255)");
   await expect(page.getByRole("link", { name: /understand the parties/i }).first()).toBeVisible();
   await expect(page.getByRole("link", { name: /see parliament today/i }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /start from the landscape/i })).toBeVisible();
