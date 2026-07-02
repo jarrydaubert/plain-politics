@@ -2,27 +2,32 @@
 
 ## Current Shape
 
-The repository now has a documentation layer plus an early Bun/Next.js app scaffold. The first live source hooks call official UK Parliament APIs, and the first Supabase migration defines the provenance-first schema.
+Plain Politics is a Bun/Next.js application with source-first political information pages, a provenance-first Supabase schema, live UK Parliament API hooks, and a structured documentation layer under `docs/`.
 
-## Housekeeping Rules
+## Root Rules
 
-1. Keep root planning docs aligned with the actual app state.
-2. Put methodology and operational standards under `docs/`.
-3. Keep source hook planning in `docs/strategy/source-hooks.md`.
-4. Do not add generated build output, dependency folders, local env files, or reports to Git.
-5. Keep Bun scripts in `package.json` aligned with `AGENTS.md`.
-6. Any public factual datapoint must have a source path before it renders.
+1. Keep the repository root lean: entrypoint docs, framework/tooling config, lockfiles, env examples, deploy config, and top-level app folders only.
+2. Keep product requirements and briefs in `docs/product/`.
+3. Keep delivery plans and the todo-only backlog in `docs/project/`.
+4. Keep technical architecture, data model, deployment notes, and repo-maintenance docs in `docs/engineering/`.
+5. Keep methodology, quality, market, brand, and strategy material in their matching `docs/` folders.
+6. Do not add generated build output, dependency folders, local env files, reports, screenshots, or local platform state to Git.
+7. Keep Bun scripts in `package.json` aligned with `AGENTS.md`.
+8. Any public factual datapoint must have a source path before it renders.
 
 ## App Scaffold Baseline
 
 The baseline scaffold should keep these parts in place:
 
-- `package.json`
-- `bun.lock`
-- `src/` or `app/`
+- `app/`
+- `src/`
+- `public/`
 - `supabase/migrations/`
 - `tests/`
-- `playwright.config.*`
+- `package.json`
+- `bun.lock`
+- `next.config.ts`
+- `playwright.config.ts`
 - `biome.json`
 - `.env.example`
 - source contracts
@@ -37,3 +42,4 @@ The baseline scaffold should keep these parts in place:
 5. Run `bun run test:e2e` for route or user-flow changes.
 6. Check dates and target milestones are not stale.
 7. Check no private credentials or local-only paths are introduced.
+8. Run `rg` for moved or renamed docs before committing repo-structure changes.

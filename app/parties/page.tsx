@@ -8,7 +8,7 @@ export default async function PartiesPage() {
   const snapshot = await getPartySnapshot();
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
@@ -20,39 +20,41 @@ export default async function PartiesPage() {
 
       {snapshot.status === "available" ? (
         <>
-          <section className="mt-8 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
-            <table className="w-full border-collapse text-left text-sm">
-              <caption className="sr-only">Current House of Commons party seat counts</caption>
-              <thead className="bg-[var(--surface-soft)]">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">Party</th>
-                  <th className="px-4 py-3 font-semibold">Commons seats</th>
-                  <th className="px-4 py-3 font-semibold">What this means</th>
-                </tr>
-              </thead>
-              <tbody>
-                {snapshot.parties.map((party) => (
-                  <tr className="border-t border-[var(--border)]" key={party.party.id}>
-                    <td className="px-4 py-3 font-medium">
-                      {party.party.name}
-                      {party.party.abbreviation ? (
-                        <span className="ml-2 text-xs text-[var(--muted)]">
-                          {party.party.abbreviation}
-                        </span>
-                      ) : null}
-                    </td>
-                    <td className="px-4 py-3 text-2xl font-semibold text-[var(--accent-strong)]">
-                      {party.total}
-                    </td>
-                    <td className="px-4 py-3 text-[var(--muted)]">
-                      {party.total === 1
-                        ? "One MP in the Commons"
-                        : "MPs currently recorded in the Commons"}
-                    </td>
+          <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+            <div className="max-w-full overflow-x-auto">
+              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                <caption className="sr-only">Current House of Commons party seat counts</caption>
+                <thead className="bg-[var(--surface-soft)]">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">Party</th>
+                    <th className="px-4 py-3 font-semibold">Commons seats</th>
+                    <th className="px-4 py-3 font-semibold">What this means</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {snapshot.parties.map((party) => (
+                    <tr className="border-t border-[var(--border)]" key={party.party.id}>
+                      <td className="px-4 py-3 font-medium">
+                        {party.party.name}
+                        {party.party.abbreviation ? (
+                          <span className="ml-2 text-xs text-[var(--muted)]">
+                            {party.party.abbreviation}
+                          </span>
+                        ) : null}
+                      </td>
+                      <td className="px-4 py-3 text-2xl font-semibold text-[var(--accent-strong)]">
+                        {party.total}
+                      </td>
+                      <td className="px-4 py-3 text-[var(--muted)]">
+                        {party.total === 1
+                          ? "One MP in the Commons"
+                          : "MPs currently recorded in the Commons"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">

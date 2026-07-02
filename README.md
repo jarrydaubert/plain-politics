@@ -8,14 +8,14 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 
 ## Source Of Truth
 
-- Product requirements: `PRD_V2.md`
-- Architecture decisions: `DECISIONS.md`
-- Technical baseline: `TECH_STACK.md`
+- Product requirements: `docs/product/prd-v2.md`
+- Idea brief and success metrics: `docs/product/idea-brief.md`
+- Delivery plan: `docs/project/action-plan.md`
+- Delivery backlog: `docs/project/backlog.md`
+- Technical baseline: `docs/engineering/tech-stack.md`
 - Brand identity: `docs/brand/logo.md`
 - GBrain usage policy: `docs/engineering/gbrain.md`
 - Vercel plugin skill policy: `docs/engineering/vercel-plugin-skills.md`
-- Delivery plan: `PLAIN_POLITICS_ACTION_PLAN.md`
-- Delivery backlog: `backlog.md`
 - Methodology standards: `docs/methodology/`
 - Strategy and current assessment: `docs/strategy/`
 - Competitive landscape: `docs/market/`
@@ -37,19 +37,23 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 ```text
 .
 |-- AGENTS.md
-|-- DECISIONS.md
-|-- IDEA_BRIEF.md
-|-- PRD_V2.md
-|-- TECH_STACK.md
-|-- PLAIN_POLITICS_ACTION_PLAN.md
-|-- backlog.md
+|-- README.md
 |-- app/
 |-- docs/
+|   |-- brand/
 |   |-- engineering/
+|   |   `-- tech-stack.md
 |   |-- market/
 |   |-- methodology/
+|   |-- product/
+|   |   |-- idea-brief.md
+|   |   `-- prd-v2.md
+|   |-- project/
+|   |   |-- action-plan.md
+|   |   `-- backlog.md
 |   |-- quality/
 |   `-- strategy/
+|-- public/
 |-- src/
 |   |-- components/
 |   |-- data/
@@ -58,6 +62,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 |-- supabase/
 |   `-- migrations/
 |-- tests/
+|-- .github/
 `-- .claude/
     |-- product-marketing-context.md
     `-- skills/

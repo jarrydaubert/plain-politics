@@ -4,7 +4,7 @@ GBrain can be useful for Plain Politics, but only as local operator memory. It s
 
 ## Useful For
 
-- Searching prior Plain Politics decisions and strategy notes.
+- Searching prior Plain Politics direction and strategy notes.
 - Remembering why a product or technical direction was chosen.
 - Summarising past run outcomes so future agents do not repeat stale discussion.
 - Finding reusable patterns from nearby projects, especially Project Atlas operating standards.
@@ -22,7 +22,7 @@ GBrain is memory and synthesis, not canonical truth. The canonical truth for thi
 
 - git history;
 - source files;
-- approved docs and decision logs;
+- approved docs;
 - Supabase migrations and source registry data;
 - primary public sources;
 - test and browser-verification artifacts.

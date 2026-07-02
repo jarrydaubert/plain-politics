@@ -55,7 +55,7 @@ Already specified:
 5. Polling metadata and uncertainty rules in `docs/methodology/polling-methodology.md`.
 6. Release gates and pre-build checks in `docs/quality/release-gates.md`.
 7. Competitive gap and source standards in `docs/market/competitive-landscape.md`.
-8. Product requirements and success metrics in `PRD_V2.md`.
+8. Product requirements and success metrics in `docs/product/prd-v2.md`.
 
 The main problem is no longer lack of scaffolding. The main problem is turning the first live hooks into persistent ingestion, stored provenance, and user-facing source inspection.
 

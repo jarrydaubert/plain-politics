@@ -9,8 +9,7 @@ For context, use:
 - v1 scope: `docs/strategy/v1.0.0-scope.md`
 - strategy/current assessment: `docs/strategy/current-assessment.md`
 - source hooks: `docs/strategy/source-hooks.md`
-- technical stack: `TECH_STACK.md`
-- decisions: `DECISIONS.md`
+- technical stack: `docs/engineering/tech-stack.md`
 
 ## V1 Launch Blockers
 
@@ -19,7 +18,7 @@ For context, use:
 - [ ] Configure Cloudflare Email Routing for `hello@plainpolitics.co.uk` and `corrections@plainpolitics.co.uk`.
 - [ ] Add the production URL and preview URL notes to `README.md` after domain setup.
 - [ ] Protect GitHub `main` with required CI checks before treating the repo as launch-ready.
-- [ ] Decide whether the current generated Westminster hero should be replaced with a licensed real Parliament photo before public launch.
+- [ ] Review the licensed Parliament hero photo crop, contrast, and attribution before public launch.
 - [ ] Review `/parties/[slug]` and either make party detail pages source-backed or hide them from public navigation until the policy-profile branch.
 - [ ] Add one final beginner walkthrough pass: homepage -> glossary -> Parliament -> my area -> source links -> contact/corrections.
 
@@ -94,6 +93,12 @@ For context, use:
 - [ ] Build a source-backed question bank if the feature survives methodology review.
 - [ ] Keep answers anonymous by default and deletable locally.
 - [ ] Complete DPIA before storing political opinions, quiz answers, or personalisation.
+
+## Search And Discovery
+
+- [ ] Add a beginner-friendly site search once there are enough live pages and source records to search.
+- [ ] Start with structured filters and Postgres full-text search when persisted records exist.
+- [ ] Revisit a dedicated search service only if users cannot reliably find parties, policies, sources, votes, events, or polling records.
 
 ## Platform And Quality
 

@@ -5,12 +5,12 @@ import { StarterProgress } from "@/components/starter-progress";
 
 export default function MyAreaPage() {
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
 
-      <section className="mt-6 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="mt-6 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
         <div>
           <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
             <MapPin aria-hidden="true" size={23} />

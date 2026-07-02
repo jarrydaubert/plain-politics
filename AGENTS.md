@@ -100,11 +100,12 @@ content-strategy, copywriting, launch-strategy, social-content, seo-audit, compe
 
 ## More Docs
 
-See project root for:
-- `README.md` — Repo entry point and current state
-- `PRD_V2.md` — Product requirements
-- `TECH_STACK.md` — Technical baseline
-- `PLAIN_POLITICS_ACTION_PLAN.md` — Phased execution plan
-- `IDEA_BRIEF.md` — Project brief and success metrics
-- `docs/strategy/` — Current assessment and Phase 0 proof-of-thesis guidance
-- `docs/market/` — Competitive landscape tracker
+Start with:
+- `README.md` - Repo entry point and current state
+- `docs/product/prd-v2.md` - Product requirements
+- `docs/product/idea-brief.md` - Project brief and success metrics
+- `docs/project/action-plan.md` - Phased execution plan
+- `docs/project/backlog.md` - Todo-only delivery backlog
+- `docs/engineering/tech-stack.md` - Technical baseline
+- `docs/strategy/` - Current assessment and Phase 0 proof-of-thesis guidance
+- `docs/market/` - Competitive landscape tracker

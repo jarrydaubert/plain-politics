@@ -1,12 +1,4 @@
-import {
-  ArrowRight,
-  BarChart3,
-  BookOpenText,
-  CalendarDays,
-  Landmark,
-  MapPin,
-  Vote
-} from "lucide-react";
+import { ArrowRight, BookOpenText, CalendarDays, Landmark, MapPin, Vote } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,24 +15,19 @@ import {
 
 const beginnerTopics = [
   {
+    description: "Find your constituency, current MP and recent public records.",
+    href: "/my-area",
+    title: "Find my MP"
+  },
+  {
     description: "Learn what words like division, sitting, recess, whip and PMQs mean.",
     href: "/glossary",
     title: "Learn the basics"
   },
   {
-    description: "See the current Commons party balance from official Parliament data.",
-    href: "/parties",
-    title: "Understand the parties"
-  },
-  {
     description: "See Commons seats, upcoming business and recent votes in one place.",
     href: "/parliament",
     title: "See Parliament today"
-  },
-  {
-    description: "Find your constituency, current MP, recent votes and written questions.",
-    href: "/my-area",
-    title: "Find my MP"
   }
 ] as const;
 
@@ -62,32 +49,31 @@ export default async function HomePage() {
         <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-10 sm:gap-10 sm:py-12 lg:grid-cols-[0.95fr_1.05fr] lg:py-16">
           <div className="flex max-w-3xl flex-col justify-center">
             <h1 className="text-4xl font-semibold leading-tight tracking-normal md:text-6xl">
-              British politics, at a glance
+              British politics, plainly explained
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/82 sm:mt-6 sm:text-lg sm:leading-8">
-              A plain-English snapshot of Parliament, parties, local records and public sources,
-              updated as the evidence changes.
+              Find your MP, learn the basics, and see what Parliament is doing today.
             </p>
             <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
               <Link
                 className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold transition hover:bg-[var(--surface-soft)]"
-                href="/glossary"
+                href="/my-area"
                 style={{ color: "var(--accent-strong)" }}
               >
-                Learn the basics
+                Find my MP
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
               <Link
                 className="inline-flex items-center gap-2 rounded-md border border-white/34 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18"
-                href="/parliament"
+                href="/glossary"
               >
-                See Parliament today
+                Learn the basics
               </Link>
               <Link
                 className="inline-flex items-center gap-2 rounded-md border border-white/24 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/12"
-                href="/my-area"
+                href="/parliament"
               >
-                Find my MP
+                See Parliament today
               </Link>
             </div>
           </div>
@@ -107,8 +93,7 @@ export default async function HomePage() {
               ))}
             </div>
             <p className="hidden max-w-3xl text-sm leading-6 text-white/72 sm:block">
-              Commons and calendar figures come from official UK Parliament APIs. Polling and policy
-              comparison stay out of v1 until reviewed sources are ready.
+              Today in Parliament, shown from public records where available.
             </p>
           </div>
         </div>
@@ -117,10 +102,10 @@ export default async function HomePage() {
       <section className="border-b border-[var(--border)] bg-[var(--surface)]">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <h2 className="text-2xl font-semibold">Start from the landscape, then go deeper.</h2>
+            <h2 className="text-2xl font-semibold">Start with one question, then go deeper.</h2>
             <p className="mt-3 max-w-xl leading-7 text-[var(--muted)]">
-              Plain Politics is built for people who want the map before the maze: the parties, the
-              Parliament rhythm, the terms, the sources, and then the local details.
+              Plain Politics is built for people who want a clear first step: local details, useful
+              terms, and the public record behind Westminster.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -160,41 +145,21 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[var(--surface-soft)]">
-        <div className="mx-auto grid max-w-7xl gap-6 px-6 py-12 lg:grid-cols-2">
-          <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="text-xl font-semibold">Popular explainers to add next</h2>
-            <div className="mt-4 grid gap-3">
-              {[
-                "What happens at State Opening?",
-                "What is PMQs?",
-                "How does a general election work?",
-                "What does it mean when Parliament is in recess?"
-              ].map((item) => (
-                <div
-                  className="flex items-center justify-between border-t border-[var(--border)] pt-3"
-                  key={item}
-                >
-                  <span className="font-medium">{item}</span>
-                  <span className="text-sm text-[var(--muted)]">Planned</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="text-xl font-semibold">What this site avoids</h2>
-            <p className="mt-3 leading-7 text-[var(--muted)]">
-              It does not predict elections, tell you how to vote, rank your politics, or pretend a
-              public record proves more than it does.
+      <section className="border-t border-[var(--border)] bg-[var(--surface-soft)]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-xl font-semibold">Want the small print?</h2>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              Sources, limits and corrections live away from the main journey.
             </p>
-            <Link
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
-              href="/about"
-            >
-              Read more about the site
-              <ArrowRight aria-hidden="true" size={16} />
-            </Link>
           </div>
+          <Link
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
+            href="/about"
+          >
+            How Plain Politics works
+            <ArrowRight aria-hidden="true" size={16} />
+          </Link>
         </div>
       </section>
     </main>
@@ -292,32 +257,17 @@ async function getHeroSnapshot() {
   const seatCounts = getSettledData<PartySeatCount[]>(seatCountsResult);
   const events = getSettledData<ParliamentEvent[]>(eventsResult);
   const divisions = getSettledData<CommonsDivision[]>(divisionsResult);
-  const checkedAt = getRetrievedAt(seatCountsResult) ?? getRetrievedAt(eventsResult);
-  const topParty = seatCounts?.[0];
-  const secondParty = seatCounts?.[1];
+  const totalSeats = seatCounts?.reduce((sum, row) => sum + row.total, 0);
   const nextEvent = events?.[0];
   const recentDivision = divisions?.[0];
 
   return {
     items: [
       {
-        detail: topParty
-          ? `${String(topParty.total)} Commons seats from Parliament data`
-          : "Waiting for official Commons data",
+        detail: totalSeats ? "Current House of Commons seats" : "Waiting for Commons data",
         icon: <Landmark aria-hidden="true" size={16} />,
-        label: "Commons lead",
-        value: topParty?.party.name ?? "Checking"
-      },
-      {
-        detail: secondParty
-          ? `${secondParty.party.name} is currently next by seat count`
-          : "Official seat comparison pending",
-        icon: <BarChart3 aria-hidden="true" size={16} />,
-        label: "Commons balance",
-        value:
-          topParty && secondParty
-            ? `${String(topParty.total)} / ${String(secondParty.total)}`
-            : "Checking"
+        label: "Commons seats",
+        value: totalSeats ? String(totalSeats) : "Checking"
       },
       {
         detail: nextEvent
@@ -335,18 +285,6 @@ async function getHeroSnapshot() {
         label: "Recent vote",
         fullValue: recentDivision?.Title,
         value: recentDivision ? truncateText(recentDivision.Title, 34) : "Checking"
-      },
-      {
-        detail: "Official and public sources are linked where used",
-        icon: <BookOpenText aria-hidden="true" size={16} />,
-        label: "Source links",
-        value: "Included"
-      },
-      {
-        detail: checkedAt ? "UK Parliament API fetch time" : "Parliament feeds unavailable",
-        icon: <CalendarDays aria-hidden="true" size={16} />,
-        label: "Last checked",
-        value: checkedAt ? formatUkTime(checkedAt) : "Unavailable"
       }
     ]
   };
@@ -354,10 +292,6 @@ async function getHeroSnapshot() {
 
 function getSettledData<T>(result: PromiseSettledResult<{ data: T }>) {
   return result.status === "fulfilled" ? result.value.data : undefined;
-}
-
-function getRetrievedAt(result: PromiseSettledResult<{ sourceDocument: { retrievedAt: string } }>) {
-  return result.status === "fulfilled" ? result.value.sourceDocument.retrievedAt : undefined;
 }
 
 function eventTitle(event: ParliamentEvent) {
@@ -374,15 +308,6 @@ function formatEventDetail(event: ParliamentEvent) {
   const place = event.Location ?? event.House ?? "Parliament";
 
   return `${date} · ${place}`;
-}
-
-function formatUkTime(isoDate: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/London",
-    timeZoneName: "short"
-  }).format(new Date(isoDate));
 }
 
 function truncateText(text: string, maxLength: number) {

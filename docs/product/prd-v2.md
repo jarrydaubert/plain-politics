@@ -396,7 +396,7 @@ Acceptance criteria:
 4. Each feature page links back to methodology.
 5. Methodology changelog captures dated updates to scoring, sourcing, polling, and freshness policies.
 6. Source inclusion/removal criteria and correction policy are published.
-7. Architecture/product trade-off decisions are maintained in a lightweight decision log.
+7. Architecture and product trade-off follow-ups are captured as unfinished todo items in `docs/project/backlog.md` or in the relevant feature document.
 
 ## FEAT-009 Privacy, Consent, And Rights Workflows
 
