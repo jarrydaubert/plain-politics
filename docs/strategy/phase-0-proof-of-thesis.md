@@ -66,7 +66,7 @@ Polling metadata should follow British Polling Council disclosure expectations w
 The v1.0.0 prototype should include:
 
 1. A postcode starter that shows constituency, current MP, party, membership start date, and recent source-backed public records.
-2. A beginner path with light progress mechanics such as `find your MP`, `decode a vote`, `check a source`, and `learn a term`.
+2. Clear beginner routes such as `find your MP`, `decode a vote`, `check a source`, and `learn a term`.
 3. Glossary and civic tradition explanations.
 4. Live Parliament records and upcoming business where official APIs support them.
 5. Search and explainer pages that never make unsupported claims.

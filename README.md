@@ -29,7 +29,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 - Political neutrality is a quality gate, not a writing preference.
 - No source means no factual claim.
 - Privacy defaults must treat political opinion signals as high-risk data.
-- Light progress cues should reward learning, source-checking, and exploration, never political preference or childish unlock mechanics.
+- No progress bars, badges, or unlock mechanics in v1; keep exploration low-pressure and self-directed.
 - The product is informational only: no campaign advice, no tactical voting recommendations.
 
 ## Repo Map

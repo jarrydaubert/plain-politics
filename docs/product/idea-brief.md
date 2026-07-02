@@ -40,7 +40,7 @@ Political information is fragmented across official publications, parliamentary 
 ## Product Differentiator
 1. Beginner-first journeys that make politics approachable without condescension.
 2. Postcode-led local relevance before abstract national comparison.
-3. Light progress cues that reward learning, source-checking, and exploration, not political preference.
+3. Low-pressure exploration without progress bars, badges, or unlock mechanics.
 4. Claim-to-source traceability for factual output.
 5. Source trust tiers with explicit coverage gaps.
 6. Neutrality standards applied as operational QA rules.
@@ -57,9 +57,9 @@ Political information is fragmented across official publications, parliamentary 
 
 Secondary diagnostics:
 1. User trust signal (`well-supported answer`).
-2. Postcode starter completion rate.
-3. Beginner journey completion rate.
-4. Quiz or civic knowledge check completion rate, if retained.
+2. Postcode lookup success rate.
+3. Beginner route click-through rate.
+4. Quiz or civic knowledge check engagement, if retained.
 5. Privacy request SLA.
 
 ## Core Risk
