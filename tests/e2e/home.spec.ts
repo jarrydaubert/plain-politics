@@ -7,13 +7,11 @@ test("home page renders the guided starter shell", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: /british politics, without the fog/i })
   ).toBeVisible();
-  const primaryHeroLink = page.getByRole("link", { name: /start with today/i }).first();
-  await expect(primaryHeroLink).toBeVisible();
-  await expect(primaryHeroLink).not.toHaveCSS("color", "rgb(255, 255, 255)");
-  await expect(page.getByRole("link", { name: /find my mp/i }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: /learn the basics/i }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: /start where you live/i }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: /decode the jargon/i }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: /watch what happens/i }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: /today in parliament/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /start anywhere/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /open parliament view/i })).toBeVisible();
   await expect(page.getByText(/0 of 4 explored/i)).toBeVisible();
   await expect(page.getByLabel(/UK date and time/i)).toBeVisible();
   await expect(page.getByText(/not affiliated with any political party/i)).toBeVisible();

@@ -11,7 +11,6 @@ const timeFormatter = new Intl.DateTimeFormat("en-GB", {
   hour12: false,
   hourCycle: "h23",
   minute: "2-digit",
-  second: "2-digit",
   timeZone: UK_TIME_ZONE,
   timeZoneName: "short"
 });
@@ -24,43 +23,33 @@ const dateFormatter = new Intl.DateTimeFormat("en-GB", {
 });
 
 export function UkTimeClock() {
-  const [now, setNow] = useState<Date | null>(null);
+  const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
     const tick = () => setNow(new Date());
     tick();
 
-    const timerId = window.setInterval(tick, 1000);
+    const timerId = window.setInterval(tick, 30_000);
 
     return () => window.clearInterval(timerId);
   }, []);
 
-  const display = now
-    ? getUkClockDisplay(now)
-    : {
-        date: "Loading",
-        time: "--:--:--",
-        zone: "UK"
-      };
+  const display = getUkClockDisplay(now);
 
   return (
     <a
-      aria-label={
-        now
-          ? `UK date and time ${display.date}, ${display.time} ${display.zone}, official reference NPL`
-          : "UK date and time loading, official reference NPL"
-      }
-      className="inline-flex min-h-10 items-center gap-3 rounded-md border border-[var(--border)] bg-[var(--surface-soft)] px-3 py-2 text-sm transition hover:border-[var(--accent)]"
+      aria-label={`UK date and time ${display.date}, ${display.time} ${display.zone}, official reference NPL`}
+      className="inline-flex min-h-9 items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--surface-soft)] px-2.5 py-1.5 transition hover:border-[var(--accent)]"
       href={NPL_TIME_URL}
       rel="noreferrer"
       target="_blank"
       title="UK civil time reference: NPL MSF radio time signal"
     >
-      <Clock3 aria-hidden="true" className="text-[var(--accent)]" size={17} />
-      <span className="grid leading-none">
-        <span className="text-xs font-semibold uppercase text-[var(--muted)]">{display.date}</span>
-        <span className="mt-1 font-mono text-sm font-semibold tabular-nums">
-          {display.time} {display.zone}
+      <Clock3 aria-hidden="true" className="text-[var(--accent)]" size={15} />
+      <span className="whitespace-nowrap text-xs font-semibold text-[var(--muted)]">
+        {display.date}
+        <span className="hidden sm:inline">
+          , {display.time} {display.zone}
         </span>
       </span>
     </a>
@@ -71,12 +60,11 @@ function getUkClockDisplay(date: Date) {
   const timeParts = timeFormatter.formatToParts(date);
   const hour = timeParts.find((part) => part.type === "hour")?.value ?? "00";
   const minute = timeParts.find((part) => part.type === "minute")?.value ?? "00";
-  const second = timeParts.find((part) => part.type === "second")?.value ?? "00";
   const zone = timeParts.find((part) => part.type === "timeZoneName")?.value ?? "UK";
 
   return {
     date: dateFormatter.format(date),
-    time: `${hour}:${minute}:${second}`,
+    time: `${hour}:${minute}`,
     zone
   };
 }

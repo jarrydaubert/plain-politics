@@ -1,15 +1,4 @@
-import {
-  ArrowRight,
-  BookOpenCheck,
-  CalendarDays,
-  CheckCircle2,
-  Compass,
-  Landmark,
-  MapPin,
-  Radio,
-  SearchCheck,
-  Vote
-} from "lucide-react";
+import { ArrowRight, BookOpenCheck, CalendarDays, Landmark, MapPin, Vote } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -81,131 +70,78 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen">
-      <section className="relative overflow-hidden bg-[var(--accent-strong)] text-white">
-        <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--accent-red),#ffffff,var(--accent-sky))]" />
-        <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[linear-gradient(135deg,rgba(139,211,255,0.18),rgba(200,16,46,0.13)_42%,rgba(255,255,255,0.06))] [clip-path:polygon(18%_0,100%_0,100%_100%,0_100%)] lg:block" />
-        <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-10 sm:py-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(26rem,1.05fr)] lg:py-16">
-          <div className="flex max-w-3xl flex-col justify-center">
-            <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-normal md:text-6xl">
+      <section className="border-b border-[var(--border)] bg-[linear-gradient(180deg,#ffffff_0%,var(--background)_100%)]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(21rem,0.85fr)] lg:py-14">
+          <div>
+            <p className="inline-flex rounded-md bg-[var(--accent-red-soft)] px-3 py-1 text-sm font-semibold text-[var(--accent-red)]">
+              Start here
+            </p>
+            <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-normal text-[var(--accent-strong)] md:text-6xl">
               British politics, without the fog.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/84 sm:mt-6 sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
               Find your MP, understand the words people keep using, and see what Parliament is doing
               today.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[var(--accent-strong)] shadow-[0_14px_34px_rgba(255,255,255,0.12)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-soft)]"
-                href="/parliament"
-                style={{ color: "var(--accent-strong)" }}
-              >
-                Start with today
-                <ArrowRight aria-hidden="true" size={18} />
-              </Link>
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/18"
-                href="/my-area"
-              >
-                Find my MP
-              </Link>
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/22 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
-                href="/glossary"
-              >
-                Learn the basics
-              </Link>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3 text-sm text-white/72">
-              <span className="inline-flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" size={16} />
-                No account
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" size={16} />
-                Plain English
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" size={16} />
-                Public records linked in context
-              </span>
-            </div>
-          </div>
 
-          <div className="grid content-end gap-4 lg:pt-10">
-            <section className="rounded-2xl border border-white/18 bg-white/[0.08] p-4 shadow-[0_24px_70px_rgba(2,8,23,0.26)] backdrop-blur-md sm:p-5">
-              <div className="flex items-start justify-between gap-4 border-b border-white/16 pb-4">
-                <div>
-                  <h2 className="text-lg font-semibold">Today in Parliament</h2>
-                  <p className="mt-1 text-sm text-white/68">
-                    A quick pulse from official public feeds.
-                  </p>
-                </div>
-                <span className="rounded-md bg-white/12 px-2.5 py-1 font-mono text-xs text-white/72">
-                  {snapshot.checkedLabel}
-                </span>
-              </div>
-              <div className="mt-2 grid gap-1">
-                {snapshot.todayItems.map((item) => (
-                  <TodayRow
-                    detail={item.detail}
-                    href={item.href}
-                    icon={item.icon}
-                    key={item.label}
-                    label={item.label}
-                    title={item.title}
-                  />
-                ))}
-              </div>
-              <Link
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white underline decoration-white/34 underline-offset-4 transition hover:decoration-white"
-                href="/sources"
-              >
-                Source notes
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            </section>
-
-            <section className="grid gap-3 sm:grid-cols-3">
-              {snapshot.stats.map((item) => (
-                <StatPill
-                  detail={item.detail}
-                  key={item.label}
-                  label={item.label}
-                  value={item.value}
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {primaryJourneys.map((topic) => (
+                <JourneyCard
+                  cta={topic.cta}
+                  description={topic.description}
+                  href={topic.href}
+                  icon={topic.icon}
+                  key={topic.href}
+                  label={topic.label}
+                  title={topic.title}
+                  tone={topic.tone}
                 />
               ))}
-            </section>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[var(--border)] bg-[var(--surface)]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-md bg-[var(--accent-red-soft)] px-3 py-1 text-sm font-semibold text-[var(--accent-red)]">
-              <Compass aria-hidden="true" size={16} />
-              Pick a route
             </div>
-            <h2 className="mt-4 text-2xl font-semibold">Start anywhere. Leave smarter.</h2>
-            <p className="mt-3 max-w-xl leading-7 text-[var(--muted)]">
-              No locked levels or patronising quizzes. Just useful entry points that let you skim,
-              understand, and dive deeper when you are ready.
-            </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {primaryJourneys.map((topic) => (
-              <JourneyCard
-                cta={topic.cta}
-                description={topic.description}
-                href={topic.href}
-                icon={topic.icon}
-                key={topic.href}
-                label={topic.label}
-                title={topic.title}
-                tone={topic.tone}
-              />
-            ))}
-          </div>
+
+          <aside className="self-start rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-soft)]">
+            <div className="border-b border-[var(--border)] pb-4">
+              <p className="text-xs font-semibold uppercase text-[var(--muted)]">Official feed</p>
+              <div className="mt-2 flex items-start justify-between gap-4">
+                <div>
+                  <h2 className="text-lg font-semibold">Today in Parliament</h2>
+                  <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                    Two quick public-record pointers. The fuller table lives on the Parliament page.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-3 grid gap-1">
+              {snapshot.todayItems.map((item) => (
+                <TodayRow
+                  detail={item.detail}
+                  href={item.href}
+                  icon={item.icon}
+                  key={item.label}
+                  label={item.label}
+                  title={item.title}
+                />
+              ))}
+            </div>
+            <dl className="mt-5 grid gap-3 border-t border-[var(--border)] pt-4 text-sm sm:grid-cols-2">
+              <div>
+                <dt className="font-semibold">Commons seats</dt>
+                <dd className="mt-1 text-[var(--muted)]">{snapshot.seatCountLabel}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold">Source</dt>
+                <dd className="mt-1 text-[var(--muted)]">UK Parliament</dd>
+              </div>
+            </dl>
+            <Link
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--accent-strong)]"
+              href="/parliament"
+            >
+              Open Parliament view
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
+          </aside>
         </div>
       </section>
 
@@ -278,45 +214,30 @@ function TodayRow({
 }>) {
   return (
     <Link
-      className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-3 transition hover:bg-white/10"
+      className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-md px-2 py-3 transition hover:bg-[var(--surface-soft)]"
       href={href}
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/12 text-white">
+      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--accent-soft)] text-[var(--accent-strong)]">
         {icon}
       </span>
       <span className="min-w-0">
-        <span className="block text-xs font-semibold uppercase text-white/58">{label}</span>
-        <span className="mt-0.5 block truncate text-sm font-semibold text-white" title={title}>
+        <span className="block text-xs font-semibold uppercase text-[var(--muted)]">{label}</span>
+        <span
+          className="mt-0.5 block truncate text-sm font-semibold text-[var(--foreground)]"
+          title={title}
+        >
           {title}
         </span>
-        <span className="mt-1 block truncate text-sm text-white/68" title={detail}>
+        <span className="mt-1 block truncate text-sm text-[var(--muted)]" title={detail}>
           {detail}
         </span>
       </span>
       <ArrowRight
         aria-hidden="true"
-        className="text-white/44 transition group-hover:translate-x-0.5 group-hover:text-white"
+        className="text-[var(--muted)] transition group-hover:translate-x-0.5 group-hover:text-[var(--accent)]"
         size={16}
       />
     </Link>
-  );
-}
-
-function StatPill({
-  detail,
-  label,
-  value
-}: Readonly<{
-  detail: string;
-  label: string;
-  value: string;
-}>) {
-  return (
-    <div className="rounded-xl border border-white/16 bg-white/[0.08] p-3 backdrop-blur-md">
-      <p className="font-mono text-xs uppercase text-white/52">{label}</p>
-      <p className="mt-2 text-xl font-semibold text-white">{value}</p>
-      <p className="mt-1 text-xs leading-5 text-white/66">{detail}</p>
-    </div>
   );
 }
 
@@ -345,7 +266,7 @@ function JourneyCard({
 
   return (
     <Link
-      className="group flex min-h-64 flex-col rounded-xl border border-[var(--border)] bg-[var(--surface-pop)] p-5 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--accent)]"
+      className="group flex min-h-52 flex-col rounded-lg border border-[var(--border)] bg-[var(--surface-pop)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
       href={href}
     >
       <div className="flex items-center justify-between gap-3">
@@ -354,7 +275,7 @@ function JourneyCard({
           {icon}
         </span>
       </div>
-      <h3 className="mt-6 text-xl font-semibold leading-tight">{title}</h3>
+      <h3 className="mt-5 text-xl font-semibold leading-tight">{title}</h3>
       <p className="mt-3 flex-1 text-sm leading-6 text-[var(--muted)]">{description}</p>
       <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">
         {cta}
@@ -407,35 +328,11 @@ async function getHeroSnapshot() {
   const events = eventsRecord?.data;
   const divisions = divisionsRecord?.data;
   const totalSeats = seatCounts?.reduce((sum, row) => sum + row.total, 0);
-  const largestParty = seatCounts
-    ? [...seatCounts].sort((first, second) => second.total - first.total)[0]
-    : undefined;
   const nextEvent = events?.[0];
   const recentDivision = divisions?.[0];
-  const checkedAt =
-    seatCountsRecord?.sourceDocument.retrievedAt ??
-    eventsRecord?.sourceDocument.retrievedAt ??
-    divisionsRecord?.sourceDocument.retrievedAt;
 
   return {
-    checkedLabel: checkedAt ? formatShortTime(checkedAt) : "Checking",
-    stats: [
-      {
-        detail: "House of Commons",
-        label: "Seats",
-        value: totalSeats ? String(totalSeats) : "Checking"
-      },
-      {
-        detail: largestParty ? "Largest party by seats" : "Waiting for Commons data",
-        label: "Lead",
-        value: largestParty ? largestParty.party.name : "Checking"
-      },
-      {
-        detail: "Official feeds",
-        label: "Source",
-        value: "UK Parliament"
-      }
-    ],
+    seatCountLabel: totalSeats ? `${String(totalSeats)} in source response` : "Checking feed",
     todayItems: [
       {
         detail: nextEvent
@@ -454,20 +351,6 @@ async function getHeroSnapshot() {
         icon: <Vote aria-hidden="true" size={17} />,
         label: "Recent vote",
         title: recentDivision ? truncateText(recentDivision.Title, 48) : "Checking recent votes"
-      },
-      {
-        detail: "Your constituency, current MP and recent public records",
-        href: "/my-area" as Route,
-        icon: <SearchCheck aria-hidden="true" size={17} />,
-        label: "Local view",
-        title: "Find who represents you"
-      },
-      {
-        detail: "Plain-English terms for PMQs, whips, divisions and more",
-        href: "/glossary" as Route,
-        icon: <Radio aria-hidden="true" size={17} />,
-        label: "Basics",
-        title: "Decode the words"
       }
     ]
   };
@@ -493,15 +376,6 @@ function formatEventDetail(event: ParliamentEvent) {
   const place = event.Location ?? event.House ?? "Parliament";
 
   return `${date} - ${place}`;
-}
-
-function formatShortTime(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/London",
-    timeZoneName: "short"
-  }).format(new Date(value));
 }
 
 function truncateText(text: string, maxLength: number) {
