@@ -15,12 +15,13 @@ Research basis: `docs/brand/youth-ux-research.md`.
 1. Header with logo and simple nav. No visible clock on the homepage.
 2. Hero headline: `British politics, without the fog.`
 3. One support sentence for beginners.
-4. A compact `Today, translated.` panel with two public-record rows and `What it means` notes.
-5. Three clear first-screen route cards: Start where you live, Decode the jargon, Watch what happens.
-6. A small `No shame if you're starting from zero` starter path that uses local-only progress cues.
-7. Short evergreen explainer cards for civic traditions and basics.
-8. Compact links to sources/about, not a full methodology section.
-9. Footer with About, Sources, Corrections, and analytics settings.
+4. A compact `Today, translated.` feed with two public-record rows and `What it means` notes.
+5. A first-screen `Start with a normal question` section, because orientation should beat feature explanation.
+6. Three compact route tiles: Start where you live, Decode the jargon, Watch what happens.
+7. A slim `No shame if you're starting from zero` starter path that uses local-only progress cues.
+8. Short evergreen explainer cards for civic traditions and basics.
+9. Compact links to sources/about, not a full methodology section.
+10. Footer with About, Sources, Glossary, contact email, and analytics settings.
 
 ## Design Rules
 
@@ -33,6 +34,7 @@ Research basis: `docs/brand/youth-ux-research.md`.
 7. Use light progress cues to make exploration inviting, but avoid childish challenge, unlock, or ideological scoring mechanics.
 8. Do not use fake youth slang, memes, neon chaos, visible clocks, dashboard widgets, or methodology-led hero content.
 9. Keep bigger post-v1 ideas out of the visible product until they are wired: Issues, Do something, action templates, local council/mayor/devolved coverage, and policy timelines.
+10. Design and QA the first viewport at a 14-inch laptop size, not only large desktop.
 
 ## Claude Design Prompt
 
