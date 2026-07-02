@@ -1,13 +1,10 @@
 import {
   ArrowRight,
   BookOpenCheck,
-  CalendarDays,
-  CheckCircle2,
-  Compass,
+  FileText,
   Landmark,
   MapPin,
-  Radio,
-  SearchCheck,
+  Megaphone,
   Vote
 } from "lucide-react";
 import type { Route } from "next";
@@ -27,12 +24,12 @@ const primaryJourneys = [
   {
     cta: "Find my MP",
     description:
-      "Use a postcode to make Westminster local: your seat, current MP and recent public records.",
+      "Use your postcode to see your constituency, current MP and recent public records.",
     href: "/my-area",
     icon: <MapPin aria-hidden="true" size={22} />,
-    label: "Local",
+    number: "1",
     title: "Start where you live",
-    tone: "red"
+    tone: "mint"
   },
   {
     cta: "Open glossary",
@@ -40,18 +37,72 @@ const primaryJourneys = [
       "Quick plain-English cards for the words that make politics feel harder than it is.",
     href: "/glossary",
     icon: <BookOpenCheck aria-hidden="true" size={22} />,
-    label: "Basics",
+    number: "2",
     title: "Decode the jargon",
-    tone: "blue"
+    tone: "sky"
   },
   {
     cta: "See Parliament",
-    description: "Follow seats, upcoming business and recent Commons votes from public records.",
+    description: "Follow votes and upcoming business using public Parliament records.",
     href: "/parliament",
-    icon: <Landmark aria-hidden="true" size={22} />,
-    label: "Today",
+    icon: <Megaphone aria-hidden="true" size={22} />,
+    number: "3",
     title: "Watch what happens",
-    tone: "navy"
+    tone: "coral"
+  }
+] as const;
+
+const starterPath = [
+  {
+    description: "See who represents you and how to contact them.",
+    icon: <MapPin aria-hidden="true" size={19} />,
+    title: "Find your MP"
+  },
+  {
+    description: "Pick a word. Get a short, clear explanation.",
+    icon: <BookOpenCheck aria-hidden="true" size={19} />,
+    title: "Learn a term"
+  },
+  {
+    description: "See how MPs voted and what the vote was about.",
+    icon: <Vote aria-hidden="true" size={19} />,
+    title: "Read a vote"
+  },
+  {
+    description: "Go to the original record and read it for yourself.",
+    icon: <FileText aria-hidden="true" size={19} />,
+    title: "Open a record"
+  }
+] as const;
+
+const normalQuestions = [
+  {
+    cta: "Find yours",
+    description: "See your constituency and current MP before the Westminster machinery.",
+    href: "/my-area",
+    icon: <MapPin aria-hidden="true" size={20} />,
+    question: "What does my MP actually do?"
+  },
+  {
+    cta: "Read votes",
+    description: "Open recent Commons votes, then go to the original record.",
+    href: "/parliament",
+    icon: <Vote aria-hidden="true" size={20} />,
+    question: "Who voted for this?"
+  },
+  {
+    cta: "Decode it",
+    description: "Get the plain-English version before the deeper read.",
+    href: "/glossary",
+    icon: <BookOpenCheck aria-hidden="true" size={20} />,
+    question: "What does this word mean?"
+  },
+  {
+    cta: "Open receipts",
+    description: "See where the public records and page facts come from.",
+    href: "/sources",
+    icon: <FileText aria-hidden="true" size={20} />,
+    question: "Where did this come from?"
   }
 ] as const;
 
@@ -81,118 +132,85 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen">
-      <section className="relative overflow-hidden bg-[var(--accent-strong)] text-white">
-        <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--accent-red),#ffffff,var(--accent-sky))]" />
-        <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[linear-gradient(135deg,rgba(139,211,255,0.18),rgba(200,16,46,0.13)_42%,rgba(255,255,255,0.06))] [clip-path:polygon(18%_0,100%_0,100%_100%,0_100%)] lg:block" />
-        <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-10 sm:py-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(26rem,1.05fr)] lg:py-16">
-          <div className="flex max-w-3xl flex-col justify-center">
-            <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-normal md:text-6xl">
-              British politics, without the fog.
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/84 sm:mt-6 sm:text-lg sm:leading-8">
-              Find your MP, understand the words people keep using, and see what Parliament is doing
-              today.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[var(--accent-strong)] shadow-[0_14px_34px_rgba(255,255,255,0.12)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-soft)]"
-                href="/parliament"
-                style={{ color: "var(--accent-strong)" }}
-              >
-                Start with today
-                <ArrowRight aria-hidden="true" size={18} />
-              </Link>
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/18"
-                href="/my-area"
-              >
-                Find my MP
-              </Link>
-              <Link
-                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/22 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
-                href="/glossary"
-              >
-                Learn the basics
-              </Link>
+      <section className="relative overflow-hidden border-b border-[#d8d3c7] bg-[#fbf8ee]">
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-[#175bc7]" />
+        <div
+          aria-hidden="true"
+          className="absolute left-0 top-0 hidden h-full w-40 border-r border-[#f09aa3] bg-[repeating-linear-gradient(180deg,rgba(23,91,199,0.16)_0,rgba(23,91,199,0.16)_1px,transparent_1px,transparent_28px)] opacity-70 lg:block"
+        />
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:py-14">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(28rem,1.08fr)] lg:items-center">
+            <div>
+              <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-normal text-[#071f3a] md:text-6xl">
+                British politics, without the fog.
+              </h1>
+              <span aria-hidden="true" className="mt-1 block h-3 w-full max-w-lg bg-[#ff767e]/55" />
+              <p className="mt-7 max-w-xl text-base leading-7 text-[#24334d] sm:text-lg sm:leading-8">
+                Start with where you live, decode the words people keep using, and see what
+                Parliament did today.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#071f3a] px-5 py-3 text-sm font-semibold text-[#ffffff] shadow-[0_14px_28px_rgba(7,31,58,0.18)] transition hover:-translate-y-0.5 hover:bg-[#0d3158]"
+                  href="/my-area"
+                >
+                  Start with my area
+                  <ArrowRight aria-hidden="true" size={17} />
+                </Link>
+                <Link
+                  className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-[#175bc7] bg-white/72 px-5 py-3 text-sm font-semibold text-[#071f3a] transition hover:-translate-y-0.5 hover:bg-white"
+                  href="/glossary"
+                >
+                  Learn the basics
+                </Link>
+              </div>
+              <p className="mt-6 inline-flex bg-[#dff3d5] px-3 py-1 font-mono text-sm text-[#123214]">
+                No account. No pressure. You&apos;re in control.
+              </p>
             </div>
-            <div className="mt-8 flex flex-wrap gap-3 text-sm text-white/72">
-              <span className="inline-flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" size={16} />
-                No account
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" size={16} />
-                Plain English
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" size={16} />
-                Public records linked in context
-              </span>
-            </div>
-          </div>
 
-          <div className="grid content-end gap-4 lg:pt-10">
-            <section className="rounded-2xl border border-white/18 bg-white/[0.08] p-4 shadow-[0_24px_70px_rgba(2,8,23,0.26)] backdrop-blur-md sm:p-5">
-              <div className="flex items-start justify-between gap-4 border-b border-white/16 pb-4">
-                <div>
-                  <h2 className="text-lg font-semibold">Today in Parliament</h2>
-                  <p className="mt-1 text-sm text-white/68">
-                    A quick pulse from official public feeds.
+            <aside className="relative overflow-hidden rounded-lg border border-[#ded7ca] bg-white/84 p-5 shadow-[0_22px_54px_rgba(7,31,58,0.12)]">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(rgba(23,91,199,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(23,91,199,0.03)_1px,transparent_1px)] bg-[length:28px_28px]"
+              />
+              <div className="relative">
+                <div className="border-b border-[#ded7ca] pb-4">
+                  <h2 className="inline bg-[#b8e5c9] px-2 text-2xl font-semibold leading-tight text-[#071f3a]">
+                    Today, translated.
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-[#33425b]">
+                    Live Parliament records, turned into plain English.
                   </p>
                 </div>
-                <span className="rounded-md bg-white/12 px-2.5 py-1 font-mono text-xs text-white/72">
-                  {snapshot.checkedLabel}
-                </span>
+                <div className="mt-2 divide-y divide-[#ded7ca]">
+                  {snapshot.todayItems.map((item) => (
+                    <TodayRow
+                      detail={item.detail}
+                      href={item.href}
+                      icon={item.icon}
+                      key={item.label}
+                      label={item.label}
+                      meaning={item.meaning}
+                      title={item.title}
+                    />
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm">
+                  <span className="text-[#5a6678]">{snapshot.seatCountLabel}</span>
+                  <Link
+                    className="inline-flex items-center gap-2 font-semibold text-[#0756c7] transition hover:text-[#071f3a]"
+                    href="/parliament"
+                  >
+                    See more in Parliament
+                    <ArrowRight aria-hidden="true" size={15} />
+                  </Link>
+                </div>
               </div>
-              <div className="mt-2 grid gap-1">
-                {snapshot.todayItems.map((item) => (
-                  <TodayRow
-                    detail={item.detail}
-                    href={item.href}
-                    icon={item.icon}
-                    key={item.label}
-                    label={item.label}
-                    title={item.title}
-                  />
-                ))}
-              </div>
-              <Link
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white underline decoration-white/34 underline-offset-4 transition hover:decoration-white"
-                href="/sources"
-              >
-                Source notes
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            </section>
-
-            <section className="grid gap-3 sm:grid-cols-3">
-              {snapshot.stats.map((item) => (
-                <StatPill
-                  detail={item.detail}
-                  key={item.label}
-                  label={item.label}
-                  value={item.value}
-                />
-              ))}
-            </section>
+            </aside>
           </div>
-        </div>
-      </section>
 
-      <section className="border-b border-[var(--border)] bg-[var(--surface)]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-md bg-[var(--accent-red-soft)] px-3 py-1 text-sm font-semibold text-[var(--accent-red)]">
-              <Compass aria-hidden="true" size={16} />
-              Pick a route
-            </div>
-            <h2 className="mt-4 text-2xl font-semibold">Start anywhere. Leave smarter.</h2>
-            <p className="mt-3 max-w-xl leading-7 text-[var(--muted)]">
-              No locked levels or patronising quizzes. Just useful entry points that let you skim,
-              understand, and dive deeper when you are ready.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
             {primaryJourneys.map((topic) => (
               <JourneyCard
                 cta={topic.cta}
@@ -200,7 +218,7 @@ export default async function HomePage() {
                 href={topic.href}
                 icon={topic.icon}
                 key={topic.href}
-                label={topic.label}
+                number={topic.number}
                 title={topic.title}
                 tone={topic.tone}
               />
@@ -209,8 +227,63 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[0.78fr_1.22fr]">
-        <StarterProgress />
+      <section className="border-b border-[#ded7ca] bg-[#fffdf8]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <h2 className="text-3xl font-semibold leading-tight text-[#071f3a]">
+              No shame if you&apos;re starting from zero.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#536176]">
+              A simple starter path. Do it in any order. Progress is saved only in this browser.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {starterPath.map((step, index) => (
+                <StarterPathStep
+                  description={step.description}
+                  icon={step.icon}
+                  key={step.title}
+                  number={index + 1}
+                  title={step.title}
+                />
+              ))}
+            </div>
+          </div>
+          <StarterProgress compact />
+        </div>
+      </section>
+
+      <section className="border-b border-[#ded7ca] bg-[#fbf8ee]">
+        <div className="mx-auto max-w-7xl px-6 py-12">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-semibold leading-tight text-[#071f3a]">
+                Start with a normal question.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#536176]">
+                Politics is easier when the first step sounds like something a person would actually
+                ask.
+              </p>
+            </div>
+            <span className="max-w-48 bg-[#fff1a8] px-3 py-2 font-mono text-sm text-[#423600]">
+              No stupid questions.
+            </span>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-4">
+            {normalQuestions.map((item) => (
+              <QuestionCard
+                cta={item.cta}
+                description={item.description}
+                href={item.href}
+                icon={item.icon}
+                key={item.question}
+                question={item.question}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-12">
         <div>
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -244,17 +317,17 @@ export default async function HomePage() {
       <section className="border-t border-[var(--border)] bg-[var(--surface-soft)]">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-xl font-semibold">Want the serious detail?</h2>
+            <h2 className="text-xl font-semibold">Need the records?</h2>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-              Sources, limits and corrections are there when you want them, without getting in the
-              way of the first read.
+              Record links, limits and corrections are there when you want them, without getting in
+              the way of the first read.
             </p>
           </div>
           <Link
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
             href="/about"
           >
-            How Plain Politics works
+            How Plain Politics handles records
             <ArrowRight aria-hidden="true" size={16} />
           </Link>
         </div>
@@ -268,55 +341,46 @@ function TodayRow({
   href,
   icon,
   label,
+  meaning,
   title
 }: Readonly<{
   detail: string;
   href: Route;
   icon: ReactNode;
   label: string;
+  meaning: string;
   title: string;
 }>) {
   return (
     <Link
-      className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-3 transition hover:bg-white/10"
+      className="group grid gap-4 py-4 transition hover:bg-white/45 sm:grid-cols-[auto_minmax(0,1.1fr)_minmax(10rem,0.9fr)_auto] sm:items-center sm:px-2"
       href={href}
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/12 text-white">
+      <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#071f3a]">
         {icon}
       </span>
       <span className="min-w-0">
-        <span className="block text-xs font-semibold uppercase text-white/58">{label}</span>
-        <span className="mt-0.5 block truncate text-sm font-semibold text-white" title={title}>
+        <span className="block text-xs font-semibold text-[#0756c7]">{label}</span>
+        <span className="mt-1 block truncate text-sm font-semibold text-[#071f3a]" title={title}>
           {title}
         </span>
-        <span className="mt-1 block truncate text-sm text-white/68" title={detail}>
+        <span className="mt-1 block truncate text-sm text-[#536176]" title={detail}>
           {detail}
         </span>
       </span>
-      <ArrowRight
-        aria-hidden="true"
-        className="text-white/44 transition group-hover:translate-x-0.5 group-hover:text-white"
-        size={16}
-      />
+      <span className="min-w-0">
+        <span className="block text-xs font-semibold text-[#0756c7]">What it means</span>
+        <span className="mt-1 block text-sm leading-5 text-[#24334d]">{meaning}</span>
+      </span>
+      <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#0756c7]">
+        Open record
+        <ArrowRight
+          aria-hidden="true"
+          className="transition group-hover:translate-x-0.5"
+          size={15}
+        />
+      </span>
     </Link>
-  );
-}
-
-function StatPill({
-  detail,
-  label,
-  value
-}: Readonly<{
-  detail: string;
-  label: string;
-  value: string;
-}>) {
-  return (
-    <div className="rounded-xl border border-white/16 bg-white/[0.08] p-3 backdrop-blur-md">
-      <p className="font-mono text-xs uppercase text-white/52">{label}</p>
-      <p className="mt-2 text-xl font-semibold text-white">{value}</p>
-      <p className="mt-1 text-xs leading-5 text-white/66">{detail}</p>
-    </div>
   );
 }
 
@@ -325,7 +389,7 @@ function JourneyCard({
   description,
   href,
   icon,
-  label,
+  number,
   title,
   tone
 }: Readonly<{
@@ -333,35 +397,120 @@ function JourneyCard({
   description: string;
   href: Route;
   icon: ReactNode;
-  label: string;
+  number: string;
   title: string;
-  tone: "red" | "blue" | "navy";
+  tone: "mint" | "sky" | "coral";
 }>) {
-  const toneClass = {
-    blue: "bg-[#e6f5ff] text-[var(--accent-strong)]",
-    navy: "bg-[var(--accent-soft)] text-[var(--accent-strong)]",
-    red: "bg-[var(--accent-red-soft)] text-[var(--accent-red)]"
+  const toneClasses = {
+    coral: {
+      bubble: "bg-[#ffd8d2] text-[#071f3a]",
+      card: "border-[#ffaaa4] bg-[#fff8f5]",
+      icon: "bg-[#ffe1dc] text-[#d82031]",
+      link: "text-[#d82031]"
+    },
+    mint: {
+      bubble: "bg-[#c6edcf] text-[#071f3a]",
+      card: "border-[#96d7aa] bg-[#fbfffb]",
+      icon: "bg-[#e0f5e2] text-[#0d6141]",
+      link: "text-[#0d6141]"
+    },
+    sky: {
+      bubble: "bg-[#d8ecff] text-[#071f3a]",
+      card: "border-[#98c9ff] bg-[#f8fcff]",
+      icon: "bg-[#e7f1ff] text-[#0756c7]",
+      link: "text-[#0756c7]"
+    }
   }[tone];
 
   return (
     <Link
-      className="group flex min-h-64 flex-col rounded-xl border border-[var(--border)] bg-[var(--surface-pop)] p-5 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--accent)]"
+      className={`group relative flex min-h-48 flex-col rounded-lg border p-5 shadow-[0_12px_28px_rgba(7,31,58,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(7,31,58,0.13)] ${toneClasses.card}`}
       href={href}
     >
-      <div className="flex items-center justify-between gap-3">
-        <span className="text-xs font-semibold uppercase text-[var(--muted)]">{label}</span>
-        <span className={`flex h-10 w-10 items-center justify-center rounded-md ${toneClass}`}>
+      <span
+        className={`absolute -left-2 -top-3 flex h-10 w-10 items-center justify-center rounded-full text-lg font-semibold ${toneClasses.bubble}`}
+      >
+        {number}
+      </span>
+      <div className="flex justify-end">
+        <span
+          className={`flex h-14 w-14 items-center justify-center rounded-lg ${toneClasses.icon}`}
+        >
           {icon}
         </span>
       </div>
-      <h3 className="mt-6 text-xl font-semibold leading-tight">{title}</h3>
+      <h3 className="mt-5 text-xl font-semibold leading-tight">{title}</h3>
       <p className="mt-3 flex-1 text-sm leading-6 text-[var(--muted)]">{description}</p>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">
+      <span
+        className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${toneClasses.link}`}
+      >
         {cta}
         <ArrowRight
           aria-hidden="true"
           className="transition group-hover:translate-x-0.5"
           size={16}
+        />
+      </span>
+    </Link>
+  );
+}
+
+function StarterPathStep({
+  description,
+  icon,
+  number,
+  title
+}: Readonly<{
+  description: string;
+  icon: ReactNode;
+  number: number;
+  title: string;
+}>) {
+  return (
+    <div className="grid min-h-32 grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-lg border border-[#ded7ca] bg-white p-4 shadow-[0_10px_24px_rgba(7,31,58,0.06)]">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#071f3a] text-sm font-semibold text-white">
+        {number}
+      </span>
+      <div>
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#0756c7]">
+          {icon}
+        </span>
+        <h3 className="mt-3 text-sm font-semibold text-[#071f3a]">{title}</h3>
+        <p className="mt-1 text-sm leading-5 text-[#536176]">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function QuestionCard({
+  cta,
+  description,
+  href,
+  icon,
+  question
+}: Readonly<{
+  cta: string;
+  description: string;
+  href: Route;
+  icon: ReactNode;
+  question: string;
+}>) {
+  return (
+    <Link
+      className="group flex min-h-48 flex-col rounded-lg border border-[#ded7ca] bg-white p-5 shadow-[0_10px_24px_rgba(7,31,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#0756c7]"
+      href={href}
+    >
+      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#0756c7]">
+        {icon}
+      </span>
+      <h3 className="mt-5 text-lg font-semibold leading-tight text-[#071f3a]">{question}</h3>
+      <p className="mt-3 flex-1 text-sm leading-6 text-[#536176]">{description}</p>
+      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#0756c7]">
+        {cta}
+        <ArrowRight
+          aria-hidden="true"
+          className="transition group-hover:translate-x-0.5"
+          size={15}
         />
       </span>
     </Link>
@@ -381,7 +530,7 @@ function QuickReadCard({
 }>) {
   return (
     <Link
-      className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
+      className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
       href={href}
     >
       <span className="inline-flex rounded-md bg-[var(--surface-soft)] px-2.5 py-1 font-mono text-xs font-semibold text-[var(--muted)]">
@@ -407,43 +556,24 @@ async function getHeroSnapshot() {
   const events = eventsRecord?.data;
   const divisions = divisionsRecord?.data;
   const totalSeats = seatCounts?.reduce((sum, row) => sum + row.total, 0);
-  const largestParty = seatCounts
-    ? [...seatCounts].sort((first, second) => second.total - first.total)[0]
-    : undefined;
   const nextEvent = events?.[0];
   const recentDivision = divisions?.[0];
-  const checkedAt =
-    seatCountsRecord?.sourceDocument.retrievedAt ??
-    eventsRecord?.sourceDocument.retrievedAt ??
-    divisionsRecord?.sourceDocument.retrievedAt;
 
   return {
-    checkedLabel: checkedAt ? formatShortTime(checkedAt) : "Checking",
-    stats: [
-      {
-        detail: "House of Commons",
-        label: "Seats",
-        value: totalSeats ? String(totalSeats) : "Checking"
-      },
-      {
-        detail: largestParty ? "Largest party by seats" : "Waiting for Commons data",
-        label: "Lead",
-        value: largestParty ? largestParty.party.name : "Checking"
-      },
-      {
-        detail: "Official feeds",
-        label: "Source",
-        value: "UK Parliament"
-      }
-    ],
+    seatCountLabel: totalSeats
+      ? `${String(totalSeats)} Commons seats`
+      : "Commons seat count unavailable",
     todayItems: [
       {
         detail: nextEvent
           ? formatEventDetail(nextEvent)
           : "No upcoming item returned in the next 7 days",
         href: "/parliament" as Route,
-        icon: <CalendarDays aria-hidden="true" size={17} />,
-        label: "Next up",
+        icon: <Landmark aria-hidden="true" size={19} />,
+        label: "Next in Parliament",
+        meaning: nextEvent
+          ? "A scheduled item is coming up in Parliament."
+          : "The calendar did not return a next item.",
         title: nextEvent ? eventTitle(nextEvent) : "Quiet calendar"
       },
       {
@@ -451,23 +581,12 @@ async function getHeroSnapshot() {
           ? `${String(recentDivision.AyeCount)} ayes, ${String(recentDivision.NoCount)} noes`
           : "Recent division feed unavailable",
         href: "/parliament" as Route,
-        icon: <Vote aria-hidden="true" size={17} />,
+        icon: <Vote aria-hidden="true" size={19} />,
         label: "Recent vote",
+        meaning: recentDivision
+          ? "The record shows how the vote was counted."
+          : "The vote feed did not return a recent result.",
         title: recentDivision ? truncateText(recentDivision.Title, 48) : "Checking recent votes"
-      },
-      {
-        detail: "Your constituency, current MP and recent public records",
-        href: "/my-area" as Route,
-        icon: <SearchCheck aria-hidden="true" size={17} />,
-        label: "Local view",
-        title: "Find who represents you"
-      },
-      {
-        detail: "Plain-English terms for PMQs, whips, divisions and more",
-        href: "/glossary" as Route,
-        icon: <Radio aria-hidden="true" size={17} />,
-        label: "Basics",
-        title: "Decode the words"
       }
     ]
   };
@@ -493,15 +612,6 @@ function formatEventDetail(event: ParliamentEvent) {
   const place = event.Location ?? event.House ?? "Parliament";
 
   return `${date} - ${place}`;
-}
-
-function formatShortTime(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/London",
-    timeZoneName: "short"
-  }).format(new Date(value));
 }
 
 function truncateText(text: string, maxLength: number) {

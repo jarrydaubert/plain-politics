@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { PlainPoliticsMark } from "@/components/plain-politics-logo";
-import { UkTimeClock } from "@/components/uk-time-clock";
 
 const navItems = [
   { href: "/my-area", label: "My area" },
@@ -12,7 +11,7 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-[var(--border)] bg-[var(--surface)]">
+    <header className="border-b border-[#d8d3c7] bg-[#fffdf8]/94 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
         <Link
           aria-label="Plain Politics home"
@@ -23,19 +22,16 @@ export function SiteHeader() {
           <span>Plain Politics</span>
         </Link>
 
-        <div className="flex flex-1 items-center justify-end gap-4">
-          <div className="hidden items-center gap-5 text-sm font-medium text-[var(--muted)] lg:flex">
-            {navItems.map((item) => (
-              <Link
-                className="transition hover:text-[var(--foreground)]"
-                href={item.href}
-                key={item.href}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          <UkTimeClock />
+        <div className="flex w-full flex-wrap items-center gap-1 text-sm font-semibold text-[#071f3a] sm:w-auto sm:gap-2">
+          {navItems.map((item) => (
+            <Link
+              className="rounded-lg px-2 py-2 transition hover:bg-[#e7f1ff] hover:text-[#0756c7] sm:px-3"
+              href={item.href}
+              key={item.href}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       </nav>
     </header>
