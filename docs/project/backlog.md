@@ -15,7 +15,7 @@ For context, use:
 
 - [ ] Attach `plainpolitics.co.uk` and `www.plainpolitics.co.uk` to the Vercel project.
 - [ ] Configure Cloudflare DNS for the Vercel deployment and verify the `www -> apex` redirect.
-- [ ] Configure Cloudflare Email Routing for `hello@plainpolitics.co.uk` and `corrections@plainpolitics.co.uk`.
+- [ ] Document Cloudflare Email Routing for `info@plainpolitics.co.uk` in deployment notes.
 - [ ] Add the production URL and preview URL notes to `README.md` after domain setup.
 - [ ] Protect GitHub `main` with required CI checks before treating the repo as launch-ready.
 - [ ] Review the licensed Parliament hero photo crop, contrast, and attribution before public launch.

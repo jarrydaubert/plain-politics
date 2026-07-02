@@ -4,8 +4,7 @@ const footerLinks = [
   { href: "/about", label: "About" },
   { href: "/sources", label: "Sources" },
   { href: "/glossary", label: "Glossary" },
-  { href: "mailto:hello@plainpolitics.co.uk", label: "hello@plainpolitics.co.uk" },
-  { href: "mailto:corrections@plainpolitics.co.uk", label: "corrections@plainpolitics.co.uk" }
+  { href: "mailto:info@plainpolitics.co.uk", label: "info@plainpolitics.co.uk" }
 ] as const;
 
 export function SiteFooter() {

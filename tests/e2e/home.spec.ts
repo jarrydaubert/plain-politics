@@ -14,7 +14,7 @@ test("home page renders the source-backed tracker shell", async ({ page }) => {
   await expect(page.getByText(/0 of 4 complete/i)).toBeVisible();
   await expect(page.getByLabel(/UK date and time/i)).toBeVisible();
   await expect(page.getByText(/not affiliated with any political party/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: /corrections@plainpolitics.co.uk/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /info@plainpolitics.co.uk/i })).toBeVisible();
 });
 
 test("my area page renders the postcode starter", async ({ page }) => {

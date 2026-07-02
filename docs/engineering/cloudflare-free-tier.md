@@ -12,7 +12,7 @@ Domain status: `plainpolitics.co.uk` is owned for the public launch.
 
 ## Relevant Cloudflare Capabilities
 
-1. Cloudflare Email Routing is available on Free and Paid plans. It can route incoming email for addresses such as `corrections@`, `health@`, or `contact@` to verified destination addresses.
+1. Cloudflare Email Routing is available on Free and Paid plans. It can route incoming email for `info@plainpolitics.co.uk` to verified destination addresses.
 2. Cloudflare Email Service supports outbound email, but Cloudflare documents general Email Sending as available on the Workers Paid plan. It also states that sending to verified destination addresses is free on all plans, including when only Email Routing is configured.
 3. Cloudflare Workers Free includes limited usage of Workers, Pages Functions, Workers KV, and Hyperdrive. Current documentation also lists Workers Logs on Free with limited daily log volume and short retention.
 4. Cron Triggers can run Workers on a schedule in UTC and are intended for periodic jobs such as maintenance or calling third-party APIs.
@@ -37,13 +37,11 @@ Recommended flow:
 4. A Cloudflare Worker Cron Trigger can check the health endpoint on a modest cadence.
 5. The Worker sends email only to verified admin destination addresses.
 6. KV or Supabase stores alert cooldown state so repeated failures do not create email floods.
-7. Email Routing handles inbound addresses such as `corrections@` and `health@`.
+7. Email Routing handles inbound `info@plainpolitics.co.uk`.
 
 Public launch aliases:
 
-1. `hello@plainpolitics.co.uk` for general contact.
-2. `corrections@plainpolitics.co.uk` for public corrections and source issues.
-3. `health@plainpolitics.co.uk` for operator health alerts if Cloudflare Worker checks are enabled.
+1. `info@plainpolitics.co.uk` for general contact, public corrections, source issues, and operator follow-up until separate aliases are configured.
 
 Alert email types:
 
