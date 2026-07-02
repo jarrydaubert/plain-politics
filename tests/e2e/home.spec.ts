@@ -226,3 +226,7 @@ async function mockMyAreaLookup(page: Page) {
     }
   );
 }
+
+test("ruleset smoke intentionally fails e2e only", async () => {
+  expect(true).toBe(false);
+});
