@@ -18,20 +18,17 @@ Political information is fragmented across official publications, parliamentary 
 3. Public APIs, structured source ingestion, and transparent provenance now make auditable explainers practical at MVP budget.
 
 ## v1 Scope (UK)
-1. Beginner `Start Here` journey with plain-English cards and glossary support.
+1. Beginner homepage that explains the site quickly and gives three clear routes: local MP, glossary, and Parliament today.
 2. Postcode to `my area` starter: constituency, current MP, party, recent public record, and source links.
-3. Compare view for side-by-side party issue comparison.
-4. Policies tracker with versioning and diff views.
-5. Search and plain-English explainers with source links and uncertainty handling.
-6. Money explorer for donor analysis.
-7. Calendar of key political events.
-8. Anonymous-first alignment quiz or civic knowledge check, if retained.
-9. Methodology and source directory pages.
-10. Baseline observability and data quality controls.
+3. Political glossary and a few short civic explainers.
+4. Parliament page using official public hooks for seats, current members, upcoming business, and recent Commons divisions.
+5. Sources and About pages that explain limits, attribution, contact, and corrections without making the homepage about methodology.
+6. Public Vercel deployment, Cloudflare DNS/email, privacy-safe analytics, and basic CI quality gates.
 
 ## Phase Plan
-1. Phase 1 (core trust engine): Party Profiles, Compare, Policies, Search/Explainers, Methodology/Sources, baseline observability.
-2. Phase 2 (expansion): Money, Calendar, Dashboard enhancements, Quiz hardening.
+1. v1.0.0 (public starter): homepage, my area, glossary, Parliament records, sources/about/contact, deployment, and basic quality gates.
+2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, source health, and last-good-data fallbacks.
+3. Feature branches: first policy area, party profiles, Compare, change feed, polling, money, calendar, and any guided civic check expansion.
 
 ## Trust and Compliance Principles
 1. Source-first and source-gated factual content.
@@ -43,7 +40,7 @@ Political information is fragmented across official publications, parliamentary 
 ## Product Differentiator
 1. Beginner-first journeys that make politics approachable without condescension.
 2. Postcode-led local relevance before abstract national comparison.
-3. Light gamification that rewards learning, source-checking, and exploration, not political preference.
+3. Light progress cues that reward learning, source-checking, and exploration, not political preference.
 4. Claim-to-source traceability for factual output.
 5. Source trust tiers with explicit coverage gaps.
 6. Neutrality standards applied as operational QA rules.
@@ -53,7 +50,7 @@ Political information is fragmented across official publications, parliamentary 
 
 ## Success Signals
 1. Source-link CTR >= 25% on evidence-backed pages.
-2. Source coverage rate >= 95% for factual summaries in the Phase 0 slice.
+2. Source coverage rate >= 95% for factual summaries in the v1 source-backed slice.
 3. Source relevance QA pass rate >= 90%.
 4. Freshness SLA adherence >= 95%.
 5. Return rate >= 30%.

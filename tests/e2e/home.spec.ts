@@ -1,17 +1,20 @@
 import { expect, type Page, test } from "@playwright/test";
 
-test("home page renders the source-backed tracker shell", async ({ page }) => {
+test("home page renders the guided starter shell", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("link", { name: "Plain Politics home" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /british politics, at a glance/i })).toBeVisible();
-  const primaryHeroLink = page.getByRole("link", { name: /learn the basics/i }).first();
+  await expect(
+    page.getByRole("heading", { name: /british politics, without the fog/i })
+  ).toBeVisible();
+  const primaryHeroLink = page.getByRole("link", { name: /start with today/i }).first();
   await expect(primaryHeroLink).toBeVisible();
   await expect(primaryHeroLink).not.toHaveCSS("color", "rgb(255, 255, 255)");
-  await expect(page.getByRole("link", { name: /understand the parties/i }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: /see parliament today/i }).first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: /start from the landscape/i })).toBeVisible();
-  await expect(page.getByText(/0 of 4 complete/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: /find my mp/i }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: /learn the basics/i }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: /today in parliament/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /start anywhere/i })).toBeVisible();
+  await expect(page.getByText(/0 of 4 explored/i)).toBeVisible();
   await expect(page.getByLabel(/UK date and time/i)).toBeVisible();
   await expect(page.getByText(/not affiliated with any political party/i)).toBeVisible();
   await expect(page.getByRole("link", { name: /info@plainpolitics.co.uk/i })).toBeVisible();
@@ -23,8 +26,8 @@ test("my area page renders the postcode starter", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /start with your area/i })).toBeVisible();
   await expect(page.getByLabel(/enter a postcode/i)).toBeVisible();
   await expect(page.getByRole("button", { name: /find my mp/i })).toBeVisible();
-  await expect(page.getByText(/1 of 4 complete/i)).toBeVisible();
-  await expect(page.getByText(/never sent to or stored by us/i)).toBeVisible();
+  await expect(page.getByText(/1 of 4 explored/i)).toBeVisible();
+  await expect(page.getByText(/does not store your postcode/i)).toBeVisible();
 });
 
 test("my area lookup resolves a sample postcode", async ({ page }) => {
@@ -39,8 +42,8 @@ test("my area lookup resolves a sample postcode", async ({ page }) => {
   ).toBeVisible({
     timeout: 15000
   });
-  await expect(page.getByText(/public record, not automatic local impact/i)).toBeVisible();
-  await expect(page.getByRole("heading", { name: /sources checked/i })).toBeVisible();
+  await expect(page.getByText(/Parliament record, not local impact/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /source links/i })).toBeVisible();
 });
 
 test("my area lookup shows a friendly invalid postcode error", async ({ page }) => {
@@ -86,7 +89,7 @@ test("live my area lookup resolves a sample postcode", async ({ page }) => {
   ).toBeVisible({
     timeout: 15000
   });
-  await expect(page.getByRole("heading", { name: /sources checked/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /source links/i })).toBeVisible();
 });
 
 test("parliament page renders live source-backed tables", async ({ page }) => {
@@ -101,15 +104,15 @@ test("parliament page renders live source-backed tables", async ({ page }) => {
     page.getByRole("heading", { name: /upcoming parliamentary business/i })
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: /recent commons divisions/i })).toBeVisible();
-  await expect(page.getByText(/displayed facts backed by excerpts/i).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: /official source links/i })).toBeVisible();
 });
 
 test("sources page renders hook inventory and datapoint groups", async ({ page }) => {
   await page.goto("/sources");
 
-  await expect(page.getByRole("heading", { name: /sources and datapoints/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /what is hooked now/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /candidate feeds/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /source directory/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /used now/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /to review/i })).toBeVisible();
   await expect(page.getByText("State of the parties")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Polling and popularity" }).first()).toBeVisible();
 });

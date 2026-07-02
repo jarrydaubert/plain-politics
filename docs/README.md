@@ -7,6 +7,7 @@ This directory holds product truth, project plans, operating standards, and impl
 - `product/` - product requirements, idea brief, success metrics, and audience framing.
 - `project/` - phased action plan and todo-only delivery backlog.
 - `engineering/` - technical stack, data model, repo housekeeping, deployment notes, GBrain policy, Cloudflare notes, and Vercel plugin skill policy.
+- `ops/` - domain, deployment, analytics, and operator runbook notes.
 - `methodology/` - source trust, source-reference, neutrality, polling, and privacy standards.
 - `quality/` - release gates and feature readiness checks.
 - `brand/` - logo, palette, and identity-system notes.

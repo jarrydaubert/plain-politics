@@ -63,7 +63,7 @@ Post-v1 product scope:
 2. Tactical voting recommendations.
 3. Campaign persuasion tooling.
 4. Micro-targeted political advertising.
-5. User accounts for Phase 0.
+5. User accounts for v1.0.0.
 6. Native mobile app.
 7. Gamified persuasion, ideological scoring, or mechanics that nudge users toward a party.
 8. Party policy comparison, manifesto ingestion, polling averages, donations, and alignment scoring for v1.0.0.
@@ -233,12 +233,13 @@ The core provenance chain is:
 
 ## 20) Delivery Strategy
 
-1. Phase 0 proof of thesis: one policy area, a few parties, two to three authoritative source families, source excerpts, Compare, party/policy pages, and source panels.
-2. Phase 1 core information site: Party Profiles, Compare, Policies, Methodology/Sources, baseline observability.
-3. Phase 2 expansion: Polling and Momentum, Money, Calendar, Home Dashboard enhancements, selected Parliament views.
-4. Phase 3 privacy-sensitive features: Quiz hardening and optional consent workflows.
+1. v1.0.0 public starter: beginner homepage, postcode-to-MP, glossary, live Parliament records, sources/about/contact, deployment, and basic quality gates.
+2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, source health, and last-good-data fallbacks.
+3. First policy feature branch: one issue, reviewed party/public sources, source excerpts, party profile sections, and Compare only after provenance UI is reusable.
+4. Later expansion: Polling and Momentum, Money, Calendar, change feeds, public API, search, and selected Parliament views.
+5. Privacy-sensitive features: quiz hardening, optional consent workflows, and any party-alignment scoring only after methodology and DPIA review.
 
-Polling belongs in the product vision but should not block Phase 0 unless source access and metadata are straightforward.
+Polling belongs in the product vision but should not block v1.0.0 unless source access and metadata are straightforward.
 
 ## 21) Ingestion Strategy
 
@@ -253,21 +254,21 @@ Polling belongs in the product vision but should not block Phase 0 unless source
 
 # Engineering Ticket Set With Acceptance Criteria
 
-## FEAT-001 Home Dashboard
+## FEAT-001 Home Starter Dashboard
 
-User story: As a user, I can see a single-page overview of the latest political updates.
+User story: As a beginner, I can land on the site, understand what it is for within ten seconds, and choose a clear first route.
 
 Acceptance criteria:
 
-1. Dashboard shows widgets for polling movement, policy changes, donor updates, upcoming events, and recent votes when those datasets are available.
-2. Each widget item links to a detailed page.
-3. Each item displays `last checked` or source date.
+1. Page leads with a plain-English promise for people who do not usually follow politics.
+2. Page offers clear routes for local MP lookup, glossary basics, and Parliament today.
+3. A compact Parliament panel shows two to three official public-record facts where available.
 4. Page loads in <= 2.5s p75 on broadband baseline.
-5. Empty states are shown when a widget has no data.
+5. Empty states are shown when live source data is unavailable.
 6. Dashboard layout is responsive and usable across mobile and desktop breakpoints.
-7. Each item shows source count and coverage badge.
-8. `Recent` windows are explicitly defined, documented, and configurable.
-9. Stale badge appears when freshness threshold is exceeded.
+7. Source confidence is present through small labels, timestamps, links, or evidence affordances rather than large methodology blocks.
+8. Light progress cues reward exploration and stay local to the browser.
+9. No prediction, winner/loser framing, party preference scoring, or campaign language appears on the homepage.
 
 ## FEAT-002 Compare View
 
@@ -330,14 +331,14 @@ Acceptance criteria:
 
 ## FEAT-006 Guided Civic Check (Anonymous-First)
 
-User story: As a user who does not know where to start, I can complete a guided civic check that teaches vocabulary, explains issues, and optionally compares my answers to source-backed party positions without creating an account.
+User story: As a user who does not know where to start, I can complete a guided civic check that teaches vocabulary and explains issues without creating an account.
 
 Acceptance criteria:
 
 1. Check supports anonymous completion.
-2. First version may run as a civic learning path before any party-alignment scoring is enabled.
-3. If alignment scoring is enabled, result page shows ranked alignment with transparent scoring method.
-4. Result page links to source-backed policy positions used in scoring or to coverage gaps.
+2. First version is a civic learning path, not a party-alignment score.
+3. Any later alignment scoring is post-v1 and requires explicit methodology, consent boundaries, and DPIA review.
+4. Result or recap pages link to source-backed policy positions used for context or to coverage gaps.
 5. No special-category data is persisted unless explicit consent is captured.
 6. Consent capture event is logged with timestamp and policy version when opted in.
 7. Results include cross-party agreement areas to reduce single-party framing.

@@ -1,5 +1,9 @@
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Suspense } from "react";
+import { AnalyticsConsentBanner } from "@/components/analytics-consent-banner";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StructuredData } from "@/components/structured-data";
@@ -51,7 +55,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        alt: "Plain Politics - British politics, at a glance",
+        alt: "Plain Politics - British politics, without the fog",
         height: 630,
         url: "/og-image.png",
         width: 1200
@@ -72,13 +76,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const analyticsEnabled = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS !== "false";
+
   return (
     <html lang="en-GB">
       <body>
         <StructuredData data={websiteJsonLd} />
+        {analyticsEnabled ? <VercelAnalytics /> : null}
+        <Suspense fallback={null}>{analyticsEnabled ? <GoogleAnalytics /> : null}</Suspense>
         <SiteHeader />
         {children}
         <SiteFooter />
+        <AnalyticsConsentBanner />
       </body>
     </html>
   );

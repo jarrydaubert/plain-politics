@@ -29,7 +29,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 - Political neutrality is a quality gate, not a writing preference.
 - No source means no factual claim.
 - Privacy defaults must treat political opinion signals as high-risk data.
-- Light gamification should reward learning, source-checking, and exploration, never political preference.
+- Light progress cues should reward learning, source-checking, and exploration, never political preference or childish unlock mechanics.
 - The product is informational only: no campaign advice, no tactical voting recommendations.
 
 ## Repo Map
@@ -86,11 +86,13 @@ bun run build
 
 ## DevOps
 
+- Production: `https://plainpolitics.co.uk`; `https://www.plainpolitics.co.uk` redirects to the apex domain.
 - GitHub Actions runs CI on pushes and pull requests to `main`: Bun frozen install, lockfile guard, live env-file guard, Biome format/lint, TypeScript, unit tests, and production build.
 - CodeQL scans JavaScript/TypeScript on pushes, pull requests, and a weekly schedule.
 - Playwright smoke tests run in CI as a non-blocking job while the live-source surface settles.
 - Production should deploy from GitHub to Vercel. Cloudflare manages `plainpolitics.co.uk` DNS and email routing.
 - `vercel.json` pins Bun frozen installs and redirects `www.plainpolitics.co.uk` to `plainpolitics.co.uk`.
+- Analytics setup is documented in `docs/ops/domain-and-analytics.md`: Vercel Web Analytics and consent-based GA4.
 
 ## Live Source Hooks
 

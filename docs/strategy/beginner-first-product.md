@@ -1,6 +1,6 @@
 # Beginner-First Product Direction
 
-Last updated: 2026-07-01
+Last updated: 2026-07-02
 
 ## Product Shift
 
@@ -11,6 +11,21 @@ The core promise:
 ```text
 Start with my postcode or an issue, explain the basics, show the public evidence, and let me go deeper without getting lost.
 ```
+
+## Current V1 Design Direction
+
+The v1 interface should feel like guided curiosity: inviting enough for younger or politics-averse users to take a look, but still calm and useful for adults, researchers, and civic users.
+
+It should not feel like a children's game, a campaign product, a news dashboard, or a methodology document. Light progress cues are welcome, but there should be no locked challenges, ideological scoring, party preference rewards, or puzzle-to-progress mechanics.
+
+The current homepage shape is:
+
+1. A plain promise: `British politics, without the fog.`
+2. A compact live `Today in Parliament` panel.
+3. Three beginner routes: start where you live, decode the jargon, and watch what happens.
+4. A small starter guide that rewards exploration locally in the browser.
+5. Short evergreen explainers that make civic traditions feel approachable.
+6. Quiet source confidence through labels, timestamps, links, and evidence affordances rather than repeated trust copy.
 
 ## Core Journey
 

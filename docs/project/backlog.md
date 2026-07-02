@@ -13,12 +13,8 @@ For context, use:
 
 ## V1 Launch Blockers
 
-- [ ] Attach `plainpolitics.co.uk` and `www.plainpolitics.co.uk` to the Vercel project.
-- [ ] Configure Cloudflare DNS for the Vercel deployment and verify the `www -> apex` redirect.
-- [ ] Document Cloudflare Email Routing for `info@plainpolitics.co.uk` in deployment notes.
-- [ ] Add the production URL and preview URL notes to `README.md` after domain setup.
-- [ ] Protect GitHub `main` with required CI checks before treating the repo as launch-ready.
-- [ ] Review the licensed Parliament hero photo crop, contrast, and attribution before public launch.
+- [ ] Verify `info@plainpolitics.co.uk` receives contact and correction email end to end.
+- [ ] Review the homepage visual direction, OG image, and any public imagery before launch.
 - [ ] Review `/parties/[slug]` and either make party detail pages source-backed or hide them from public navigation until the policy-profile branch.
 - [ ] Add one final beginner walkthrough pass: homepage -> glossary -> Parliament -> my area -> source links -> contact/corrections.
 
@@ -30,7 +26,7 @@ For context, use:
 - [ ] Add the first evergreen explainer page, likely PMQs or State Opening.
 - [ ] Add a lightweight public corrections page that points to the corrections email until a full workflow exists.
 - [ ] Add a lightweight source-health page or endpoint for operator checks.
-- [ ] Add privacy-safe analytics, preferably cookieless and without postcode/query capture.
+- [ ] Verify privacy-safe analytics after production deploy.
 
 ## Source And Data Foundation
 

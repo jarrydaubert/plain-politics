@@ -1,6 +1,6 @@
 # Current Product Assessment
 
-Last updated: 2026-06-30
+Last updated: 2026-07-02
 
 ## Short Synopsis
 
@@ -20,7 +20,7 @@ The strongest version is not a pundit, prediction engine, or campaign tool. It i
 
 ## What The Repo Is Today
 
-This is now a planning, operating-standards, and early application repo. It contains product requirements, architecture direction, methodology, quality gates, competitive research, a Bun/Next.js scaffold, a Supabase migration, tests, and the first live UK Parliament source hooks.
+This is now a planning, operating-standards, and early application repo. It contains product requirements, architecture direction, methodology, quality gates, competitive research, a Bun/Next.js app, a Supabase migration, tests, CI, deployment configuration, privacy-safe analytics setup, and the first live UK Parliament source hooks.
 
 Now present:
 
@@ -31,16 +31,20 @@ Now present:
 5. Typed source contracts
 6. Official UK Parliament source hooks for Commons party seats, current member samples, and recent divisions
 7. Source/datapoint catalogue pages and docs
+8. Beginner-first homepage, postcode starter, glossary, sources, about, and footer attribution
+9. GitHub Actions CI and CodeQL workflow
+10. Vercel/Cloudflare domain and analytics runbook notes
 
 Still not yet present:
 
-1. Deployed prototype
+1. Fully reviewed v1.0.0 public launch
 2. Persistent ingestion jobs
 3. Database-backed rendering from Supabase
-4. CI configuration
-5. Editorial/reviewer UI
-6. Full source excerpt drawer
-7. Real manifesto or polling ingestion
+4. Editorial/reviewer UI
+5. Full source excerpt drawer
+6. Real manifesto, polling, donation, or change-feed ingestion
+7. Last-good-data fallback for public pages when live sources fail
+8. Source health alerting after ingestion persistence exists
 
 ## What Is Already Well Specified
 
@@ -63,18 +67,17 @@ The main problem is no longer lack of scaffolding. The main problem is turning t
 
 The highest-value gaps are implementation-grade specificity and proof:
 
-1. No deployed product yet.
-2. Live hooks render in memory; they do not yet persist through Supabase.
-3. No scheduled ingestion jobs.
-4. No hard freshness thresholds by dataset.
-5. Source-reference tests exist for schemas, but not yet for rendered pages or all public claims.
-6. No source excerpt validator for parsed text spans.
-7. No search benchmark dataset.
-8. No editorial review state machine.
-9. No reviewer workflow or correction UI.
-10. Source panels show provenance metadata, but not a full evidence drawer with exact highlighted spans.
-11. No public polling average implementation.
-12. No product instrumentation plan tied to privacy constraints.
+1. Live hooks render in memory; they do not yet persist through Supabase.
+2. No scheduled ingestion jobs.
+3. No hard freshness thresholds by dataset.
+4. Source-reference tests exist for schemas, but not yet for rendered pages or all public claims.
+5. No source excerpt validator for parsed text spans.
+6. No search benchmark dataset.
+7. No editorial review state machine.
+8. No reviewer workflow or correction UI.
+9. Source panels show provenance metadata, but not a full evidence drawer with exact highlighted spans.
+10. No public polling average implementation.
+11. Product instrumentation is documented, but production behaviour still needs post-deploy verification.
 
 ## Strategic Opportunity
 
@@ -92,7 +95,7 @@ The product should not try to be the deepest version of every category. It shoul
 
 1. A postcode-led `my area` starting point.
 2. Plain-English guided paths for beginners.
-3. Light gamification that rewards learning, source-checking, and exploration.
+3. Light progress cues that reward learning, source-checking, and exploration.
 4. Party profiles in plain English.
 5. Manifesto and policy summaries with source links.
 6. Polling movement with uncertainty.
@@ -114,22 +117,28 @@ That `cannot verify from available public sources` state should be treated as a 
 
 ## Recommended First Build
 
-Build one narrow vertical slice before expanding the full MVP.
+Build the v1 public starter before expanding into the full product.
 
-Suggested proof-of-thesis slice:
+Current v1.0.0 slice:
 
-1. Postcode to constituency/current MP using a reviewed public source.
-2. A beginner `Start Here` path explaining the MP, constituency, party, and one or two recent public records.
-3. One policy area, such as housing, NHS, immigration, or tax.
-4. Four to five UK parties.
-5. Two to three Tier 1 source types, such as manifesto pages, official party policy pages, Hansard, Commons votes, or written questions.
-6. Party profile cards with plain-English source-backed summaries.
-7. Compare view with coverage states.
-8. Search and explainer pages over only the ingested corpus.
-9. Source panel with exact excerpts.
-10. Methodology page explaining source tiers, freshness, polling caveats, and uncertainty.
+1. Beginner homepage that makes the product obvious within ten seconds.
+2. Postcode to constituency/current MP using public sources.
+3. Glossary and short civic explainers for the terms beginners meet first.
+4. Live Parliament records for seats, current members, upcoming business, and recent divisions.
+5. Sources, About, attribution, contact/corrections, and privacy-safe analytics.
+6. Basic source failure, empty, unavailable, and freshness states.
+7. CI, deployment, and branch protection strong enough to iterate from a live URL.
 
-Polling belongs in the product vision, but it should not block Phase 0 unless source access and metadata are straightforward.
+Post-v1 proof-of-thesis branch:
+
+1. One policy area, such as housing, NHS, immigration, or tax.
+2. Four to five UK parties.
+3. Two to three Tier 1 source types, such as manifesto pages, official party policy pages, Hansard, Commons votes, or written questions.
+4. Party profile cards with plain-English source-backed summaries.
+5. Compare view with coverage states.
+6. Source panel or evidence drawer with exact excerpts.
+
+Polling belongs in the product vision, but it should not block v1 unless source access and metadata are straightforward.
 
 ## What Would Make It Awesome
 

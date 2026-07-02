@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnalyticsSettingsButton } from "@/components/analytics-settings-button";
 
 const footerLinks = [
   { href: "/about", label: "About" },
@@ -40,6 +41,7 @@ export function SiteFooter() {
                 </Link>
               )
             )}
+            <AnalyticsSettingsButton />
           </nav>
 
           <p className="max-w-3xl text-xs leading-5 text-[var(--muted)]">
@@ -62,25 +64,7 @@ export function SiteFooter() {
             >
               Open Government Licence
             </a>{" "}
-            where applicable. Hero photo:{" "}
-            <a
-              className="font-medium text-[var(--accent)] hover:text-[var(--accent-strong)]"
-              href="https://commons.wikimedia.org/wiki/File:Houses_of_Parliament_in_2022_(cropped).jpg"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Houses of Parliament in 2022
-            </a>{" "}
-            by Terry Ott, licensed under{" "}
-            <a
-              className="font-medium text-[var(--accent)] hover:text-[var(--accent-strong)]"
-              href="https://creativecommons.org/licenses/by/2.0/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              CC BY 2.0
-            </a>
-            .
+            where applicable.
           </p>
         </div>
       </div>

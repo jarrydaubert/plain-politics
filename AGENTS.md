@@ -107,5 +107,5 @@ Start with:
 - `docs/project/action-plan.md` - Phased execution plan
 - `docs/project/backlog.md` - Todo-only delivery backlog
 - `docs/engineering/tech-stack.md` - Technical baseline
-- `docs/strategy/` - Current assessment and Phase 0 proof-of-thesis guidance
+- `docs/strategy/` - Current assessment, v1.0.0 scope, and post-v1 proof-of-thesis guidance
 - `docs/market/` - Competitive landscape tracker
