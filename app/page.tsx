@@ -10,7 +10,6 @@ import {
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { StarterProgress } from "@/components/starter-progress";
 import {
   type CommonsDivision,
   getCommonsPartySeatCounts,
@@ -231,20 +230,6 @@ export default async function HomePage() {
               />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[#ded7ca] bg-[#fffdf8]">
-        <div className="mx-auto grid max-w-7xl gap-5 px-6 py-8 lg:grid-cols-[0.48fr_1fr] lg:items-center">
-          <div>
-            <h2 className="text-2xl font-semibold leading-tight text-[#071f3a]">
-              No shame if you&apos;re starting from zero.
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-[#536176]">
-              A simple starter path. Do it in any order. Progress is saved only in this browser.
-            </p>
-          </div>
-          <StarterProgress compact />
         </div>
       </section>
 

@@ -48,7 +48,7 @@ Plain Politics should feel like a warm explainer tool with receipts: less instit
    Use questions a person would actually ask: "Who represents me?", "Who voted for this?", "What does this word mean?", "Where did this come from?"
 
 2. Keep v1 private and low-pressure.
-   No forced accounts, no public comment prompts, no political identity profiling, no ideological scoring, no noisy badges, and local-only progress where useful.
+   No forced accounts, no public comment prompts, no political identity profiling, no ideological scoring, no noisy badges, and no progress bars or unlock mechanics.
 
 3. Show receipts through behaviour.
    Use "Open record", "Where this came from", "Last checked", "What changed", and "What is still unclear" near claims. Avoid repeating "trusted", "verified", "impartial", or "unbiased" as marketing copy.

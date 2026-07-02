@@ -18,10 +18,9 @@ Research basis: `docs/brand/youth-ux-research.md`.
 4. A compact `Today, translated.` feed with two public-record rows and `What it means` notes.
 5. A first-screen `Start with a normal question` section, because orientation should beat feature explanation.
 6. Three compact route tiles: Start where you live, Decode the jargon, Watch what happens.
-7. A slim `No shame if you're starting from zero` starter path that uses local-only progress cues.
-8. Short evergreen explainer cards for civic traditions and basics.
-9. Compact links to sources/about, not a full methodology section.
-10. Footer with About, Sources, Glossary, contact email, and analytics settings.
+7. Short evergreen explainer cards for civic traditions and basics.
+8. Compact links to sources/about, not a full methodology section.
+9. Footer with About, Sources, Glossary, contact email, and analytics settings.
 
 ## Design Rules
 
@@ -31,7 +30,7 @@ Research basis: `docs/brand/youth-ux-research.md`.
 4. Use warmer learning-app patterns: notebook lines, highlighter marks, route markers, soft paper surfaces, and friendly iconography, but keep the page calm.
 5. Keep political neutrality visual: no party-colour-dominant treatment, winner or loser framing, prediction language, or persuasion mechanics.
 6. Keep accessibility strong: visible focus states, good contrast, keyboard-friendly controls, readable type, and stable responsive layouts.
-7. Use light progress cues to make exploration inviting, but avoid childish challenge, unlock, or ideological scoring mechanics.
+7. Do not use progress bars, badges, unlock mechanics, streaks, or ideological scoring in v1.
 8. Do not use fake youth slang, memes, neon chaos, visible clocks, dashboard widgets, or methodology-led hero content.
 9. Keep bigger post-v1 ideas out of the visible product until they are wired: Issues, Do something, action templates, local council/mayor/devolved coverage, and policy timelines.
 10. Design and QA the first viewport at a 14-inch laptop size, not only large desktop.
@@ -45,7 +44,7 @@ Context:
 Plain Politics is a beginner-friendly UK politics starter. It helps someone who knows little about politics find their MP, understand basic terms, and see live public Parliament records. It must feel like a calm social-learning civic app: friendly like a study buddy, credible like a source notebook, and inviting enough for younger users to explore without becoming childish, fake-slangy, or gimmicky.
 
 Goal:
-Create a warmer, more inviting product UI for v1.0.0. Move away from GOV-style public-service design, dense dashboards, and methodology-first copy. Keep record confidence present through small affordances rather than big explanatory blocks. Use subtle progress and discovery cues, but avoid game-like unlock mechanics or ideological scoring.
+Create a warmer, more inviting product UI for v1.0.0. Move away from GOV-style public-service design, dense dashboards, and methodology-first copy. Keep record confidence present through small affordances rather than big explanatory blocks. Use discovery cues through layout, copy, and links, not progress bars, badges, streaks, or unlock mechanics.
 
 Design direction:
 - Calm civic starter, not campaign, media site, dashboard toy, children's game, GOV-style service page, or SaaS marketing page.
@@ -57,7 +56,7 @@ Design direction:
 - Make source/provenance details available progressively through links, drawers, or compact metadata rows.
 - Keep political neutrality visually: no party-colour-dominant treatment, no winner/loser framing.
 - Keep accessibility strong: clear focus states, good contrast, keyboard-friendly layout, readable type.
-- Use light local-only progress cues where they help exploration, without points for political preference.
+- Avoid progress bars, badges, streaks, unlocks, and points.
 - Do not put a visible clock in the homepage header.
 - Do not use memes, forced Gen Z slang, neon chaos, or fake social proof.
 - Treat Issues, Do something, action templates, and policy timelines as post-v1 unless the underlying routes and source coverage are built.

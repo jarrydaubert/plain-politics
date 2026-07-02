@@ -94,8 +94,8 @@ The opportunity is to connect those evidence streams into one free public inform
 The product should not try to be the deepest version of every category. It should be the clearest connective layer:
 
 1. A postcode-led `my area` starting point.
-2. Plain-English guided paths for beginners.
-3. Light progress cues that reward learning, source-checking, and exploration.
+2. Plain-English routes for beginners.
+3. Low-pressure browsing with no progress bars, badges, or unlock mechanics.
 4. Party profiles in plain English.
 5. Manifesto and policy summaries with source links.
 6. Polling movement with uncertainty.

@@ -16,16 +16,15 @@ Start with my postcode or an issue, explain the basics, show the public evidence
 
 The v1 interface should feel like guided curiosity: inviting enough for younger or politics-averse users to take a look, but still calm and useful for adults, researchers, and civic users.
 
-It should not feel like a children's game, a campaign product, a news dashboard, or a methodology document. Light progress cues are welcome, but there should be no locked challenges, ideological scoring, party preference rewards, or puzzle-to-progress mechanics.
+It should not feel like a children's game, a campaign product, a news dashboard, a methodology document, or a lesson app with progress bars. Exploration should feel open and self-directed.
 
 The current homepage shape is:
 
 1. A plain promise: `British politics, without the fog.`
 2. A compact live `Today in Parliament` panel.
 3. Three beginner routes: start where you live, decode the jargon, and watch what happens.
-4. A small starter guide that rewards exploration locally in the browser.
-5. Short evergreen explainers that make civic traditions feel approachable.
-6. Quiet source confidence through labels, timestamps, links, and evidence affordances rather than repeated trust copy.
+4. Short evergreen explainers that make civic traditions feel approachable.
+5. Quiet source confidence through labels, timestamps, links, and evidence affordances rather than repeated trust copy.
 
 ## Core Journey
 
@@ -39,26 +38,26 @@ The current homepage shape is:
 8. The user can open a glossary page for political jargon, procedures, and traditions without losing their place.
 9. The user can move from a glossary term to a fuller evergreen explainer when the subject deserves more than a short definition.
 
-## Light Gamification
+## No Progress Mechanics For V1
 
-Gamification should make exploration feel rewarding without turning the site into political persuasion.
-
-Allowed mechanics:
-
-1. Progress through beginner modules such as `Find your MP`, `Decode a vote`, `Check a source`, `Learn a term`, and `Compare two parties`.
-2. Local-only progress state where possible, without an account.
-3. Badges or completion states for learning and source-checking.
-4. Streak-like prompts for `What changed this week`, without shaming or addiction loops.
-5. Short quizzes that test civic understanding or help users explore policy trade-offs.
-6. Glossary progress such as `learn five Parliament terms`, with local-only state.
+Plain Politics should not try to make civic learning feel like a course, challenge, or achievement loop in v1.
 
 Avoid:
 
-1. Points for moving toward a party.
-2. Ideological leaderboards.
-3. Party-coded rewards.
-4. Language that implies the site knows how the user should vote.
-5. Any stored political preference profile without explicit consent and DPIA coverage.
+1. Progress bars.
+2. Badges or completion states.
+3. Streaks.
+4. Locked steps or unlock mechanics.
+5. Language that frames understanding politics as homework.
+6. Any stored political preference profile without explicit consent and DPIA coverage.
+
+Use instead:
+
+1. Clear routes.
+2. Normal-life questions.
+3. Inline explanations.
+4. Obvious source links.
+5. Easy ways to move sideways without losing context.
 
 ## International Patterns Behind This
 

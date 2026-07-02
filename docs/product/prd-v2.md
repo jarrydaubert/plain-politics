@@ -103,7 +103,7 @@ Primary decision metrics:
 Secondary diagnostics:
 
 1. WAU/MAU ratio.
-2. Quiz completion rate, if quiz remains in scope.
+2. Quiz engagement rate, if quiz remains in scope.
 3. Privacy request SLA within policy threshold.
 4. Correction rate and correction turnaround.
 5. User trust signal: `this page was well sourced`.
@@ -267,7 +267,7 @@ Acceptance criteria:
 5. Empty states are shown when live source data is unavailable.
 6. Dashboard layout is responsive and usable across mobile and desktop breakpoints.
 7. Source confidence is present through small labels, timestamps, links, or evidence affordances rather than large methodology blocks.
-8. Light progress cues reward exploration and stay local to the browser.
+8. No progress bars, badges, or unlock mechanics appear in the v1 homepage flow.
 9. No prediction, winner/loser framing, party preference scoring, or campaign language appears on the homepage.
 
 ## FEAT-002 Compare View
