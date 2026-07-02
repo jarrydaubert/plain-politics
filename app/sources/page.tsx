@@ -14,24 +14,24 @@ export default function SourcesPage() {
   const candidates = sourceHooks.filter((source) => source.status !== "hooked");
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
 
-      <section className="mt-6 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="mt-6 grid gap-8 xl:grid-cols-[0.75fr_1.25fr]">
         <div>
-          <h1 className="text-4xl font-semibold">Sources and datapoints</h1>
+          <h1 className="text-4xl font-semibold">Source directory</h1>
           <p className="mt-4 leading-7 text-[var(--muted)]">
-            The site should grow from public, source-backed records first. These are the feeds and
-            datapoints worth tracking before any heavier product features.
+            The public feeds Plain Politics uses now, plus the feeds to review before adding new
+            features.
           </p>
         </div>
         <div className="grid gap-4">
           <div className="grid gap-4 sm:grid-cols-3">
-            <MetricCard label="Official hooks live" value={hooked.length.toString()} />
-            <MetricCard label="Candidate feeds" value={candidates.length.toString()} />
-            <MetricCard label="Datapoint groups" value={datapointGroups.length.toString()} />
+            <MetricCard label="Used now" value={hooked.length.toString()} />
+            <MetricCard label="To review" value={candidates.length.toString()} />
+            <MetricCard label="Data areas" value={datapointGroups.length.toString()} />
           </div>
           <StarterProgress compact currentStep="sources" />
         </div>
@@ -40,9 +40,9 @@ export default function SourcesPage() {
       <section className="mt-10">
         <div className="mb-4 flex items-center gap-2">
           <DatabaseZap aria-hidden="true" className="text-[var(--accent)]" size={22} />
-          <h2 className="text-2xl font-semibold">What is hooked now</h2>
+          <h2 className="text-2xl font-semibold">Used now</h2>
         </div>
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 xl:grid-cols-3">
           {hooked.map((source) => (
             <SourceCard key={source.name} source={source} />
           ))}
@@ -52,9 +52,9 @@ export default function SourcesPage() {
       <section className="mt-10">
         <div className="mb-4 flex items-center gap-2">
           <ListChecks aria-hidden="true" className="text-[var(--accent)]" size={22} />
-          <h2 className="text-2xl font-semibold">Candidate feeds</h2>
+          <h2 className="text-2xl font-semibold">To review</h2>
         </div>
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           {candidates.map((source) => (
             <SourceCard key={source.name} source={source} />
           ))}
@@ -62,8 +62,8 @@ export default function SourcesPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-2xl font-semibold">Datapoints to build around</h2>
-        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <h2 className="text-2xl font-semibold">What these sources can support</h2>
+        <div className="mt-4 grid gap-4 xl:grid-cols-2">
           {datapointGroups.map((group) => (
             <article
               className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
@@ -123,13 +123,13 @@ function SourceCard({ source }: Readonly<{ source: SourceHook }>) {
           <dd className="mt-1 leading-6 text-[var(--muted)]">{source.access}</dd>
         </div>
         <div>
-          <dt className="font-semibold">Powers</dt>
+          <dt className="font-semibold">Can support</dt>
           <dd className="mt-1 leading-6 text-[var(--muted)]">{source.powers.join(", ")}</dd>
         </div>
       </dl>
 
       <div className="mt-4">
-        <h4 className="text-sm font-semibold">Datapoints</h4>
+        <h4 className="text-sm font-semibold">Records</h4>
         <ul className="mt-2 grid gap-2 text-sm text-[var(--muted)]">
           {source.datapoints.map((datapoint) => (
             <li key={datapoint}>{datapoint}</li>

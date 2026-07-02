@@ -101,17 +101,14 @@ Do not include in Phase 0:
 
 ## Build Order When Ready
 
-1. Define the source list and source contracts.
-2. Define schema and provenance tables.
-3. Build ingestion for a tiny corpus.
-4. Store source snapshots and source excerpts.
-5. Build source-reference validation before public rendering.
-6. Build Party Profiles, Compare, and source panels.
-7. Build Search and Explainers over the source-backed corpus.
-8. Add freshness and coverage states.
-9. Add minimal evaluation tests.
-10. Deploy a private prototype.
+1. Finish the barebones v1 public app shell.
+2. Deploy a public preview and test it with beginners.
+3. Add snapshot-first persistence for the live Parliament hooks.
+4. Add a reusable source panel or evidence drawer pattern.
+5. Add source-reference validation before expanding factual summaries.
+6. Open the first policy-area feature branch only after the v1 foundation is live.
+7. Add Party Profiles, Compare, and policy explainers on that branch with source excerpts for every position.
 
 ## Why This Slice
 
-This slice proves the hard part. If users trust one issue area because every claim expands to public evidence, the product can expand. If the product cannot make a narrow issue trustworthy, adding more features will only add noise.
+This slice proves the hard part. If users trust the local starter, glossary, Parliament records, and source links, the product has a foundation to expand from. If the foundation feels confusing or unsupported, adding policy comparison will only add noise.

@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { AnalyticsSettingsButton } from "@/components/analytics-settings-button";
 
 const footerLinks = [
   { href: "/about", label: "About" },
   { href: "/sources", label: "Sources" },
   { href: "/glossary", label: "Glossary" },
-  { href: "mailto:hello@plainpolitics.co.uk", label: "hello@plainpolitics.co.uk" },
-  { href: "mailto:corrections@plainpolitics.co.uk", label: "corrections@plainpolitics.co.uk" }
+  { href: "mailto:info@plainpolitics.co.uk", label: "info@plainpolitics.co.uk" }
 ] as const;
 
 export function SiteFooter() {
@@ -41,6 +41,7 @@ export function SiteFooter() {
                 </Link>
               )
             )}
+            <AnalyticsSettingsButton />
           </nav>
 
           <p className="max-w-3xl text-xs leading-5 text-[var(--muted)]">

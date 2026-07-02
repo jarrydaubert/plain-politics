@@ -24,7 +24,7 @@ const starterSteps = [
     description: "See recent votes, seats and upcoming business.",
     href: "/parliament",
     id: "parliament",
-    title: "See Parliament"
+    title: "See Parliament today"
   },
   {
     description: "Check where the public records come from.",
@@ -102,6 +102,7 @@ export function StarterProgress({
     () => starterSteps.filter((step) => progress[step.id]).length,
     [progress]
   );
+  const completionPercent = (completedCount / starterSteps.length) * 100;
 
   function resetProgress() {
     const emptyProgress = createEmptyProgress();
@@ -110,17 +111,17 @@ export function StarterProgress({
   }
 
   return (
-    <section className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm">
+    <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-soft)]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase text-[var(--muted)]">Starter path</p>
+          <p className="text-xs font-semibold uppercase text-[var(--muted)]">Starter guide</p>
           <h2 className={compact ? "mt-1 text-lg font-semibold" : "mt-1 text-2xl font-semibold"}>
-            {completedCount} of {starterSteps.length} complete
+            {completedCount} of {starterSteps.length} explored
           </h2>
         </div>
         {completedCount > 0 ? (
           <button
-            aria-label="Reset starter path progress"
+            aria-label="Reset starter guide progress"
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border)] text-[var(--accent)] transition hover:border-[var(--accent)]"
             onClick={resetProgress}
             type="button"
@@ -130,8 +131,16 @@ export function StarterProgress({
         ) : null}
       </div>
 
+      <div className="mt-4 h-2 overflow-hidden rounded-full bg-[var(--surface-soft)]">
+        <div
+          className="h-full rounded-full bg-[linear-gradient(90deg,var(--accent-red),var(--accent))] transition-all"
+          style={{ width: `${completionPercent}%` }}
+        />
+      </div>
+
       <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-        A tiny checklist for learning your way around UK politics. Saved only in this browser.
+        A light trail for finding your way around UK politics. Everything stays open, and progress
+        is saved only in this browser.
       </p>
 
       <div className="mt-4 grid gap-3">
@@ -146,13 +155,13 @@ export function StarterProgress({
             >
               {isComplete ? (
                 <CheckCircle2
-                  aria-label="Complete"
-                  className="mt-0.5 shrink-0 text-[var(--accent)]"
+                  aria-label="Explored"
+                  className="mt-0.5 shrink-0 text-[var(--accent-red)]"
                   size={19}
                 />
               ) : (
                 <Circle
-                  aria-label="Not complete"
+                  aria-label="Not explored"
                   className="mt-0.5 shrink-0 text-[var(--muted)]"
                   size={19}
                 />

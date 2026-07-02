@@ -154,7 +154,7 @@ Initial datapoints:
 
 ## Polling And Popularity Datapoints
 
-Polling should stay out of the Phase 0 critical path unless source access and metadata are straightforward.
+Polling should stay out of the v1.0.0 critical path unless source access and metadata are straightforward.
 
 Desired fields:
 

@@ -76,7 +76,21 @@ Skill docs live in `.claude/skills/`. Version history: `.claude/skills/VERSIONS.
 ### Engineering & Quality
 - `engineering` — Next.js/React/TS performance patterns and Supabase
 - `accessibility` — WCAG 2.2 AA compliance
-- `analytics-tracking` — GA4, Vercel Analytics, event tracking
+- `analytics-tracking` — privacy-safe analytics, Vercel Analytics, Speed Insights, and event tracking
+
+### GBrain Policy
+- GBrain may be used as local operator memory for prior decisions, strategy, and reusable patterns.
+- Do not use GBrain as evidence for political claims, source freshness, legal/privacy decisions, or production behavior.
+- Do not store postcode lookups, raw search text, quiz answers, or political opinion signals in GBrain.
+- Canonical truth remains git, source files, approved docs, primary public sources, migrations, and verification artifacts.
+- Full policy: `docs/engineering/gbrain.md`.
+
+### Vercel Plugin Skill Policy
+- Use now: `deployments-cicd`, `vercel-cli`, `env-vars`, `verification`, `nextjs`, `react-best-practices`, `turbopack`, `vercel-functions`, and `vercel-firewall`.
+- Use later or with care: `next-cache-components`, `runtime-cache`, `vercel-storage`, `routing-middleware`, `marketplace`, `next-upgrade`, `auth`, `workflow`, and `shadcn`.
+- Avoid for v1: `ai-gateway`, `ai-sdk`, `chat-sdk`, `eve`, `vercel-agent`, `vercel-connect`, and `vercel-sandbox`; Plain Politics v1 has no AI product surface.
+- Removed locally from the Vercel plugin cache: `microfrontends`, `next-forge`, `bootstrap`, and `knowledge-update`.
+- Full audit: `docs/engineering/vercel-plugin-skills.md`.
 
 ### Upstream Source
 Skills are sourced from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills). See `.claude/skills/VERSIONS.md` for sync history and available skills to port.
@@ -86,11 +100,12 @@ content-strategy, copywriting, launch-strategy, social-content, seo-audit, compe
 
 ## More Docs
 
-See project root for:
-- `README.md` — Repo entry point and current state
-- `PRD_V2.md` — Product requirements
-- `TECH_STACK.md` — Technical baseline
-- `PLAIN_POLITICS_ACTION_PLAN.md` — Phased execution plan
-- `IDEA_BRIEF.md` — Project brief and success metrics
-- `docs/strategy/` — Current assessment and Phase 0 proof-of-thesis guidance
-- `docs/market/` — Competitive landscape tracker
+Start with:
+- `README.md` - Repo entry point and current state
+- `docs/product/prd-v2.md` - Product requirements
+- `docs/product/idea-brief.md` - Project brief and success metrics
+- `docs/project/action-plan.md` - Phased execution plan
+- `docs/project/backlog.md` - Todo-only delivery backlog
+- `docs/engineering/tech-stack.md` - Technical baseline
+- `docs/strategy/` - Current assessment, v1.0.0 scope, and post-v1 proof-of-thesis guidance
+- `docs/market/` - Competitive landscape tracker

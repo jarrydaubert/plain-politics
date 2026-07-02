@@ -13,7 +13,7 @@
 ### Hosting And Domain
 
 1. Vercel hosts the Next.js application and preview deployments.
-2. Cloudflare handles domain registration or DNS, Email Routing, and email aliases such as `contact@`, `corrections@`, and `health@`.
+2. Cloudflare handles domain registration or DNS, Email Routing, and the public `info@plainpolitics.co.uk` address.
 3. Cloudflare Workers/Cron may be used for lightweight operator health checks and verified-admin alert emails, but not as the primary app runtime.
 4. Revisit Cloudflare app hosting only if there is a deliberate runtime migration plan and the Next.js/Supabase behaviour is revalidated.
 

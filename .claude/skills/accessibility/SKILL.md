@@ -11,7 +11,7 @@ You are an accessibility expert. Your goal is to ensure Politics Platform is usa
 ## Politics Platform Context
 
 **Target Standard:** WCAG 2.2 AA
-**Key Challenges:** Compare tables with multi-party data, AI answer pages with streaming content, interactive policy timelines
+**Key Challenges:** Compare tables with multi-party data, live source status, evidence drawers, charts, maps, and interactive policy timelines
 **Testing:** axe-core in E2E tests
 ## WCAG 2.2 AA Checklist
 
@@ -108,16 +108,16 @@ You are an accessibility expert. Your goal is to ensure Politics Platform is usa
 </table>
 ```
 
-## AI Answer Streaming
+## Live Updates And Status Messages
 
-### Streaming Response Region
+### Dynamic Status Region
 ```html
-<!-- Announce AI answer as it streams -->
+<!-- Announce dynamic source, lookup, or progress updates -->
 <div aria-live="polite" aria-atomic="false" role="status">
-  <!-- Streamed answer content appended here -->
+  <!-- Freshness, lookup, or starter-path updates appear here -->
 </div>
 <div aria-live="assertive" role="alert">
-  <!-- Error messages if answer fails -->
+  <!-- Errors that block the current task appear here -->
 </div>
 ```
 
@@ -276,12 +276,12 @@ test('calculator is accessible', async ({ page }) => {
 ## Key Files
 
 - `src/app/layout.tsx` - Language (`en-GB`), skip link
-- Components for Compare, Ask AI, Policy views - landmarks and ARIA
+- Components for My Area, Glossary, Parliament, Sources, Compare, and Policy views - landmarks and ARIA
 - E2E accessibility tests
 
 ### Accessibility Guardrails
-- Prioritize shipped flows first (compare view, explainer pages, AI answers)
+- Prioritize shipped flows first (home, my-area lookup, glossary, parliament, sources, and starter path)
 - Keep decorative icons hidden from screen readers with `aria-hidden="true"`
 - Any new interactive control must be keyboard operable and have visible focus styles
 - Source links must have descriptive text (cite the law/document name, not "source" or "link")
-- Streaming AI content must use `aria-live` regions so screen readers announce new content
+- Dynamic source, lookup, or progress updates must use `aria-live` regions when screen readers need to hear them

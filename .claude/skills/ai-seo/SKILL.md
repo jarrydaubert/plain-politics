@@ -61,7 +61,7 @@ For this project, verify these areas before proposing changes:
   - Explainer pages (`/explain/[topic]`)
   - Compare pages (`/compare/[issue]`)
   - Policy tracker pages (`/policy/[party]/[policy]`)
-  - Ask AI pages (`/ask/[question]`)
+  - Future curated question pages (`/questions/[question]`), if added
   - MP and Donor profile pages
 
 Use a claim matrix:
@@ -411,7 +411,7 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md).
 
 ## Politics Platform Context
 
-- Primary AI-SEO surfaces: explainer pages, compare pages, AI answer pages, and MP profiles
+- Primary answer-engine visibility surfaces: explainer pages, glossary pages, compare pages, MP profiles, party pages, and civic calendar articles
 - Optimize for citation quality and factual accuracy, not AI-output gaming
 - Keep structured data and on-page claims aligned with primary source data and current parliamentary session
 - Treat navigation decisions intentionally: many SEO pages are discoverable via internal links/sitemap rather than main nav

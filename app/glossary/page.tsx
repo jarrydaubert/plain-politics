@@ -15,17 +15,21 @@ const sourceLinks = [
   {
     name: "Electoral Commission voting and elections",
     url: "https://www.electoralcommission.org.uk/voting-and-elections"
+  },
+  {
+    name: "TIME explainer on left and right",
+    url: "https://time.com/5673239/left-right-politics-origins/"
   }
 ] as const;
 
 export default function GlossaryPage() {
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
 
-      <section className="mt-6 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="mt-6 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
         <div>
           <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
             <BookOpenText aria-hidden="true" size={23} />
@@ -33,7 +37,7 @@ export default function GlossaryPage() {
           <h1 className="mt-5 text-4xl font-semibold">Political glossary</h1>
           <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
             Plain-English explanations for the jargon, procedures and traditions that appear across
-            UK politics. Each entry points back to an official public source.
+            UK politics.
           </p>
         </div>
 
@@ -76,7 +80,7 @@ export default function GlossaryPage() {
           return (
             <section id={category.toLowerCase()} key={category}>
               <h2 className="text-2xl font-semibold">{category}</h2>
-              <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              <div className="mt-4 grid gap-4 xl:grid-cols-2">
                 {terms.map((entry) => (
                   <article
                     className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"

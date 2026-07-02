@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PlainPoliticsMark } from "@/components/plain-politics-logo";
 import { UkTimeClock } from "@/components/uk-time-clock";
 
 const navItems = [
@@ -13,8 +14,13 @@ export function SiteHeader() {
   return (
     <header className="border-b border-[var(--border)] bg-[var(--surface)]">
       <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-        <Link className="text-lg font-semibold tracking-tight" href="/">
-          Plain Politics
+        <Link
+          aria-label="Plain Politics home"
+          className="flex items-center gap-3 text-lg font-semibold tracking-tight"
+          href="/"
+        >
+          <PlainPoliticsMark className="h-10 w-10 shrink-0" />
+          <span>Plain Politics</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end gap-4">

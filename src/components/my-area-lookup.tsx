@@ -156,9 +156,7 @@ export function MyAreaLookup() {
           </button>
         </div>
         <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-          Your postcode is sent directly from your browser to postcodes.io, then the normalized
-          postcode is sent to the UK Parliament Members API to find your MP. It is never sent to or
-          stored by us.
+          Used only for this lookup. Plain Politics does not store your postcode.
         </p>
       </form>
 
@@ -262,7 +260,7 @@ function LoadingState() {
   return (
     <div className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
       <Loader2 aria-hidden="true" className="animate-spin text-[var(--accent)]" size={20} />
-      <p className="text-sm font-medium">Checking public sources...</p>
+      <p className="text-sm font-medium">Finding your area...</p>
     </div>
   );
 }
@@ -323,8 +321,8 @@ function LookupResult({ data }: Readonly<{ data: MyAreaLookupResult }>) {
         </article>
 
         <article className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <p className="text-sm font-semibold uppercase text-[var(--muted)]">Careful wording</p>
-          <h2 className="mt-1 text-xl font-semibold">Public record, not automatic local impact</h2>
+          <p className="text-sm font-semibold uppercase text-[var(--muted)]">Note</p>
+          <h2 className="mt-1 text-xl font-semibold">Parliament record, not local impact</h2>
           <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
             Votes and written questions show parliamentary activity. They do not, by themselves,
             prove what changed in a constituency. We only call something locally relevant when a
@@ -442,7 +440,7 @@ function SourceLinks({ urls }: Readonly<{ urls: MyAreaLookupResult["sourceUrls"]
 
   return (
     <section className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-      <h2 className="text-xl font-semibold">Sources checked</h2>
+      <h2 className="text-xl font-semibold">Source links</h2>
       <div className="mt-4 grid gap-3">
         {links.map(([label, url]) => (
           <a

@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { StarterProgress } from "@/components/starter-progress";
 import {
@@ -20,17 +21,17 @@ export default async function ParliamentPage() {
   const totalSeats = seatCounts.data.reduce((sum, row) => sum + row.total, 0);
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-        <section>
+      <div className="mt-6 grid gap-8 xl:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1.45fr)]">
+        <section className="min-w-0">
           <h1 className="text-4xl font-semibold">Parliament</h1>
           <p className="mt-4 leading-7 text-[var(--muted)]">
-            Live source hook using UK Parliament APIs. The page builds source documents, snapshots,
-            excerpts and displayed facts in memory before rendering the tables below.
+            A public-record view of Commons seats, current members, upcoming business and recent
+            votes.
           </p>
           <div className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
             <div className="text-3xl font-semibold">{totalSeats}</div>
@@ -43,14 +44,12 @@ export default async function ParliamentPage() {
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+        <section className="min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
           <div className="border-b border-[var(--border)] p-5">
             <h2 className="text-xl font-semibold">State of the parties</h2>
-            <p className="mt-1 text-sm text-[var(--muted)]">
-              Source: UK Parliament Members API, refreshed through Next server fetch cache.
-            </p>
+            <p className="mt-1 text-sm text-[var(--muted)]">Official UK Parliament Members API.</p>
           </div>
-          <div className="overflow-x-auto">
+          <div className="max-w-full overflow-x-auto">
             <table className="w-full min-w-[720px] border-collapse text-left text-sm">
               <thead className="bg-[var(--surface-soft)]">
                 <tr>
@@ -92,14 +91,12 @@ export default async function ParliamentPage() {
         </section>
       </div>
 
-      <section className="mt-8 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+      <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
         <div className="border-b border-[var(--border)] p-5">
           <h2 className="text-xl font-semibold">Current Commons members sample</h2>
-          <p className="mt-1 text-sm text-[var(--muted)]">
-            Source: UK Parliament Members API member search endpoint.
-          </p>
+          <p className="mt-1 text-sm text-[var(--muted)]">Official UK Parliament Members API.</p>
         </div>
-        <div className="overflow-x-auto">
+        <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[780px] border-collapse text-left text-sm">
             <thead className="bg-[var(--surface-soft)]">
               <tr>
@@ -125,14 +122,14 @@ export default async function ParliamentPage() {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+      <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
         <div className="border-b border-[var(--border)] p-5">
           <h2 className="text-xl font-semibold">Upcoming parliamentary business</h2>
           <p className="mt-1 text-sm text-[var(--muted)]">
-            Source: UK Parliament What's On API, showing scheduled business in the next seven days.
+            Official UK Parliament calendar API, next seven days.
           </p>
         </div>
-        <div className="overflow-x-auto">
+        <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[900px] border-collapse text-left text-sm">
             <thead className="bg-[var(--surface-soft)]">
               <tr>
@@ -175,14 +172,14 @@ export default async function ParliamentPage() {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+      <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
         <div className="border-b border-[var(--border)] p-5">
           <h2 className="text-xl font-semibold">Recent Commons divisions</h2>
           <p className="mt-1 text-sm text-[var(--muted)]">
-            Source: UK Parliament Commons Votes API.
+            Official UK Parliament Commons Votes API.
           </p>
         </div>
-        <div className="overflow-x-auto">
+        <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[780px] border-collapse text-left text-sm">
             <thead className="bg-[var(--surface-soft)]">
               <tr>
@@ -208,83 +205,30 @@ export default async function ParliamentPage() {
         </div>
       </section>
 
-      <section className="mt-8 grid gap-6 lg:grid-cols-2">
-        <SourcePanel
-          excerptCount={seatCounts.sourceExcerpts.length}
-          facts={seatCounts.displayFacts.slice(0, 3).map((fact) => fact.summaryText)}
-          sourceHash={seatCounts.sourceSnapshot.contentHash}
-          title="Party seat-count source chain"
-          url={seatCounts.sourceDocument.url}
-        />
-        <SourcePanel
-          excerptCount={members.sourceExcerpts.length}
-          facts={members.displayFacts.slice(0, 3).map((fact) => fact.summaryText)}
-          sourceHash={members.sourceSnapshot.contentHash}
-          title="Current Commons members source chain"
-          url={members.sourceDocument.url}
-        />
-        <SourcePanel
-          excerptCount={upcomingEvents.sourceExcerpts.length}
-          facts={upcomingEvents.displayFacts.slice(0, 3).map((fact) => fact.summaryText)}
-          sourceHash={upcomingEvents.sourceSnapshot.contentHash}
-          title="Upcoming business source chain"
-          url={upcomingEvents.sourceDocument.url}
-        />
-        <SourcePanel
-          excerptCount={divisions.sourceExcerpts.length}
-          facts={divisions.displayFacts.slice(0, 3).map((fact) => fact.summaryText)}
-          sourceHash={divisions.sourceSnapshot.contentHash}
-          title="Commons divisions source chain"
-          url={divisions.sourceDocument.url}
-        />
+      <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
+        <h2 className="text-xl font-semibold">Official source links</h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <SourceLink label="Party seat counts" url={seatCounts.sourceDocument.url} />
+          <SourceLink label="Current Commons members" url={members.sourceDocument.url} />
+          <SourceLink label="Upcoming business" url={upcomingEvents.sourceDocument.url} />
+          <SourceLink label="Commons divisions" url={divisions.sourceDocument.url} />
+        </div>
       </section>
     </main>
   );
 }
 
-function SourcePanel({
-  excerptCount,
-  facts,
-  sourceHash,
-  title,
-  url
-}: Readonly<{
-  excerptCount: number;
-  facts: string[];
-  sourceHash: string;
-  title: string;
-  url: string;
-}>) {
+function SourceLink({ label, url }: Readonly<{ label: string; url: string }>) {
   return (
-    <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <a
-        className="mt-3 block break-words text-sm font-medium text-[var(--accent)]"
-        href={url}
-        rel="noreferrer"
-        target="_blank"
-      >
-        {url}
-      </a>
-      <dl className="mt-4 grid gap-3 text-sm">
-        <div>
-          <dt className="font-semibold">Snapshot hash</dt>
-          <dd className="mt-1 break-all font-mono text-xs text-[var(--muted)]">{sourceHash}</dd>
-        </div>
-        <div>
-          <dt className="font-semibold">Source excerpts</dt>
-          <dd className="mt-1 text-[var(--muted)]">{excerptCount}</dd>
-        </div>
-      </dl>
-      <div className="mt-4 border-t border-[var(--border)] pt-4">
-        <h3 className="text-sm font-semibold">Displayed facts backed by excerpts</h3>
-        <ul className="mt-2 grid gap-2 text-sm text-[var(--muted)]">
-          {facts.map((fact) => (
-            <li key={fact}>{fact}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <a
+      className="flex items-center justify-between gap-4 border-t border-[var(--border)] pt-3 text-sm font-medium text-[var(--accent)] transition hover:text-[var(--accent-strong)]"
+      href={url}
+      rel="noreferrer"
+      target="_blank"
+    >
+      <span>{label}</span>
+      <ExternalLink aria-hidden="true" size={16} />
+    </a>
   );
 }
 

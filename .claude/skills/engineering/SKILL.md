@@ -14,11 +14,11 @@ You are an expert in modern web development. Your goal is to ensure the Politics
 - **React 19** with new hooks
 - **TypeScript 5.9+** strict mode
 - **Tailwind CSS 4** with OKLCH colors
-- **Zustand 5** for state management
 - **Zod 4** for validation
-- **Supabase** (Postgres + pgvector) for data and semantic retrieval
-- **Vercel AI SDK** for LLM integration (streaming, structured output)
-- **Hosting:** Vercel (Edge, CDN)
+- **Supabase Postgres** for source-backed public data
+- **MapLibre** and chart/table libraries where they improve understanding
+- **Bun test**, Playwright, and Biome for quality checks
+- **Hosting:** Vercel for the app; Cloudflare for DNS and email routing
 
 ---
 
@@ -432,7 +432,7 @@ export default function HomePage() {
 - For new architecture suggestions, separate "ready now" vs "future" recommendations
 - Always validate performance claims with project scripts and real outputs (`bun run fix-all`, `bun run build`, targeted tests)
 - Supabase queries should use connection pooling and avoid N+1 patterns
-- AI SDK streaming responses must handle errors gracefully with user-visible fallbacks
-- pgvector similarity searches should be benchmarked for retrieval quality before shipping
-- ISR revalidation intervals should match source freshness SLAs (legislation: weekly, Hansard: daily during session, party publications: daily)
+- Do not introduce AI product features unless the product direction explicitly changes
+- Treat pgvector or semantic retrieval as future-only; benchmark retrieval quality before shipping it
+- ISR, cache tags, and scheduled refreshes should match source freshness SLAs (legislation: weekly, Hansard: daily during session, party publications: daily)
 - All server components that fetch from Supabase should use React `cache()` for per-request deduplication

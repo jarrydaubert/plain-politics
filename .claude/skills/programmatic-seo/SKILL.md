@@ -246,14 +246,14 @@ The Politics Platform is a UK-focused, source-first political intelligence platf
 - `/policy/[party]/[policy-slug]` — Individual party policy tracker pages with versioning and diff views
 - `/mp/[name-slug]` — MP profile pages with voting record, stated positions, donor data
 - `/donor/[entity-slug]` — Donor profile pages with donation history and recipient breakdown
-- `/ask/[question-slug]` — Persisted AI answer pages for high-volume political questions
+- `/questions/[question-slug]` — Curated plain-English answers for high-volume political questions, if added later
 
 ### Key Implementation Details
 - All programmatic pages use `generateStaticParams()` where feasible; dynamic pages use ISR with revalidation
 - Canonical URLs set via metadata helper
 - Sitemap must include all programmatic pages
 - Schema markup via a shared `StructuredData` component (JSON-LD, server-rendered)
-- Source data from Supabase with pgvector for semantic retrieval
+- Source data from Supabase and the source registry; semantic retrieval is future-only unless explicitly re-approved
 
 ### UK Political Keyword Landscape
 - Primary patterns: "what is [policy]", "[party] policy on [issue]", "UK [topic] explained", "how does [law] work"
@@ -262,7 +262,7 @@ The Politics Platform is a UK-focused, source-first political intelligence platf
 - Seasonal: surges around Budget (autumn), King's Speech, general elections, by-elections, PMQs
 
 ### Cannibalization Risk
-- `/explain/[topic]` and `/ask/[question]` may target overlapping queries — use clear intent separation: explain = reference/definition, ask = specific user question with AI-generated answer
+- `/explain/[topic]`, `/glossary`, and any future `/questions/[question]` pages may target overlapping queries - use clear intent separation: explain = reference article, glossary = definition, question = concise beginner answer
 - `/compare/[issue]` and `/policy/[party]/[policy]` serve different intents: compare = side-by-side multi-party, policy = single-party deep-dive. Keep content distinct.
 
 ### Playbook Mapping

@@ -8,11 +8,14 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 
 ## Source Of Truth
 
-- Product requirements: `PRD_V2.md`
-- Architecture decisions: `DECISIONS.md`
-- Technical baseline: `TECH_STACK.md`
-- Delivery plan: `PLAIN_POLITICS_ACTION_PLAN.md`
-- Delivery backlog: `backlog.md`
+- Product requirements: `docs/product/prd-v2.md`
+- Idea brief and success metrics: `docs/product/idea-brief.md`
+- Delivery plan: `docs/project/action-plan.md`
+- Delivery backlog: `docs/project/backlog.md`
+- Technical baseline: `docs/engineering/tech-stack.md`
+- Brand identity: `docs/brand/logo.md`
+- GBrain usage policy: `docs/engineering/gbrain.md`
+- Vercel plugin skill policy: `docs/engineering/vercel-plugin-skills.md`
 - Methodology standards: `docs/methodology/`
 - Strategy and current assessment: `docs/strategy/`
 - Competitive landscape: `docs/market/`
@@ -26,7 +29,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 - Political neutrality is a quality gate, not a writing preference.
 - No source means no factual claim.
 - Privacy defaults must treat political opinion signals as high-risk data.
-- Light gamification should reward learning, source-checking, and exploration, never political preference.
+- Light progress cues should reward learning, source-checking, and exploration, never political preference or childish unlock mechanics.
 - The product is informational only: no campaign advice, no tactical voting recommendations.
 
 ## Repo Map
@@ -34,19 +37,23 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 ```text
 .
 |-- AGENTS.md
-|-- DECISIONS.md
-|-- IDEA_BRIEF.md
-|-- PRD_V2.md
-|-- TECH_STACK.md
-|-- PLAIN_POLITICS_ACTION_PLAN.md
-|-- backlog.md
+|-- README.md
 |-- app/
 |-- docs/
+|   |-- brand/
 |   |-- engineering/
+|   |   `-- tech-stack.md
 |   |-- market/
 |   |-- methodology/
+|   |-- product/
+|   |   |-- idea-brief.md
+|   |   `-- prd-v2.md
+|   |-- project/
+|   |   |-- action-plan.md
+|   |   `-- backlog.md
 |   |-- quality/
 |   `-- strategy/
+|-- public/
 |-- src/
 |   |-- components/
 |   |-- data/
@@ -55,6 +62,7 @@ This repository now has a Bun/Next.js application scaffold plus planning and ope
 |-- supabase/
 |   `-- migrations/
 |-- tests/
+|-- .github/
 `-- .claude/
     |-- product-marketing-context.md
     `-- skills/
@@ -78,11 +86,13 @@ bun run build
 
 ## DevOps
 
+- Production: `https://plainpolitics.co.uk`; `https://www.plainpolitics.co.uk` redirects to the apex domain.
 - GitHub Actions runs CI on pushes and pull requests to `main`: Bun frozen install, lockfile guard, live env-file guard, Biome format/lint, TypeScript, unit tests, and production build.
 - CodeQL scans JavaScript/TypeScript on pushes, pull requests, and a weekly schedule.
 - Playwright smoke tests run in CI as a non-blocking job while the live-source surface settles.
 - Production should deploy from GitHub to Vercel. Cloudflare manages `plainpolitics.co.uk` DNS and email routing.
 - `vercel.json` pins Bun frozen installs and redirects `www.plainpolitics.co.uk` to `plainpolitics.co.uk`.
+- Analytics setup is documented in `docs/ops/domain-and-analytics.md`: Vercel Web Analytics and consent-based GA4.
 
 ## Live Source Hooks
 
