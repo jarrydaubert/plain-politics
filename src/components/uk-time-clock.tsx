@@ -39,14 +39,14 @@ export function UkTimeClock() {
   return (
     <a
       aria-label={`UK date and time ${display.date}, ${display.time} ${display.zone}, official reference NPL`}
-      className="inline-flex min-h-9 items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--surface-soft)] px-2.5 py-1.5 transition hover:border-[var(--accent)]"
+      className="inline-flex min-h-9 items-center gap-2 rounded-full border border-[#d6e2f0] bg-[#f3fbff] px-3 py-1.5 transition hover:border-[var(--accent-sky)]"
       href={NPL_TIME_URL}
       rel="noreferrer"
       target="_blank"
       title="UK civil time reference: NPL MSF radio time signal"
     >
       <Clock3 aria-hidden="true" className="text-[var(--accent)]" size={15} />
-      <span className="whitespace-nowrap text-xs font-semibold text-[var(--muted)]">
+      <span className="whitespace-nowrap text-xs font-semibold text-[var(--accent-strong)]">
         {display.date}
         <span className="hidden sm:inline">
           , {display.time} {display.zone}

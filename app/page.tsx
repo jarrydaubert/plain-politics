@@ -70,11 +70,12 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen">
-      <section className="border-b border-[var(--border)] bg-[linear-gradient(180deg,#ffffff_0%,var(--background)_100%)]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(21rem,0.85fr)] lg:py-14">
+      <section className="relative overflow-hidden border-b border-[#d6e2f0] bg-[linear-gradient(180deg,#fff7fb_0%,#f3fbff_48%,#f6f8ff_100%)]">
+        <div className="absolute inset-x-0 top-0 h-2 bg-[linear-gradient(90deg,var(--accent-red),var(--accent-sky),#62d98f,#ffd166)]" />
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-11 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)] lg:py-14">
           <div>
-            <p className="inline-flex rounded-md bg-[var(--accent-red-soft)] px-3 py-1 text-sm font-semibold text-[var(--accent-red)]">
-              Start here
+            <p className="inline-flex rounded-full border border-[#ffc4d0] bg-white/78 px-3 py-1 text-sm font-semibold text-[var(--accent-red)] shadow-[0_8px_24px_rgba(200,16,46,0.08)]">
+              No politics degree needed
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-normal text-[var(--accent-strong)] md:text-6xl">
               British politics, without the fog.
@@ -83,6 +84,17 @@ export default async function HomePage() {
               Find your MP, understand the words people keep using, and see what Parliament is doing
               today.
             </p>
+            <div className="mt-5 flex flex-wrap gap-2 text-sm font-medium text-[var(--accent-strong)]">
+              <span className="rounded-full border border-[#d6e2f0] bg-white/70 px-3 py-1">
+                No shame
+              </span>
+              <span className="rounded-full border border-[#d6e2f0] bg-white/70 px-3 py-1">
+                No spin
+              </span>
+              <span className="rounded-full border border-[#d6e2f0] bg-white/70 px-3 py-1">
+                Just a place to start
+              </span>
+            </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {primaryJourneys.map((topic) => (
@@ -100,13 +112,16 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <aside className="self-start rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-soft)]">
-            <div className="border-b border-[var(--border)] pb-4">
-              <p className="text-xs font-semibold uppercase text-[var(--muted)]">Official feed</p>
+          <aside className="relative self-start overflow-hidden rounded-2xl border border-[#19395f] bg-[var(--accent-strong)] p-5 text-white shadow-[0_26px_70px_rgba(7,31,58,0.2)]">
+            <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--accent-red),var(--accent-sky),#62d98f)]" />
+            <div className="border-b border-white/14 pb-4">
+              <p className="inline-flex rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold uppercase text-white/72">
+                Official feed
+              </p>
               <div className="mt-2 flex items-start justify-between gap-4">
                 <div>
                   <h2 className="text-lg font-semibold">Today in Parliament</h2>
-                  <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                  <p className="mt-1 text-sm leading-6 text-white/68">
                     Two quick public-record pointers. The fuller table lives on the Parliament page.
                   </p>
                 </div>
@@ -124,18 +139,18 @@ export default async function HomePage() {
                 />
               ))}
             </div>
-            <dl className="mt-5 grid gap-3 border-t border-[var(--border)] pt-4 text-sm sm:grid-cols-2">
+            <dl className="mt-5 grid gap-3 border-t border-white/14 pt-4 text-sm sm:grid-cols-2">
               <div>
                 <dt className="font-semibold">Commons seats</dt>
-                <dd className="mt-1 text-[var(--muted)]">{snapshot.seatCountLabel}</dd>
+                <dd className="mt-1 text-white/68">{snapshot.seatCountLabel}</dd>
               </div>
               <div>
                 <dt className="font-semibold">Source</dt>
-                <dd className="mt-1 text-[var(--muted)]">UK Parliament</dd>
+                <dd className="mt-1 text-white/68">UK Parliament</dd>
               </div>
             </dl>
             <Link
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--accent-strong)]"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white underline decoration-white/24 underline-offset-4 transition hover:decoration-white"
               href="/parliament"
             >
               Open Parliament view
@@ -214,27 +229,24 @@ function TodayRow({
 }>) {
   return (
     <Link
-      className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-md px-2 py-3 transition hover:bg-[var(--surface-soft)]"
+      className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-xl px-2 py-3 transition hover:bg-white/8"
       href={href}
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--accent-soft)] text-[var(--accent-strong)]">
+      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/12 text-white">
         {icon}
       </span>
       <span className="min-w-0">
-        <span className="block text-xs font-semibold uppercase text-[var(--muted)]">{label}</span>
-        <span
-          className="mt-0.5 block truncate text-sm font-semibold text-[var(--foreground)]"
-          title={title}
-        >
+        <span className="block text-xs font-semibold uppercase text-white/52">{label}</span>
+        <span className="mt-0.5 block truncate text-sm font-semibold text-white" title={title}>
           {title}
         </span>
-        <span className="mt-1 block truncate text-sm text-[var(--muted)]" title={detail}>
+        <span className="mt-1 block truncate text-sm text-white/62" title={detail}>
           {detail}
         </span>
       </span>
       <ArrowRight
         aria-hidden="true"
-        className="text-[var(--muted)] transition group-hover:translate-x-0.5 group-hover:text-[var(--accent)]"
+        className="text-white/38 transition group-hover:translate-x-0.5 group-hover:text-white"
         size={16}
       />
     </Link>
@@ -258,20 +270,35 @@ function JourneyCard({
   title: string;
   tone: "red" | "blue" | "navy";
 }>) {
-  const toneClass = {
-    blue: "bg-[#e6f5ff] text-[var(--accent-strong)]",
-    navy: "bg-[var(--accent-soft)] text-[var(--accent-strong)]",
-    red: "bg-[var(--accent-red-soft)] text-[var(--accent-red)]"
+  const toneClasses = {
+    blue: {
+      bar: "bg-[#8bd3ff]",
+      card: "border-[#bde8ff] bg-[#f0fbff]",
+      icon: "bg-[#dff4ff] text-[var(--accent-strong)]"
+    },
+    navy: {
+      bar: "bg-[#62d98f]",
+      card: "border-[#bdebd0] bg-[#f3fff7]",
+      icon: "bg-[#dcf8e7] text-[var(--accent-strong)]"
+    },
+    red: {
+      bar: "bg-[var(--accent-red)]",
+      card: "border-[#ffc4d0] bg-[#fff3f6]",
+      icon: "bg-[#ffdce5] text-[var(--accent-red)]"
+    }
   }[tone];
 
   return (
     <Link
-      className="group flex min-h-52 flex-col rounded-lg border border-[var(--border)] bg-[var(--surface-pop)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
+      className={`group relative flex min-h-52 flex-col overflow-hidden rounded-2xl border p-5 shadow-[0_14px_34px_rgba(7,31,58,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_44px_rgba(7,31,58,0.14)] ${toneClasses.card}`}
       href={href}
     >
+      <span className={`absolute inset-x-0 top-0 h-1 ${toneClasses.bar}`} />
       <div className="flex items-center justify-between gap-3">
         <span className="text-xs font-semibold uppercase text-[var(--muted)]">{label}</span>
-        <span className={`flex h-10 w-10 items-center justify-center rounded-md ${toneClass}`}>
+        <span
+          className={`flex h-10 w-10 items-center justify-center rounded-xl ${toneClasses.icon}`}
+        >
           {icon}
         </span>
       </div>

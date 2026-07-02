@@ -12,8 +12,8 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-[var(--border)] bg-[var(--surface)]">
-      <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+    <header className="border-b border-[#d6e2f0] bg-white/90 backdrop-blur">
+      <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-3">
         <Link
           aria-label="Plain Politics home"
           className="flex items-center gap-3 text-lg font-semibold tracking-tight"
@@ -24,10 +24,10 @@ export function SiteHeader() {
         </Link>
 
         <div className="flex flex-1 items-center justify-end gap-4">
-          <div className="hidden items-center gap-5 text-sm font-medium text-[var(--muted)] lg:flex">
+          <div className="hidden items-center gap-1 text-sm font-medium text-[var(--muted)] lg:flex">
             {navItems.map((item) => (
               <Link
-                className="transition hover:text-[var(--foreground)]"
+                className="rounded-full px-3 py-1.5 transition hover:bg-[var(--surface-soft)] hover:text-[var(--foreground)]"
                 href={item.href}
                 key={item.href}
               >
