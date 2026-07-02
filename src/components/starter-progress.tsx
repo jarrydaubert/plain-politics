@@ -15,22 +15,22 @@ const starterSteps = [
     title: "Find your MP"
   },
   {
-    description: "Learn the words that make Parliament easier to follow.",
+    description: "Pick a word and get a short, clear explanation.",
     href: "/glossary",
     id: "glossary",
-    title: "Decode the terms"
+    title: "Learn a term"
   },
   {
-    description: "See recent votes, seats and upcoming business.",
+    description: "See how MPs voted and what the vote was about.",
     href: "/parliament",
     id: "parliament",
-    title: "See Parliament today"
+    title: "Read a vote"
   },
   {
-    description: "Check where the public records come from.",
+    description: "Go to the original record and read it for yourself.",
     href: "/sources",
     id: "sources",
-    title: "Check a source"
+    title: "Open a record"
   }
 ] as const;
 
@@ -111,10 +111,10 @@ export function StarterProgress({
   }
 
   return (
-    <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-soft)]">
+    <section className="rounded-lg border border-[#ded7ca] bg-white p-5 shadow-[0_10px_24px_rgba(7,31,58,0.06)]">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase text-[var(--muted)]">Starter guide</p>
+          <p className="font-mono text-xs font-semibold text-[#0756c7]">Starter path</p>
           <h2 className={compact ? "mt-1 text-lg font-semibold" : "mt-1 text-2xl font-semibold"}>
             {completedCount} of {starterSteps.length} explored
           </h2>
@@ -122,7 +122,7 @@ export function StarterProgress({
         {completedCount > 0 ? (
           <button
             aria-label="Reset starter guide progress"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border)] text-[var(--accent)] transition hover:border-[var(--accent)]"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#ded7ca] text-[#0756c7] transition hover:border-[#0756c7]"
             onClick={resetProgress}
             type="button"
           >
@@ -131,16 +131,16 @@ export function StarterProgress({
         ) : null}
       </div>
 
-      <div className="mt-4 h-2 overflow-hidden rounded-full bg-[var(--surface-soft)]">
+      <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#eef3ed]">
         <div
-          className="h-full rounded-full bg-[linear-gradient(90deg,var(--accent-red),var(--accent))] transition-all"
+          className="h-full rounded-full bg-[linear-gradient(90deg,#76d08b,#8bd3ff,#ff767e)] transition-all"
           style={{ width: `${completionPercent}%` }}
         />
       </div>
 
       <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-        A light trail for finding your way around UK politics. Everything stays open, and progress
-        is saved only in this browser.
+        Small steps, real understanding, your pace. Everything stays open, and progress is saved
+        only in this browser.
       </p>
 
       <div className="mt-4 grid gap-3">
@@ -156,13 +156,13 @@ export function StarterProgress({
               {isComplete ? (
                 <CheckCircle2
                   aria-label="Explored"
-                  className="mt-0.5 shrink-0 text-[var(--accent-red)]"
+                  className="mt-0.5 shrink-0 text-[#0d6141]"
                   size={19}
                 />
               ) : (
                 <Circle
                   aria-label="Not explored"
-                  className="mt-0.5 shrink-0 text-[var(--muted)]"
+                  className="mt-0.5 shrink-0 text-[#8a94a6]"
                   size={19}
                 />
               )}
