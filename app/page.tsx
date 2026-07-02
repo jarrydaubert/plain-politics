@@ -23,55 +23,30 @@ import {
 const primaryJourneys = [
   {
     cta: "Find my MP",
-    description:
-      "Use your postcode to see your constituency, current MP and recent public records.",
+    description: "Postcode to constituency, MP and public records.",
     href: "/my-area",
-    icon: <MapPin aria-hidden="true" size={22} />,
+    icon: <MapPin aria-hidden="true" size={19} />,
     number: "1",
     title: "Start where you live",
     tone: "mint"
   },
   {
     cta: "Open glossary",
-    description:
-      "Quick plain-English cards for the words that make politics feel harder than it is.",
+    description: "Plain-English cards for the words people keep using.",
     href: "/glossary",
-    icon: <BookOpenCheck aria-hidden="true" size={22} />,
+    icon: <BookOpenCheck aria-hidden="true" size={19} />,
     number: "2",
     title: "Decode the jargon",
     tone: "sky"
   },
   {
     cta: "See Parliament",
-    description: "Follow votes and upcoming business using public Parliament records.",
+    description: "Votes and upcoming business from public records.",
     href: "/parliament",
-    icon: <Megaphone aria-hidden="true" size={22} />,
+    icon: <Megaphone aria-hidden="true" size={19} />,
     number: "3",
     title: "Watch what happens",
     tone: "coral"
-  }
-] as const;
-
-const starterPath = [
-  {
-    description: "See who represents you and how to contact them.",
-    icon: <MapPin aria-hidden="true" size={19} />,
-    title: "Find your MP"
-  },
-  {
-    description: "Pick a word. Get a short, clear explanation.",
-    icon: <BookOpenCheck aria-hidden="true" size={19} />,
-    title: "Learn a term"
-  },
-  {
-    description: "See how MPs voted and what the vote was about.",
-    icon: <Vote aria-hidden="true" size={19} />,
-    title: "Read a vote"
-  },
-  {
-    description: "Go to the original record and read it for yourself.",
-    icon: <FileText aria-hidden="true" size={19} />,
-    title: "Open a record"
   }
 ] as const;
 
@@ -138,18 +113,21 @@ export default async function HomePage() {
           aria-hidden="true"
           className="absolute left-0 top-0 hidden h-full w-40 border-r border-[#f09aa3] bg-[repeating-linear-gradient(180deg,rgba(23,91,199,0.16)_0,rgba(23,91,199,0.16)_1px,transparent_1px,transparent_28px)] opacity-70 lg:block"
         />
-        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:py-14">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(28rem,1.08fr)] lg:items-center">
+        <div className="relative mx-auto max-w-7xl px-6 py-8 lg:py-10">
+          <div className="grid gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(28rem,1.15fr)] lg:items-center">
             <div>
-              <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-normal text-[#071f3a] md:text-6xl">
+              <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] tracking-normal text-[#071f3a] md:text-5xl">
                 British politics, without the fog.
               </h1>
-              <span aria-hidden="true" className="mt-1 block h-3 w-full max-w-lg bg-[#ff767e]/55" />
-              <p className="mt-7 max-w-xl text-base leading-7 text-[#24334d] sm:text-lg sm:leading-8">
+              <span
+                aria-hidden="true"
+                className="mt-2 block h-2.5 w-full max-w-lg bg-[#ff767e]/55"
+              />
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#24334d] sm:text-lg">
                 Start with where you live, decode the words people keep using, and see what
                 Parliament did today.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#071f3a] px-5 py-3 text-sm font-semibold text-[#ffffff] shadow-[0_14px_28px_rgba(7,31,58,0.18)] transition hover:-translate-y-0.5 hover:bg-[#0d3158]"
                   href="/my-area"
@@ -164,22 +142,22 @@ export default async function HomePage() {
                   Learn the basics
                 </Link>
               </div>
-              <p className="mt-6 inline-flex bg-[#dff3d5] px-3 py-1 font-mono text-sm text-[#123214]">
+              <p className="mt-4 inline-flex bg-[#dff3d5] px-3 py-1 font-mono text-sm text-[#123214]">
                 No account. No pressure. You&apos;re in control.
               </p>
             </div>
 
-            <aside className="relative overflow-hidden rounded-lg border border-[#ded7ca] bg-white/84 p-5 shadow-[0_22px_54px_rgba(7,31,58,0.12)]">
+            <aside className="relative overflow-hidden rounded-lg border border-[#ded7ca] bg-white/84 p-4 shadow-[0_18px_42px_rgba(7,31,58,0.1)]">
               <div
                 aria-hidden="true"
                 className="absolute inset-0 bg-[linear-gradient(rgba(23,91,199,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(23,91,199,0.03)_1px,transparent_1px)] bg-[length:28px_28px]"
               />
               <div className="relative">
                 <div className="border-b border-[#ded7ca] pb-4">
-                  <h2 className="inline bg-[#b8e5c9] px-2 text-2xl font-semibold leading-tight text-[#071f3a]">
+                  <h2 className="inline bg-[#b8e5c9] px-2 text-xl font-semibold leading-tight text-[#071f3a] sm:text-2xl">
                     Today, translated.
                   </h2>
-                  <p className="mt-3 text-sm leading-6 text-[#33425b]">
+                  <p className="mt-2 text-sm leading-6 text-[#33425b]">
                     Live Parliament records, turned into plain English.
                   </p>
                 </div>
@@ -210,7 +188,36 @@ export default async function HomePage() {
             </aside>
           </div>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-7">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-2xl font-semibold leading-tight text-[#071f3a]">
+                  Start with a normal question.
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-[#536176]">
+                  Politics is easier when the first step sounds like something a person would
+                  actually ask.
+                </p>
+              </div>
+              <span className="max-w-48 bg-[#fff1a8] px-3 py-2 font-mono text-sm text-[#423600]">
+                No stupid questions.
+              </span>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-4">
+              {normalQuestions.map((item) => (
+                <QuestionCard
+                  cta={item.cta}
+                  description={item.description}
+                  href={item.href}
+                  icon={item.icon}
+                  key={item.question}
+                  question={item.question}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
             {primaryJourneys.map((topic) => (
               <JourneyCard
                 cta={topic.cta}
@@ -228,62 +235,20 @@ export default async function HomePage() {
       </section>
 
       <section className="border-b border-[#ded7ca] bg-[#fffdf8]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-7xl gap-5 px-6 py-8 lg:grid-cols-[0.48fr_1fr] lg:items-center">
           <div>
-            <h2 className="text-3xl font-semibold leading-tight text-[#071f3a]">
+            <h2 className="text-2xl font-semibold leading-tight text-[#071f3a]">
               No shame if you&apos;re starting from zero.
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#536176]">
               A simple starter path. Do it in any order. Progress is saved only in this browser.
             </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {starterPath.map((step, index) => (
-                <StarterPathStep
-                  description={step.description}
-                  icon={step.icon}
-                  key={step.title}
-                  number={index + 1}
-                  title={step.title}
-                />
-              ))}
-            </div>
           </div>
           <StarterProgress compact />
         </div>
       </section>
 
-      <section className="border-b border-[#ded7ca] bg-[#fbf8ee]">
-        <div className="mx-auto max-w-7xl px-6 py-12">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-3xl font-semibold leading-tight text-[#071f3a]">
-                Start with a normal question.
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#536176]">
-                Politics is easier when the first step sounds like something a person would actually
-                ask.
-              </p>
-            </div>
-            <span className="max-w-48 bg-[#fff1a8] px-3 py-2 font-mono text-sm text-[#423600]">
-              No stupid questions.
-            </span>
-          </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-4">
-            {normalQuestions.map((item) => (
-              <QuestionCard
-                cta={item.cta}
-                description={item.description}
-                href={item.href}
-                icon={item.icon}
-                key={item.question}
-                question={item.question}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-12">
+      <section className="mx-auto max-w-7xl px-6 py-10">
         <div>
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -353,10 +318,10 @@ function TodayRow({
 }>) {
   return (
     <Link
-      className="group grid gap-4 py-4 transition hover:bg-white/45 sm:grid-cols-[auto_minmax(0,1.1fr)_minmax(10rem,0.9fr)_auto] sm:items-center sm:px-2"
+      className="group grid gap-3 py-3 transition hover:bg-white/45 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:px-2"
       href={href}
     >
-      <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#071f3a]">
+      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#071f3a]">
         {icon}
       </span>
       <span className="min-w-0">
@@ -364,13 +329,13 @@ function TodayRow({
         <span className="mt-1 block truncate text-sm font-semibold text-[#071f3a]" title={title}>
           {title}
         </span>
-        <span className="mt-1 block truncate text-sm text-[#536176]" title={detail}>
+        <span className="mt-0.5 block truncate text-sm text-[#536176]" title={detail}>
           {detail}
         </span>
-      </span>
-      <span className="min-w-0">
-        <span className="block text-xs font-semibold text-[#0756c7]">What it means</span>
-        <span className="mt-1 block text-sm leading-5 text-[#24334d]">{meaning}</span>
+        <span className="mt-1 block text-sm leading-5 text-[#24334d]">
+          <span className="font-semibold text-[#0756c7]">What it means: </span>
+          {meaning}
+        </span>
       </span>
       <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#0756c7]">
         Open record
@@ -424,61 +389,32 @@ function JourneyCard({
 
   return (
     <Link
-      className={`group relative flex min-h-48 flex-col rounded-lg border p-5 shadow-[0_12px_28px_rgba(7,31,58,0.08)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(7,31,58,0.13)] ${toneClasses.card}`}
+      className={`group relative grid min-h-28 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg border px-4 py-3 shadow-[0_10px_22px_rgba(7,31,58,0.07)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(7,31,58,0.12)] ${toneClasses.card}`}
       href={href}
     >
       <span
-        className={`absolute -left-2 -top-3 flex h-10 w-10 items-center justify-center rounded-full text-lg font-semibold ${toneClasses.bubble}`}
+        className={`flex h-9 w-9 items-center justify-center rounded-full text-base font-semibold ${toneClasses.bubble}`}
       >
         {number}
       </span>
-      <div className="flex justify-end">
+      <span className="min-w-0">
+        <span className="block text-base font-semibold leading-tight">{title}</span>
+        <span className="mt-1 block text-sm leading-5 text-[var(--muted)]">{description}</span>
         <span
-          className={`flex h-14 w-14 items-center justify-center rounded-lg ${toneClasses.icon}`}
+          className={`mt-2 inline-flex items-center gap-2 text-sm font-semibold ${toneClasses.link}`}
         >
-          {icon}
+          {cta}
+          <ArrowRight
+            aria-hidden="true"
+            className="transition group-hover:translate-x-0.5"
+            size={15}
+          />
         </span>
-      </div>
-      <h3 className="mt-5 text-xl font-semibold leading-tight">{title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-6 text-[var(--muted)]">{description}</p>
-      <span
-        className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${toneClasses.link}`}
-      >
-        {cta}
-        <ArrowRight
-          aria-hidden="true"
-          className="transition group-hover:translate-x-0.5"
-          size={16}
-        />
+      </span>
+      <span className={`flex h-10 w-10 items-center justify-center rounded-lg ${toneClasses.icon}`}>
+        {icon}
       </span>
     </Link>
-  );
-}
-
-function StarterPathStep({
-  description,
-  icon,
-  number,
-  title
-}: Readonly<{
-  description: string;
-  icon: ReactNode;
-  number: number;
-  title: string;
-}>) {
-  return (
-    <div className="grid min-h-32 grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-lg border border-[#ded7ca] bg-white p-4 shadow-[0_10px_24px_rgba(7,31,58,0.06)]">
-      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#071f3a] text-sm font-semibold text-white">
-        {number}
-      </span>
-      <div>
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#0756c7]">
-          {icon}
-        </span>
-        <h3 className="mt-3 text-sm font-semibold text-[#071f3a]">{title}</h3>
-        <p className="mt-1 text-sm leading-5 text-[#536176]">{description}</p>
-      </div>
-    </div>
   );
 }
 
@@ -497,15 +433,15 @@ function QuestionCard({
 }>) {
   return (
     <Link
-      className="group flex min-h-48 flex-col rounded-lg border border-[#ded7ca] bg-white p-5 shadow-[0_10px_24px_rgba(7,31,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#0756c7]"
+      className="group flex min-h-36 flex-col rounded-lg border border-[#ded7ca] bg-white p-4 shadow-[0_8px_18px_rgba(7,31,58,0.05)] transition hover:-translate-y-0.5 hover:border-[#0756c7]"
       href={href}
     >
-      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#0756c7]">
+      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#e7f1ff] text-[#0756c7]">
         {icon}
       </span>
-      <h3 className="mt-5 text-lg font-semibold leading-tight text-[#071f3a]">{question}</h3>
-      <p className="mt-3 flex-1 text-sm leading-6 text-[#536176]">{description}</p>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#0756c7]">
+      <h3 className="mt-4 text-base font-semibold leading-tight text-[#071f3a]">{question}</h3>
+      <p className="mt-2 flex-1 text-sm leading-5 text-[#536176]">{description}</p>
+      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#0756c7]">
         {cta}
         <ArrowRight
           aria-hidden="true"
