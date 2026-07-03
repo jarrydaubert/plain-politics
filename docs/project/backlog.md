@@ -27,8 +27,23 @@ For context, use:
 - [ ] Review the homepage visual direction, OG image, and public imagery before launch.
   Definition of done: Desktop and mobile homepage screenshots are reviewed, OG image renders in a preview tool, and any launch-blocking visual issues are fixed.
 
+- [ ] Rewrite homepage live-data `What it means` copy so it actually translates records.
+  Definition of done: Each live Parliament row explains the reader-facing outcome, next step, or limitation from the returned fields, and no row merely restates that a record exists.
+
+- [ ] Complete a glossary source and reader-language pass.
+  Definition of done: Public glossary pages contain no internal product instructions, broad ideology terms use UK civic/academic sources or clearly labelled editorial definitions, and source limitations are visible where needed.
+
+- [ ] Complete a beginner Parliament page copy pass.
+  Definition of done: Random sample/demo framing is removed or replaced with a purposeful beginner interaction, API-speak is rewritten, gender columns are explained or deprioritised, and recent votes/upcoming business explain what the records can and cannot prove.
+
+- [ ] Expand the About page trust content.
+  Definition of done: The page explains the approved operator/contact level, methodology, correction route, update cadence, privacy posture, and non-affiliation in plain English.
+
 - [ ] Review `/parties/[slug]` public exposure.
   Definition of done: Party detail pages are either source-backed enough for public navigation or removed/hidden until the policy-profile branch.
+
+- [ ] Submit the sitemap to Google Search Console and Bing Webmaster Tools.
+  Definition of done: Site ownership is verified, the sitemap URL is submitted, and any indexing or sitemap errors are recorded for follow-up.
 
 - [ ] Complete one final beginner walkthrough pass.
   Definition of done: A tester can follow homepage -> glossary -> Parliament -> my area -> source links -> contact/corrections without confusion, dead ends, or unsupported factual claims.
@@ -43,6 +58,15 @@ For context, use:
 
 - [ ] Add inline glossary links from `/my-area` and `/parliament`.
   Definition of done: Common terms on those pages link to canonical glossary term pages without disrupting reading flow.
+
+- [ ] Add a glossary search input.
+  Definition of done: Users can filter glossary terms by term, category, and plain-English text; the control is keyboard accessible and does not log or persist queries.
+
+- [ ] Align navigation labels, page headings, and return links.
+  Definition of done: Top-level nav labels, H1s, metadata titles, breadcrumbs, and back links use consistent beginner-facing wording, and generic text such as `Back to dashboard` is replaced or intentionally justified.
+
+- [ ] Add lightweight next-step guidance after postcode lookup.
+  Definition of done: `/my-area` results point users to the MP, constituency, relevant glossary terms, source records, and corrections route without implying extra live tracking is already available.
 
 - [ ] Add a lightweight public corrections page.
   Definition of done: A `/corrections` or equivalent page explains how to report source issues and links to the verified correction email.
