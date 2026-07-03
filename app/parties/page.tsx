@@ -13,7 +13,7 @@ import {
   type SourceRecordStatus
 } from "@/sources/uk-parliament";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 const pageMetadata = getRouteMetadata("/parties");
 
@@ -90,8 +90,9 @@ export default async function PartiesPage() {
           <section className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
             <h2 className="text-xl font-semibold">Source</h2>
             <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-              Retrieved {formatUkDateTime(snapshot.retrievedAt)} from the UK Parliament Members API.
-              Party policy profiles are intentionally not shown until reviewed source-backed text is
+              Checked through the app cache {formatUkDateTime(snapshot.retrievedAt)} from the UK
+              Parliament Members API. Source responses may be cached for up to five minutes. Party
+              policy profiles are intentionally not shown until reviewed source-backed text is
               ready.
             </p>
             <SourceDataNote status={snapshot.dataStatus} />
@@ -158,9 +159,9 @@ function SourceDataNote({ status }: Readonly<{ status: SourceRecordStatus }>) {
 
   return (
     <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-sm font-medium leading-6 text-[#755000]">
-      Data note: showing the last successful check from{" "}
-      {formatUkDateTime(status.lastSuccessfulCheckAt)}. Latest attempt was{" "}
-      {formatUkDateTime(status.lastAttemptedCheckAt)}.
+      Data note: this server process is showing a previous successful response from{" "}
+      {formatUkDateTime(status.lastSuccessfulCheckAt)} after a failed check at{" "}
+      {formatUkDateTime(status.lastAttemptedCheckAt)}. Durable last-good storage is not live yet.
     </p>
   );
 }

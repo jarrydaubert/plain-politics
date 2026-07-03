@@ -97,7 +97,7 @@ export const explainers: Explainer[] = [
         heading: "Why it matters"
       },
       {
-        body: "If a division lists 310 ayes and 280 noes, Plain Politics can show that count and link to the record. It should not infer motive without another source.",
+        body: "If a division lists 310 ayes and 280 noes, the count and official record show how the vote split. A reason for someone's vote needs separate evidence.",
         heading: "Example"
       }
     ],
@@ -117,7 +117,7 @@ export const explainers: Explainer[] = [
         heading: "What it means"
       },
       {
-        body: "Whipping helps explain why MPs from the same party often vote the same way, but the public vote record is still the thing Plain Politics should show first.",
+        body: "Whipping helps explain why MPs from the same party often vote the same way, but the public vote record is still the evidence to check first.",
         heading: "Why it matters"
       },
       {
@@ -144,7 +144,7 @@ export const explainers: Explainer[] = [
         heading: "Why it matters"
       },
       {
-        body: "Two nearby postcodes can sit in different constituencies, so Plain Politics should use a lookup source instead of guessing from a town name.",
+        body: "Two nearby postcodes can sit in different constituencies, so a checked postcode lookup is safer than guessing from a town name.",
         heading: "Example"
       }
     ],
@@ -168,7 +168,7 @@ export const explainers: Explainer[] = [
         heading: "Why it matters"
       },
       {
-        body: "If a page says a policy is in a bill, it should link to the official bill page or parliamentary record so readers can check the stage and wording.",
+        body: "If a policy is described as part of a bill, the official bill page or parliamentary record lets readers check the stage and wording.",
         heading: "Example"
       }
     ],

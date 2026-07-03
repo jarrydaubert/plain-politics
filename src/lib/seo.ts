@@ -80,6 +80,15 @@ export const routeMetadata = [
     title: "About Plain Politics"
   },
   {
+    changeFrequency: "monthly",
+    description:
+      "How Plain Politics handles postcodes, analytics, public source requests, cookies and privacy rights.",
+    index: true,
+    path: "/privacy",
+    priority: 0.7,
+    title: "Privacy - Plain Politics"
+  },
+  {
     changeFrequency: "hourly",
     description:
       "A public data health page showing whether Plain Politics source checks are healthy, degraded or offline.",

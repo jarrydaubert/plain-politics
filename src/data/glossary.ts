@@ -23,7 +23,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceName: "UK Parliament glossary",
     sourceUrl: "https://www.parliament.uk/site-information/glossary/",
     term: "Constituency",
-    whyItMatters: "Postcode lookup starts here: postcode to constituency to current MP."
+    whyItMatters: "It tells you which local seat and MP a postcode belongs to."
   },
   {
     category: "Parliament",
@@ -59,7 +59,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceName: "UK Parliament glossary",
     sourceUrl: "https://www.parliament.uk/site-information/glossary/",
     term: "Division",
-    whyItMatters: "This is the source-backed record behind many MP voting-history rows."
+    whyItMatters: "Divisions are the official vote records behind many MP voting-history rows."
   },
   {
     category: "Parliament",
@@ -167,8 +167,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceName: "UK Parliament glossary",
     sourceUrl: "https://www.parliament.uk/site-information/glossary/",
     term: "Black Rod",
-    whyItMatters:
-      "Some traditions look odd to beginners, so the site should explain what is ceremony and what affects lawmaking."
+    whyItMatters: "It helps separate parliamentary ceremony from decisions that change law."
   },
   {
     category: "Traditions",
@@ -298,36 +297,6 @@ export const glossaryTerms: GlossaryTerm[] = [
     term: "Devolution",
     whyItMatters:
       "It helps users understand why health, education or transport may be decided differently in different parts of the UK."
-  },
-  {
-    category: "Parties",
-    plainEnglish:
-      "Left wing is a broad political label. It often points toward more emphasis on equality, public services and a larger role for the state in the economy, but the meaning changes by country and issue.",
-    sourceName: "TIME explainer on left and right",
-    sourceUrl: "https://time.com/5673239/left-right-politics-origins/",
-    term: "Left wing",
-    whyItMatters:
-      "The label is a shortcut, not a full explanation. People and parties can hold left-wing views on one issue and different views on another."
-  },
-  {
-    category: "Parties",
-    plainEnglish:
-      "Right wing is a broad political label. It often points toward more emphasis on tradition, private enterprise and a smaller economic role for the state, but the meaning changes by country and issue.",
-    sourceName: "TIME explainer on left and right",
-    sourceUrl: "https://time.com/5673239/left-right-politics-origins/",
-    term: "Right wing",
-    whyItMatters:
-      "The label is often used loosely or as an insult, so Plain Politics should explain specific policies instead of relying on the label alone."
-  },
-  {
-    category: "Parties",
-    plainEnglish:
-      "Centre or centrist describes political positions that sit between, or deliberately mix, ideas commonly described as left wing and right wing.",
-    sourceName: "TIME explainer on left and right",
-    sourceUrl: "https://time.com/5673239/left-right-politics-origins/",
-    term: "Centre / centrist",
-    whyItMatters:
-      "Centre does not automatically mean neutral or moderate on every issue, so users still need the policy detail."
   }
 ];
 

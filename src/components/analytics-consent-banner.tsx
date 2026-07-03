@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   getAnalyticsConsentPreference,
@@ -48,7 +49,10 @@ export function AnalyticsConsentBanner() {
       <h2 className="text-sm font-semibold">Analytics preferences</h2>
       <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
         Optional analytics help us understand broad site use. We do not send postcodes, raw searches
-        or political views.
+        or political views.{" "}
+        <Link className="font-medium text-[var(--accent)]" href="/privacy">
+          Read the privacy note.
+        </Link>
       </p>
       <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-end">
         <button

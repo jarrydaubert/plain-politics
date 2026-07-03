@@ -76,6 +76,10 @@ export function GoogleAnalytics() {
       ad_user_data: "denied",
       analytics_storage: analytics ? "granted" : "denied"
     });
+
+    if (!analytics) {
+      clearGoogleAnalyticsCookies();
+    }
   }, []);
 
   useEffect(() => {
@@ -143,7 +147,7 @@ export function GoogleAnalytics() {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('consent', 'default', {
-            'analytics_storage': 'granted',
+            'analytics_storage': 'denied',
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied',
@@ -161,4 +165,30 @@ export function GoogleAnalytics() {
       </Script>
     </>
   );
+}
+
+function clearGoogleAnalyticsCookies() {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  const cookieNames = document.cookie
+    .split(";")
+    .map((cookie) => cookie.split("=")[0]?.trim())
+    .filter((name): name is string => Boolean(name?.startsWith("_ga")));
+
+  for (const name of cookieNames) {
+    expireCookie(name);
+  }
+}
+
+function expireCookie(name: string) {
+  const expires = "Thu, 01 Jan 1970 00:00:00 GMT";
+  const base = `${name}=; expires=${expires}; max-age=0; path=/; SameSite=Lax`;
+  // biome-ignore lint/suspicious/noDocumentCookie: Clearing legacy GA cookies requires document.cookie.
+  document.cookie = base;
+  // biome-ignore lint/suspicious/noDocumentCookie: Clearing legacy GA cookies requires document.cookie.
+  document.cookie = `${base}; domain=plainpolitics.co.uk`;
+  // biome-ignore lint/suspicious/noDocumentCookie: Clearing legacy GA cookies requires document.cookie.
+  document.cookie = `${base}; domain=.plainpolitics.co.uk`;
 }

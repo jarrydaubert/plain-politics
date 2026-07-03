@@ -62,7 +62,11 @@ const COMMONS_VOTES_API_BASE = "https://commonsvotes-api.parliament.uk/data";
 const WHATSON_API_BASE = "https://whatson-api.parliament.uk/calendar/events";
 const POSTCODES_API_BASE = "https://api.postcodes.io/postcodes";
 const COMMONS_HOUSE_ID = 1;
+// Regression canaries from the July 2026 Members API audit: these former MPs appeared in a
+// supposedly current Commons sample when the query was not filtered tightly enough.
 const KNOWN_FORMER_MEMBER_IDS = new Set([662, 645, 4057]);
+const MIN_EXPECTED_COMMONS_MEMBERS = 600;
+const MAX_EXPECTED_COMMONS_MEMBERS = 700;
 
 const currentMembersStatusSchema = z
   .object({
@@ -264,7 +268,11 @@ async function checkMembersApi({ fetcher, now }: { fetcher: StatusFetch; now: Da
     );
   });
 
-  if (parsed.data.totalResults < 600 || parsed.data.totalResults > 700 || members.length === 0) {
+  if (
+    parsed.data.totalResults < MIN_EXPECTED_COMMONS_MEMBERS ||
+    parsed.data.totalResults > MAX_EXPECTED_COMMONS_MEMBERS ||
+    members.length === 0
+  ) {
     checks.push(
       failCheck(
         "sanity",

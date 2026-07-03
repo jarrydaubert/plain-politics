@@ -27,20 +27,11 @@ For context, use:
 - [ ] Review the homepage visual direction, OG image, and public imagery before launch.
   Definition of done: Desktop and mobile homepage screenshots are reviewed, OG image renders in a preview tool, and any launch-blocking visual issues are fixed.
 
-- [ ] Rewrite homepage live-data `What it means` copy so it actually translates records.
-  Definition of done: Each live Parliament row explains the reader-facing outcome, next step, or limitation from the returned fields, and no row merely restates that a record exists.
-
-- [ ] Complete a glossary source and reader-language pass.
-  Definition of done: Public glossary pages contain no internal product instructions, broad ideology terms use UK civic/academic sources or clearly labelled editorial definitions, and source limitations are visible where needed.
-
 - [ ] Complete a beginner Parliament page copy pass.
   Definition of done: Random sample/demo framing is removed or replaced with a purposeful beginner interaction, API-speak is rewritten, gender columns are explained or deprioritised, and recent votes/upcoming business explain what the records can and cannot prove.
 
 - [ ] Expand the About page trust content.
   Definition of done: The page explains the approved operator/contact level, methodology, correction route, update cadence, privacy posture, and non-affiliation in plain English.
-
-- [ ] Review `/parties/[slug]` public exposure.
-  Definition of done: Party detail pages are either source-backed enough for public navigation or removed/hidden until the policy-profile branch.
 
 - [ ] Submit the sitemap to Google Search Console and Bing Webmaster Tools.
   Definition of done: Site ownership is verified, the sitemap URL is submitted, and any indexing or sitemap errors are recorded for follow-up.
@@ -84,6 +75,12 @@ For context, use:
 
 - [ ] Ensure public pages can read last-good data from Supabase when a live source fails.
   Definition of done: A failed Parliament or postcode-adjacent source read shows the last successful persisted data with a visible stale/degraded note.
+
+- [ ] Persist data-status check history beyond the current server process.
+  Definition of done: `/status` can show last successful check and last attempted check after a cold start, deployment, or serverless instance change.
+
+- [ ] Separate source retrieval time from app-cache check time.
+  Definition of done: Public timestamps distinguish when Plain Politics checked its app cache from when the upstream source was last fetched or persisted.
 
 - [ ] Add source cadence config for Parliament seats, members, divisions, and upcoming business.
   Definition of done: Each source family has an explicit expected refresh cadence, freshness threshold, and owner-facing failure threshold.
@@ -253,6 +250,9 @@ For context, use:
 - [ ] Add accessibility smoke checks for core pages.
   Definition of done: Core routes pass automated accessibility checks for landmarks, headings, labels, colour contrast, and keyboard navigation.
 
+- [ ] Split E2E tests into blocking mocked checks and non-blocking live-source smoke checks.
+  Definition of done: Deterministic crawler, metadata, accessibility, and core journey tests block CI, while third-party live API checks run separately without blocking deploys.
+
 - [ ] Add source-reference validation for public factual pages.
   Definition of done: CI fails when configured factual content lacks an approved source reference.
 
@@ -267,6 +267,9 @@ For context, use:
 
 - [ ] Add deployment notes for Vercel, Cloudflare DNS, Email Routing, and required env vars.
   Definition of done: A maintainer can redeploy the app and verify DNS/email settings from the documentation.
+
+- [ ] Decide and document the AI training-crawler policy beyond OpenAI bots.
+  Definition of done: `robots.txt`, `/llms.txt`, and source policy agree on whether non-search training crawlers are allowed or blocked.
 
 - [ ] Keep `.env.example` aligned with any Supabase or public runtime configuration.
   Definition of done: Every required environment variable is documented with safe placeholder values and no secrets.

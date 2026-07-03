@@ -12,6 +12,7 @@ const MEMBERS_API_BASE = "https://members-api.parliament.uk/api";
 const COMMONS_VOTES_API_BASE = "https://commonsvotes-api.parliament.uk/data";
 const WHATSON_API_BASE = "https://whatson-api.parliament.uk/calendar/events";
 const COMMONS_HOUSE_ID = 1;
+export const PARLIAMENT_SOURCE_REVALIDATE_SECONDS = 5 * 60;
 
 const parliamentPartySchema = z.object({
   id: z.number(),
@@ -152,7 +153,7 @@ export function resetParliamentSourceCache() {
 }
 
 export async function getCommonsPartySeatCounts(now = new Date()) {
-  return withLastGoodRecord(`commons-party-seat-counts:${toDateParam(now)}`, async () => {
+  return withLastGoodRecord("commons-party-seat-counts", async () => {
     const forDate = toDateParam(now);
     const url = `${MEMBERS_API_BASE}/Parties/StateOfTheParties/${COMMONS_HOUSE_ID}/${forDate}`;
     const raw = await fetchJson(url);
@@ -272,50 +273,47 @@ export async function getRecentCommonsDivisions(take = 5) {
 }
 
 export async function getUpcomingParliamentEvents(daysAhead = 7, take = 8, now = new Date()) {
-  return withLastGoodRecord(
-    `parliament-events:${toDateParam(now)}:${daysAhead}:${take}`,
-    async () => {
-      const startDate = toDateParam(now);
-      const endDate = toDateParam(addDays(now, daysAhead));
-      const url = `${WHATSON_API_BASE}/list.json?startDate=${startDate}&endDate=${endDate}`;
-      const raw = await fetchJson(url);
-      const parsed = parliamentEventsSchema.parse(raw);
-      const retrievedAt = new Date().toISOString();
-      const rawText = JSON.stringify(raw, null, 2);
-      const sourceDocument = buildSourceDocument({
-        title: `Upcoming Parliament events from ${startDate} to ${endDate}`,
-        publisher: "UK Parliament What's On API",
-        retrievedAt,
-        url
-      });
-      const sourceSnapshot = buildSourceSnapshot(sourceDocument, rawText, retrievedAt);
-      const data = parsed
-        .filter((event) => !event.CancelledDate)
-        .sort(compareParliamentEvents)
-        .slice(0, take);
-      const sourceExcerpts = data.map((event, index) =>
-        buildSourceExcerpt({
-          excerptText: JSON.stringify(event),
-          path: `events[${index}]`,
-          sourceSnapshot
-        })
-      );
-      const displayFacts = data.map((event, index) =>
-        buildDisplayFact({
-          summaryText: `${event.House ?? "Parliament"} ${event.Category ?? "event"}: ${event.Description ?? event.Type ?? "Scheduled business"}.`,
-          sourceExcerptIds: [sourceExcerpts[index]?.id ?? ""]
-        })
-      );
-
-      return {
-        data,
-        displayFacts,
-        sourceDocument,
-        sourceExcerpts,
+  return withLastGoodRecord(`parliament-events:${daysAhead}:${take}`, async () => {
+    const startDate = toDateParam(now);
+    const endDate = toDateParam(addDays(now, daysAhead));
+    const url = `${WHATSON_API_BASE}/list.json?startDate=${startDate}&endDate=${endDate}`;
+    const raw = await fetchJson(url);
+    const parsed = parliamentEventsSchema.parse(raw);
+    const retrievedAt = new Date().toISOString();
+    const rawText = JSON.stringify(raw, null, 2);
+    const sourceDocument = buildSourceDocument({
+      title: `Upcoming Parliament events from ${startDate} to ${endDate}`,
+      publisher: "UK Parliament What's On API",
+      retrievedAt,
+      url
+    });
+    const sourceSnapshot = buildSourceSnapshot(sourceDocument, rawText, retrievedAt);
+    const data = parsed
+      .filter((event) => !event.CancelledDate)
+      .sort(compareParliamentEvents)
+      .slice(0, take);
+    const sourceExcerpts = data.map((event, index) =>
+      buildSourceExcerpt({
+        excerptText: JSON.stringify(event),
+        path: `events[${index}]`,
         sourceSnapshot
-      };
-    }
-  );
+      })
+    );
+    const displayFacts = data.map((event, index) =>
+      buildDisplayFact({
+        summaryText: `${event.House ?? "Parliament"} ${event.Category ?? "event"}: ${event.Description ?? event.Type ?? "Scheduled business"}.`,
+        sourceExcerptIds: [sourceExcerpts[index]?.id ?? ""]
+      })
+    );
+
+    return {
+      data,
+      displayFacts,
+      sourceDocument,
+      sourceExcerpts,
+      sourceSnapshot
+    };
+  });
 }
 
 function toDateParam(date: Date) {
@@ -374,7 +372,7 @@ async function withLastGoodRecord<T>(
     return attachDataStatus(cached, {
       lastAttemptedCheckAt: attemptedAt,
       lastSuccessfulCheckAt: cached.dataStatus.lastSuccessfulCheckAt,
-      note: "The latest source check failed, so this panel is showing the last successful response.",
+      note: "The latest source check failed, so this server process is showing the last successful response it has in memory.",
       state: "stale"
     });
   }
@@ -393,7 +391,7 @@ function attachDataStatus<T>(
 async function fetchJson(url: string) {
   const response = await fetch(url, {
     next: {
-      revalidate: 60 * 60
+      revalidate: PARLIAMENT_SOURCE_REVALIDATE_SECONDS
     }
   });
 

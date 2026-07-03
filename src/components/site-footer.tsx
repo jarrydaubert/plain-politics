@@ -6,6 +6,7 @@ const footerLinks = [
   { href: "/about", label: "About" },
   { href: "/sources", label: "Sources" },
   { href: "/glossary", label: "Glossary" },
+  { href: "/privacy", label: "Privacy" },
   { href: "mailto:info@plainpolitics.co.uk", label: "info@plainpolitics.co.uk" }
 ] as const;
 
