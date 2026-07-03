@@ -80,6 +80,7 @@ describe("crawl files", () => {
     expect(ROBOTS_TXT).toContain("User-agent: OAI-SearchBot");
     expect(ROBOTS_TXT).toContain("User-agent: ChatGPT-User");
     expect(ROBOTS_TXT).toContain("User-agent: GPTBot");
+    expect(ROBOTS_TXT).toContain("Disallow: /");
     expect(ROBOTS_TXT).toContain("Allow: /");
   });
 
@@ -162,6 +163,10 @@ describe("crawler text quality", () => {
     expect(glossaryPage).toContain('aria-label="Glossary categories"');
     expect(parliamentPage).toContain("<caption");
     expect(parliamentPage).toContain('scope="col"');
+    expect(parliamentPage).toContain('headers="current-member-party"');
+    expect(parliamentPage).toContain("function CrawlerBoundary");
+    expect(parliamentPage).not.toContain("Abbrev.");
+    expect(parliamentPage).not.toContain("Party Abbrev.Seats");
     expect(parliamentPage).not.toContain("Labour (Co-op)Ipswich");
   });
 });

@@ -52,6 +52,7 @@ test("crawl files expose robots, llms and sitemap routes", async ({ page }) => {
   expect(robotsText).toContain("User-agent: OAI-SearchBot");
   expect(robotsText).toContain("User-agent: ChatGPT-User");
   expect(robotsText).toContain("User-agent: GPTBot");
+  expect(robotsText).toContain("Disallow: /");
   expect(robotsText).toContain("Sitemap: https://plainpolitics.co.uk/sitemap.xml");
 
   await page.goto("/llms.txt");
@@ -65,6 +66,47 @@ test("crawl files expose robots, llms and sitemap routes", async ({ page }) => {
   expect(sitemapText).toContain("https://plainpolitics.co.uk/glossary/mp");
   expect(sitemapText).toContain("https://plainpolitics.co.uk/explainers/what-is-pmqs");
   expect(sitemapText).not.toContain("https://plainpolitics.co.uk/policies");
+});
+
+test("parliament tables expose separated machine-readable text", async ({ page }) => {
+  await page.goto("/parliament");
+
+  const firstTableText = await page
+    .getByRole("table", {
+      name: /Current House of Commons party seat counts/i
+    })
+    .evaluate((table) => table.textContent ?? "");
+  const memberTableText = await page
+    .getByRole("table", {
+      name: /Current House of Commons members sample/i
+    })
+    .evaluate((table) => table.textContent ?? "");
+
+  expect(firstTableText).toContain("Party name; Party abbreviation; Commons seats");
+  expect(firstTableText).not.toContain("Party Abbrev.Seats");
+  expect(memberTableText).not.toContain("Labour (Co-op)Ipswich");
+});
+
+test("footer data status badge refreshes from the no-store status endpoint", async ({ page }) => {
+  await page.route("**/api/data-status", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      json: {
+        checkedAt: "2026-07-03T11:15:00.000Z",
+        lastAttemptedCheckAt: "2026-07-03T11:15:00.000Z",
+        lastSuccessfulCheckAt: "2026-07-03T11:15:00.000Z",
+        overall: "healthy",
+        sources: []
+      },
+      status: 200
+    });
+  });
+
+  await page.goto("/");
+
+  await expect(
+    page.getByRole("link", { name: /Data status: Healthy .* checked 12:15/i })
+  ).toBeVisible();
 });
 
 test("new glossary term page remains readable on mobile", async ({ page }) => {

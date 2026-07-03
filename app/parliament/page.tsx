@@ -1,5 +1,6 @@
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { StructuredData } from "@/components/structured-data";
 import {
   buildBreadcrumbJsonLd,
@@ -71,34 +72,26 @@ export default async function ParliamentPage() {
           <div className="max-w-full overflow-x-auto">
             <table className="w-full min-w-[720px] border-collapse text-left text-sm">
               <caption className="sr-only">
-                Current House of Commons party seat counts by party and gender where returned
+                Current House of Commons party seat counts from the UK Parliament Members API.
+                Columns: party name; party abbreviation; Commons seats; male MPs; female MPs;
+                non-binary MPs.
               </caption>
               <thead className="bg-[var(--surface-soft)]">
                 <tr>
-                  <th className="px-4 py-3 font-semibold" scope="col">
-                    Party
-                  </th>
-                  <th className="px-4 py-3 font-semibold" scope="col">
-                    Abbrev.
-                  </th>
-                  <th className="px-4 py-3 font-semibold" scope="col">
-                    Seats
-                  </th>
-                  <th className="px-4 py-3 font-semibold" scope="col">
-                    Male
-                  </th>
-                  <th className="px-4 py-3 font-semibold" scope="col">
-                    Female
-                  </th>
-                  <th className="px-4 py-3 font-semibold" scope="col">
-                    Non-binary
-                  </th>
+                  <HeaderCell id="party-seat-party">Party name</HeaderCell>
+                  <HeaderCell id="party-seat-abbreviation">Party abbreviation</HeaderCell>
+                  <HeaderCell id="party-seat-total">Commons seats</HeaderCell>
+                  <HeaderCell id="party-seat-male">Male MPs</HeaderCell>
+                  <HeaderCell id="party-seat-female">Female MPs</HeaderCell>
+                  <HeaderCell boundary={false} id="party-seat-non-binary">
+                    Non-binary MPs
+                  </HeaderCell>
                 </tr>
               </thead>
               <tbody>
                 {seatCounts.data.map((row) => (
                   <tr className="border-t border-[var(--border)]" key={row.party.id}>
-                    <td className="px-4 py-3">
+                    <DataCell headers="party-seat-party">
                       <span
                         aria-hidden="true"
                         className="mr-2 inline-block h-3 w-3 rounded-full"
@@ -109,14 +102,18 @@ export default async function ParliamentPage() {
                         }}
                       />
                       <span className="font-medium">{row.party.name}</span>
-                    </td>
-                    <td className="px-4 py-3 text-[var(--muted)]">
+                    </DataCell>
+                    <DataCell className="text-[var(--muted)]" headers="party-seat-abbreviation">
                       {row.party.abbreviation ?? "-"}
-                    </td>
-                    <td className="px-4 py-3 font-semibold">{row.total}</td>
-                    <td className="px-4 py-3">{row.male ?? "-"}</td>
-                    <td className="px-4 py-3">{row.female ?? "-"}</td>
-                    <td className="px-4 py-3">{row.nonBinary ?? "-"}</td>
+                    </DataCell>
+                    <DataCell className="font-semibold" headers="party-seat-total">
+                      {row.total}
+                    </DataCell>
+                    <DataCell headers="party-seat-male">{row.male ?? "-"}</DataCell>
+                    <DataCell headers="party-seat-female">{row.female ?? "-"}</DataCell>
+                    <DataCell boundary={false} headers="party-seat-non-binary">
+                      {row.nonBinary ?? "-"}
+                    </DataCell>
                   </tr>
                 ))}
               </tbody>
@@ -137,35 +134,34 @@ export default async function ParliamentPage() {
         <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[780px] border-collapse text-left text-sm">
             <caption className="sr-only">
-              Current House of Commons members sample from the official Members API
+              Current House of Commons members sample from the official Members API. Columns: member
+              name; party name; constituency; current Commons membership start date.
             </caption>
             <thead className="bg-[var(--surface-soft)]">
               <tr>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Member
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Party
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Constituency
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
+                <HeaderCell id="current-member-name">Member name</HeaderCell>
+                <HeaderCell id="current-member-party">Party name</HeaderCell>
+                <HeaderCell id="current-member-constituency">Constituency</HeaderCell>
+                <HeaderCell boundary={false} id="current-member-start">
                   Current membership started
-                </th>
+                </HeaderCell>
               </tr>
             </thead>
             <tbody>
               {members.data.map((member) => (
                 <tr className="border-t border-[var(--border)]" key={member.id}>
-                  <td className="px-4 py-3 font-medium">{member.nameDisplayAs}</td>
-                  <td className="px-4 py-3">{cleanText(member.latestParty.name)}</td>
-                  <td className="px-4 py-3">
+                  <DataCell className="font-medium" headers="current-member-name">
+                    {member.nameDisplayAs}
+                  </DataCell>
+                  <DataCell headers="current-member-party">
+                    {cleanText(member.latestParty.name)}
+                  </DataCell>
+                  <DataCell headers="current-member-constituency">
                     {cleanText(member.latestHouseMembership.membershipFrom)}
-                  </td>
-                  <td className="px-4 py-3">
+                  </DataCell>
+                  <DataCell boundary={false} headers="current-member-start">
                     {formatDateOnly(member.latestHouseMembership.membershipStartDate)}
-                  </td>
+                  </DataCell>
                 </tr>
               ))}
             </tbody>
@@ -185,41 +181,34 @@ export default async function ParliamentPage() {
         <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[900px] border-collapse text-left text-sm">
             <caption className="sr-only">
-              Upcoming parliamentary business from the UK Parliament calendar API
+              Upcoming parliamentary business from the UK Parliament calendar API. Columns: date;
+              time; House; category; business description; bill link.
             </caption>
             <thead className="bg-[var(--surface-soft)]">
               <tr>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Date
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Time
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  House
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Category
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Business
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Bill
-                </th>
+                <HeaderCell id="upcoming-date">Date</HeaderCell>
+                <HeaderCell id="upcoming-time">Time</HeaderCell>
+                <HeaderCell id="upcoming-house">House</HeaderCell>
+                <HeaderCell id="upcoming-category">Category</HeaderCell>
+                <HeaderCell id="upcoming-business">Business description</HeaderCell>
+                <HeaderCell boundary={false} id="upcoming-bill">
+                  Bill link
+                </HeaderCell>
               </tr>
             </thead>
             <tbody>
               {upcomingEvents.data.map((event) => (
                 <tr className="border-t border-[var(--border)]" key={event.Id}>
-                  <td className="px-4 py-3">{formatDateOnly(event.StartDate)}</td>
-                  <td className="px-4 py-3">{formatEventTime(event.StartTime)}</td>
-                  <td className="px-4 py-3">{cleanText(event.House) ?? "-"}</td>
-                  <td className="px-4 py-3">{cleanText(event.Category ?? event.Type) ?? "-"}</td>
-                  <td className="px-4 py-3 font-medium">
+                  <DataCell headers="upcoming-date">{formatDateOnly(event.StartDate)}</DataCell>
+                  <DataCell headers="upcoming-time">{formatEventTime(event.StartTime)}</DataCell>
+                  <DataCell headers="upcoming-house">{cleanText(event.House) ?? "-"}</DataCell>
+                  <DataCell headers="upcoming-category">
+                    {cleanText(event.Category ?? event.Type) ?? "-"}
+                  </DataCell>
+                  <DataCell className="font-medium" headers="upcoming-business">
                     {cleanText(event.Description ?? event.Type) ?? "Scheduled business"}
-                  </td>
-                  <td className="px-4 py-3">
+                  </DataCell>
+                  <DataCell boundary={false} headers="upcoming-bill">
                     {event.BillPageLink ? (
                       <a
                         className="font-medium text-[var(--accent)]"
@@ -232,7 +221,7 @@ export default async function ParliamentPage() {
                     ) : (
                       "-"
                     )}
-                  </td>
+                  </DataCell>
                 </tr>
               ))}
             </tbody>
@@ -252,35 +241,32 @@ export default async function ParliamentPage() {
         <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[780px] border-collapse text-left text-sm">
             <caption className="sr-only">
-              Recent House of Commons divisions from the official Commons Votes API
+              Recent House of Commons divisions from the official Commons Votes API. Columns:
+              division date; division number; division title; ayes count; noes count.
             </caption>
             <thead className="bg-[var(--surface-soft)]">
               <tr>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Date
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Division
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Title
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Ayes
-                </th>
-                <th className="px-4 py-3 font-semibold" scope="col">
-                  Noes
-                </th>
+                <HeaderCell id="division-date">Division date</HeaderCell>
+                <HeaderCell id="division-number">Division number</HeaderCell>
+                <HeaderCell id="division-title">Division title</HeaderCell>
+                <HeaderCell id="division-ayes">Ayes count</HeaderCell>
+                <HeaderCell boundary={false} id="division-noes">
+                  Noes count
+                </HeaderCell>
               </tr>
             </thead>
             <tbody>
               {divisions.data.map((division) => (
                 <tr className="border-t border-[var(--border)]" key={division.DivisionId}>
-                  <td className="px-4 py-3">{formatDate(division.Date)}</td>
-                  <td className="px-4 py-3">{division.Number}</td>
-                  <td className="px-4 py-3 font-medium">{cleanText(division.Title)}</td>
-                  <td className="px-4 py-3">{division.AyeCount}</td>
-                  <td className="px-4 py-3">{division.NoCount}</td>
+                  <DataCell headers="division-date">{formatDate(division.Date)}</DataCell>
+                  <DataCell headers="division-number">{division.Number}</DataCell>
+                  <DataCell className="font-medium" headers="division-title">
+                    {cleanText(division.Title)}
+                  </DataCell>
+                  <DataCell headers="division-ayes">{division.AyeCount}</DataCell>
+                  <DataCell boundary={false} headers="division-noes">
+                    {division.NoCount}
+                  </DataCell>
                 </tr>
               ))}
             </tbody>
@@ -312,6 +298,50 @@ function SourceLink({ label, url }: Readonly<{ label: string; url: string }>) {
       <span>{label}</span>
       <ExternalLink aria-hidden="true" size={16} />
     </a>
+  );
+}
+
+function HeaderCell({
+  boundary = true,
+  children,
+  id
+}: Readonly<{
+  boundary?: boolean;
+  children: ReactNode;
+  id: string;
+}>) {
+  return (
+    <th className="px-4 py-3 font-semibold" id={id} scope="col">
+      {children}
+      {boundary ? <CrawlerBoundary /> : null}
+    </th>
+  );
+}
+
+function DataCell({
+  boundary = true,
+  children,
+  className,
+  headers
+}: Readonly<{
+  boundary?: boolean;
+  children: ReactNode;
+  className?: string;
+  headers: string;
+}>) {
+  return (
+    <td className={`px-4 py-3 ${className ?? ""}`} headers={headers}>
+      {children}
+      {boundary ? <CrawlerBoundary /> : null}
+    </td>
+  );
+}
+
+function CrawlerBoundary() {
+  return (
+    <span aria-hidden="true" className="sr-only">
+      ;{" "}
+    </span>
   );
 }
 
