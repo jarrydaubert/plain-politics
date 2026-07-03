@@ -440,7 +440,7 @@ function SourceDataNote({ status }: Readonly<{ status: SourceRecordStatus }>) {
 
   return (
     <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-xs font-medium leading-5 text-[#755000]">
-      Data note: this server process is showing a previous successful response from{" "}
+      Data note: showing an earlier successful copy from{" "}
       {formatCheckedAt(status.lastSuccessfulCheckAt)} after a failed check at{" "}
       {formatCheckedAt(status.lastAttemptedCheckAt)}. Durable last-good storage is not live yet.
     </p>

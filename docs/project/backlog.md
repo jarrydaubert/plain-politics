@@ -131,6 +131,9 @@ For context, use:
 - [ ] Add more beginner glossary terms as they appear in real pages.
   Definition of done: New public pages do not introduce unexplained political or parliamentary jargon.
 
+- [ ] Restore broad ideology glossary terms with stronger sourcing.
+  Definition of done: Left wing, right wing, centre/centrist and similar terms use UK civic or academic sources, or are explicitly labelled as reviewed editorial definitions with limitations.
+
 ## Parties, Policies, And Comparison
 
 - [ ] Create a feature branch for the first policy area after v1.0.0 is live.

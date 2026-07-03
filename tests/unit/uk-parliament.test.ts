@@ -98,7 +98,7 @@ describe("UK Parliament source adapters", () => {
     expect(freshMembers.dataStatus.state).toBe("fresh");
     expect(staleMembers.dataStatus.state).toBe("stale");
     expect(staleMembers.data.map((member) => member.nameDisplayAs)).toEqual(["Jack Abbott"]);
-    expect(staleMembers.dataStatus.note).toContain("last successful response");
+    expect(staleMembers.dataStatus.note).toContain("earlier successful copy");
   });
 });
 

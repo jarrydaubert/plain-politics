@@ -372,7 +372,7 @@ async function withLastGoodRecord<T>(
     return attachDataStatus(cached, {
       lastAttemptedCheckAt: attemptedAt,
       lastSuccessfulCheckAt: cached.dataStatus.lastSuccessfulCheckAt,
-      note: "The latest source check failed, so this server process is showing the last successful response it has in memory.",
+      note: "The latest source check failed, so Plain Politics is showing an earlier successful copy held in memory.",
       state: "stale"
     });
   }

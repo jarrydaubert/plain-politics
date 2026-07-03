@@ -66,6 +66,10 @@ export function GoogleAnalytics() {
   }, []);
 
   const updateGoogleConsent = useCallback((analytics: boolean) => {
+    if (!analytics) {
+      clearGoogleAnalyticsCookies();
+    }
+
     if (typeof window === "undefined" || !window.gtag) {
       return;
     }
@@ -76,10 +80,6 @@ export function GoogleAnalytics() {
       ad_user_data: "denied",
       analytics_storage: analytics ? "granted" : "denied"
     });
-
-    if (!analytics) {
-      clearGoogleAnalyticsCookies();
-    }
   }, []);
 
   useEffect(() => {
@@ -187,6 +187,7 @@ function expireCookie(name: string) {
   const base = `${name}=; expires=${expires}; max-age=0; path=/; SameSite=Lax`;
   // biome-ignore lint/suspicious/noDocumentCookie: Clearing legacy GA cookies requires document.cookie.
   document.cookie = base;
+  // Production GA cookies are set for the apex domain; preview domains are covered by the host-only clear above.
   // biome-ignore lint/suspicious/noDocumentCookie: Clearing legacy GA cookies requires document.cookie.
   document.cookie = `${base}; domain=plainpolitics.co.uk`;
   // biome-ignore lint/suspicious/noDocumentCookie: Clearing legacy GA cookies requires document.cookie.

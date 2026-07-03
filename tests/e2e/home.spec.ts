@@ -71,6 +71,46 @@ test("my area lookup shows a friendly invalid postcode error", async ({ page }) 
   expect(parliamentRequests).toBe(0);
 });
 
+test("my area lookup refuses mismatched constituency records", async ({ page }) => {
+  await mockMyAreaLookup(page);
+  await page.route("https://members-api.parliament.uk/api/Members/Search**", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      json: {
+        items: [
+          {
+            value: {
+              id: 5257,
+              latestHouseMembership: {
+                membershipFrom: "Different Constituency",
+                membershipFromId: 4331,
+                membershipStartDate: "2024-07-04T00:00:00"
+              },
+              latestParty: {
+                backgroundColour: "d50000",
+                name: "Labour (Co-op)"
+              },
+              nameDisplayAs: "Rachel Blake",
+              nameFullTitle: "Rachel Blake MP",
+              thumbnailUrl: null
+            }
+          }
+        ],
+        skip: 0,
+        take: 1,
+        totalResults: 1
+      }
+    });
+  });
+
+  await page.goto("/my-area");
+  await page.getByLabel(/enter a postcode/i).fill("SW1A 1AA");
+  await page.getByRole("button", { name: /find my mp/i }).click();
+
+  await expect(page.getByText(/returned different constituencies/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /current mp/i })).toHaveCount(0);
+});
+
 test("live my area lookup resolves a sample postcode", async ({ page }) => {
   test.skip(!process.env.LIVE_E2E, "Set LIVE_E2E=1 to run live third-party lookup smoke.");
 

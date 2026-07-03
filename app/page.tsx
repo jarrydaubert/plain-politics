@@ -513,7 +513,7 @@ async function getHeroSnapshot() {
     checkedAt,
     dataNote:
       staleRecords.length > 0
-        ? "Data note: this server process is showing a previous successful response for one or more live panels."
+        ? "Data note: showing an earlier successful copy of the data for one or more live panels. Durable last-good storage is not live yet."
         : null,
     seatCountLabel: totalSeats
       ? `${String(totalSeats)} Commons seats`
