@@ -1,14 +1,38 @@
 import { AlertCircle, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { getCommonsPartySeatCounts, type PartySeatCount } from "@/sources/uk-parliament";
+import { StructuredData } from "@/components/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+  createMetadata,
+  getRouteMetadata
+} from "@/lib/seo";
+import {
+  getCommonsPartySeatCounts,
+  type PartySeatCount,
+  type SourceRecordStatus
+} from "@/sources/uk-parliament";
 
 export const revalidate = 3600;
+
+const pageMetadata = getRouteMetadata("/parties");
+
+export const metadata = createMetadata(pageMetadata);
 
 export default async function PartiesPage() {
   const snapshot = await getPartySnapshot();
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
+      <StructuredData
+        data={[
+          buildWebPageJsonLd(pageMetadata),
+          buildBreadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Parties", path: "/parties" }
+          ])
+        ]}
+      />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
@@ -26,9 +50,15 @@ export default async function PartiesPage() {
                 <caption className="sr-only">Current House of Commons party seat counts</caption>
                 <thead className="bg-[var(--surface-soft)]">
                   <tr>
-                    <th className="px-4 py-3 font-semibold">Party</th>
-                    <th className="px-4 py-3 font-semibold">Commons seats</th>
-                    <th className="px-4 py-3 font-semibold">What this means</th>
+                    <th className="px-4 py-3 font-semibold" scope="col">
+                      Party
+                    </th>
+                    <th className="px-4 py-3 font-semibold" scope="col">
+                      Commons seats
+                    </th>
+                    <th className="px-4 py-3 font-semibold" scope="col">
+                      What this means
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,6 +94,7 @@ export default async function PartiesPage() {
               Party policy profiles are intentionally not shown until reviewed source-backed text is
               ready.
             </p>
+            <SourceDataNote status={snapshot.dataStatus} />
             <a
               className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]"
               href={snapshot.sourceUrl}
@@ -99,6 +130,7 @@ async function getPartySnapshot() {
 
     return {
       parties: record.data.filter((party) => party.total > 0),
+      dataStatus: record.dataStatus,
       retrievedAt: record.sourceDocument.retrievedAt,
       sourceUrl: record.sourceDocument.url,
       status: "available" as const
@@ -117,4 +149,18 @@ function formatUkDateTime(isoDate: string) {
     timeStyle: "short",
     timeZone: "Europe/London"
   }).format(new Date(isoDate));
+}
+
+function SourceDataNote({ status }: Readonly<{ status: SourceRecordStatus }>) {
+  if (status.state === "fresh") {
+    return null;
+  }
+
+  return (
+    <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-sm font-medium leading-6 text-[#755000]">
+      Data note: showing the last successful check from{" "}
+      {formatUkDateTime(status.lastSuccessfulCheckAt)}. Latest attempt was{" "}
+      {formatUkDateTime(status.lastAttemptedCheckAt)}.
+    </p>
+  );
 }

@@ -1,12 +1,9 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { createMetadata, getRouteMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  robots: {
-    follow: false,
-    index: false
-  }
-};
+const pageMetadata = getRouteMetadata("/policies");
+
+export const metadata = createMetadata(pageMetadata);
 
 export default function PoliciesPage() {
   return (
