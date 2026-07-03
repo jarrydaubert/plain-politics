@@ -195,6 +195,12 @@ async function lookupMyArea(postcode: string): Promise<MyAreaLookupResult> {
     throw new Error("No current Commons MP was returned for that postcode.");
   }
 
+  if (!isSameConstituency(member.latestHouseMembership.membershipFrom, constituencyName)) {
+    throw new Error(
+      "The postcode source and Parliament source returned different constituencies. Plain Politics is not showing an MP until the public records agree."
+    );
+  }
+
   const votesUrl = `${MEMBERS_API_BASE}/Members/${member.id}/Voting?house=Commons&page=1`;
   const questionsUrl = `${MEMBERS_API_BASE}/Members/${member.id}/WrittenQuestions?house=Commons&page=1`;
 
@@ -482,4 +488,17 @@ function formatDateTime(value: string) {
     dateStyle: "medium",
     timeStyle: "short"
   }).format(new Date(value));
+}
+
+function isSameConstituency(first: string, second: string) {
+  return normalizeConstituency(first) === normalizeConstituency(second);
+}
+
+function normalizeConstituency(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
 }

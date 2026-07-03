@@ -26,10 +26,6 @@ const sourceLinks = [
   {
     name: "Electoral Commission voting and elections",
     url: "https://www.electoralcommission.org.uk/voting-and-elections"
-  },
-  {
-    name: "TIME explainer on left and right",
-    url: "https://time.com/5673239/left-right-politics-origins/"
   }
 ] as const;
 

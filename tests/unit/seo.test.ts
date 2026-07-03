@@ -27,6 +27,7 @@ const staticPublicRoutes = [
   "/parties",
   "/policies",
   "/polls",
+  "/privacy",
   "/sources",
   "/status"
 ];
@@ -104,6 +105,7 @@ describe("sitemap routes", () => {
     expect(routes).toContain("/");
     expect(routes).toContain("/about");
     expect(routes).toContain("/parliament");
+    expect(routes).toContain("/privacy");
     expect(routes).toContain("/status");
     expect(routes).toContain("/glossary/mp");
     expect(routes).toContain("/glossary/division");

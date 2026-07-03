@@ -17,6 +17,7 @@ import {
   getCommonsPartySeatCounts,
   getRecentCommonsDivisions,
   getUpcomingParliamentEvents,
+  PARLIAMENT_SOURCE_REVALIDATE_SECONDS,
   type ParliamentEvent,
   type PartySeatCount,
   type SourceRecordStatus
@@ -167,6 +168,13 @@ export default async function HomePage() {
                   <p className="mt-2 text-sm leading-6 text-[#33425b]">
                     Live Parliament records, turned into plain English.
                   </p>
+                  {snapshot.checkedAt ? (
+                    <p className="mt-2 text-xs font-medium leading-5 text-[#536176]">
+                      Checked through the app cache {formatCheckedAt(snapshot.checkedAt)}. Source
+                      responses may be cached for up to{" "}
+                      {formatCacheWindow(PARLIAMENT_SOURCE_REVALIDATE_SECONDS)}.
+                    </p>
+                  ) : null}
                   {snapshot.dataNote ? (
                     <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-xs font-medium leading-5 text-[#755000]">
                       {snapshot.dataNote}
@@ -495,11 +503,17 @@ async function getHeroSnapshot() {
   const staleRecords = [seatCountsRecord, eventsRecord, divisionsRecord].filter(
     (record) => record?.dataStatus.state === "stale"
   );
+  const checkedAt = maxIsoDate(
+    [seatCountsRecord, eventsRecord, divisionsRecord]
+      .map((record) => record?.sourceDocument.retrievedAt)
+      .filter((value): value is string => Boolean(value))
+  );
 
   return {
+    checkedAt,
     dataNote:
       staleRecords.length > 0
-        ? "Data note: showing the last successful Parliament data for one or more live panels."
+        ? "Data note: showing an earlier successful copy of the data for one or more live panels. Durable last-good storage is not live yet."
         : null,
     seatCountLabel: totalSeats
       ? `${String(totalSeats)} Commons seats`
@@ -512,9 +526,7 @@ async function getHeroSnapshot() {
         href: "/parliament" as Route,
         icon: <Landmark aria-hidden="true" size={19} />,
         label: "Next in Parliament",
-        meaning: nextEvent
-          ? "A scheduled item is coming up in Parliament."
-          : "The calendar did not return a next item.",
+        meaning: nextEvent ? eventMeaning(nextEvent) : "The calendar did not return a next item.",
         title: nextEvent ? eventTitle(nextEvent) : "Quiet calendar"
       },
       {
@@ -525,7 +537,7 @@ async function getHeroSnapshot() {
         icon: <Vote aria-hidden="true" size={19} />,
         label: "Recent vote",
         meaning: recentDivision
-          ? "The record shows how the vote was counted."
+          ? divisionMeaning(recentDivision)
           : "The vote feed did not return a recent result.",
         title: recentDivision ? truncateText(recentDivision.Title, 48) : "Checking recent votes"
       }
@@ -541,6 +553,51 @@ function getSettledRecord<T>(
   }>
 ) {
   return result.status === "fulfilled" ? result.value : undefined;
+}
+
+function eventMeaning(event: ParliamentEvent) {
+  const house = cleanText(event.House ?? event.LeadHouse) ?? "Parliament";
+  const category = cleanText(event.Category ?? event.Type) ?? "business";
+
+  return `${house} has ${category.toLowerCase()} scheduled. The listing is a timetable record, not an outcome.`;
+}
+
+function divisionMeaning(division: CommonsDivision) {
+  if (division.AyeCount > division.NoCount) {
+    return `The Aye side had more votes in this recorded division: ${String(division.AyeCount)} to ${String(division.NoCount)}.`;
+  }
+
+  if (division.NoCount > division.AyeCount) {
+    return `The No side had more votes in this recorded division: ${String(division.NoCount)} to ${String(division.AyeCount)}.`;
+  }
+
+  return `The recorded vote was tied at ${String(division.AyeCount)} votes each side.`;
+}
+
+function maxIsoDate(values: string[]) {
+  return values.sort((a, b) => b.localeCompare(a))[0] ?? null;
+}
+
+function formatCheckedAt(value: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/London"
+  }).format(new Date(value));
+}
+
+function formatCacheWindow(seconds: number) {
+  if (seconds % 60 === 0) {
+    return `${String(seconds / 60)} minutes`;
+  }
+
+  return `${String(seconds)} seconds`;
+}
+
+function cleanText(value: string | null | undefined) {
+  const cleaned = value?.replace(/\s+/g, " ").trim();
+
+  return cleaned || undefined;
 }
 
 function eventTitle(event: ParliamentEvent) {

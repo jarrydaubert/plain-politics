@@ -33,10 +33,16 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en-GB">
       <body>
         <StructuredData data={buildSiteIdentityJsonLd()} />
+        <a
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-[var(--accent)] focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
+          href="#main-content"
+        >
+          Skip to content
+        </a>
         {analyticsEnabled ? <VercelAnalytics /> : null}
         <Suspense fallback={null}>{analyticsEnabled ? <GoogleAnalytics /> : null}</Suspense>
         <SiteHeader />
-        {children}
+        <div id="main-content">{children}</div>
         <SiteFooter />
         <AnalyticsConsentBanner />
       </body>

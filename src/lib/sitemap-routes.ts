@@ -11,12 +11,12 @@ export type SitemapRoute = {
 
 const contentReviewedAt = new Date(`${CONTENT_LAST_REVIEWED}T00:00:00.000Z`);
 
-export function getSitemapRoutes(now = new Date()): SitemapRoute[] {
+export function getSitemapRoutes(_now = new Date()): SitemapRoute[] {
   const staticRoutes = routeMetadata
     .filter((route) => route.index)
     .map((route) => ({
       changeFrequency: route.changeFrequency,
-      lastModified: route.changeFrequency === "hourly" ? now : contentReviewedAt,
+      lastModified: contentReviewedAt,
       path: route.path,
       priority: route.priority
     }));
