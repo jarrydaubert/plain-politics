@@ -1,6 +1,6 @@
 # Competitive Landscape Tracker
 
-Last reviewed: 2026-07-01
+Last reviewed: 2026-07-03
 
 ## Positioning Hypothesis
 
@@ -52,6 +52,16 @@ Build the calmest, clearest place to answer:
 |---|---|---|---|---|
 | Full Fact | <https://fullfact.org/> | Public fact-checking and evidence-led explainers. | Editorial discipline, corrections culture, clear uncertainty handling. | Plain Politics should not rate claims true/false by default; it should track sourced political evidence and changes. |
 
+### Social Explainer and Civic Media Brands
+
+These are adjacent brands rather than direct data-product competitors. They show distribution,
+cadence, education, and commerce patterns worth studying without copying positioning, copy,
+product names, card mechanics, visual identity, or tone.
+
+| Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
+|---|---|---|---|---|
+| Simple Politics | <https://www.simplepolitics.co.uk/> | Social-first UK politics explainer brand with daily social posting, weekly email, podcast, shop, donations, partnerships, and schools work. Their shop extends the brand into books, card games, bundles, merch, and custom/personalised products. | Cadence, audience questions, weekly recap structure, conversation-starter formats, classroom/teacher angle, and lightweight products that make politics less intimidating. | Plain Politics should not try to out-Simple them on humour or social tone. It should own source-backed civic utility: postcode relevance, data status, public-record receipts, MP/vote/bill tracking, corrections, and calm explainers. |
+
 ### Election and Candidate Information
 
 | Product | Source | What It Does Well | What To Borrow | Gap For Plain Politics |
@@ -99,6 +109,37 @@ These are not direct UK competitors, but they show useful product patterns from 
 9. Prefer "show me what happened" over "tell me what to think"; avoid ranking politicians or parties without a published methodology.
 10. Archive past elections, explainers, source snapshots, and changes so the site becomes more valuable with time.
 
+## Adjacent Media Pattern: Simple Politics
+
+Simple Politics is best understood as a media/community brand with commerce attached, not as a
+live civic data utility. Their own site presents social posting, a Friday email, podcast, shop,
+donations, platform revenue, partnerships, grants/support, and schools work as parts of the
+operation. Their shop shows a clear "politics as conversation starter" pattern through books, card
+games, bundles, merch, and custom product ideas.
+
+Plain Politics should borrow format logic, not brand expression:
+
+1. Regular cadence: a weekly Plain Week briefing with source links and checked times.
+2. Audience questions: Ask Plain Politics prompts that can become permanent explainers.
+3. Conversation starters: share cards for terms, votes, bills, and explainers with source receipts.
+4. Classroom utility: neutral worksheets, teacher packs, and source-linked lesson prompts.
+5. Lightweight products later: printable glossary, MP contact worksheet, election checklist, and civic starter packs.
+
+Plain Politics-native adaptations:
+
+1. My MP Watch: postcode-led feed for votes, debates, written questions, and constituency mentions.
+2. Vote decoder pages: what was voted on, what Aye/No meant, how parties voted, how the user's MP voted, what happens next, and the official source.
+3. Who can fix this: issue maps that separate council, MP/Parliament, devolved government, regulator, court, and private provider responsibilities.
+4. Public-record receipt cards: source, checked time, and URL on every shareable card.
+5. Topic hubs: current bills, recent votes, responsible departments, key terms, and explainers by issue.
+6. Challenge a claim: a visible route for users to flag missing or questionable sources.
+
+Do not copy:
+
+1. Simple Politics brand, product names, card game setup, product copy, visual identity, or tone.
+2. Their "friendly/funny politics" lane. Plain Politics should be checked, local, source-backed, and understandable.
+3. Their exact shop or social formats. Use the underlying pattern only when it strengthens public-record trust.
+
 ## Upstream Source Standards To Borrow
 
 ### British Polling Council Disclosure Metadata
@@ -141,6 +182,7 @@ Prefer official sources for canonical records:
 10. From Wahl-O-Mat and smartvote: gamified civic learning, but with clear "not voting advice" limits.
 11. From They Vote For You and GovTrack: recent edits, follows, alerts, and public data reuse.
 12. From Open States and OpenAustralia: public infrastructure posture, APIs, downloads, and contribution/error reporting.
+13. From Simple Politics: weekly cadence, audience questions, education packs, and conversation-starter products, adapted with source receipts and neutral public-record framing.
 
 ## Differentiation Strategy
 
@@ -194,3 +236,9 @@ For each review, record:
 
 - Added international civic product benchmarks from New Zealand, the United States, Canada, Australia, Germany, and Switzerland.
 - Reframed borrowed UX ideas around local-first onboarding, guided exploration, local-only favourites, change history, public data, and educational gamification.
+
+### 2026-07-03
+
+- Added Simple Politics as an adjacent social explainer and civic media benchmark.
+- Captured borrowable format logic: weekly cadence, audience questions, conversation starters, classroom materials, and product/community loops.
+- Added guardrails to avoid copying their brand, copy, product names, card-game mechanics, visual identity, or tone.

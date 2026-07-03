@@ -13,9 +13,9 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-# OpenAI training crawler. Review separately if the training policy changes.
+# OpenAI training crawler. Keep disabled unless Plain Politics explicitly opts into training use.
 User-agent: GPTBot
-Allow: /
+Disallow: /
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;
