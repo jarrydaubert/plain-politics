@@ -1,9 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { featuredParties, sourceReferences } from "@/data/demo-politics";
+import { createMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return featuredParties.map((party) => ({ slug: party.slug }));
+}
+
+export async function generateMetadata({
+  params
+}: Readonly<{ params: Promise<{ slug: string }> }>): Promise<Metadata> {
+  const { slug } = await params;
+  const party = featuredParties.find((item) => item.slug === slug);
+
+  return createMetadata({
+    description:
+      party?.summary ??
+      "Party profile placeholder. Source-backed party profiles are not published yet.",
+    index: false,
+    path: `/parties/${slug}`,
+    title: party
+      ? `${party.name} profile status - Plain Politics`
+      : "Party profile - Plain Politics"
+  });
 }
 
 export default async function PartyDetailPage({

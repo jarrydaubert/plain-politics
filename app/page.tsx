@@ -10,14 +10,21 @@ import {
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { StructuredData } from "@/components/structured-data";
+import { buildWebPageJsonLd, createMetadata, getRouteMetadata } from "@/lib/seo";
 import {
   type CommonsDivision,
   getCommonsPartySeatCounts,
   getRecentCommonsDivisions,
   getUpcomingParliamentEvents,
   type ParliamentEvent,
-  type PartySeatCount
+  type PartySeatCount,
+  type SourceRecordStatus
 } from "@/sources/uk-parliament";
+
+const pageMetadata = getRouteMetadata("/");
+
+export const metadata = createMetadata(pageMetadata);
 
 const primaryJourneys = [
   {
@@ -83,19 +90,19 @@ const normalQuestions = [
 const quickReads = [
   {
     description: "The weekly Commons session where MPs question the Prime Minister.",
-    href: "/glossary#traditions",
+    href: "/explainers/what-is-pmqs" as Route,
     label: "2 min",
     title: "What is PMQs?"
   },
   {
     description: "The party discipline system that shapes how MPs vote.",
-    href: "/glossary#parliament",
+    href: "/explainers/what-does-a-whip-do" as Route,
     label: "2 min",
     title: "What does a whip do?"
   },
   {
     description: "Why some votes are called divisions, and what ayes and noes mean.",
-    href: "/glossary#parliament",
+    href: "/explainers/how-commons-votes-work" as Route,
     label: "3 min",
     title: "How do Commons votes work?"
   }
@@ -106,6 +113,7 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen">
+      <StructuredData data={buildWebPageJsonLd(pageMetadata)} />
       <section className="relative overflow-hidden border-b border-[#d8d3c7] bg-[#fbf8ee]">
         <div className="absolute inset-x-0 top-0 h-[3px] bg-[#175bc7]" />
         <div
@@ -159,6 +167,11 @@ export default async function HomePage() {
                   <p className="mt-2 text-sm leading-6 text-[#33425b]">
                     Live Parliament records, turned into plain English.
                   </p>
+                  {snapshot.dataNote ? (
+                    <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-xs font-medium leading-5 text-[#755000]">
+                      {snapshot.dataNote}
+                    </p>
+                  ) : null}
                 </div>
                 <div className="mt-2 divide-y divide-[#ded7ca]">
                   {snapshot.todayItems.map((item) => (
@@ -245,7 +258,7 @@ export default async function HomePage() {
             </div>
             <Link
               className="hidden text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--accent-strong)] sm:inline-flex"
-              href="/glossary"
+              href="/explainers"
             >
               View all
             </Link>
@@ -479,8 +492,15 @@ async function getHeroSnapshot() {
   const totalSeats = seatCounts?.reduce((sum, row) => sum + row.total, 0);
   const nextEvent = events?.[0];
   const recentDivision = divisions?.[0];
+  const staleRecords = [seatCountsRecord, eventsRecord, divisionsRecord].filter(
+    (record) => record?.dataStatus.state === "stale"
+  );
 
   return {
+    dataNote:
+      staleRecords.length > 0
+        ? "Data note: showing the last successful Parliament data for one or more live panels."
+        : null,
     seatCountLabel: totalSeats
       ? `${String(totalSeats)} Commons seats`
       : "Commons seat count unavailable",
@@ -514,7 +534,11 @@ async function getHeroSnapshot() {
 }
 
 function getSettledRecord<T>(
-  result: PromiseSettledResult<{ data: T; sourceDocument: { retrievedAt: string } }>
+  result: PromiseSettledResult<{
+    data: T;
+    dataStatus: SourceRecordStatus;
+    sourceDocument: { retrievedAt: string };
+  }>
 ) {
   return result.status === "fulfilled" ? result.value : undefined;
 }

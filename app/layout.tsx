@@ -7,38 +7,14 @@ import { GoogleAnalytics } from "@/components/google-analytics";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StructuredData } from "@/components/structured-data";
+import { buildSiteIdentityJsonLd, createMetadata, getRouteMetadata, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
-const siteUrl = "https://plainpolitics.co.uk";
-const siteDescription =
-  "A beginner-friendly UK politics starter for finding your MP, learning Parliament terms, and checking public sources.";
-
-const websiteJsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    description: siteDescription,
-    inLanguage: "en-GB",
-    name: "Plain Politics",
-    publisher: {
-      "@type": "Organization",
-      name: "Plain Politics",
-      url: siteUrl
-    },
-    url: siteUrl
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Plain Politics",
-    url: siteUrl
-  }
-];
+const homeMetadata = getRouteMetadata("/");
 
 export const metadata: Metadata = {
-  title: "Plain Politics",
-  description: siteDescription,
-  metadataBase: new URL(siteUrl),
+  ...createMetadata(homeMetadata),
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
@@ -47,32 +23,7 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
   },
-  manifest: "/site.webmanifest",
-  alternates: {
-    canonical: "/"
-  },
-  openGraph: {
-    description: siteDescription,
-    images: [
-      {
-        alt: "Plain Politics - British politics, without the fog",
-        height: 630,
-        url: "/og-image.png",
-        width: 1200
-      }
-    ],
-    locale: "en_GB",
-    siteName: "Plain Politics",
-    title: "Plain Politics",
-    type: "website",
-    url: "/"
-  },
-  twitter: {
-    card: "summary_large_image",
-    description: siteDescription,
-    images: ["/og-image.png"],
-    title: "Plain Politics"
-  }
+  manifest: "/site.webmanifest"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -81,7 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en-GB">
       <body>
-        <StructuredData data={websiteJsonLd} />
+        <StructuredData data={buildSiteIdentityJsonLd()} />
         {analyticsEnabled ? <VercelAnalytics /> : null}
         <Suspense fallback={null}>{analyticsEnabled ? <GoogleAnalytics /> : null}</Suspense>
         <SiteHeader />

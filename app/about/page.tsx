@@ -1,4 +1,15 @@
 import Link from "next/link";
+import { StructuredData } from "@/components/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+  createMetadata,
+  getRouteMetadata
+} from "@/lib/seo";
+
+const pageMetadata = getRouteMetadata("/about");
+
+export const metadata = createMetadata(pageMetadata);
 
 const principles = [
   "No source means no factual claim.",
@@ -11,6 +22,15 @@ const principles = [
 export default function AboutPage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">
+      <StructuredData
+        data={[
+          buildWebPageJsonLd(pageMetadata),
+          buildBreadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" }
+          ])
+        ]}
+      />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>

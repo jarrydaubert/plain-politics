@@ -332,3 +332,15 @@ export const glossaryTerms: GlossaryTerm[] = [
 ];
 
 export const glossaryCategories = ["Parliament", "Elections", "Parties", "Traditions"] as const;
+
+export function glossaryTermSlug(term: Pick<GlossaryTerm, "term">) {
+  return term.term
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function findGlossaryTermBySlug(slug: string) {
+  return glossaryTerms.find((term) => glossaryTermSlug(term) === slug);
+}

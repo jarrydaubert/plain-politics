@@ -1,10 +1,30 @@
 import { BookOpenText, Landmark, MapPin } from "lucide-react";
 import Link from "next/link";
 import { MyAreaLookup } from "@/components/my-area-lookup";
+import { StructuredData } from "@/components/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+  createMetadata,
+  getRouteMetadata
+} from "@/lib/seo";
+
+const pageMetadata = getRouteMetadata("/my-area");
+
+export const metadata = createMetadata(pageMetadata);
 
 export default function MyAreaPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
+      <StructuredData
+        data={[
+          buildWebPageJsonLd(pageMetadata),
+          buildBreadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "My area", path: "/my-area" }
+          ])
+        ]}
+      />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>

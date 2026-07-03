@@ -1,6 +1,18 @@
 import { BookOpenText, ExternalLink, GraduationCap } from "lucide-react";
 import Link from "next/link";
-import { glossaryCategories, glossaryTerms } from "@/data/glossary";
+import { StructuredData } from "@/components/structured-data";
+import { glossaryCategories, glossaryTermSlug, glossaryTerms } from "@/data/glossary";
+import {
+  buildBreadcrumbJsonLd,
+  buildDefinedTermSetJsonLd,
+  buildWebPageJsonLd,
+  createMetadata,
+  getRouteMetadata
+} from "@/lib/seo";
+
+const pageMetadata = getRouteMetadata("/glossary");
+
+export const metadata = createMetadata(pageMetadata);
 
 const sourceLinks = [
   {
@@ -22,8 +34,23 @@ const sourceLinks = [
 ] as const;
 
 export default function GlossaryPage() {
+  const termsWithSlugs = glossaryTerms.map((term) => ({
+    ...term,
+    slug: glossaryTermSlug(term)
+  }));
+
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
+      <StructuredData
+        data={[
+          buildWebPageJsonLd(pageMetadata),
+          buildBreadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Glossary", path: "/glossary" }
+          ]),
+          buildDefinedTermSetJsonLd(termsWithSlugs)
+        ]}
+      />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
@@ -56,17 +83,18 @@ export default function GlossaryPage() {
 
       <section className="mt-10">
         <h2 className="text-2xl font-semibold">Browse by area</h2>
-        <div className="mt-4 flex flex-wrap gap-3">
+        <ul className="mt-4 flex flex-wrap gap-3" aria-label="Glossary categories">
           {glossaryCategories.map((category) => (
-            <a
-              className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold transition hover:border-[var(--accent)]"
-              href={`#${category.toLowerCase()}`}
-              key={category}
-            >
-              {category}
-            </a>
+            <li key={category}>
+              <a
+                className="inline-flex rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold transition hover:border-[var(--accent)]"
+                href={`#${category.toLowerCase()}`}
+              >
+                {category}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       <div className="mt-10 grid gap-10">
@@ -77,38 +105,49 @@ export default function GlossaryPage() {
             <section id={category.toLowerCase()} key={category}>
               <h2 className="text-2xl font-semibold">{category}</h2>
               <div className="mt-4 grid gap-4 xl:grid-cols-2">
-                {terms.map((entry) => (
-                  <article
-                    className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
-                    key={entry.term}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-semibold uppercase text-[var(--muted)]">
-                          {entry.category}
-                        </p>
-                        <h3 className="mt-1 text-xl font-semibold">{entry.term}</h3>
-                      </div>
-                      <a
-                        aria-label={`Open source for ${entry.term}`}
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border)] text-[var(--accent)] transition hover:border-[var(--accent)]"
-                        href={entry.sourceUrl}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        <ExternalLink aria-hidden="true" size={17} />
-                      </a>
-                    </div>
+                {terms.map((entry) => {
+                  const slug = glossaryTermSlug(entry);
 
-                    <p className="mt-4 leading-7">{entry.plainEnglish}</p>
-                    <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                      {entry.whyItMatters}
-                    </p>
-                    <p className="mt-4 border-t border-[var(--border)] pt-3 text-sm text-[var(--muted)]">
-                      Source: {entry.sourceName}
-                    </p>
-                  </article>
-                ))}
+                  return (
+                    <article
+                      className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
+                      key={entry.term}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase text-[var(--muted)]">
+                            {entry.category}
+                          </p>
+                          <h3 className="mt-1 text-xl font-semibold">
+                            <Link
+                              className="transition hover:text-[var(--accent)]"
+                              href={`/glossary/${slug}`}
+                            >
+                              {entry.term}
+                            </Link>
+                          </h3>
+                        </div>
+                        <a
+                          aria-label={`Open source for ${entry.term}: ${entry.sourceName}`}
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border)] text-[var(--accent)] transition hover:border-[var(--accent)]"
+                          href={entry.sourceUrl}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          <ExternalLink aria-hidden="true" size={17} />
+                        </a>
+                      </div>
+
+                      <p className="mt-4 leading-7">{entry.plainEnglish}</p>
+                      <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                        {entry.whyItMatters}
+                      </p>
+                      <p className="mt-4 border-t border-[var(--border)] pt-3 text-sm text-[var(--muted)]">
+                        Source: {entry.sourceName}
+                      </p>
+                    </article>
+                  );
+                })}
               </div>
             </section>
           );

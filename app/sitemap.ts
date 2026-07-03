@@ -1,29 +1,14 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = "https://plainpolitics.co.uk";
-
-const staticRoutes = [
-  "",
-  "/about",
-  "/glossary",
-  "/methodology",
-  "/my-area",
-  "/parliament",
-  "/parties",
-  "/sources"
-] as const;
+import { SITE_URL } from "@/lib/seo";
+import { getSitemapRoutes } from "@/lib/sitemap-routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const routes = [
-    ...staticRoutes.map((route) => ({
-      changeFrequency:
-        route === "" || route === "/parliament" ? ("hourly" as const) : ("weekly" as const),
-      lastModified: now,
-      priority: route === "" ? 1 : 0.7,
-      url: `${siteUrl}${route}`
-    }))
-  ];
 
-  return routes;
+  return getSitemapRoutes(now).map((route) => ({
+    changeFrequency: route.changeFrequency,
+    lastModified: route.lastModified,
+    priority: route.priority,
+    url: `${SITE_URL}${route.path === "/" ? "" : route.path}`
+  }));
 }

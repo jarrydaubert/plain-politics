@@ -1,6 +1,17 @@
 import { DatabaseZap, ExternalLink, ListChecks } from "lucide-react";
 import Link from "next/link";
+import { StructuredData } from "@/components/structured-data";
 import { datapointGroups, type SourceHook, sourceHooks } from "@/data/source-catalogue";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+  createMetadata,
+  getRouteMetadata
+} from "@/lib/seo";
+
+const pageMetadata = getRouteMetadata("/sources");
+
+export const metadata = createMetadata(pageMetadata);
 
 const statusLabels: Record<SourceHook["status"], string> = {
   candidate: "Candidate",
@@ -14,6 +25,15 @@ export default function SourcesPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
+      <StructuredData
+        data={[
+          buildWebPageJsonLd(pageMetadata),
+          buildBreadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Sources", path: "/sources" }
+          ])
+        ]}
+      />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
         Back to dashboard
       </Link>
@@ -103,7 +123,7 @@ function SourceCard({ source }: Readonly<{ source: SourceHook }>) {
           <p className="mt-1 text-sm text-[var(--muted)]">{source.publisher}</p>
         </div>
         <a
-          aria-label={`Open source for ${source.name}`}
+          aria-label={`Open official source for ${source.name}`}
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border)] text-[var(--accent)] transition hover:border-[var(--accent)]"
           href={source.sourceUrl}
           rel="noreferrer"

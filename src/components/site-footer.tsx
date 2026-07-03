@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AnalyticsSettingsButton } from "@/components/analytics-settings-button";
+import { DataStatusBadge } from "@/components/data-status-badge";
 
 const footerLinks = [
   { href: "/about", label: "About" },
@@ -43,6 +44,9 @@ export function SiteFooter() {
             )}
             <AnalyticsSettingsButton />
           </nav>
+          <div>
+            <DataStatusBadge />
+          </div>
 
           <p className="max-w-3xl text-xs leading-5 text-[var(--muted)]">
             Uses public data from UK Parliament APIs and postcodes.io/ONS where displayed.
