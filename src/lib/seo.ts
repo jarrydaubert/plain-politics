@@ -5,7 +5,7 @@ import type { GlossaryTerm } from "@/data/glossary";
 export const SITE_NAME = "Plain Politics";
 export const SITE_URL = "https://plainpolitics.co.uk";
 export const DEFAULT_OG_IMAGE = "/og-image.png";
-export const CONTENT_LAST_REVIEWED = "2026-07-03";
+export const CONTENT_LAST_REVIEWED = "2026-07-04";
 
 export type RouteMetadataConfig = {
   path: string;
@@ -113,24 +113,6 @@ export const routeMetadata = [
     path: "/methodology",
     priority: 0.1,
     title: "Methodology - Plain Politics"
-  },
-  {
-    changeFrequency: "monthly",
-    description:
-      "Policy comparison is planned but not yet part of the source-backed public launch.",
-    index: false,
-    path: "/policies",
-    priority: 0.1,
-    title: "Policy comparison status - Plain Politics"
-  },
-  {
-    changeFrequency: "monthly",
-    description:
-      "Polling pages are planned but not yet published because source and methodology checks are not ready.",
-    index: false,
-    path: "/polls",
-    priority: 0.1,
-    title: "Polling status - Plain Politics"
   }
 ] as const satisfies RouteMetadataConfig[];
 

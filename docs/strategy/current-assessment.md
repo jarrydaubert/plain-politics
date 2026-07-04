@@ -1,6 +1,6 @@
 # Current Product Assessment
 
-Last updated: 2026-07-02
+Last updated: 2026-07-04
 
 ## Short Synopsis
 
@@ -20,7 +20,7 @@ The strongest version is not a pundit, prediction engine, or campaign tool. It i
 
 ## What The Repo Is Today
 
-This is now a planning, operating-standards, and early application repo. It contains product requirements, architecture direction, methodology, quality gates, competitive research, a Bun/Next.js app, a Supabase migration, tests, CI, deployment configuration, privacy-safe analytics setup, and the first live UK Parliament source hooks.
+This is a deployed product and operating-standards repo. It contains product requirements, architecture direction, methodology, quality gates, competitive research, a Bun/Next.js app, a Supabase migration, tests, required CI checks, deployment configuration, privacy-safe analytics, and live public-source integrations.
 
 Now present:
 
@@ -29,11 +29,12 @@ Now present:
 3. Supabase schema migration
 4. Bun test and Playwright configuration
 5. Typed source contracts
-6. Official UK Parliament source hooks for Commons party seats, current member samples, and recent divisions
+6. Official UK Parliament source hooks for Commons party seats, upcoming business, recent divisions, and current-member quality checks
 7. Source/datapoint catalogue pages and docs
-8. Beginner-first homepage, postcode starter, glossary, sources, about, and footer attribution
-9. GitHub Actions CI and CodeQL workflow
-10. Vercel/Cloudflare domain and analytics runbook notes
+8. Beginner-first homepage, postcode starter, glossary, explainers, sources, About, Privacy, and footer attribution
+9. Public data-status checks with healthy, degraded, and offline states
+10. Deterministic blocking E2E checks plus separate non-blocking live-source smoke tests
+11. GitHub Actions CI, CodeQL, Vercel deployment, and Cloudflare domain/analytics runbook notes
 
 Still not yet present:
 
@@ -43,8 +44,8 @@ Still not yet present:
 4. Editorial/reviewer UI
 5. Full source excerpt drawer
 6. Real manifesto, polling, donation, or change-feed ingestion
-7. Last-good-data fallback for public pages when live sources fail
-8. Source health alerting after ingestion persistence exists
+7. Durable last-good-data fallback across deployments and serverless instances
+8. Persisted source-health history and operator alerting
 
 ## What Is Already Well Specified
 
@@ -69,7 +70,7 @@ The highest-value gaps are implementation-grade specificity and proof:
 
 1. Live hooks render in memory; they do not yet persist through Supabase.
 2. No scheduled ingestion jobs.
-3. No hard freshness thresholds by dataset.
+3. Source families do not yet have persisted cadence and freshness configuration.
 4. Source-reference tests exist for schemas, but not yet for rendered pages or all public claims.
 5. No source excerpt validator for parsed text spans.
 6. No search benchmark dataset.
@@ -77,7 +78,7 @@ The highest-value gaps are implementation-grade specificity and proof:
 8. No reviewer workflow or correction UI.
 9. Source panels show provenance metadata, but not a full evidence drawer with exact highlighted spans.
 10. No public polling average implementation.
-11. Product instrumentation is documented, but production behaviour still needs post-deploy verification.
+11. Production analytics behaviour still needs its planned post-deploy privacy verification.
 
 ## Strategic Opportunity
 
@@ -124,7 +125,7 @@ Current v1.0.0 slice:
 1. Beginner homepage that makes the product obvious within ten seconds.
 2. Postcode to constituency/current MP using public sources.
 3. Glossary and short civic explainers for the terms beginners meet first.
-4. Live Parliament records for seats, current members, upcoming business, and recent divisions.
+4. Live Parliament records for seats, upcoming business, and recent divisions, with current-MP lookup starting from `/my-area`.
 5. Sources, About, attribution, contact/corrections, and privacy-safe analytics.
 6. Basic source failure, empty, unavailable, and freshness states.
 7. CI, deployment, and branch protection strong enough to iterate from a live URL.
@@ -167,4 +168,4 @@ Polling belongs in the product vision, but it should not block v1 unless source 
 
 The project is worth pursuing because the problem is not lack of political content. The problem is lack of verified, comparable, current, non-spin public information in one calm interface.
 
-The repo has the right standards. The next milestone should turn those standards into a narrow, working proof.
+The public starter now proves the basic route and trust model. The next milestone is to finish the remaining launch checks, then replace process-local source memory with persisted snapshots and durable last-good data.

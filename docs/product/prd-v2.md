@@ -234,7 +234,7 @@ The core provenance chain is:
 ## 20) Delivery Strategy
 
 1. v1.0.0 public starter: beginner homepage, postcode-to-MP, glossary, live Parliament records, sources/about/contact, deployment, and basic quality gates.
-2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, source health, and last-good-data fallbacks.
+2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, durable status history, and last-good-data fallbacks.
 3. First policy feature branch: one issue, reviewed party/public sources, source excerpts, party profile sections, and Compare only after provenance UI is reusable.
 4. Later expansion: Polling and Momentum, Money, Calendar, change feeds, public API, search, and selected Parliament views.
 5. Privacy-sensitive features: quiz hardening, optional consent workflows, and any party-alignment scoring only after methodology and DPIA review.

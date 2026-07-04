@@ -1,6 +1,6 @@
 # Source Hook Inventory
 
-Last updated: 2026-06-30
+Last updated: 2026-07-04
 
 ## Purpose
 
@@ -26,23 +26,21 @@ Current datapoints:
 2. Party abbreviation.
 3. Party colour where returned.
 4. Current House of Commons seat count by party.
-5. Gender counts by party where returned.
-6. Retrieval URL.
-7. Snapshot hash.
-8. Source excerpt path.
+5. Retrieval URL.
+6. Snapshot hash.
+7. Source excerpt path.
 
 Product use:
 
 1. Live Parliament page.
-2. Home dashboard API hook count.
-3. Party profile factual panels.
-4. Future Commons composition chart.
+2. Home dashboard.
+3. Parties page.
 
-### UK Parliament Members API - Current Members Sample
+### UK Parliament Members API - Current Member Checks
 
 Source: <https://members-api.parliament.uk/>
 
-Implemented in: `src/sources/uk-parliament.ts`, `app/parliament/page.tsx`
+Implemented in: `src/components/my-area-lookup.tsx`, `src/status/data-status.ts`
 
 Current datapoints:
 
@@ -52,18 +50,14 @@ Current datapoints:
 4. Current party.
 5. Current constituency.
 6. Membership start date.
-7. Gender where returned.
-8. Thumbnail/profile links where returned.
-9. Retrieval URL.
-10. Snapshot hash.
-11. Source excerpt path.
+7. Membership activity status where returned.
+8. Member profile links where returned.
 
 Product use:
 
-1. MP directory.
-2. Constituency pages.
-3. Party membership pages.
-4. Future member activity pages.
+1. Postcode-to-current-MP lookup.
+2. Current-member data-quality checks.
+3. Recent member votes and written-question lookup.
 
 ### UK Parliament Commons Votes API - Recent Divisions
 
@@ -121,7 +115,7 @@ Product use:
 1. Upcoming dates widget.
 2. Parliament calendar page.
 3. Bill and policy timelines.
-4. Election-day and sitting-day context around the UK time/date navbar.
+4. Source context for scheduled parliamentary business.
 
 ### Postcode And Constituency Lookup
 

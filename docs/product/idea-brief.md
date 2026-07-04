@@ -21,13 +21,13 @@ Political information is fragmented across official publications, parliamentary 
 1. Beginner homepage that explains the site quickly and gives three clear routes: local MP, glossary, and Parliament today.
 2. Postcode to `my area` starter: constituency, current MP, party, recent public record, and source links.
 3. Political glossary and a few short civic explainers.
-4. Parliament page using official public hooks for seats, current members, upcoming business, and recent Commons divisions.
+4. Parliament page using official public hooks for seats, upcoming business, and recent Commons divisions.
 5. Sources and About pages that explain limits, attribution, contact, and corrections without making the homepage about methodology.
 6. Public Vercel deployment, Cloudflare DNS/email, privacy-safe analytics, and basic CI quality gates.
 
 ## Phase Plan
 1. v1.0.0 (public starter): homepage, my area, glossary, Parliament records, sources/about/contact, deployment, and basic quality gates.
-2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, source health, and last-good-data fallbacks.
+2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, durable status history, and last-good-data fallbacks.
 3. Feature branches: first policy area, party profiles, Compare, change feed, polling, money, calendar, and any guided civic check expansion.
 
 ## Trust and Compliance Principles

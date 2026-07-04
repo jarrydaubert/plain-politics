@@ -42,4 +42,28 @@ describe("public copy", () => {
   test("does not ship public party placeholder profile routes", async () => {
     expect(await Bun.file("app/parties/[slug]/page.tsx").exists()).toBe(false);
   });
+
+  test("does not ship public future-feature placeholder routes", async () => {
+    expect(await Bun.file("app/policies/page.tsx").exists()).toBe(false);
+    expect(await Bun.file("app/polls/page.tsx").exists()).toBe(false);
+  });
+
+  test("does not expose roadmap or internal navigation language on public pages", async () => {
+    const publicPagePatterns = [
+      /Back to dashboard/i,
+      /coming soon/i,
+      /not in the launch version/i,
+      /planned after v1/i,
+      /still to come/i
+    ];
+    const pages = new Bun.Glob("app/**/page.tsx");
+
+    for await (const path of pages.scan(".")) {
+      const pageSource = await Bun.file(path).text();
+
+      for (const pattern of publicPagePatterns) {
+        expect(pageSource).not.toMatch(pattern);
+      }
+    }
+  });
 });

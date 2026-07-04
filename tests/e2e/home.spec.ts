@@ -116,9 +116,10 @@ test("parliament page renders source-backed tables", async ({ page }) => {
 
   await expect(page.getByRole("heading", { exact: true, name: "Parliament" })).toBeVisible();
   await expect(page.getByRole("heading", { name: /state of the parties/i })).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: /current commons members sample/i })
-  ).toBeVisible();
+  await expect(page.getByRole("link", { name: /party-only view/i })).toHaveAttribute(
+    "href",
+    "/parties"
+  );
   await expect(
     page.getByRole("heading", { name: /upcoming parliamentary business/i })
   ).toBeVisible();
@@ -126,14 +127,13 @@ test("parliament page renders source-backed tables", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /official source links/i })).toBeVisible();
 });
 
-test("sources page renders hook inventory and datapoint groups", async ({ page }) => {
+test("sources page renders only sources used by public features", async ({ page }) => {
   await page.goto("/sources");
 
   await expect(page.getByRole("heading", { name: /source directory/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /used now/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /to review/i })).toBeVisible();
   await expect(page.getByText("State of the parties")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Polling and popularity" }).first()).toBeVisible();
+  await expect(page.getByText("Polling and popularity")).toHaveCount(0);
 });
 
 test("about page explains the site without technical framing", async ({ page }) => {

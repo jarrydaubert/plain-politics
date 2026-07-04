@@ -26,7 +26,7 @@ export default function ExplainersPage() {
         ]}
       />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Back to dashboard
+        Home
       </Link>
 
       <section className="mt-6 grid gap-8 xl:grid-cols-[0.8fr_1.2fr]">

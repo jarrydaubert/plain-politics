@@ -1,7 +1,5 @@
 import {
   type CommonsDivision,
-  type CommonsMember,
-  getCommonsMembersSample,
   getCommonsPartySeatCounts,
   getRecentCommonsDivisions,
   getUpcomingParliamentEvents,
@@ -21,21 +19,18 @@ export type PanelResult<T> =
 
 export type ParliamentPageData = {
   divisions: PanelResult<ProvenancedRecord<CommonsDivision[]>>;
-  members: PanelResult<ProvenancedRecord<CommonsMember[]>>;
   seatCounts: PanelResult<ProvenancedRecord<PartySeatCount[]>>;
   upcomingEvents: PanelResult<ProvenancedRecord<ParliamentEvent[]>>;
 };
 
 export type ParliamentPageLoaders = {
   divisions: () => Promise<ProvenancedRecord<CommonsDivision[]>>;
-  members: () => Promise<ProvenancedRecord<CommonsMember[]>>;
   seatCounts: () => Promise<ProvenancedRecord<PartySeatCount[]>>;
   upcomingEvents: () => Promise<ProvenancedRecord<ParliamentEvent[]>>;
 };
 
 const defaultLoaders: ParliamentPageLoaders = {
   divisions: () => getRecentCommonsDivisions(5),
-  members: () => getCommonsMembersSample(8),
   seatCounts: () => getCommonsPartySeatCounts(),
   upcomingEvents: () => getUpcomingParliamentEvents(7, 8)
 };
@@ -43,16 +38,14 @@ const defaultLoaders: ParliamentPageLoaders = {
 export async function getParliamentPageData(
   loaders: ParliamentPageLoaders = defaultLoaders
 ): Promise<ParliamentPageData> {
-  const [seatCounts, members, divisions, upcomingEvents] = await Promise.allSettled([
+  const [seatCounts, divisions, upcomingEvents] = await Promise.allSettled([
     loaders.seatCounts(),
-    loaders.members(),
     loaders.divisions(),
     loaders.upcomingEvents()
   ]);
 
   return {
     divisions: toPanelResult(divisions),
-    members: toPanelResult(members),
     seatCounts: toPanelResult(seatCounts),
     upcomingEvents: toPanelResult(upcomingEvents)
   };
