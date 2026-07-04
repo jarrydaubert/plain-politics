@@ -1,6 +1,6 @@
 # Backlog
 
-Last updated: 2026-07-03
+Last updated: 2026-07-04
 
 This file is only for unfinished todo items. It is not a status report, product spec, or changelog.
 
@@ -244,17 +244,11 @@ For context, use:
 
 ## Platform And Quality
 
-- [ ] Make Playwright smoke tests blocking once live source flakiness is controlled.
-  Definition of done: Required CI checks include Playwright smoke tests with stable fixtures or controlled live-source handling.
-
 - [ ] Add broken-link checks for source links and public navigation.
   Definition of done: CI or a scheduled job reports broken internal links and source URLs.
 
 - [ ] Add accessibility smoke checks for core pages.
   Definition of done: Core routes pass automated accessibility checks for landmarks, headings, labels, colour contrast, and keyboard navigation.
-
-- [ ] Split E2E tests into blocking mocked checks and non-blocking live-source smoke checks.
-  Definition of done: Deterministic crawler, metadata, accessibility, and core journey tests block CI, while third-party live API checks run separately without blocking deploys.
 
 - [ ] Add source-reference validation for public factual pages.
   Definition of done: CI fails when configured factual content lacks an approved source reference.

@@ -1,5 +1,11 @@
 import { z } from "zod";
 import { glossaryTerms } from "@/data/glossary";
+import {
+  COMMONS_VOTES_API_BASE,
+  MEMBERS_API_BASE,
+  POSTCODES_API_BASE,
+  WHATSON_API_BASE
+} from "@/sources/upstream-endpoints";
 
 export type DataHealthState = "healthy" | "degraded" | "offline";
 export type DataCheckOutcome = "pass" | "warn" | "fail";
@@ -57,10 +63,6 @@ type NextFetchInit = RequestInit & {
   };
 };
 
-const MEMBERS_API_BASE = "https://members-api.parliament.uk/api";
-const COMMONS_VOTES_API_BASE = "https://commonsvotes-api.parliament.uk/data";
-const WHATSON_API_BASE = "https://whatson-api.parliament.uk/calendar/events";
-const POSTCODES_API_BASE = "https://api.postcodes.io/postcodes";
 const COMMONS_HOUSE_ID = 1;
 // Regression canaries from the July 2026 Members API audit: these former MPs appeared in a
 // supposedly current Commons sample when the query was not filtered tightly enough.

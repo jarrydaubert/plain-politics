@@ -7,10 +7,12 @@ import {
   type ProvenanceSourceSnapshot,
   stableId
 } from "@/lib/provenance";
+import {
+  COMMONS_VOTES_API_BASE,
+  MEMBERS_API_BASE,
+  WHATSON_API_BASE
+} from "@/sources/upstream-endpoints";
 
-const MEMBERS_API_BASE = "https://members-api.parliament.uk/api";
-const COMMONS_VOTES_API_BASE = "https://commonsvotes-api.parliament.uk/data";
-const WHATSON_API_BASE = "https://whatson-api.parliament.uk/calendar/events";
 const COMMONS_HOUSE_ID = 1;
 export const PARLIAMENT_SOURCE_REVALIDATE_SECONDS = 5 * 60;
 
