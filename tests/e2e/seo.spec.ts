@@ -109,6 +109,20 @@ test("footer data status badge refreshes from the no-store status endpoint", asy
   ).toBeVisible();
 });
 
+test("data status page renders deterministic quality checks", async ({ page }) => {
+  await page.goto("/status");
+
+  await expect(page.getByRole("heading", { exact: true, name: "Data status" })).toBeVisible();
+  await expect(page.getByRole("complementary").getByText("Healthy", { exact: true })).toBeVisible();
+  await expect(page.getByText("UK Parliament Members API", { exact: true })).toBeVisible();
+  await expect(page.getByText("UK Parliament Commons Votes API", { exact: true })).toBeVisible();
+  await expect(page.getByText("UK Parliament What's On API", { exact: true })).toBeVisible();
+  await expect(page.getByText("postcodes.io / ONS lookup", { exact: true })).toBeVisible();
+  await expect(page.getByText("Static glossary sources", { exact: true })).toBeVisible();
+  await expect(page.getByRole("cell", { name: "Expected record shape" }).first()).toBeVisible();
+  await expect(page.getByRole("cell", { name: "Obvious data sanity" }).first()).toBeVisible();
+});
+
 test("new glossary term page remains readable on mobile", async ({ page }) => {
   await page.setViewportSize({ height: 844, width: 390 });
   await page.goto("/glossary/mp");

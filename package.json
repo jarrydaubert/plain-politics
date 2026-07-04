@@ -15,8 +15,10 @@
     "fix-all": "biome check --write . && bun run typecheck",
     "test": "bun test tests/unit",
     "test:no-coverage": "bun test tests/unit",
-    "test:e2e": "playwright test",
-    "test:e2e:ci": "playwright test --reporter=blob",
+    "test:e2e": "playwright test --project=blocking",
+    "test:e2e:ci": "playwright test --project=blocking --reporter=blob",
+    "test:e2e:live": "LIVE_E2E=1 playwright test --project=live",
+    "test:e2e:live:ci": "LIVE_E2E=1 playwright test --project=live --reporter=blob",
     "check:repo": "bun run format:check && bun run lint:biome && bun run typecheck && bun run test:no-coverage",
     "check": "bun run check:repo && bun run build",
     "ci": "bun run check"

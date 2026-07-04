@@ -111,23 +111,7 @@ test("my area lookup refuses mismatched constituency records", async ({ page }) 
   await expect(page.getByRole("heading", { name: /current mp/i })).toHaveCount(0);
 });
 
-test("live my area lookup resolves a sample postcode", async ({ page }) => {
-  test.skip(!process.env.LIVE_E2E, "Set LIVE_E2E=1 to run live third-party lookup smoke.");
-
-  await page.goto("/my-area");
-
-  await page.getByLabel(/enter a postcode/i).fill("SW1A 1AA");
-  await page.getByRole("button", { name: /find my mp/i }).click();
-
-  await expect(
-    page.getByRole("heading", { name: /cities of london and westminster/i })
-  ).toBeVisible({
-    timeout: 15000
-  });
-  await expect(page.getByRole("heading", { name: /source links/i })).toBeVisible();
-});
-
-test("parliament page renders live source-backed tables", async ({ page }) => {
+test("parliament page renders source-backed tables", async ({ page }) => {
   await page.goto("/parliament");
 
   await expect(page.getByRole("heading", { exact: true, name: "Parliament" })).toBeVisible();
