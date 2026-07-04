@@ -27,12 +27,6 @@ For context, use:
 - [ ] Review the homepage visual direction, OG image, and public imagery before launch.
   Definition of done: Desktop and mobile homepage screenshots are reviewed, OG image renders in a preview tool, and any launch-blocking visual issues are fixed.
 
-- [ ] Complete a beginner Parliament page copy pass.
-  Definition of done: Random sample/demo framing is removed or replaced with a purposeful beginner interaction, API-speak is rewritten, gender columns are explained or deprioritised, and recent votes/upcoming business explain what the records can and cannot prove.
-
-- [ ] Expand the About page trust content.
-  Definition of done: The page explains the approved operator/contact level, methodology, correction route, update cadence, privacy posture, and non-affiliation in plain English.
-
 - [ ] Submit the sitemap to Google Search Console and Bing Webmaster Tools.
   Definition of done: Site ownership is verified, the sitemap URL is submitted, and any indexing or sitemap errors are recorded for follow-up.
 
@@ -52,9 +46,6 @@ For context, use:
 
 - [ ] Add a glossary search input.
   Definition of done: Users can filter glossary terms by term, category, and plain-English text; the control is keyboard accessible and does not log or persist queries.
-
-- [ ] Align navigation labels, page headings, and return links.
-  Definition of done: Top-level nav labels, H1s, metadata titles, breadcrumbs, and back links use consistent beginner-facing wording, and generic text such as `Back to dashboard` is replaced or intentionally justified.
 
 - [ ] Add lightweight next-step guidance after postcode lookup.
   Definition of done: `/my-area` results point users to the MP, constituency, relevant glossary terms, source records, and corrections route without implying extra live tracking is already available.
@@ -169,7 +160,7 @@ For context, use:
   Definition of done: Calendar data sources are labelled by institution and never mixed under one ambiguous heading.
 
 - [ ] Add civic explainer hooks for State Opening, PMQs, recess, Budget, elections, and party conferences.
-  Definition of done: Relevant pages link to source-backed explainers or clearly labelled placeholder routes.
+  Definition of done: Relevant pages link to published source-backed explainers; unpublished topics do not create public placeholder routes.
 
 - [ ] Add bill and Hansard context after the evidence drawer can show exact source records.
   Definition of done: Bill/debate references include source URLs, record dates, and plain-English limitations.
@@ -233,8 +224,8 @@ For context, use:
 - [ ] Design share-card templates for glossary terms, explainers, and Commons votes.
   Definition of done: Templates include title, plain-English meaning, source, checked time, and canonical URL.
 
-- [ ] Add a My MP Watch concept module to `/my-area`.
-  Definition of done: After postcode lookup, placeholder cards explain planned votes, debates, written questions, and constituency mentions without implying they are live.
+- [ ] Design a My MP Watch concept module outside the public route surface.
+  Definition of done: A reviewed prototype specifies votes, debates, written questions, and constituency mentions without adding non-functional cards to `/my-area`.
 
 - [ ] Prototype Who can fix this.
   Definition of done: A neutral guided page maps common issues to council, MP/Parliament, devolved government, regulator, private provider, or court responsibility with source links.
@@ -244,8 +235,8 @@ For context, use:
 
 ## Platform And Quality
 
-- [ ] Add broken-link checks for source links and public navigation.
-  Definition of done: CI or a scheduled job reports broken internal links and source URLs.
+- [ ] Add scheduled external source-link checks.
+  Definition of done: A rate-limited scheduled job reports broken official source URLs without making third-party availability block normal deploys.
 
 - [ ] Add accessibility smoke checks for core pages.
   Definition of done: Core routes pass automated accessibility checks for landmarks, headings, labels, colour contrast, and keyboard navigation.
@@ -270,6 +261,3 @@ For context, use:
 
 - [ ] Keep `.env.example` aligned with any Supabase or public runtime configuration.
   Definition of done: Every required environment variable is documented with safe placeholder values and no secrets.
-
-- [ ] Revisit repo docs after each feature lands while keeping this backlog todo-only.
-  Definition of done: Docs that describe current product behaviour match the shipped app, and this backlog contains only unfinished todos.

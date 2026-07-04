@@ -25,8 +25,6 @@ const staticPublicRoutes = [
   "/my-area",
   "/parliament",
   "/parties",
-  "/policies",
-  "/polls",
   "/privacy",
   "/sources",
   "/status"
@@ -114,7 +112,7 @@ describe("sitemap routes", () => {
     expect(routes).toContain("/explainers/how-commons-votes-work");
   });
 
-  test("excludes noindex placeholders and redirects", () => {
+  test("excludes redirects and removed placeholder routes", () => {
     const routes = getSitemapRoutes(new Date("2026-07-03T12:00:00.000Z")).map(
       (route) => route.path
     );
@@ -165,7 +163,7 @@ describe("crawler text quality", () => {
     expect(glossaryPage).toContain('aria-label="Glossary categories"');
     expect(parliamentPage).toContain("<caption");
     expect(parliamentPage).toContain('scope="col"');
-    expect(parliamentPage).toContain('headers="current-member-party"');
+    expect(parliamentPage).toContain('headers="party-seat-party"');
     expect(parliamentPage).toContain("function CrawlerBoundary");
     expect(parliamentPage).not.toContain("Abbrev.");
     expect(parliamentPage).not.toContain("Party Abbrev.Seats");

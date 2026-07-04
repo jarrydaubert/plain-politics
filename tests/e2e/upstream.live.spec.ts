@@ -20,9 +20,6 @@ test("live Parliament APIs render usable records", async ({ page }) => {
   await expect(
     page.getByRole("table", { name: /Current House of Commons party seat counts/i })
   ).toBeVisible();
-  await expect(
-    page.getByRole("table", { name: /Current House of Commons members sample/i })
-  ).toBeVisible();
   await expect(page.getByRole("table", { name: /Upcoming parliamentary business/i })).toBeVisible();
   await expect(
     page.getByRole("table", { name: /Recent House of Commons divisions/i })

@@ -29,12 +29,6 @@ export default async function ParliamentPage() {
           url: parliamentData.seatCounts.record.sourceDocument.url
         }
       : null,
-    isPanelAvailable(parliamentData.members)
-      ? {
-          label: "Current Commons members",
-          url: parliamentData.members.record.sourceDocument.url
-        }
-      : null,
     isPanelAvailable(parliamentData.upcomingEvents)
       ? {
           label: "Upcoming business",
@@ -61,15 +55,15 @@ export default async function ParliamentPage() {
         ]}
       />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Back to dashboard
+        Home
       </Link>
 
       <div className="mt-6 grid gap-8 xl:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1.45fr)]">
         <section className="min-w-0">
           <h1 className="text-4xl font-semibold">Parliament</h1>
           <p className="mt-4 leading-7 text-[var(--muted)]">
-            A public-record view of Commons seats, current members, upcoming business and recent
-            votes.
+            See how Commons seats are divided, what business is scheduled and how recent votes were
+            counted.
           </p>
           <div className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
             <div className="text-3xl font-semibold">
@@ -77,8 +71,8 @@ export default async function ParliamentPage() {
             </div>
             <div className="mt-1 text-sm text-[var(--muted)]">
               {totalSeats === null
-                ? "Party seat count source did not return usable data"
-                : "Commons seats represented in source response"}
+                ? "UK Parliament did not return a usable seat count"
+                : "Seats currently listed by UK Parliament"}
             </div>
           </div>
         </section>
@@ -86,30 +80,33 @@ export default async function ParliamentPage() {
         {isPanelAvailable(parliamentData.seatCounts) ? (
           <section className="min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
             <div className="border-b border-[var(--border)] p-5">
-              <h2 className="text-xl font-semibold">State of the parties</h2>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <h2 className="text-xl font-semibold">State of the parties</h2>
+                <Link
+                  className="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-strong)]"
+                  href="/parties"
+                >
+                  Open the party-only view
+                </Link>
+              </div>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                Official UK Parliament Members API. Gender columns are returned by the source and
-                are shown as record context, not as a judgement about representation.
+                The current number of Commons seats recorded for each party by UK Parliament.
               </p>
               <LastChecked value={parliamentData.seatCounts.record.sourceDocument.retrievedAt} />
               <SourceDataNote status={parliamentData.seatCounts.record.dataStatus} />
             </div>
             <div className="max-w-full overflow-x-auto">
-              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[560px] border-collapse text-left text-sm">
                 <caption className="sr-only">
                   Current House of Commons party seat counts from the UK Parliament Members API.
-                  Columns: party name; party abbreviation; Commons seats; male MPs; female MPs;
-                  non-binary MPs.
+                  Columns: party name; party abbreviation; Commons seats.
                 </caption>
                 <thead className="bg-[var(--surface-soft)]">
                   <tr>
                     <HeaderCell id="party-seat-party">Party name</HeaderCell>
                     <HeaderCell id="party-seat-abbreviation">Party abbreviation</HeaderCell>
-                    <HeaderCell id="party-seat-total">Commons seats</HeaderCell>
-                    <HeaderCell id="party-seat-male">Male MPs</HeaderCell>
-                    <HeaderCell id="party-seat-female">Female MPs</HeaderCell>
-                    <HeaderCell boundary={false} id="party-seat-non-binary">
-                      Non-binary MPs
+                    <HeaderCell boundary={false} id="party-seat-total">
+                      Commons seats
                     </HeaderCell>
                   </tr>
                 </thead>
@@ -131,13 +128,12 @@ export default async function ParliamentPage() {
                       <DataCell className="text-[var(--muted)]" headers="party-seat-abbreviation">
                         {row.party.abbreviation ?? "-"}
                       </DataCell>
-                      <DataCell className="font-semibold" headers="party-seat-total">
+                      <DataCell
+                        boundary={false}
+                        className="font-semibold"
+                        headers="party-seat-total"
+                      >
                         {row.total}
-                      </DataCell>
-                      <DataCell headers="party-seat-male">{row.male ?? "-"}</DataCell>
-                      <DataCell headers="party-seat-female">{row.female ?? "-"}</DataCell>
-                      <DataCell boundary={false} headers="party-seat-non-binary">
-                        {row.nonBinary ?? "-"}
                       </DataCell>
                     </tr>
                   ))}
@@ -152,62 +148,6 @@ export default async function ParliamentPage() {
           />
         )}
       </div>
-
-      {isPanelAvailable(parliamentData.members) ? (
-        <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
-          <div className="border-b border-[var(--border)] p-5">
-            <h2 className="text-xl font-semibold">Current Commons members sample</h2>
-            <p className="mt-1 text-sm text-[var(--muted)]">
-              A small source check from the official Members API, filtered to current House of
-              Commons members. This is a sample, not a member search.
-            </p>
-            <LastChecked value={parliamentData.members.record.sourceDocument.retrievedAt} />
-            <SourceDataNote status={parliamentData.members.record.dataStatus} />
-          </div>
-          <div className="max-w-full overflow-x-auto">
-            <table className="w-full min-w-[780px] border-collapse text-left text-sm">
-              <caption className="sr-only">
-                Current House of Commons members sample from the official Members API. Columns:
-                member name; party name; constituency; current Commons membership start date.
-              </caption>
-              <thead className="bg-[var(--surface-soft)]">
-                <tr>
-                  <HeaderCell id="current-member-name">Member name</HeaderCell>
-                  <HeaderCell id="current-member-party">Party name</HeaderCell>
-                  <HeaderCell id="current-member-constituency">Constituency</HeaderCell>
-                  <HeaderCell boundary={false} id="current-member-start">
-                    Current membership started
-                  </HeaderCell>
-                </tr>
-              </thead>
-              <tbody>
-                {parliamentData.members.record.data.map((member) => (
-                  <tr className="border-t border-[var(--border)]" key={member.id}>
-                    <DataCell className="font-medium" headers="current-member-name">
-                      {member.nameDisplayAs}
-                    </DataCell>
-                    <DataCell headers="current-member-party">
-                      {cleanText(member.latestParty.name)}
-                    </DataCell>
-                    <DataCell headers="current-member-constituency">
-                      {cleanText(member.latestHouseMembership.membershipFrom)}
-                    </DataCell>
-                    <DataCell boundary={false} headers="current-member-start">
-                      {formatDateOnly(member.latestHouseMembership.membershipStartDate)}
-                    </DataCell>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      ) : (
-        <UnavailablePanel
-          className="mt-8"
-          detail="The current-member source did not return usable data. This does not affect the other panels."
-          title="Current member sample unavailable"
-        />
-      )}
 
       {isPanelAvailable(parliamentData.upcomingEvents) ? (
         <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">

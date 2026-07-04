@@ -1,6 +1,6 @@
 # Phase 0 Proof Of Thesis
 
-Last updated: 2026-06-30
+Last updated: 2026-07-04
 
 ## Purpose
 
@@ -16,9 +16,9 @@ Recommended scope:
 
 1. One postcode-led `my area` journey.
 2. Beginner cards for MP, constituency, party, and one recent public record.
-3. UK date/time, glossary, sources, and methodology pages.
+3. Glossary, explainers, sources, About, Privacy, and data-status pages.
 4. Two to three authoritative source families.
-5. Search and plain-English explainer pages over only records that are actually supported.
+5. Plain-English explainer pages over only records that are actually supported.
 6. One source panel or source detail pattern.
 7. One deployed public preview.
 
@@ -69,9 +69,9 @@ The v1.0.0 prototype should include:
 2. Clear beginner routes such as `find your MP`, `decode a vote`, `check a source`, and `learn a term`.
 3. Glossary and civic tradition explanations.
 4. Live Parliament records and upcoming business where official APIs support them.
-5. Search and explainer pages that never make unsupported claims.
+5. Explainer pages that never make unsupported claims.
 6. A source detail pattern with publisher, URL, tier, retrieved date, published date, and freshness state.
-7. A methodology page explaining what is and is not covered.
+7. About, Sources, Privacy, and Status pages explaining what is covered, how data is checked, and where the limits are.
 
 ## Success Criteria
 

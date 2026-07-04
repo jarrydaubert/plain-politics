@@ -24,11 +24,10 @@ export const sourceHooks: SourceHook[] = [
     datapoints: [
       "Party name, abbreviation and official API colour",
       "Current Commons seat count by party",
-      "Gender counts by party where returned",
       "Source retrieval URL, snapshot hash and excerpt path"
     ],
     name: "State of the parties",
-    powers: ["Home dashboard", "Parliament page", "Party profile factual panels"],
+    powers: ["Home dashboard", "Parliament page", "Parties page"],
     priority: "Live now",
     publisher: "UK Parliament Members API",
     sourceUrl: "https://members-api.parliament.uk/",
@@ -46,7 +45,7 @@ export const sourceHooks: SourceHook[] = [
       "Member profile and thumbnail links where returned"
     ],
     name: "Current Commons members",
-    powers: ["MP directory", "Constituency pages", "Party membership history"],
+    powers: ["My area lookup", "Data-status checks"],
     priority: "Live now",
     publisher: "UK Parliament Members API",
     sourceUrl: "https://members-api.parliament.uk/",
@@ -63,7 +62,7 @@ export const sourceHooks: SourceHook[] = [
       "Member vote lists for deeper detail pages"
     ],
     name: "Recent Commons divisions",
-    powers: ["Recent votes widget", "Party vote record pages", "Policy timeline"],
+    powers: ["Home dashboard", "Parliament page", "My area recent activity"],
     priority: "Live now",
     publisher: "UK Parliament Commons Votes API",
     sourceUrl: "https://commonsvotes-api.parliament.uk/",
@@ -85,7 +84,7 @@ export const sourceHooks: SourceHook[] = [
       "Cancellation date where returned"
     ],
     name: "Upcoming parliamentary business",
-    powers: ["Upcoming dates widget", "Parliament calendar", "Bill and policy timelines"],
+    powers: ["Home dashboard", "Parliament page"],
     priority: "Live now",
     publisher: "UK Parliament What's On API",
     sourceUrl: "https://whatson-api.parliament.uk/calendar/events/list.json",
@@ -105,7 +104,7 @@ export const sourceHooks: SourceHook[] = [
       "Source URLs checked"
     ],
     name: "Postcode to constituency and MP",
-    powers: ["Beginner start here", "My area page", "Constituency pages"],
+    powers: ["My area page"],
     priority: "Live now",
     publisher: "postcodes.io and UK Parliament Members API",
     sourceUrl: "https://api.postcodes.io/",
@@ -123,7 +122,7 @@ export const sourceHooks: SourceHook[] = [
       "Source URLs checked"
     ],
     name: "MP public record starter",
-    powers: ["My area page", "MP detail pages", "Beginner civic journey"],
+    powers: ["My area page"],
     priority: "Live now",
     publisher: "UK Parliament Members API and Commons Votes API",
     sourceUrl: "https://members-api.parliament.uk/",
@@ -141,7 +140,7 @@ export const sourceHooks: SourceHook[] = [
       "Related product pages for inline help"
     ],
     name: "Political glossary and traditions",
-    powers: ["Glossary page", "Inline help", "Beginner civic journey"],
+    powers: ["Glossary pages", "Beginner explainers"],
     priority: "Live now",
     publisher: "UK Parliament and Electoral Commission",
     sourceUrl: "https://www.parliament.uk/site-information/glossary/",

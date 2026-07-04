@@ -34,7 +34,7 @@ export default async function PartiesPage() {
         ]}
       />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Back to dashboard
+        Home
       </Link>
       <h1 className="mt-6 text-4xl font-semibold">Parties</h1>
       <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
@@ -92,8 +92,7 @@ export default async function PartiesPage() {
             <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
               Checked through the app cache {formatUkDateTime(snapshot.retrievedAt)} from the UK
               Parliament Members API. Source responses may be cached for up to five minutes. Party
-              policy profiles are intentionally not shown until reviewed source-backed text is
-              ready.
+              policies are outside this page; it reports current Commons seat counts only.
             </p>
             <SourceDataNote status={snapshot.dataStatus} />
             <a

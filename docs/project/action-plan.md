@@ -1,6 +1,6 @@
 # Plain Politics: Action Plan
 
-Last updated: 2026-07-02
+Last updated: 2026-07-04
 
 ## Objective
 
@@ -18,7 +18,7 @@ v1.0.0 is not the full party-policy comparison product. It is the foundation: ho
 ## V1 Workstream
 
 1. Make the homepage explain Plain Politics within ten seconds.
-2. Keep routes simple: home, my area, Parliament, glossary, sources, about, policies placeholder, polls placeholder, parties public-record snapshot.
+2. Keep routes simple and complete: home, my area, Parliament, parties, glossary, explainers, sources, status, privacy, and about.
 3. Make postcode lookup useful without storing raw postcodes by default.
 4. Make Parliament data readable on desktop and mobile.
 5. Keep source links visible without making the whole site about methodology.
@@ -30,13 +30,13 @@ v1.0.0 is not the full party-policy comparison product. It is the foundation: ho
 1. Keep current live Parliament hooks typed and source-labelled.
 2. Convert live hooks into snapshot-first ingestion after the public app shell is stable.
 3. Persist source documents, source snapshots, source excerpts, displayed facts, and ingestion runs in Supabase.
-4. Add last-good-data fallbacks before relying on live APIs for important pages.
-5. Add source health checks and operator email alerts only after ingestion runs are persisted.
+4. Replace process-local last-good fallbacks with durable persisted records before increasing reliance on live APIs.
+5. Persist source-health history and add operator email alerts after ingestion runs are stored.
 
 ## Quality Workstream
 
-1. Keep Bun, Biome, TypeScript, unit tests, production build, and non-blocking Playwright smoke in CI.
-2. Add blocking Playwright checks when live-source flakiness is controlled.
+1. Keep Bun, Biome, TypeScript, unit tests, production build, and deterministic Playwright checks blocking in CI.
+2. Keep live third-party source smoke tests separate and non-blocking.
 3. Add accessibility and source-reference checks as public factual pages expand.
 4. Keep generated output, local env files, build artifacts, and private platform state out of Git.
 

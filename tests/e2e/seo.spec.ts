@@ -76,15 +76,10 @@ test("parliament tables expose separated machine-readable text", async ({ page }
       name: /Current House of Commons party seat counts/i
     })
     .evaluate((table) => table.textContent ?? "");
-  const memberTableText = await page
-    .getByRole("table", {
-      name: /Current House of Commons members sample/i
-    })
-    .evaluate((table) => table.textContent ?? "");
 
   expect(firstTableText).toContain("Party name; Party abbreviation; Commons seats");
   expect(firstTableText).not.toContain("Party Abbrev.Seats");
-  expect(memberTableText).not.toContain("Labour (Co-op)Ipswich");
+  expect(firstTableText).not.toContain("Male MPs");
 });
 
 test("footer data status badge refreshes from the no-store status endpoint", async ({ page }) => {

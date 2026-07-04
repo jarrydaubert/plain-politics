@@ -5,17 +5,15 @@ import type { ProvenancedRecord } from "@/sources/uk-parliament";
 describe("Parliament page data", () => {
   test("keeps available panels when one source fails", async () => {
     const data = await getParliamentPageData({
-      divisions: async () => fakeRecord([]),
-      members: async () => {
-        throw new Error("Members API unavailable");
+      divisions: async () => {
+        throw new Error("Commons Votes API unavailable");
       },
       seatCounts: async () => fakeRecord([]),
       upcomingEvents: async () => fakeRecord([])
     });
 
     expect(data.seatCounts.status).toBe("available");
-    expect(data.members.status).toBe("unavailable");
-    expect(data.divisions.status).toBe("available");
+    expect(data.divisions.status).toBe("unavailable");
     expect(data.upcomingEvents.status).toBe("available");
   });
 });

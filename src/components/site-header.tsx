@@ -3,8 +3,8 @@ import { PlainPoliticsMark } from "@/components/plain-politics-logo";
 
 const navItems = [
   { href: "/my-area", label: "My area" },
-  { href: "/parliament", label: "Today" },
-  { href: "/glossary", label: "Jargon" },
+  { href: "/parliament", label: "Parliament" },
+  { href: "/glossary", label: "Glossary" },
   { href: "/sources", label: "Sources" },
   { href: "/about", label: "About" }
 ] as const;

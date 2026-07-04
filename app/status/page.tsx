@@ -44,7 +44,7 @@ export default async function StatusPage() {
         ]}
       />
       <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Back to dashboard
+        Home
       </Link>
 
       <section className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(18rem,0.45fr)]">

@@ -4,7 +4,7 @@ Plain Politics is a UK-focused, source-first politics starter and information tr
 
 ## Current State
 
-This repository now has a Bun/Next.js application scaffold plus planning and operating-standard docs. The first live source hooks are wired through official UK Parliament APIs on `/parliament`, with typed parsing and in-memory provenance objects before rendering.
+Plain Politics is deployed at `https://plainpolitics.co.uk`. The Bun/Next.js app includes a postcode-to-MP journey, sourced glossary and explainers, live Parliament records, a public source directory, privacy controls, and data-quality status checks. Parliament adapters use typed parsing and in-memory provenance objects; durable snapshot storage remains future work.
 
 ## Source Of Truth
 
@@ -81,6 +81,7 @@ bun run check
 bun run test:no-coverage
 bun run test
 bun run test:e2e
+bun run test:e2e:live
 bun run build
 ```
 
@@ -89,14 +90,26 @@ bun run build
 - Production: `https://plainpolitics.co.uk`; `https://www.plainpolitics.co.uk` redirects to the apex domain.
 - GitHub Actions runs CI on pushes and pull requests to `main`: Bun frozen install, lockfile guard, live env-file guard, Biome format/lint, TypeScript, unit tests, and production build.
 - CodeQL scans JavaScript/TypeScript on pushes, pull requests, and a weekly schedule.
-- Playwright smoke tests run in CI as a non-blocking job while the live-source surface settles.
+- Deterministic Playwright tests use local upstream fixtures and are required by the `main` branch ruleset.
+- A separate non-blocking Playwright job checks the live postcode, Parliament, and data-status sources.
 - Production should deploy from GitHub to Vercel. Cloudflare manages `plainpolitics.co.uk` DNS and email routing.
 - `vercel.json` pins Bun frozen installs and redirects `www.plainpolitics.co.uk` to `plainpolitics.co.uk`.
 - Analytics setup is documented in `docs/ops/domain-and-analytics.md`: Vercel Web Analytics and consent-based GA4.
 
 ## Live Source Hooks
 
-- `/parliament` calls the UK Parliament Members API for Commons party seat counts.
-- `/parliament` calls the UK Parliament Members API for a sample of current Commons members.
-- `/parliament` calls the UK Parliament Commons Votes API for recent Commons divisions.
-- `/sources` lists live hooks, candidate feeds, review-sensitive sources, and target datapoint groups.
+- `/my-area` uses postcodes.io and the UK Parliament Members API for constituency, current MP, recent votes, and written questions.
+- `/parliament` uses UK Parliament APIs for Commons party seat counts, upcoming business, and recent divisions.
+- `/parties` provides a simpler Commons party-balance view from the same official seat-count source.
+- `/status` checks the Members, Commons Votes, What's On, postcodes.io/ONS, and static glossary source families.
+- `/sources` lists only source hooks used by current public features.
+
+## Public Routes
+
+- Core journeys: `/`, `/my-area`, `/parliament`, `/parties`, `/glossary`, and `/explainers`
+- Trust and operations: `/sources`, `/status`, `/privacy`, and `/about`
+- Generated content: `/glossary/[slug]` and `/explainers/[slug]`
+- Machine-readable routes: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, and `/api/data-status`
+- Legacy compatibility: `/methodology` redirects to `/about`
+
+Unfinished policy and polling features live in the backlog and do not have public placeholder routes.
