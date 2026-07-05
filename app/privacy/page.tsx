@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
 import { StructuredData } from "@/components/structured-data";
 import {
   buildBreadcrumbJsonLd,
@@ -46,14 +46,12 @@ export default function PrivacyPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-      <h1 className="mt-6 text-4xl font-semibold">Privacy</h1>
-      <p className="mt-4 leading-7 text-[var(--muted)]">
-        Plain Politics is designed to avoid collecting sensitive political signals by default. The
-        current site has no accounts, does not store postcode lookups, and keeps analytics optional.
-      </p>
+      <PageHeader
+        backHref="/"
+        eyebrow="Your data"
+        lede="Plain Politics is designed to avoid collecting sensitive political signals by default. The current site has no accounts, does not store postcode lookups, and keeps analytics optional."
+        title="Privacy"
+      />
 
       <div className="mt-8 grid gap-4">
         {privacySections.map((section) => (
@@ -61,14 +59,14 @@ export default function PrivacyPage() {
             className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
             key={section.title}
           >
-            <h2 className="text-xl font-semibold">{section.title}</h2>
+            <h2 className="font-serif text-xl font-semibold">{section.title}</h2>
             <p className="mt-3 leading-7 text-[var(--muted)]">{section.body}</p>
           </section>
         ))}
       </div>
 
       <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface-soft)] p-5">
-        <h2 className="text-xl font-semibold">What the site does not collect</h2>
+        <h2 className="font-serif text-xl font-semibold">What the site does not collect</h2>
         <p className="mt-3 leading-7 text-[var(--muted)]">
           Plain Politics does not currently offer accounts or store personalisation, quiz answers or
           political opinion signals. Those categories require a documented privacy assessment,

@@ -1,5 +1,6 @@
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
 import { StructuredData } from "@/components/structured-data";
 import { explainers } from "@/data/explainers";
 import {
@@ -25,20 +26,13 @@ export default function ExplainersPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-
-      <section className="mt-6 grid gap-8 xl:grid-cols-[0.8fr_1.2fr]">
-        <div>
-          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
-            <FileText aria-hidden="true" size={23} />
-          </div>
-          <h1 className="mt-5 text-4xl font-semibold">Quick explainers</h1>
-          <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-            Short, source-linked answers to beginner questions about UK politics and Parliament.
-          </p>
-        </div>
+      <section className="grid gap-8 xl:grid-cols-[0.8fr_1.2fr]">
+        <PageHeader
+          backHref="/"
+          eyebrow="Beginner guides"
+          lede="Short, source-linked answers to beginner questions about UK politics and Parliament."
+          title="Quick explainers"
+        />
         <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
           <h2 className="text-lg font-semibold">Plain-English rule</h2>
           <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
@@ -51,7 +45,7 @@ export default function ExplainersPage() {
       <section className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {explainers.map((explainer) => (
           <Link
-            className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
+            className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
             href={`/explainers/${explainer.slug}`}
             key={explainer.slug}
           >

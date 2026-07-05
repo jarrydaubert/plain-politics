@@ -2,11 +2,13 @@
 
 Last updated: 2026-07-02
 
+> Superseded on 2026-07-05 by `docs/brand/design-system.md`. The information architecture and content constraints below remain useful, but the notebook/highlighter visual direction is retired.
+
 ## Direction
 
 Plain Politics should feel like a guided civic starter for people who do not usually follow politics, not a campaign site, media dashboard, SaaS landing page, children's game, GOV-style service page, or methodology manifesto.
 
-The product should feel like a warm explainer tool with receipts: friendly like a study-buddy notebook, credible enough for adults and researchers, but not trying to prove trust through repeated trust copy. The source layer should be quiet: record links, timestamps where useful, compact metadata, careful empty states, and evidence drawers. The main journey should say: this is British politics in plain English, start where you are, learn the words, and see what Parliament is doing today.
+The product should feel like a confident editorial civic tool with receipts: dark Ink for brand and orientation, warm Paper for reading and data, and no attempt to prove trust through repeated trust copy. The source layer should be quiet: record links, timestamps where useful, compact metadata, careful empty states, and evidence drawers. The main journey should say: this is British politics in plain English, start where you are, learn the words, and see what Parliament is doing today.
 
 Research basis: `docs/brand/youth-ux-research.md`.
 
@@ -27,7 +29,7 @@ Research basis: `docs/brand/youth-ux-research.md`.
 1. Reduce repeated trust, neutrality, and methodology copy on public pages.
 2. Prefer concise labels such as Source, Last checked, Official record, and Unavailable over explanatory paragraphs.
 3. Keep source confidence available progressively through links, drawers, footnotes, and compact metadata rows.
-4. Use warmer learning-app patterns: notebook lines, highlighter marks, route markers, soft paper surfaces, and friendly iconography, but keep the page calm.
+4. Use the Ink and Paper system in `docs/brand/design-system.md`; do not use notebook lines, highlighter marks, pastel route variants, or decorative icon rows.
 5. Keep political neutrality visual: no party-colour-dominant treatment, winner or loser framing, prediction language, or persuasion mechanics.
 6. Keep accessibility strong: visible focus states, good contrast, keyboard-friendly controls, readable type, and stable responsive layouts.
 7. Do not use progress bars, badges, unlock mechanics, streaks, or ideological scoring in v1.
@@ -41,7 +43,7 @@ Research basis: `docs/brand/youth-ux-research.md`.
 Redesign the Plain Politics web app using the imported design system from this codebase.
 
 Context:
-Plain Politics is a beginner-friendly UK politics starter. It helps someone who knows little about politics find their MP, understand basic terms, and see live public Parliament records. It must feel like a calm social-learning civic app: friendly like a study buddy, credible like a source notebook, and inviting enough for younger users to explore without becoming childish, fake-slangy, or gimmicky.
+Plain Politics is a beginner-friendly UK politics starter. It helps someone who knows little about politics find their MP, understand basic terms, and see live public Parliament records. It must feel like a confident editorial civic tool: clear, source-backed, and inviting without becoming childish, official-looking, fake-slangy, or gimmicky.
 
 Goal:
 Create a warmer, more inviting product UI for v1.0.0. Move away from GOV-style public-service design, dense dashboards, and methodology-first copy. Keep record confidence present through small affordances rather than big explanatory blocks. Use discovery cues through layout, copy, and links, not progress bars, badges, streaks, or unlock mechanics.
@@ -50,7 +52,7 @@ Design direction:
 - Calm civic starter, not campaign, media site, dashboard toy, children's game, GOV-style service page, or SaaS marketing page.
 - First screen should make the product obvious in under 10 seconds.
 - Prioritize three beginner routes: Start where you live, Decode the jargon, Watch what happens.
-- Use a warm explainer-tool visual language: notebook lines, highlighter swipes, route markers, soft paper layers, visible receipts, and expressive but tidy icons.
+- Use the two-ground visual language: dark Ink for brand/orientation, warm Paper for reading/data, visible mono receipts, and restrained editorial rules.
 - Avoid oversized trust panels, repeated source claims, and neutral-by-declaration copy everywhere.
 - Use concise copy. Prefer labels like Open record, Last checked, Source, and Unavailable over paragraphs.
 - Make source/provenance details available progressively through links, drawers, or compact metadata rows.

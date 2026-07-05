@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { glossaryTerms } from "@/data/glossary";
+import { maxIsoDate } from "@/lib/format";
 import {
   COMMONS_VOTES_API_BASE,
   MEMBERS_API_BASE,
@@ -9,14 +10,9 @@ import {
 
 export type DataHealthState = "healthy" | "degraded" | "offline";
 export type DataCheckOutcome = "pass" | "warn" | "fail";
-export type DataCheckKind =
-  | "api_reachable"
-  | "response_parsed"
-  | "freshness"
-  | "record_shape"
-  | "sanity";
+type DataCheckKind = "api_reachable" | "response_parsed" | "freshness" | "record_shape" | "sanity";
 
-export type DataStatusCheck = {
+type DataStatusCheck = {
   blocksCriticalJourney?: boolean;
   detail: string;
   kind: DataCheckKind;
@@ -43,7 +39,7 @@ export type DataStatusReport = {
   sources: DataSourceFamilyStatus[];
 };
 
-export type DataSourceFamilyId =
+type DataSourceFamilyId =
   | "uk-parliament-members"
   | "uk-parliament-commons-votes"
   | "uk-parliament-whatson"
@@ -187,7 +183,7 @@ export async function getDataStatusReport(
   };
 }
 
-export function calculateOverallStatus(sources: DataSourceFamilyStatus[]): DataHealthState {
+function calculateOverallStatus(sources: DataSourceFamilyStatus[]): DataHealthState {
   if (sources.some((source) => source.critical && source.state === "offline")) {
     return "offline";
   }
@@ -845,14 +841,6 @@ function differenceInDays(laterDate: Date, earlierDate: Date) {
   const milliseconds = laterDate.getTime() - earlierDate.getTime();
 
   return Math.floor(milliseconds / (24 * 60 * 60 * 1000));
-}
-
-function maxIsoDate(values: string[]) {
-  if (values.length === 0) {
-    return null;
-  }
-
-  return values.sort().at(-1) ?? null;
 }
 
 function isHttpUrl(value: string) {

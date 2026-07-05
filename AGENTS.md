@@ -62,6 +62,13 @@ bun run test:e2e            # Playwright E2E
 bun run build               # Production build
 ```
 
+## Browser QA
+
+- Prefer the Codex Chrome Extension through the `chrome:control-chrome` skill for rendered QA when it is registered. It can control the existing Chrome profile and is not desktop-app-only.
+- On the first Chrome-backed task, verify the extension connection and read the Chrome troubleshooting guidance before falling back.
+- Do not bypass a failed extension handshake with AppleScript or unrelated browser control. Use repository Playwright only as an explicit fallback and record why.
+- Use `tests/e2e/fixtures/upstream-server.ts` for deterministic Parliament data during local visual checks.
+
 ## Skills (Agent Reference)
 
 All skills have `## Politics Platform Context` sections with project-specific guidance, file paths, and what does/doesn't apply.

@@ -1,17 +1,15 @@
 import { AlertCircle, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
+import { SourceDataNote } from "@/components/source-data-note";
 import { StructuredData } from "@/components/structured-data";
+import { formatUkDateTime } from "@/lib/format";
 import {
   buildBreadcrumbJsonLd,
   buildWebPageJsonLd,
   createMetadata,
   getRouteMetadata
 } from "@/lib/seo";
-import {
-  getCommonsPartySeatCounts,
-  type PartySeatCount,
-  type SourceRecordStatus
-} from "@/sources/uk-parliament";
+import { getCommonsPartySeatCounts, type PartySeatCount } from "@/sources/uk-parliament";
 
 export const revalidate = 300;
 
@@ -33,19 +31,18 @@ export default async function PartiesPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-      <h1 className="mt-6 text-4xl font-semibold">Parties</h1>
-      <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-        A beginner view of the current House of Commons party balance. This is not a policy profile
-        or a prediction; it is a live public-record snapshot from UK Parliament.
-      </p>
+      <PageHeader
+        backHref="/"
+        className="max-w-3xl"
+        eyebrow="Commons snapshot"
+        lede="A beginner view of the current House of Commons party balance. This is not a policy profile or a prediction; it is a live public-record snapshot from UK Parliament."
+        title="Parties"
+      />
 
       {snapshot.status === "available" ? (
         <>
           <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
-            <div className="max-w-full overflow-x-auto">
+            <div className="relative max-w-full overflow-x-auto">
               <table className="w-full min-w-[720px] border-collapse text-left text-sm">
                 <caption className="sr-only">Current House of Commons party seat counts</caption>
                 <thead className="bg-[var(--surface-soft)]">
@@ -141,26 +138,4 @@ async function getPartySnapshot() {
       status: "unavailable" as const
     };
   }
-}
-
-function formatUkDateTime(isoDate: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeStyle: "short",
-    timeZone: "Europe/London"
-  }).format(new Date(isoDate));
-}
-
-function SourceDataNote({ status }: Readonly<{ status: SourceRecordStatus }>) {
-  if (status.state === "fresh") {
-    return null;
-  }
-
-  return (
-    <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-sm font-medium leading-6 text-[#755000]">
-      Data note: showing an earlier successful copy from{" "}
-      {formatUkDateTime(status.lastSuccessfulCheckAt)} after a failed check at{" "}
-      {formatUkDateTime(status.lastAttemptedCheckAt)}. Durable last-good storage is not live yet.
-    </p>
-  );
 }

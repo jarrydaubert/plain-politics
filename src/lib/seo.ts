@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import type { Explainer } from "@/data/explainers";
 import type { GlossaryTerm } from "@/data/glossary";
 
-export const SITE_NAME = "Plain Politics";
+const SITE_NAME = "Plain Politics";
 export const SITE_URL = "https://plainpolitics.co.uk";
-export const DEFAULT_OG_IMAGE = "/og-image.png";
+const DEFAULT_OG_IMAGE = "/og-image.png";
 export const CONTENT_LAST_REVIEWED = "2026-07-04";
 
 export type RouteMetadataConfig = {
@@ -126,7 +126,7 @@ export function getRouteMetadata(path: string): RouteMetadataConfig {
   return route;
 }
 
-export function canonicalUrl(path: string) {
+function canonicalUrl(path: string) {
   return new URL(path, SITE_URL).toString();
 }
 

@@ -44,7 +44,7 @@ export function AnalyticsConsentBanner() {
   return (
     <aside
       aria-label="Analytics preferences"
-      className="fixed inset-x-4 bottom-4 z-50 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_20px_60px_rgba(7,31,58,0.2)] sm:left-auto sm:max-w-md"
+      className="fixed inset-x-4 bottom-4 z-50 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[var(--shadow-pop)] sm:left-auto sm:max-w-md"
     >
       <h2 className="text-sm font-semibold">Analytics preferences</h2>
       <p className="mt-2 text-sm leading-6 text-[var(--muted)]">

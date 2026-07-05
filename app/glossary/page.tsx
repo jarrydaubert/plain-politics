@@ -1,5 +1,7 @@
-import { BookOpenText, ExternalLink, GraduationCap } from "lucide-react";
+import { ExternalLink, GraduationCap } from "lucide-react";
 import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
+import { SourceLinkList } from "@/components/source-link-list";
 import { StructuredData } from "@/components/structured-data";
 import { glossaryCategories, glossaryTermSlug, glossaryTerms } from "@/data/glossary";
 import {
@@ -47,21 +49,13 @@ export default function GlossaryPage() {
           buildDefinedTermSetJsonLd(termsWithSlugs)
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-
-      <section className="mt-6 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
-        <div>
-          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
-            <BookOpenText aria-hidden="true" size={23} />
-          </div>
-          <h1 className="mt-5 text-4xl font-semibold">Political glossary</h1>
-          <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-            Plain-English explanations for the jargon, procedures and traditions that appear across
-            UK politics.
-          </p>
-        </div>
+      <section className="grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
+        <PageHeader
+          backHref="/"
+          eyebrow="Plain-English reference"
+          lede="Plain-English explanations for the jargon, procedures and traditions that appear across UK politics."
+          title="Political glossary"
+        />
 
         <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
           <div className="flex items-start gap-3">
@@ -99,7 +93,7 @@ export default function GlossaryPage() {
 
           return (
             <section id={category.toLowerCase()} key={category}>
-              <h2 className="text-2xl font-semibold">{category}</h2>
+              <h2 className="font-serif text-2xl font-semibold">{category}</h2>
               <div className="mt-4 grid gap-4 xl:grid-cols-2">
                 {terms.map((entry) => {
                   const slug = glossaryTermSlug(entry);
@@ -114,7 +108,7 @@ export default function GlossaryPage() {
                           <p className="text-xs font-semibold uppercase text-[var(--muted)]">
                             {entry.category}
                           </p>
-                          <h3 className="mt-1 text-xl font-semibold">
+                          <h3 className="mt-1 font-serif text-xl font-semibold">
                             <Link
                               className="transition hover:text-[var(--accent)]"
                               href={`/glossary/${slug}`}
@@ -134,7 +128,9 @@ export default function GlossaryPage() {
                         </a>
                       </div>
 
-                      <p className="mt-4 leading-7">{entry.plainEnglish}</p>
+                      <p className="mt-4 font-serif leading-7 text-[var(--ink-soft)]">
+                        {entry.plainEnglish}
+                      </p>
                       <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
                         {entry.whyItMatters}
                       </p>
@@ -152,20 +148,7 @@ export default function GlossaryPage() {
 
       <section className="mt-10 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
         <h2 className="text-xl font-semibold">Primary sources for this page</h2>
-        <div className="mt-4 grid gap-3">
-          {sourceLinks.map((source) => (
-            <a
-              className="flex items-center justify-between gap-4 border-t border-[var(--border)] pt-3 text-sm font-medium transition hover:text-[var(--accent)]"
-              href={source.url}
-              key={source.url}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <span>{source.name}</span>
-              <ExternalLink aria-hidden="true" size={16} />
-            </a>
-          ))}
-        </div>
+        <SourceLinkList sources={sourceLinks} />
       </section>
     </main>
   );

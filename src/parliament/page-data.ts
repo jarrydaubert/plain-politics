@@ -5,7 +5,7 @@ import {
   getUpcomingParliamentEvents,
   type ParliamentEvent,
   type PartySeatCount,
-  type ProvenancedRecord
+  type SourceRecord
 } from "@/sources/uk-parliament";
 
 export type PanelResult<T> =
@@ -18,15 +18,15 @@ export type PanelResult<T> =
     };
 
 export type ParliamentPageData = {
-  divisions: PanelResult<ProvenancedRecord<CommonsDivision[]>>;
-  seatCounts: PanelResult<ProvenancedRecord<PartySeatCount[]>>;
-  upcomingEvents: PanelResult<ProvenancedRecord<ParliamentEvent[]>>;
+  divisions: PanelResult<SourceRecord<CommonsDivision[]>>;
+  seatCounts: PanelResult<SourceRecord<PartySeatCount[]>>;
+  upcomingEvents: PanelResult<SourceRecord<ParliamentEvent[]>>;
 };
 
 export type ParliamentPageLoaders = {
-  divisions: () => Promise<ProvenancedRecord<CommonsDivision[]>>;
-  seatCounts: () => Promise<ProvenancedRecord<PartySeatCount[]>>;
-  upcomingEvents: () => Promise<ProvenancedRecord<ParliamentEvent[]>>;
+  divisions: () => Promise<SourceRecord<CommonsDivision[]>>;
+  seatCounts: () => Promise<SourceRecord<PartySeatCount[]>>;
+  upcomingEvents: () => Promise<SourceRecord<ParliamentEvent[]>>;
 };
 
 const defaultLoaders: ParliamentPageLoaders = {

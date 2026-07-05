@@ -1,13 +1,5 @@
 import { z } from "zod";
 import {
-  hashText,
-  type ProvenanceDisplayFact,
-  type ProvenanceSourceDocument,
-  type ProvenanceSourceExcerpt,
-  type ProvenanceSourceSnapshot,
-  stableId
-} from "@/lib/provenance";
-import {
   COMMONS_VOTES_API_BASE,
   MEMBERS_API_BASE,
   WHATSON_API_BASE
@@ -128,17 +120,21 @@ const parliamentEventSchema = z.object({
 const parliamentEventsSchema = z.array(parliamentEventSchema);
 
 export type PartySeatCount = z.infer<typeof partySeatCountSchema>;
-export type CommonsMember = z.infer<typeof memberSchema>;
+type CommonsMember = z.infer<typeof memberSchema>;
 export type CommonsDivision = z.infer<typeof divisionSchema>;
 export type ParliamentEvent = z.infer<typeof parliamentEventSchema>;
 
-export type ProvenancedRecord<T> = {
+type SourceDocument = {
+  publisher: string;
+  retrievedAt: string;
+  title: string;
+  url: string;
+};
+
+export type SourceRecord<T> = {
   data: T;
   dataStatus: SourceRecordStatus;
-  sourceDocument: ProvenanceSourceDocument;
-  sourceSnapshot: ProvenanceSourceSnapshot;
-  sourceExcerpts: ProvenanceSourceExcerpt[];
-  displayFacts: ProvenanceDisplayFact[];
+  sourceDocument: SourceDocument;
 };
 
 export type SourceRecordStatus = {
@@ -148,7 +144,7 @@ export type SourceRecordStatus = {
   state: "fresh" | "stale";
 };
 
-const lastGoodRecords = new Map<string, ProvenancedRecord<unknown>>();
+const lastGoodRecords = new Map<string, SourceRecord<unknown>>();
 
 export function resetParliamentSourceCache() {
   lastGoodRecords.clear();
@@ -161,34 +157,15 @@ export async function getCommonsPartySeatCounts(now = new Date()) {
     const raw = await fetchJson(url);
     const parsed = stateOfPartiesSchema.parse(raw);
     const retrievedAt = new Date().toISOString();
-    const rawText = JSON.stringify(raw, null, 2);
     const sourceDocument = buildSourceDocument({
       title: `State of the Parties in the House of Commons on ${forDate}`,
       publisher: "UK Parliament Members API",
       retrievedAt,
       url
     });
-    const sourceSnapshot = buildSourceSnapshot(sourceDocument, rawText, retrievedAt);
-    const sourceExcerpts = parsed.items.map((item, index) =>
-      buildSourceExcerpt({
-        excerptText: JSON.stringify(item.value),
-        path: `items[${index}].value`,
-        sourceSnapshot
-      })
-    );
-    const displayFacts = parsed.items.map((item, index) =>
-      buildDisplayFact({
-        summaryText: `${item.value.party.name} has ${item.value.total} seats in the House of Commons.`,
-        sourceExcerptIds: [sourceExcerpts[index]?.id ?? ""]
-      })
-    );
-
     return {
       data: parsed.items.map((item) => item.value).sort((a, b) => b.total - a.total),
-      displayFacts,
-      sourceDocument,
-      sourceExcerpts,
-      sourceSnapshot
+      sourceDocument
     };
   });
 }
@@ -199,39 +176,19 @@ export async function getCommonsMembersSample(take = 8) {
     const raw = await fetchJson(url);
     const parsed = memberSearchSchema.parse(raw);
     const retrievedAt = new Date().toISOString();
-    const rawText = JSON.stringify(raw, null, 2);
-    const currentMemberItems = parsed.items
-      .map((item, sourceIndex) => ({ member: item.value, sourceIndex }))
-      .filter(({ member }) => isCurrentCommonsMember(member))
+    const data = parsed.items
+      .map((item) => item.value)
+      .filter(isCurrentCommonsMember)
       .slice(0, take);
-    const data = currentMemberItems.map(({ member }) => member);
     const sourceDocument = buildSourceDocument({
       title: "Current House of Commons members sample",
       publisher: "UK Parliament Members API",
       retrievedAt,
       url
     });
-    const sourceSnapshot = buildSourceSnapshot(sourceDocument, rawText, retrievedAt);
-    const sourceExcerpts = currentMemberItems.map(({ member, sourceIndex }) =>
-      buildSourceExcerpt({
-        excerptText: JSON.stringify(member),
-        path: `items[${sourceIndex}].value`,
-        sourceSnapshot
-      })
-    );
-    const displayFacts = data.map((member, index) =>
-      buildDisplayFact({
-        summaryText: `${member.nameDisplayAs} represents ${member.latestHouseMembership.membershipFrom}.`,
-        sourceExcerptIds: [sourceExcerpts[index]?.id ?? ""]
-      })
-    );
-
     return {
       data,
-      displayFacts,
-      sourceDocument,
-      sourceExcerpts,
-      sourceSnapshot
+      sourceDocument
     };
   });
 }
@@ -242,34 +199,15 @@ export async function getRecentCommonsDivisions(take = 5) {
     const raw = await fetchJson(url);
     const parsed = divisionsSchema.parse(raw);
     const retrievedAt = new Date().toISOString();
-    const rawText = JSON.stringify(raw, null, 2);
     const sourceDocument = buildSourceDocument({
       title: "Recent House of Commons divisions",
       publisher: "UK Parliament Commons Votes API",
       retrievedAt,
       url
     });
-    const sourceSnapshot = buildSourceSnapshot(sourceDocument, rawText, retrievedAt);
-    const sourceExcerpts = parsed.map((division, index) =>
-      buildSourceExcerpt({
-        excerptText: JSON.stringify(division),
-        path: `[${index}]`,
-        sourceSnapshot
-      })
-    );
-    const displayFacts = parsed.map((division, index) =>
-      buildDisplayFact({
-        summaryText: `${division.Title}: ${division.AyeCount} ayes and ${division.NoCount} noes.`,
-        sourceExcerptIds: [sourceExcerpts[index]?.id ?? ""]
-      })
-    );
-
     return {
       data: parsed,
-      displayFacts,
-      sourceDocument,
-      sourceExcerpts,
-      sourceSnapshot
+      sourceDocument
     };
   });
 }
@@ -282,38 +220,19 @@ export async function getUpcomingParliamentEvents(daysAhead = 7, take = 8, now =
     const raw = await fetchJson(url);
     const parsed = parliamentEventsSchema.parse(raw);
     const retrievedAt = new Date().toISOString();
-    const rawText = JSON.stringify(raw, null, 2);
     const sourceDocument = buildSourceDocument({
       title: `Upcoming Parliament events from ${startDate} to ${endDate}`,
       publisher: "UK Parliament What's On API",
       retrievedAt,
       url
     });
-    const sourceSnapshot = buildSourceSnapshot(sourceDocument, rawText, retrievedAt);
     const data = parsed
       .filter((event) => !event.CancelledDate)
       .sort(compareParliamentEvents)
       .slice(0, take);
-    const sourceExcerpts = data.map((event, index) =>
-      buildSourceExcerpt({
-        excerptText: JSON.stringify(event),
-        path: `events[${index}]`,
-        sourceSnapshot
-      })
-    );
-    const displayFacts = data.map((event, index) =>
-      buildDisplayFact({
-        summaryText: `${event.House ?? "Parliament"} ${event.Category ?? "event"}: ${event.Description ?? event.Type ?? "Scheduled business"}.`,
-        sourceExcerptIds: [sourceExcerpts[index]?.id ?? ""]
-      })
-    );
-
     return {
       data,
-      displayFacts,
-      sourceDocument,
-      sourceExcerpts,
-      sourceSnapshot
+      sourceDocument
     };
   });
 }
@@ -351,8 +270,8 @@ function isCurrentCommonsMember(member: CommonsMember) {
 
 async function withLastGoodRecord<T>(
   cacheKey: string,
-  loadFreshRecord: () => Promise<Omit<ProvenancedRecord<T>, "dataStatus">>
-): Promise<ProvenancedRecord<T>> {
+  loadFreshRecord: () => Promise<Omit<SourceRecord<T>, "dataStatus">>
+): Promise<SourceRecord<T>> {
   const attemptedAt = new Date().toISOString();
 
   try {
@@ -361,11 +280,11 @@ async function withLastGoodRecord<T>(
       lastSuccessfulCheckAt: attemptedAt,
       state: "fresh"
     });
-    lastGoodRecords.set(cacheKey, record as ProvenancedRecord<unknown>);
+    lastGoodRecords.set(cacheKey, record as SourceRecord<unknown>);
 
     return record;
   } catch (error) {
-    const cached = lastGoodRecords.get(cacheKey) as ProvenancedRecord<T> | undefined;
+    const cached = lastGoodRecords.get(cacheKey) as SourceRecord<T> | undefined;
 
     if (!cached) {
       throw error;
@@ -381,9 +300,9 @@ async function withLastGoodRecord<T>(
 }
 
 function attachDataStatus<T>(
-  record: Omit<ProvenancedRecord<T>, "dataStatus">,
+  record: Omit<SourceRecord<T>, "dataStatus">,
   dataStatus: SourceRecordStatus
-): ProvenancedRecord<T> {
+): SourceRecord<T> {
   return {
     ...record,
     dataStatus
@@ -414,61 +333,11 @@ function buildSourceDocument({
   retrievedAt: string;
   title: string;
   url: string;
-}): ProvenanceSourceDocument {
+}): SourceDocument {
   return {
-    id: stableId("source_document", url),
     publisher,
     retrievedAt,
-    sourceTier: "tier_1",
-    sourceType: "api",
     title,
     url
-  };
-}
-
-function buildSourceSnapshot(
-  sourceDocument: ProvenanceSourceDocument,
-  rawText: string,
-  capturedAt: string
-): ProvenanceSourceSnapshot {
-  const contentHash = hashText(rawText);
-
-  return {
-    capturedAt,
-    contentHash,
-    id: stableId("source_snapshot", `${sourceDocument.id}:${contentHash}`),
-    sourceDocumentId: sourceDocument.id
-  };
-}
-
-function buildSourceExcerpt({
-  excerptText,
-  path,
-  sourceSnapshot
-}: {
-  excerptText: string;
-  path: string;
-  sourceSnapshot: ProvenanceSourceSnapshot;
-}): ProvenanceSourceExcerpt {
-  return {
-    excerptText,
-    id: stableId("source_excerpt", `${sourceSnapshot.id}:${path}:${excerptText}`),
-    path,
-    sourceSnapshotId: sourceSnapshot.id
-  };
-}
-
-function buildDisplayFact({
-  sourceExcerptIds,
-  summaryText
-}: {
-  sourceExcerptIds: string[];
-  summaryText: string;
-}): ProvenanceDisplayFact {
-  return {
-    coverageState: "strong",
-    id: stableId("display_fact", `${summaryText}:${sourceExcerptIds.join(",")}`),
-    sourceExcerptIds,
-    summaryText
   };
 }

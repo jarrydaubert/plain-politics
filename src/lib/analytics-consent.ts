@@ -1,4 +1,4 @@
-export const ANALYTICS_CONSENT_KEY = "plain-politics-analytics-consent";
+const ANALYTICS_CONSENT_KEY = "plain-politics-analytics-consent";
 export const ANALYTICS_CONSENT_UPDATED_EVENT = "plain-politics:analytics-consent-updated";
 export const OPEN_ANALYTICS_SETTINGS_EVENT = "plain-politics:open-analytics-settings";
 

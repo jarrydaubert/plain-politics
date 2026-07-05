@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import type { DataHealthState, DataStatusReport } from "@/status/data-status";
+import { formatUkTime } from "@/lib/format";
+import {
+  type DataHealthState,
+  type DataStatusReport,
+  formatDataStatusLabel
+} from "@/status/data-status";
 
 type BadgeState =
   | {
@@ -27,7 +32,7 @@ export function DataStatusBadge() {
         : "Checking";
   const checkedTime =
     badgeState.state === "ready"
-      ? `checked ${formatTime(badgeState.report.lastAttemptedCheckAt)}`
+      ? `checked ${formatUkTime(badgeState.report.lastAttemptedCheckAt)}`
       : badgeState.state === "error"
         ? "check unavailable"
         : "checking";
@@ -66,7 +71,7 @@ export function DataStatusBadge() {
 
   return (
     <Link
-      className={`inline-flex min-h-9 items-center gap-2 rounded-md border px-3 py-1.5 text-xs font-semibold transition hover:bg-white ${statusClasses(statusState)}`}
+      className={`inline-flex min-h-9 items-center gap-2 rounded-md border px-3 py-1.5 text-xs font-semibold transition hover:brightness-95 ${statusClasses(statusState)}`}
       href="/status"
     >
       <span className="flex h-2.5 w-2.5 rounded-full bg-current" />
@@ -79,24 +84,12 @@ export function DataStatusBadge() {
 
 function statusClasses(state: DataHealthState) {
   if (state === "healthy") {
-    return "border-[#9dd3aa] bg-[#e7f6e9] text-[#0d6141]";
+    return "border-[var(--ok-border)] bg-[var(--ok-bg)] text-[var(--ok-ink)]";
   }
 
   if (state === "offline") {
-    return "border-[#f0a0aa] bg-[#fff0f2] text-[#9f1230]";
+    return "border-[var(--bad-border)] bg-[var(--bad-bg)] text-[var(--bad-ink)]";
   }
 
-  return "border-[#e3c46f] bg-[#fff7d6] text-[#755000]";
-}
-
-function formatTime(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/London"
-  }).format(new Date(value));
-}
-
-function formatDataStatusLabel(status: DataHealthState) {
-  return status[0].toUpperCase() + status.slice(1);
+  return "border-[var(--warn-border)] bg-[var(--warn-bg)] text-[var(--warn-ink)]";
 }

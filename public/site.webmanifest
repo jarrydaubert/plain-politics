@@ -4,7 +4,7 @@
   "description": "Beginner-friendly UK politics information, sources, and local MP lookup.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F5F7FB",
+  "background_color": "#071F3A",
   "theme_color": "#071F3A",
   "icons": [
     {
