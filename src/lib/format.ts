@@ -5,12 +5,6 @@ const ukDateFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Europe/London"
 });
 
-const ukDateTimeFormatter = new Intl.DateTimeFormat("en-GB", {
-  dateStyle: "medium",
-  timeStyle: "short",
-  timeZone: "Europe/London"
-});
-
 const ukTimeFormatter = new Intl.DateTimeFormat("en-GB", {
   hour: "2-digit",
   minute: "2-digit",
@@ -22,7 +16,7 @@ export function formatUkDate(value: DateValue) {
 }
 
 export function formatUkDateTime(value: DateValue) {
-  return ukDateTimeFormatter.format(new Date(value));
+  return `${formatUkDate(value)} at ${formatUkTime(value)}`;
 }
 
 export function formatUkTime(value: DateValue) {
