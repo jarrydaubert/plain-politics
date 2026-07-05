@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const sourceTierSchema = z.enum(["tier_1", "tier_2", "tier_3"]);
+const sourceTierSchema = z.enum(["tier_1", "tier_2", "tier_3"]);
 
 export const sourceDocumentSchema = z.object({
   id: z.string().uuid(),
@@ -39,8 +39,3 @@ export const displayFactSchema = z.object({
   coverageState: z.enum(["strong", "partial", "none"]),
   lastCheckedAt: z.string().datetime()
 });
-
-export type SourceDocument = z.infer<typeof sourceDocumentSchema>;
-export type SourceSnapshot = z.infer<typeof sourceSnapshotSchema>;
-export type SourceExcerpt = z.infer<typeof sourceExcerptSchema>;
-export type DisplayFact = z.infer<typeof displayFactSchema>;

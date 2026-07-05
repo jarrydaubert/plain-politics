@@ -1,6 +1,7 @@
-import { BookOpenText, Landmark, MapPin } from "lucide-react";
+import { BookOpenText, Landmark } from "lucide-react";
 import Link from "next/link";
 import { MyAreaLookup } from "@/components/my-area-lookup";
+import { PageHeader } from "@/components/page-header";
 import { StructuredData } from "@/components/structured-data";
 import {
   buildBreadcrumbJsonLd,
@@ -25,21 +26,13 @@ export default function MyAreaPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-
-      <section className="mt-6 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
-        <div>
-          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[var(--accent)] text-white">
-            <MapPin aria-hidden="true" size={23} />
-          </div>
-          <h1 className="mt-5 text-4xl font-semibold">Start with your area</h1>
-          <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-            Enter a postcode to find your Westminster constituency, current MP, recent votes and
-            written questions.
-          </p>
-        </div>
+      <section className="grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
+        <PageHeader
+          backHref="/"
+          eyebrow="Your constituency"
+          lede="Enter a postcode to find your Westminster constituency, current MP, recent votes and written questions."
+          title="Start with your area"
+        />
 
         <aside className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
           <h2 className="text-lg font-semibold">What you will see</h2>

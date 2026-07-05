@@ -1,9 +1,9 @@
-export type ExplainerSource = {
+type ExplainerSource = {
   name: string;
   url: string;
 };
 
-export type ExplainerSection = {
+type ExplainerSection = {
   heading: string;
   body: string;
 };

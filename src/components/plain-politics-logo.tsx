@@ -1,24 +1,26 @@
 type PlainPoliticsMarkProps = {
   className?: string;
+  variant?: "bare" | "tile";
 };
 
-export function PlainPoliticsMark({ className }: PlainPoliticsMarkProps) {
+export function PlainPoliticsMark({ className, variant = "tile" }: PlainPoliticsMarkProps) {
+  const bare = variant === "bare";
+
   return (
     <svg
       aria-hidden="true"
       className={className}
       focusable="false"
-      viewBox="0 0 128 128"
+      viewBox={bare ? "20 20 96 96" : "0 0 128 128"}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect fill="#071F3A" height="128" rx="28" width="128" />
-      <path d="M32 32L43 20L54 32L64 20L75 32L85 20L96 32V43H32V32Z" fill="#C8102E" />
-      <path d="M36 47H58V104H36V47Z" fill="#F8FAFC" />
+      {bare ? null : <rect fill="#071F3A" height="128" rx="28" width="128" />}
+      <rect fill={bare ? "currentColor" : "#F8FAFC"} height="68" width="16" x="30" y="30" />
       <path
-        d="M52 47H76C92.8 47 104 57.5 104 72C104 86.5 92.8 97 76 97H52V79H75C82.4 79 86.8 76.1 86.8 72C86.8 67.9 82.4 65 75 65H52V47Z"
-        fill="#F8FAFC"
+        d="M46 30H62A26 26 0 0 1 62 82H46V66H62A10 10 0 0 0 62 46H46Z"
+        fill={bare ? "currentColor" : "#F8FAFC"}
       />
-      <rect fill="#071F3A" height="14" rx="7" width="18" x="58" y="65" />
+      <circle cx="95" cy="89" fill={bare ? "var(--stop-red-on-ink)" : "#D62E4C"} r="9" />
     </svg>
   );
 }

@@ -1,5 +1,7 @@
 # Youth UX Research Notes
 
+> Research record, not current visual guidance. The notebook/highlighter recommendation was superseded by `docs/brand/design-system.md` on 2026-07-05.
+
 Last checked: 2026-07-02
 
 ## Conclusion

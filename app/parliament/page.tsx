@@ -1,15 +1,18 @@
 import { AlertCircle, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { PageHeader } from "@/components/page-header";
+import { SourceDataNote } from "@/components/source-data-note";
 import { StructuredData } from "@/components/structured-data";
+import { formatUkDate, formatUkDateTime } from "@/lib/format";
 import {
   buildBreadcrumbJsonLd,
   buildWebPageJsonLd,
   createMetadata,
   getRouteMetadata
 } from "@/lib/seo";
+import { cleanOptionalText } from "@/lib/text";
 import { getParliamentPageData, isPanelAvailable } from "@/parliament/page-data";
-import type { SourceRecordStatus } from "@/sources/uk-parliament";
 
 export const dynamic = "force-dynamic";
 
@@ -54,17 +57,14 @@ export default async function ParliamentPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-
-      <div className="mt-6 grid gap-8 xl:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1.45fr)]">
+      <div className="grid gap-8 xl:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1.45fr)]">
         <section className="min-w-0">
-          <h1 className="text-4xl font-semibold">Parliament</h1>
-          <p className="mt-4 leading-7 text-[var(--muted)]">
-            See how Commons seats are divided, what business is scheduled and how recent votes were
-            counted.
-          </p>
+          <PageHeader
+            backHref="/"
+            eyebrow="Public record"
+            lede="See how Commons seats are divided, what business is scheduled and how recent votes were counted."
+            title="Parliament"
+          />
           <div className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
             <div className="text-3xl font-semibold">
               {totalSeats === null ? "Unavailable" : totalSeats}
@@ -81,7 +81,7 @@ export default async function ParliamentPage() {
           <section className="min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
             <div className="border-b border-[var(--border)] p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <h2 className="text-xl font-semibold">State of the parties</h2>
+                <h2 className="font-serif text-xl font-semibold">State of the parties</h2>
                 <Link
                   className="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-strong)]"
                   href="/parties"
@@ -95,7 +95,7 @@ export default async function ParliamentPage() {
               <LastChecked value={parliamentData.seatCounts.record.sourceDocument.retrievedAt} />
               <SourceDataNote status={parliamentData.seatCounts.record.dataStatus} />
             </div>
-            <div className="max-w-full overflow-x-auto">
+            <div className="relative max-w-full overflow-x-auto">
               <table className="w-full min-w-[560px] border-collapse text-left text-sm">
                 <caption className="sr-only">
                   Current House of Commons party seat counts from the UK Parliament Members API.
@@ -152,7 +152,7 @@ export default async function ParliamentPage() {
       {isPanelAvailable(parliamentData.upcomingEvents) ? (
         <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
           <div className="border-b border-[var(--border)] p-5">
-            <h2 className="text-xl font-semibold">Upcoming parliamentary business</h2>
+            <h2 className="font-serif text-xl font-semibold">Upcoming parliamentary business</h2>
             <p className="mt-1 text-sm text-[var(--muted)]">
               Official UK Parliament calendar API, next seven days. This shows scheduled business,
               not what the outcome will be.
@@ -160,7 +160,7 @@ export default async function ParliamentPage() {
             <LastChecked value={parliamentData.upcomingEvents.record.sourceDocument.retrievedAt} />
             <SourceDataNote status={parliamentData.upcomingEvents.record.dataStatus} />
           </div>
-          <div className="max-w-full overflow-x-auto">
+          <div className="relative max-w-full overflow-x-auto">
             <table className="w-full min-w-[900px] border-collapse text-left text-sm">
               <caption className="sr-only">
                 Upcoming parliamentary business from the UK Parliament calendar API. Columns: date;
@@ -181,14 +181,16 @@ export default async function ParliamentPage() {
               <tbody>
                 {parliamentData.upcomingEvents.record.data.map((event) => (
                   <tr className="border-t border-[var(--border)]" key={event.Id}>
-                    <DataCell headers="upcoming-date">{formatDateOnly(event.StartDate)}</DataCell>
+                    <DataCell headers="upcoming-date">{formatUkDate(event.StartDate)}</DataCell>
                     <DataCell headers="upcoming-time">{formatEventTime(event.StartTime)}</DataCell>
-                    <DataCell headers="upcoming-house">{cleanText(event.House) ?? "-"}</DataCell>
+                    <DataCell headers="upcoming-house">
+                      {cleanOptionalText(event.House) ?? "-"}
+                    </DataCell>
                     <DataCell headers="upcoming-category">
-                      {cleanText(event.Category ?? event.Type) ?? "-"}
+                      {cleanOptionalText(event.Category ?? event.Type) ?? "-"}
                     </DataCell>
                     <DataCell className="font-medium" headers="upcoming-business">
-                      {cleanText(event.Description ?? event.Type) ?? "Scheduled business"}
+                      {cleanOptionalText(event.Description ?? event.Type) ?? "Scheduled business"}
                     </DataCell>
                     <DataCell boundary={false} headers="upcoming-bill">
                       {event.BillPageLink ? (
@@ -198,7 +200,7 @@ export default async function ParliamentPage() {
                           rel="noreferrer"
                           target="_blank"
                         >
-                          {cleanText(event.BillName) || "Bill page"}
+                          {cleanOptionalText(event.BillName) || "Bill page"}
                         </a>
                       ) : (
                         "-"
@@ -221,7 +223,7 @@ export default async function ParliamentPage() {
       {isPanelAvailable(parliamentData.divisions) ? (
         <section className="mt-8 min-w-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]">
           <div className="border-b border-[var(--border)] p-5">
-            <h2 className="text-xl font-semibold">Recent Commons divisions</h2>
+            <h2 className="font-serif text-xl font-semibold">Recent Commons divisions</h2>
             <p className="mt-1 text-sm text-[var(--muted)]">
               Official UK Parliament Commons Votes API. Divisions show how votes were counted; they
               do not explain each MP&apos;s motive by themselves.
@@ -229,7 +231,7 @@ export default async function ParliamentPage() {
             <LastChecked value={parliamentData.divisions.record.sourceDocument.retrievedAt} />
             <SourceDataNote status={parliamentData.divisions.record.dataStatus} />
           </div>
-          <div className="max-w-full overflow-x-auto">
+          <div className="relative max-w-full overflow-x-auto">
             <table className="w-full min-w-[780px] border-collapse text-left text-sm">
               <caption className="sr-only">
                 Recent House of Commons divisions from the official Commons Votes API. Columns:
@@ -252,7 +254,7 @@ export default async function ParliamentPage() {
                     <DataCell headers="division-date">{formatDate(division.Date)}</DataCell>
                     <DataCell headers="division-number">{division.Number}</DataCell>
                     <DataCell className="font-medium" headers="division-title">
-                      {cleanText(division.Title)}
+                      {cleanOptionalText(division.Title)}
                     </DataCell>
                     <DataCell headers="division-ayes">{division.AyeCount}</DataCell>
                     <DataCell boundary={false} headers="division-noes">
@@ -274,7 +276,7 @@ export default async function ParliamentPage() {
 
       {sourceLinks.length > 0 ? (
         <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <h2 className="text-xl font-semibold">Official source links</h2>
+          <h2 className="font-serif text-xl font-semibold">Official source links</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {sourceLinks.map((source) => (
               <SourceLink key={source.url} label={source.label} url={source.url} />
@@ -312,7 +314,7 @@ function UnavailablePanel({
       <div className="flex items-start gap-3">
         <AlertCircle aria-hidden="true" className="mt-1 text-[var(--danger)]" size={22} />
         <div>
-          <h2 className="text-xl font-semibold">{title}</h2>
+          <h2 className="font-serif text-xl font-semibold">{title}</h2>
           <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{detail}</p>
         </div>
       </div>
@@ -366,52 +368,19 @@ function CrawlerBoundary() {
 
 function LastChecked({ value }: Readonly<{ value: string }>) {
   return (
-    <p className="mt-2 text-xs font-medium text-[var(--muted)]">
-      Checked through the app cache {formatCheckedAt(value)}. Source responses may be cached for up
+    <p className="mt-2 font-mono text-xs font-medium text-[var(--muted)]">
+      Checked through the app cache {formatUkDateTime(value)}. Source responses may be cached for up
       to five minutes.
-    </p>
-  );
-}
-
-function SourceDataNote({ status }: Readonly<{ status: SourceRecordStatus }>) {
-  if (status.state === "fresh") {
-    return null;
-  }
-
-  return (
-    <p className="mt-3 rounded-md border border-[#e3c46f] bg-[#fff7d6] px-3 py-2 text-xs font-medium leading-5 text-[#755000]">
-      Data note: showing an earlier successful copy from{" "}
-      {formatCheckedAt(status.lastSuccessfulCheckAt)} after a failed check at{" "}
-      {formatCheckedAt(status.lastAttemptedCheckAt)}. Durable last-good storage is not live yet.
     </p>
   );
 }
 
 function formatDate(value: string) {
   if (isDefaultMidnight(value)) {
-    return formatDateOnly(value);
+    return formatUkDate(value);
   }
 
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeStyle: "short",
-    timeZone: "Europe/London"
-  }).format(new Date(value));
-}
-
-function formatDateOnly(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeZone: "Europe/London"
-  }).format(new Date(value));
-}
-
-function formatCheckedAt(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeStyle: "short",
-    timeZone: "Europe/London"
-  }).format(new Date(value));
+  return formatUkDateTime(value);
 }
 
 function formatEventTime(value: string | null) {
@@ -438,10 +407,4 @@ function isDefaultMidnight(value: string) {
 
 function isMissingClockTime(value: string) {
   return /^0?0:00(?::00)?$/.test(value);
-}
-
-function cleanText(value: string | null | undefined) {
-  const cleaned = value?.replace(/\s+/g, " ").trim();
-
-  return cleaned || undefined;
 }

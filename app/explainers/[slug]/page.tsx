@@ -1,10 +1,11 @@
-import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SourceLinkList } from "@/components/source-link-list";
 import { StructuredData } from "@/components/structured-data";
 import { explainers, findExplainerBySlug } from "@/data/explainers";
 import { glossaryTermSlug, glossaryTerms } from "@/data/glossary";
+import { formatUkDate } from "@/lib/format";
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
@@ -76,9 +77,9 @@ export default async function ExplainerDetailPage({
 
       <article className="mt-6">
         <p className="font-mono text-sm text-[var(--muted)]">
-          {explainer.readTime} read - Last reviewed {formatDate(explainer.lastReviewed)}
+          {explainer.readTime} read - Last reviewed {formatUkDate(explainer.lastReviewed)}
         </p>
-        <h1 className="mt-3 text-4xl font-semibold">{explainer.title}</h1>
+        <h1 className="mt-3 font-serif text-4xl font-semibold">{explainer.title}</h1>
         <p className="mt-4 text-lg leading-8 text-[var(--muted)]">{explainer.description}</p>
 
         <div className="mt-8 grid gap-6">
@@ -87,8 +88,8 @@ export default async function ExplainerDetailPage({
               className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5"
               key={section.heading}
             >
-              <h2 className="text-xl font-semibold">{section.heading}</h2>
-              <p className="mt-3 leading-7 text-[var(--muted)]">{section.body}</p>
+              <h2 className="font-serif text-xl font-semibold">{section.heading}</h2>
+              <p className="mt-3 font-serif leading-7 text-[var(--ink-soft)]">{section.body}</p>
             </section>
           ))}
         </div>
@@ -113,28 +114,8 @@ export default async function ExplainerDetailPage({
 
       <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
         <h2 className="text-xl font-semibold">Sources for this explainer</h2>
-        <div className="mt-4 grid gap-3">
-          {explainer.sourceLinks.map((source) => (
-            <a
-              className="flex items-center justify-between gap-4 border-t border-[var(--border)] pt-3 text-sm font-medium transition hover:text-[var(--accent)]"
-              href={source.url}
-              key={source.url}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <span>{source.name}</span>
-              <ExternalLink aria-hidden="true" size={16} />
-            </a>
-          ))}
-        </div>
+        <SourceLinkList sources={explainer.sourceLinks} />
       </section>
     </main>
   );
-}
-
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeZone: "Europe/London"
-  }).format(new Date(value));
 }

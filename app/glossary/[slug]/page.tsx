@@ -76,14 +76,14 @@ export default async function GlossaryTermPage({
 
       <article className="mt-6">
         <p className="text-xs font-semibold uppercase text-[var(--muted)]">{term.category}</p>
-        <h1 className="mt-2 text-4xl font-semibold">{term.term}</h1>
+        <h1 className="mt-2 font-serif text-4xl font-semibold">{term.term}</h1>
         <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <h2 className="text-xl font-semibold">What it means</h2>
-          <p className="mt-3 leading-7 text-[var(--muted)]">{term.plainEnglish}</p>
+          <h2 className="font-serif text-xl font-semibold">What it means</h2>
+          <p className="mt-3 font-serif leading-7 text-[var(--ink-soft)]">{term.plainEnglish}</p>
         </section>
         <section className="mt-5 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-          <h2 className="text-xl font-semibold">Why it matters</h2>
-          <p className="mt-3 leading-7 text-[var(--muted)]">{term.whyItMatters}</p>
+          <h2 className="font-serif text-xl font-semibold">Why it matters</h2>
+          <p className="mt-3 font-serif leading-7 text-[var(--ink-soft)]">{term.whyItMatters}</p>
         </section>
       </article>
 

@@ -12,10 +12,12 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-12 border-t border-[var(--border)] bg-[var(--surface)]">
-      <div className="mx-auto grid max-w-7xl gap-6 px-6 py-8 lg:grid-cols-[0.9fr_1.1fr]">
+    <footer className="ground-ink mt-12 border-t border-[var(--border)]">
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <p className="text-lg font-semibold">Plain Politics</p>
+          <p className="font-serif text-3xl font-semibold">
+            Plain Politics<span className="text-[var(--stop-red-on-ink)]">.</span>
+          </p>
           <p className="mt-2 max-w-md text-sm leading-6 text-[var(--muted)]">
             UK politics, made easier to follow. Not affiliated with any political party, Parliament,
             government department or election authority.
@@ -27,7 +29,7 @@ export function SiteFooter() {
             {footerLinks.map((item) =>
               item.href.startsWith("mailto:") ? (
                 <a
-                  className="text-[var(--accent)] hover:text-[var(--accent-strong)]"
+                  className="text-[var(--focus-on-ink)] hover:text-[var(--paper-on-ink)]"
                   href={item.href}
                   key={item.href}
                 >
@@ -35,7 +37,7 @@ export function SiteFooter() {
                 </a>
               ) : (
                 <Link
-                  className="text-[var(--accent)] hover:text-[var(--accent-strong)]"
+                  className="text-[var(--focus-on-ink)] hover:text-[var(--paper-on-ink)]"
                   href={item.href}
                   key={item.href}
                 >
@@ -49,11 +51,11 @@ export function SiteFooter() {
             <DataStatusBadge />
           </div>
 
-          <p className="max-w-3xl text-xs leading-5 text-[var(--muted)]">
+          <p className="max-w-3xl font-mono text-xs leading-5 text-[var(--muted)]">
             Uses public data from UK Parliament APIs and postcodes.io/ONS where displayed.
             Parliament data is available under the{" "}
             <a
-              className="font-medium text-[var(--accent)] hover:text-[var(--accent-strong)]"
+              className="font-medium text-[var(--focus-on-ink)] hover:text-[var(--paper-on-ink)]"
               href="https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/"
               rel="noreferrer"
               target="_blank"
@@ -62,7 +64,7 @@ export function SiteFooter() {
             </a>
             ; postcode and ONS boundary data under the{" "}
             <a
-              className="font-medium text-[var(--accent)] hover:text-[var(--accent-strong)]"
+              className="font-medium text-[var(--focus-on-ink)] hover:text-[var(--paper-on-ink)]"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               rel="noreferrer"
               target="_blank"

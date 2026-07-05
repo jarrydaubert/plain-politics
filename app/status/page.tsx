@@ -1,6 +1,7 @@
 import { AlertTriangle, CheckCircle2, CircleAlert, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
 import { StructuredData } from "@/components/structured-data";
+import { formatUkDateTime } from "@/lib/format";
 import {
   buildBreadcrumbJsonLd,
   buildWebPageJsonLd,
@@ -43,18 +44,13 @@ export default async function StatusPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-
-      <section className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(18rem,0.45fr)]">
-        <div>
-          <h1 className="text-4xl font-semibold">Data status</h1>
-          <p className="mt-4 max-w-3xl leading-7 text-[var(--muted)]">
-            Plain Politics checks whether public sources are reachable, parseable, fresh enough for
-            the page they support, shaped as expected, and free from obvious sanity problems.
-          </p>
-        </div>
+      <section className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(18rem,0.45fr)]">
+        <PageHeader
+          backHref="/"
+          eyebrow="Live checks"
+          lede="Plain Politics checks whether public sources are reachable, parseable, fresh enough for the page they support, shaped as expected, and free from obvious sanity problems."
+          title="Data status"
+        />
 
         <aside className={`rounded-lg border p-5 ${statusPanelClasses(report.overall)}`}>
           <div className="flex items-center gap-3">
@@ -138,7 +134,7 @@ function SourceStatusCard({ source }: Readonly<{ source: DataSourceFamilyStatus 
           <StatusTime label="Last successful check" value={source.lastSuccessfulCheckAt} />
         </dl>
 
-        <div className="max-w-full overflow-x-auto">
+        <div className="relative max-w-full overflow-x-auto">
           <table className="w-full min-w-[680px] border-collapse text-left text-sm">
             <caption className="sr-only">Data quality checks for {source.name}</caption>
             <thead className="bg-[var(--surface-soft)]">
@@ -184,7 +180,7 @@ function StatusTime({ label, value }: Readonly<{ label: string; value: string | 
     <div className="border-t border-[var(--border)] pt-3">
       <dt className="font-semibold">{label}</dt>
       <dd className="mt-1 text-[var(--muted)]">
-        {value ? formatDateTime(value) : "No successful check yet"}
+        {value ? formatUkDateTime(value) : "No successful check yet"}
       </dd>
     </div>
   );
@@ -192,50 +188,50 @@ function StatusTime({ label, value }: Readonly<{ label: string; value: string | 
 
 function StatusIcon({ state }: Readonly<{ state: DataHealthState }>) {
   if (state === "healthy") {
-    return <CheckCircle2 aria-hidden="true" className="text-[#0d6141]" size={28} />;
+    return <CheckCircle2 aria-hidden="true" className="text-[var(--ok-ink)]" size={28} />;
   }
 
   if (state === "offline") {
-    return <CircleAlert aria-hidden="true" className="text-[#9f1230]" size={28} />;
+    return <CircleAlert aria-hidden="true" className="text-[var(--bad-ink)]" size={28} />;
   }
 
-  return <AlertTriangle aria-hidden="true" className="text-[#755000]" size={28} />;
+  return <AlertTriangle aria-hidden="true" className="text-[var(--warn-ink)]" size={28} />;
 }
 
 function statusPanelClasses(state: DataHealthState) {
   if (state === "healthy") {
-    return "border-[#9dd3aa] bg-[#e7f6e9]";
+    return "border-[var(--ok-border)] bg-[var(--ok-bg)]";
   }
 
   if (state === "offline") {
-    return "border-[#f0a0aa] bg-[#fff0f2]";
+    return "border-[var(--bad-border)] bg-[var(--bad-bg)]";
   }
 
-  return "border-[#e3c46f] bg-[#fff7d6]";
+  return "border-[var(--warn-border)] bg-[var(--warn-bg)]";
 }
 
 function statusChipClasses(state: DataHealthState) {
   if (state === "healthy") {
-    return "bg-[#e7f6e9] text-[#0d6141]";
+    return "bg-[var(--ok-bg)] text-[var(--ok-ink)]";
   }
 
   if (state === "offline") {
-    return "bg-[#fff0f2] text-[#9f1230]";
+    return "bg-[var(--bad-bg)] text-[var(--bad-ink)]";
   }
 
-  return "bg-[#fff7d6] text-[#755000]";
+  return "bg-[var(--warn-bg)] text-[var(--warn-ink)]";
 }
 
 function checkClasses(outcome: DataCheckOutcome) {
   if (outcome === "pass") {
-    return "bg-[#e7f6e9] text-[#0d6141]";
+    return "bg-[var(--ok-bg)] text-[var(--ok-ink)]";
   }
 
   if (outcome === "fail") {
-    return "bg-[#fff0f2] text-[#9f1230]";
+    return "bg-[var(--bad-bg)] text-[var(--bad-ink)]";
   }
 
-  return "bg-[#fff7d6] text-[#755000]";
+  return "bg-[var(--warn-bg)] text-[var(--warn-ink)]";
 }
 
 function checkLabel(outcome: DataCheckOutcome) {
@@ -248,12 +244,4 @@ function checkLabel(outcome: DataCheckOutcome) {
   }
 
   return "Needs attention";
-}
-
-function formatDateTime(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeStyle: "short",
-    timeZone: "Europe/London"
-  }).format(new Date(value));
 }

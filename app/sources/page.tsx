@@ -1,5 +1,6 @@
 import { DatabaseZap, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
 import { StructuredData } from "@/components/structured-data";
 import { type SourceHook, sourceHooks } from "@/data/source-catalogue";
 import {
@@ -27,28 +28,25 @@ export default function SourcesPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-
-      <section className="mt-6 max-w-3xl">
-        <h1 className="text-4xl font-semibold">Source directory</h1>
-        <p className="mt-4 leading-7 text-[var(--muted)]">
-          These are the public sources used by features you can open on Plain Politics today. The
-          directory lists reviewed public features, not internal source research.
-        </p>
+      <PageHeader
+        backHref="/"
+        className="max-w-3xl"
+        eyebrow="Public records"
+        lede="These are the public sources used by features you can open on Plain Politics today. The directory lists reviewed public features, not internal source research."
+        title="Source directory"
+      >
         <Link
-          className="mt-4 inline-flex text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-strong)]"
+          className="inline-flex text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-strong)]"
           href="/status"
         >
           Check current data health
         </Link>
-      </section>
+      </PageHeader>
 
       <section className="mt-10">
         <div className="mb-4 flex items-center gap-2">
           <DatabaseZap aria-hidden="true" className="text-[var(--accent)]" size={22} />
-          <h2 className="text-2xl font-semibold">Used now</h2>
+          <h2 className="font-serif text-2xl font-semibold">Used now</h2>
         </div>
         <div className="grid gap-4 xl:grid-cols-3">
           {hooked.map((source) => (
@@ -58,7 +56,7 @@ export default function SourcesPage() {
       </section>
 
       <section className="mt-10 border-t border-[var(--border)] pt-8">
-        <h2 className="text-2xl font-semibold">How Plain Politics uses sources</h2>
+        <h2 className="font-serif text-2xl font-semibold">How Plain Politics uses sources</h2>
         <div className="mt-4 grid gap-4 text-sm leading-6 text-[var(--muted)] md:grid-cols-3">
           <p>
             Factual records link to the public source used to produce them. Primary official sources

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
 import { StructuredData } from "@/components/structured-data";
 import {
   buildBreadcrumbJsonLd,
@@ -31,16 +32,14 @@ export default function AboutPage() {
           ])
         ]}
       />
-      <Link className="text-sm font-medium text-[var(--accent)]" href="/">
-        Home
-      </Link>
-      <h1 className="mt-6 text-4xl font-semibold">About this site</h1>
-      <p className="mt-4 leading-7 text-[var(--muted)]">
-        Plain Politics is a plain-English starter for people who want to understand UK politics
-        without spin, predictions or voting advice.
-      </p>
+      <PageHeader
+        backHref="/"
+        eyebrow="Plain Politics"
+        lede="Plain Politics is a plain-English starter for people who want to understand UK politics without spin, predictions or voting advice."
+        title="About this site"
+      />
       <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
-        <h2 className="text-xl font-semibold">How to read it</h2>
+        <h2 className="font-serif text-xl font-semibold">How to read it</h2>
         <p className="mt-3 leading-7 text-[var(--muted)]">
           Start with a local question, then follow the words, public records and source links as far
           as you want to go. When the site cannot verify something from public evidence, it says so.
@@ -59,7 +58,7 @@ export default function AboutPage() {
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         <section className="border-t border-[var(--border)] pt-5">
-          <h2 className="text-xl font-semibold">Independent and unaffiliated</h2>
+          <h2 className="font-serif text-xl font-semibold">Independent and unaffiliated</h2>
           <p className="mt-3 leading-7 text-[var(--muted)]">
             Plain Politics is an independent information project. It is not affiliated with a
             political party, Parliament, a government department or an election authority.
@@ -67,7 +66,7 @@ export default function AboutPage() {
         </section>
 
         <section className="border-t border-[var(--border)] pt-5">
-          <h2 className="text-xl font-semibold">Sources and update times</h2>
+          <h2 className="font-serif text-xl font-semibold">Sources and update times</h2>
           <p className="mt-3 leading-7 text-[var(--muted)]">
             Live panels identify their public source and show when data was checked through the app
             cache. Parliament responses may be cached for up to five minutes.
@@ -83,7 +82,7 @@ export default function AboutPage() {
         </section>
 
         <section className="border-t border-[var(--border)] pt-5">
-          <h2 className="text-xl font-semibold">Corrections and contact</h2>
+          <h2 className="font-serif text-xl font-semibold">Corrections and contact</h2>
           <p className="mt-3 leading-7 text-[var(--muted)]">
             Report a source problem, unclear explanation or correction by emailing{" "}
             <a
@@ -97,7 +96,7 @@ export default function AboutPage() {
         </section>
 
         <section className="border-t border-[var(--border)] pt-5">
-          <h2 className="text-xl font-semibold">Privacy</h2>
+          <h2 className="font-serif text-xl font-semibold">Privacy</h2>
           <p className="mt-3 leading-7 text-[var(--muted)]">
             Postcode lookup runs in the browser and is not stored by Plain Politics. Analytics
             choices and third-party source requests are explained in the privacy notice.

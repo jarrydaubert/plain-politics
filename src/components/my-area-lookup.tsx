@@ -2,6 +2,7 @@
 
 import { AlertCircle, CheckCircle2, ExternalLink, Loader2, MapPin, Vote } from "lucide-react";
 import { type FormEvent, type ReactNode, useState } from "react";
+import { formatUkDate, formatUkDateTime } from "@/lib/format";
 
 type LookupState =
   | { status: "idle" }
@@ -293,7 +294,7 @@ function LookupResult({ data }: Readonly<{ data: MyAreaLookupResult }>) {
             <p className="text-sm font-semibold uppercase text-[var(--muted)]">
               Constituency found
             </p>
-            <h2 className="mt-1 text-2xl font-semibold">{data.constituency.name}</h2>
+            <h2 className="mt-1 font-serif text-2xl font-semibold">{data.constituency.name}</h2>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
               {data.constituency.district ?? "Local authority not returned"}
               {data.constituency.ward ? `, ${data.constituency.ward}` : ""}
@@ -304,7 +305,7 @@ function LookupResult({ data }: Readonly<{ data: MyAreaLookupResult }>) {
         <dl className="mt-5 grid gap-4 sm:grid-cols-3">
           <InfoItem label="Postcode checked" value={data.constituency.postcode} />
           <InfoItem label="Constituency code" value={data.constituency.code ?? "Not returned"} />
-          <InfoItem label="Checked at" value={formatDateTime(data.checkedAt)} />
+          <InfoItem label="Checked at" value={formatUkDateTime(data.checkedAt)} />
         </dl>
       </section>
 
@@ -316,11 +317,11 @@ function LookupResult({ data }: Readonly<{ data: MyAreaLookupResult }>) {
               {getInitials(data.member.nameDisplayAs)}
             </div>
             <div>
-              <h2 className="text-2xl font-semibold">{data.member.nameDisplayAs}</h2>
+              <h2 className="font-serif text-2xl font-semibold">{data.member.nameDisplayAs}</h2>
               <p className="mt-1 font-medium">{data.member.latestParty.name}</p>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                 MP for {data.member.latestHouseMembership.membershipFrom} since{" "}
-                {formatDateOnly(data.member.latestHouseMembership.membershipStartDate)}.
+                {formatUkDate(data.member.latestHouseMembership.membershipStartDate)}.
               </p>
             </div>
           </div>
@@ -351,7 +352,7 @@ function LookupResult({ data }: Readonly<{ data: MyAreaLookupResult }>) {
                 </span>
               </div>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                {formatDateOnly(vote.date)} - Division {vote.divisionNumber} - {vote.numberInFavour}{" "}
+                {formatUkDate(vote.date)} - Division {vote.divisionNumber} - {vote.numberInFavour}{" "}
                 ayes, {vote.numberAgainst} noes
               </p>
             </>
@@ -368,8 +369,8 @@ function LookupResult({ data }: Readonly<{ data: MyAreaLookupResult }>) {
               <h3 className="font-semibold">{question.heading ?? `Question ${question.uin}`}</h3>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{question.questionText}</p>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                Tabled {formatDateOnly(question.dateTabled)}
-                {question.dateAnswered ? `, answered ${formatDateOnly(question.dateAnswered)}` : ""}
+                Tabled {formatUkDate(question.dateTabled)}
+                {question.dateAnswered ? `, answered ${formatUkDate(question.dateAnswered)}` : ""}
               </p>
             </>
           )}
@@ -475,19 +476,6 @@ function formatVote(vote: MemberVote) {
   }
 
   return "Recorded";
-}
-
-function formatDateOnly(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium"
-  }).format(new Date(value));
-}
-
-function formatDateTime(value: string) {
-  return new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "medium",
-    timeStyle: "short"
-  }).format(new Date(value));
 }
 
 function isSameConstituency(first: string, second: string) {
