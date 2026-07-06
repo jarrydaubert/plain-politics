@@ -1,5 +1,7 @@
 # Plain Politics Logo
 
+Last updated: 2026-07-06
+
 ## Selected Direction
 
 Plain Politics uses the **Full Stop** mark: a navy app tile, a single constructed off-white `P`, and a red full stop sitting on the baseline. The wordmark is `Plain Politics.` — always ending in the red stop.
@@ -15,7 +17,8 @@ Plain Politics uses the **Full Stop** mark: a navy app tile, a single constructe
 ## Colour Rules
 
 - Tile: navy `#071F3A`. Letterform: off-white `#F8FAFC`.
-- The full stop is **`#D62E4C` on the navy tile**, **`#E4425C` on large Ink-ground typography**, and **`#C8102E` on Paper**.
+- The full stop is **`#D62E4C` on the navy tile**, **`#E8506A` through `--stop-red` on Ink**, and **`#C8102E` through `--stop-red` on Paper**.
+- The bare inline mark consumes `--stop-red`, so the surrounding ground selects the accessible red automatically.
 - One-colour fallback: everything off-white on navy (`plain-politics-mark-mono.svg`), or everything ink-navy on transparent for print.
 - Red is punctuation and editorial emphasis. Data-health red uses the separate `--bad-*` semantic tokens.
 

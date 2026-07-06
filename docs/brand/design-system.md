@@ -1,6 +1,6 @@
 # Plain Politics Design System
 
-Last updated: 2026-07-05
+Last updated: 2026-07-06
 
 This is the canonical visual direction for Plain Politics. It supersedes the notebook and highlighter treatment in the earlier redesign brief.
 
@@ -19,10 +19,10 @@ Ink is the brand and orientation ground. It is used for the sticky header, homep
 | `--ink-border` | `rgba(248, 250, 252, 0.16)` | Borders on Ink |
 | `--paper-on-ink` | `#F8FAFC` | Primary text on Ink |
 | `--muted-on-ink` | `#9DB0C7` | Secondary text on Ink |
-| `--stop-red-on-ink` | `#E4425C` | Full stops and editorial marks on Ink |
+| `--stop-red-on-ink` | `#E8506A` | Full stops and editorial marks on Ink |
 | `--focus-on-ink` | `#8BD3FF` | Links and focus rings on Ink |
 
-The `.ground-ink` scope remaps shared surface, text, border, and accent tokens. Components should continue to consume semantic tokens such as `--surface`, `--foreground`, `--muted`, and `--border`.
+The `.ground-ink` scope remaps shared surface, text, border, accent, and `--stop-red` tokens. Components should consume those semantic tokens rather than reaching directly for ground-specific values.
 
 ### Paper
 
@@ -40,6 +40,8 @@ Paper remains warm and quiet: `--background` is `#FBF8EE`, `--surface` is `#FFFD
 ## Colour Semantics
 
 - Brand red is punctuation and restrained editorial emphasis.
+- `--stop-red` is the component-facing token. On Ink it resolves to `#E8506A`, which meets WCAG AA for normal text on `--ink-bg`; on Paper it resolves to `#C8102E`.
+- On `--ink-panel`, red is limited to large text or non-text marks. Small panel text uses paper white, muted blue-grey, or focus sky.
 - `--ok-*`, `--warn-*`, and `--bad-*` are reserved for data health and operational state.
 - Record blue is the Paper-ground action colour.
 - Focus sky is the Ink-ground action and focus colour.
@@ -48,6 +50,8 @@ Paper remains warm and quiet: `--background` is `#FBF8EE`, `--surface` is `#FFFD
 ## Component Rules
 
 - The header and footer are Ink bookends.
+- The header remains sticky during document scrolling. Root horizontal overflow uses `overflow-x: clip`, which must not be replaced with `hidden` because that creates a scroll container and breaks sticky positioning.
+- Mobile navigation must keep every top-level link inside the viewport without relying on a hidden horizontal scrollbar.
 - The homepage hero and live panel use Ink; the first question section begins the Paper horizon.
 - Section pages use the shared `PageHeader`: mono eyebrow, Literata title, plain lede, and a 3px editorial rule.
 - Question and journey tiles share one editorial card shell. Do not introduce pastel variants or icon-chip rows.
@@ -66,7 +70,8 @@ Do not reintroduce ruled-paper margins, notebook grids, highlighter swipes, past
 - Ink focus uses `--focus-on-ink`; Paper focus uses `--record-blue`.
 - Respect `prefers-reduced-motion`.
 - Every fixed-width table must scroll inside its own positioned wrapper without increasing root page width.
+- Verify sticky chrome and root width at 390px after any global overflow or header change.
 
 ## Assets
 
-The Full Stop mark and wordmark rules live in `docs/brand/logo.md`. Social previews and install surfaces use Ink so the first brand impression matches the live product.
+The Full Stop mark and wordmark rules live in `docs/brand/logo.md`. Social previews and install surfaces use Ink so the first brand impression matches the live product. The web manifest uses `#071F3A` for both theme and launch background.

@@ -1,6 +1,6 @@
 # Backlog
 
-Last updated: 2026-07-04
+Last updated: 2026-07-06
 
 This file is only for unfinished todo items. It is not a status report, product spec, or changelog.
 
@@ -23,9 +23,6 @@ For context, use:
 
 - [ ] Verify `info@plainpolitics.co.uk` receives contact and correction email end to end.
   Definition of done: A test email sent from an external account arrives in the mailbox, replies work, and the live site points users to the verified address.
-
-- [ ] Review the homepage visual direction, OG image, and public imagery before launch.
-  Definition of done: Desktop and mobile homepage screenshots are reviewed, OG image renders in a preview tool, and any launch-blocking visual issues are fixed.
 
 - [ ] Submit the sitemap to Google Search Console and Bing Webmaster Tools.
   Definition of done: Site ownership is verified, the sitemap URL is submitted, and any indexing or sitemap errors are recorded for follow-up.

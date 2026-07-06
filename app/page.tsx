@@ -49,28 +49,28 @@ const normalQuestions = [
   {
     cta: "Find yours",
     description: "See your constituency and current MP before the Westminster machinery.",
-    eyebrow: "Question 01",
+    eyebrow: "Your MP",
     href: "/my-area",
     question: "What does my MP actually do?"
   },
   {
     cta: "Read votes",
     description: "Open recent Commons votes, then go to the original record.",
-    eyebrow: "Question 02",
+    eyebrow: "Commons votes",
     href: "/parliament",
     question: "Who voted for this?"
   },
   {
     cta: "Decode it",
     description: "Get the plain-English version before the deeper read.",
-    eyebrow: "Question 03",
+    eyebrow: "Plain English",
     href: "/glossary",
     question: "What does this word mean?"
   },
   {
     cta: "Open receipts",
     description: "See where the public records and page facts come from.",
-    eyebrow: "Question 04",
+    eyebrow: "Public records",
     href: "/sources",
     question: "Where did this come from?"
   }
@@ -104,13 +104,13 @@ export default async function HomePage() {
     <main className="min-h-screen">
       <StructuredData data={buildWebPageJsonLd(pageMetadata)} />
       <section className="ground-ink relative border-b border-[var(--border)]">
-        <div className="absolute inset-x-0 top-0 h-[3px] bg-[var(--stop-red-on-ink)]" />
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-[var(--stop-red)]" />
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(30rem,1.18fr)] lg:items-center">
             <div>
-              <h1 className="max-w-3xl font-serif text-5xl font-semibold leading-[1.05] text-[var(--paper-on-ink)] md:text-6xl">
+              <h1 className="max-w-3xl font-serif text-4xl font-semibold leading-[1.05] text-[var(--paper-on-ink)] sm:text-5xl md:text-6xl">
                 British politics, without the fog
-                <span className="text-[var(--stop-red-on-ink)]">.</span>
+                <span className="text-[var(--stop-red)]">.</span>
               </h1>
               <p className="mt-6 max-w-xl text-base leading-7 text-[var(--muted-on-ink)] sm:text-lg">
                 Start with where you live, decode the words people keep using, and see what
@@ -133,7 +133,7 @@ export default async function HomePage() {
               </div>
               <p className="mt-5 font-mono text-sm text-[var(--muted-on-ink)]">
                 No account. No pressure. You&apos;re in control
-                <span className="text-[var(--stop-red-on-ink)]">.</span>
+                <span className="text-[var(--stop-red)]">.</span>
               </p>
             </div>
 
@@ -142,7 +142,7 @@ export default async function HomePage() {
                 <div className="border-b border-[var(--ink-border)] pb-5">
                   <h2 className="font-serif text-2xl font-semibold leading-tight text-[var(--paper-on-ink)]">
                     Today, translated
-                    <span className="text-[var(--stop-red-on-ink)]">.</span>
+                    <span className="text-[var(--stop-red)]">.</span>
                   </h2>
                   <p className="mt-2 text-sm leading-6 text-[var(--muted-on-ink)]">
                     Live Parliament records, turned into plain English.

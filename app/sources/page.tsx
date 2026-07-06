@@ -87,8 +87,7 @@ function SourceCard({ source }: Readonly<{ source: SourceHook }>) {
     <article className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase text-[var(--muted)]">Used now</p>
-          <h3 className="mt-1 text-lg font-semibold">{source.name}</h3>
+          <h3 className="text-lg font-semibold">{source.name}</h3>
           <p className="mt-1 text-sm text-[var(--muted)]">{source.publisher}</p>
         </div>
         <a

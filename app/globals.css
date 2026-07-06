@@ -35,7 +35,7 @@
   --ink-border: rgba(248, 250, 252, 0.16);
   --paper-on-ink: #f8fafc;
   --muted-on-ink: #9db0c7;
-  --stop-red-on-ink: #e4425c;
+  --stop-red-on-ink: #e8506a;
   --focus-on-ink: #8bd3ff;
 
   /* Status */
@@ -76,7 +76,7 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {

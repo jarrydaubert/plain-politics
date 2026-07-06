@@ -1,6 +1,6 @@
 # Beginner-First Product Direction
 
-Last updated: 2026-07-02
+Last updated: 2026-07-06
 
 ## Product Shift
 
@@ -21,7 +21,7 @@ It should not feel like a children's game, a campaign product, a news dashboard,
 The current homepage shape is:
 
 1. A plain promise: `British politics, without the fog.`
-2. A compact live `Today in Parliament` panel.
+2. A compact live `Today, translated` panel.
 3. Three beginner routes: start where you live, decode the jargon, and watch what happens.
 4. Short evergreen explainers that make civic traditions feel approachable.
 5. Quiet source confidence through labels, timestamps, links, and evidence affordances rather than repeated trust copy.
@@ -103,7 +103,7 @@ Safer v1 wording:
 
 ## Design Principles
 
-1. Use a Union Jack-inspired civic palette: navy for structure, white/off-white for the canvas, red for attention and corrections rather than primary actions.
+1. Use the canonical Ink and Paper system: navy for brand/orientation, warm off-white for reading/data, and red for punctuation rather than primary actions or status.
 2. Keep party colours inside charts and labelled swatches, never as unexplained UI meaning.
 3. Make navigation layered: plain answer, deeper context, evidence, then a clear route back out.
 4. Use the same page structure for parties, MPs, constituencies, policies, and sources to avoid favouritism.
