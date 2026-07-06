@@ -6,6 +6,8 @@ Last updated: 2026-06-30
 
 This catalogue lists the public political datapoints Plain Politics should aim to collect, normalize, display, and trace back to source records.
 
+Snapshot hashes and excerpt paths below are target persisted fields. They are not emitted by the current live page adapters; `docs/strategy/source-hooks.md` records what is implemented now.
+
 The first implementation principle is:
 
 ```text

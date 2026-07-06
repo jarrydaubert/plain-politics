@@ -68,6 +68,7 @@ bun run build               # Production build
 - On the first Chrome-backed task, verify the extension connection and read the Chrome troubleshooting guidance before falling back.
 - Do not bypass a failed extension handshake with AppleScript or unrelated browser control. Use repository Playwright only as an explicit fallback and record why.
 - Use `tests/e2e/fixtures/upstream-server.ts` for deterministic Parliament data during local visual checks.
+- After global overflow or header changes, verify the sticky header after scrolling and confirm root width equals viewport width at 390px.
 
 ## Skills (Agent Reference)
 

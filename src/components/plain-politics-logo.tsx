@@ -20,7 +20,7 @@ export function PlainPoliticsMark({ className, variant = "tile" }: PlainPolitics
         d="M46 30H62A26 26 0 0 1 62 82H46V66H62A10 10 0 0 0 62 46H46Z"
         fill={bare ? "currentColor" : "#F8FAFC"}
       />
-      <circle cx="95" cy="89" fill={bare ? "var(--stop-red-on-ink)" : "#D62E4C"} r="9" />
+      <circle cx="95" cy="89" fill={bare ? "var(--stop-red)" : "#D62E4C"} r="9" />
     </svg>
   );
 }

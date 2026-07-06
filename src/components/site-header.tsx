@@ -23,14 +23,14 @@ export function SiteHeader() {
             variant="bare"
           />
           <span>
-            Plain Politics<span className="text-[var(--stop-red-on-ink)]">.</span>
+            Plain Politics<span className="text-[var(--stop-red)]">.</span>
           </span>
         </Link>
 
-        <div className="flex w-full flex-nowrap items-center gap-1 overflow-x-auto text-sm font-semibold text-[var(--paper-on-ink)] [scrollbar-width:none] sm:w-auto sm:gap-2 sm:overflow-visible [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-full items-center justify-between gap-0 text-xs font-semibold text-[var(--paper-on-ink)] sm:w-auto sm:gap-2 sm:text-sm">
           {navItems.map((item) => (
             <Link
-              className="inline-flex min-h-11 shrink-0 items-center rounded-md px-2.5 py-2 transition hover:bg-[var(--ink-panel)] hover:text-[var(--focus-on-ink)] sm:px-3"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-md px-1.5 py-2 transition hover:bg-[var(--ink-panel)] hover:text-[var(--focus-on-ink)] sm:px-3"
               href={item.href}
               key={item.href}
             >

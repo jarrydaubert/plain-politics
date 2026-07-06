@@ -1,6 +1,6 @@
 # Source Hook Inventory
 
-Last updated: 2026-07-04
+Last updated: 2026-07-06
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This document tracks public data feeds Plain Politics can use for a free, curren
 
 Use this status language:
 
-- `Hooked now`: implemented in the app with typed parsing and provenance objects.
+- `Hooked now`: implemented in the app with typed parsing, source URLs, retrieval metadata, and visible failure/freshness handling.
 - `Candidate`: likely useful and public, but not wired yet.
 - `Needs review`: useful, but terms, licensing, export limits, scraping policy, or metadata quality need checking before ingestion.
 
@@ -27,13 +27,12 @@ Current datapoints:
 3. Party colour where returned.
 4. Current House of Commons seat count by party.
 5. Retrieval URL.
-6. Snapshot hash.
-7. Source excerpt path.
+6. App-cache check time.
 
 Product use:
 
 1. Live Parliament page.
-2. Home dashboard.
+2. Home live panel.
 3. Parties page.
 
 ### UK Parliament Members API - Current Member Checks
@@ -75,15 +74,18 @@ Current datapoints:
 6. Aye count.
 7. No count.
 8. Retrieval URL.
-9. Snapshot hash.
-10. Source excerpt path.
+9. App-cache check time.
 
-Product use:
+Current product use:
 
-1. Recent votes widget.
-2. Party vote record pages.
-3. Policy timelines.
-4. Future vote detail pages with member-level votes.
+1. Home `Today, translated` panel.
+2. Parliament recent-divisions table.
+3. My-area member vote lookup.
+
+Planned use:
+
+1. Vote detail pages with member-level votes.
+2. Party record pages and policy timelines after persisted evidence exists.
 
 ### UK Parliament What's On API - Upcoming Parliamentary Business
 
@@ -107,15 +109,17 @@ Current datapoints:
 12. Bill ID, bill name, and bill page link where returned.
 13. Cancellation date where returned.
 14. Retrieval URL.
-15. Snapshot hash.
-16. Source excerpt path.
+15. App-cache check time.
 
-Product use:
+Current product use:
 
-1. Upcoming dates widget.
-2. Parliament calendar page.
-3. Bill and policy timelines.
-4. Source context for scheduled parliamentary business.
+1. Home `Today, translated` panel.
+2. Parliament upcoming-business table.
+
+Planned use:
+
+1. Dedicated calendar pages.
+2. Bill and policy timelines.
 
 ### Postcode And Constituency Lookup
 
@@ -141,11 +145,8 @@ This is the best beginner on-ramp: start from where the user lives, then explain
 
 Still needed:
 
-1. Privacy handling for postcodes.
-2. Fallback behaviour for invalid, partial, new, or ambiguous postcodes.
-3. Source precedence between postcode lookup and Parliament location search.
-4. Northern Ireland, devolved, and boundary-edge handling.
-5. Persisted source snapshots and excerpts once ingestion moves behind the server pipeline.
+1. Broader verification for new, ambiguous, Northern Ireland, devolved, and boundary-edge cases.
+2. Persisted source snapshots and excerpts once ingestion moves behind the server pipeline.
 
 ### MP Public Record Starter
 

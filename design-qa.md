@@ -1,11 +1,12 @@
 # Ink & Paper Design QA
 
+Last updated: 2026-07-06
+
 ## Reference
 
-- Accepted visual direction:
-  `/var/folders/w7/smr7zw112q55_g41ntxk4bjw0000gn/T/TemporaryItems/NSIRD_screencaptureui_mRNjJ2/Screenshot 2026-07-05 at 09.38.54.png`
-- Final implementation capture: `/tmp/plain-politics-final-1280.png`
+- Accepted identity: `docs/brand/logo.md`
 - Required behavior: `docs/brand/design-system.md`
+- Live implementation: `https://plainpolitics.co.uk`
 
 ## Fidelity Ledger
 
@@ -24,14 +25,14 @@
 
 - The public site uses a two-ground system rather than making every page dark. This preserves comfortable long-form reading while making the brand identity unmistakable.
 - Eyebrows remain uppercase mono without artificial letter spacing, following the repository UI constraint that letter spacing stays at zero.
-- Browser verification used Playwright because the installed Chrome application has an invalid macOS code signature and the Codex extension backend cannot attach. The extension setup and recovery path are documented in `AGENTS.md`.
+- Browser verification used repository Playwright when the in-app browser was unavailable. The preferred browser path and fallback rules are documented in `AGENTS.md`.
 
 ## Verification
 
 - Homepage, glossary, Parliament, explainer detail, About, and Status checked at 390, 768, and 1280 pixels.
 - Root width equalled viewport width in every checked route.
-- Focus treatment, reduced motion, and Ink/Paper contrast checked.
-- `bun run test:e2e`: 20 passed.
-- `bun run check`: format, lint, typecheck, 34 unit tests, and production build passed.
+- Sticky header behavior, mobile navigation, focus treatment, reduced motion, and Ink/Paper contrast checked.
+- `bun run test:e2e`: see the current verification result in the latest PR.
+- `bun run check`: see the current verification result in the latest PR.
 
 Final result: passed

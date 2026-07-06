@@ -50,4 +50,16 @@ describe("documentation drift", () => {
     expect(deterministicJob).not.toContain("continue-on-error: true");
     expect(liveJob).toContain("continue-on-error: true");
   });
+
+  test("current docs distinguish live source metadata from planned durable provenance", async () => {
+    const readme = await Bun.file("README.md").text();
+    const sourceHooks = await Bun.file("docs/strategy/source-hooks.md").text();
+    const hookedSection = sourceHooks.split("## Candidate Next")[0] ?? sourceHooks;
+    const backlog = await Bun.file("docs/project/backlog.md").text();
+
+    expect(readme).not.toContain("in-memory provenance objects");
+    expect(hookedSection).not.toContain("Snapshot hash");
+    expect(hookedSection).not.toContain("Source excerpt path");
+    expect(backlog).not.toContain("Review the homepage visual direction");
+  });
 });

@@ -16,6 +16,35 @@ test("home page renders the orientation shell", async ({ page }) => {
   await expect(page.getByRole("link", { name: /info@plainpolitics.co.uk/i })).toBeVisible();
 });
 
+test("mobile navigation fits and the site header remains sticky", async ({ page }) => {
+  await page.setViewportSize({ height: 800, width: 390 });
+  await page.goto("/");
+
+  const header = page.locator("header").first();
+  const aboutLink = header.getByRole("link", { name: "About" });
+
+  await expect(aboutLink).toBeVisible();
+  expect(
+    await aboutLink.evaluate((element) => {
+      const bounds = element.getBoundingClientRect();
+
+      return Math.ceil(bounds.right);
+    })
+  ).toBeLessThanOrEqual(390);
+  expect(
+    await page.evaluate(() => ({
+      rootWidth: document.documentElement.scrollWidth,
+      viewportWidth: window.innerWidth
+    }))
+  ).toEqual({ rootWidth: 390, viewportWidth: 390 });
+
+  await page.evaluate(() => window.scrollTo(0, 1200));
+
+  await expect
+    .poll(() => header.evaluate((element) => Math.round(element.getBoundingClientRect().top)))
+    .toBe(0);
+});
+
 test("my area page renders the postcode starter", async ({ page }) => {
   await page.goto("/my-area");
 
@@ -132,6 +161,7 @@ test("sources page renders only sources used by public features", async ({ page 
 
   await expect(page.getByRole("heading", { name: /source directory/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /used now/i })).toBeVisible();
+  await expect(page.getByText("Used now", { exact: true })).toHaveCount(1);
   await expect(page.getByText("State of the parties")).toBeVisible();
   await expect(page.getByText("Polling and popularity")).toHaveCount(0);
 });

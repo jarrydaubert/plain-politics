@@ -1,5 +1,7 @@
 # Plain Politics v2 Product Requirements
 
+Last updated: 2026-07-06
+
 ## 1) Product Objective
 
 Build a neutral, source-first, beginner-friendly UK politics information tracker that helps users understand political basics, start from their postcode or an issue, see who represents them, what parties stand for, how popular they are, and how public political evidence changes over time.
@@ -35,7 +37,7 @@ Political information is fragmented across polling trackers, official publicatio
 v1.0.0 barebones public launch:
 
 1. Public Vercel deployment with Cloudflare DNS/domain and email aliases.
-2. Home dashboard with a clear `Start Here` route for beginners.
+2. Home orientation page with a clear starting route, live Parliament panel, and beginner questions.
 3. Postcode `my area` starter for constituency, current MP, and public parliamentary record.
 4. Political glossary and core civic traditions.
 5. Parliament tracker for selected live records.
@@ -44,7 +46,7 @@ v1.0.0 barebones public launch:
 
 Post-v1 product scope:
 
-1. Home dashboard with a clear `Start Here` route for beginners.
+1. Home orientation page with a clear starting route and live public-record context.
 2. Postcode `my area` starter for constituency, current MP, and public parliamentary record.
 3. Party profiles.
 4. Polling and momentum tracker.

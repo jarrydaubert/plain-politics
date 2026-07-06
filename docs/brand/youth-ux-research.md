@@ -1,6 +1,6 @@
 # Youth UX Research Notes
 
-> Research record, not current visual guidance. The notebook/highlighter recommendation was superseded by `docs/brand/design-system.md` on 2026-07-05.
+> Research record, not current visual guidance. The original notebook/highlighter recommendation was superseded by `docs/brand/design-system.md` on 2026-07-05.
 
 Last checked: 2026-07-02
 
@@ -58,8 +58,8 @@ Plain Politics should feel like a warm explainer tool with receipts: less instit
 4. Design for quick understanding before depth.
    Use visual summaries, "What it means" notes, inline glossary help, short explainers, and expandable evidence before long tables or methodology.
 
-5. Use a warm explainer-tool aesthetic.
-   Think civic cheat sheet with receipts: warm paper, notebook lines, highlighter marks, calm route cards, friendly icons, strong mobile layout, and grown-up typography. Avoid GOV-style service design, fake youth slang, memes, neon chaos, and political-game patterns.
+5. Use a confident editorial explainer aesthetic.
+   Use dark Ink for brand and orientation, warm Paper for reading and data, visible receipts, calm route cards, strong mobile layout, and grown-up typography. Avoid GOV-style service design, fake youth slang, memes, neon chaos, and political-game patterns.
 
 6. Keep bigger life-first sections post-v1 unless they are actually wired.
    "Issues", "Do something", action templates, local council/mayor/devolved coverage, and policy timelines are strong directions, but they should not appear as fully available product areas until source coverage and routes exist.

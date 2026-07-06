@@ -16,7 +16,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="font-serif text-3xl font-semibold">
-            Plain Politics<span className="text-[var(--stop-red-on-ink)]">.</span>
+            Plain Politics<span className="text-[var(--stop-red)]">.</span>
           </p>
           <p className="mt-2 max-w-md text-sm leading-6 text-[var(--muted)]">
             UK politics, made easier to follow. Not affiliated with any political party, Parliament,

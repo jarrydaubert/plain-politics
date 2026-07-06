@@ -1,6 +1,6 @@
 # Current Product Assessment
 
-Last updated: 2026-07-04
+Last updated: 2026-07-06
 
 ## Short Synopsis
 
@@ -30,11 +30,12 @@ Now present:
 4. Bun test and Playwright configuration
 5. Typed source contracts
 6. Official UK Parliament source hooks for Commons party seats, upcoming business, recent divisions, and current-member quality checks
-7. Source/datapoint catalogue pages and docs
+7. Public source directory plus source/datapoint strategy docs
 8. Beginner-first homepage, postcode starter, glossary, explainers, sources, About, Privacy, and footer attribution
 9. Public data-status checks with healthy, degraded, and offline states
 10. Deterministic blocking E2E checks plus separate non-blocking live-source smoke tests
 11. GitHub Actions CI, CodeQL, Vercel deployment, and Cloudflare domain/analytics runbook notes
+12. Canonical Ink and Paper visual system, Full Stop identity, responsive QA, and matching install/social assets
 
 Still not yet present:
 
@@ -68,7 +69,7 @@ The main problem is no longer lack of scaffolding. The main problem is turning t
 
 The highest-value gaps are implementation-grade specificity and proof:
 
-1. Live hooks render in memory; they do not yet persist through Supabase.
+1. Live hooks fetch and cache data through the app; they do not yet persist records through Supabase.
 2. No scheduled ingestion jobs.
 3. Source families do not yet have persisted cadence and freshness configuration.
 4. Source-reference tests exist for schemas, but not yet for rendered pages or all public claims.
@@ -76,7 +77,7 @@ The highest-value gaps are implementation-grade specificity and proof:
 6. No search benchmark dataset.
 7. No editorial review state machine.
 8. No reviewer workflow or correction UI.
-9. Source panels show provenance metadata, but not a full evidence drawer with exact highlighted spans.
+9. Source panels show source URLs and check times, but not a full evidence drawer with exact highlighted spans.
 10. No public polling average implementation.
 11. Production analytics behaviour still needs its planned post-deploy privacy verification.
 

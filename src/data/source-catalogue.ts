@@ -18,10 +18,10 @@ export const sourceHooks: SourceHook[] = [
     datapoints: [
       "Party name, abbreviation and official API colour",
       "Current Commons seat count by party",
-      "Source retrieval URL, snapshot hash and excerpt path"
+      "Source URL and app-cache check time"
     ],
     name: "State of the parties",
-    powers: ["Home dashboard", "Parliament page", "Parties page"],
+    powers: ["Home live panel", "Parliament page", "Parties page"],
     priority: "Live now",
     publisher: "UK Parliament Members API",
     sourceUrl: "https://members-api.parliament.uk/",
@@ -56,7 +56,7 @@ export const sourceHooks: SourceHook[] = [
       "Member vote lists for deeper detail pages"
     ],
     name: "Recent Commons divisions",
-    powers: ["Home dashboard", "Parliament page", "My area recent activity"],
+    powers: ["Home live panel", "Parliament page", "My area recent activity"],
     priority: "Live now",
     publisher: "UK Parliament Commons Votes API",
     sourceUrl: "https://commonsvotes-api.parliament.uk/",
@@ -78,7 +78,7 @@ export const sourceHooks: SourceHook[] = [
       "Cancellation date where returned"
     ],
     name: "Upcoming parliamentary business",
-    powers: ["Home dashboard", "Parliament page"],
+    powers: ["Home live panel", "Parliament page"],
     priority: "Live now",
     publisher: "UK Parliament What's On API",
     sourceUrl: "https://whatson-api.parliament.uk/calendar/events/list.json",

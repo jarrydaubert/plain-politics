@@ -4,7 +4,7 @@ Plain Politics is a UK-focused, source-first politics starter and information tr
 
 ## Current State
 
-Plain Politics is deployed at `https://plainpolitics.co.uk`. The Bun/Next.js app includes a postcode-to-MP journey, sourced glossary and explainers, live Parliament records, a public source directory, privacy controls, and data-quality status checks. Parliament adapters use typed parsing and in-memory provenance objects; durable snapshot storage remains future work.
+Plain Politics is deployed at `https://plainpolitics.co.uk`. The Bun/Next.js app includes a postcode-to-MP journey, sourced glossary and explainers, live Parliament records, a public source directory, privacy controls, and data-quality status checks. Parliament adapters use typed parsing, source URLs, retrieval metadata, and process-local last-good fallbacks. Durable Supabase snapshots, excerpts, and source-history storage remain future work.
 
 ## Source Of Truth
 
@@ -13,6 +13,7 @@ Plain Politics is deployed at `https://plainpolitics.co.uk`. The Bun/Next.js app
 - Delivery plan: `docs/project/action-plan.md`
 - Delivery backlog: `docs/project/backlog.md`
 - Technical baseline: `docs/engineering/tech-stack.md`
+- Visual system: `docs/brand/design-system.md`
 - Brand identity: `docs/brand/logo.md`
 - GBrain usage policy: `docs/engineering/gbrain.md`
 - Vercel plugin skill policy: `docs/engineering/vercel-plugin-skills.md`

@@ -38,6 +38,20 @@ describe("Ink and Paper design system", () => {
     expect(home).not.toContain("hover:-translate-y");
   });
 
+  test("keeps sticky chrome and small Ink punctuation accessible", async () => {
+    const globals = await Bun.file("app/globals.css").text();
+    const mark = await Bun.file("src/components/plain-politics-logo.tsx").text();
+    const red = globals.match(/--stop-red-on-ink:\s*(#[0-9a-f]{6})/i)?.[1];
+    const ink = globals.match(/--ink-bg:\s*(#[0-9a-f]{6})/i)?.[1];
+
+    expect(globals).toContain("overflow-x: clip");
+    expect(globals).not.toContain("overflow-x: hidden");
+    expect(mark).toContain("var(--stop-red)");
+    expect(red).toBeDefined();
+    expect(ink).toBeDefined();
+    expect(contrastRatio(red ?? "#000000", ink ?? "#ffffff")).toBeGreaterThanOrEqual(4.5);
+  });
+
   test("uses Ink for chrome and the homepage orientation surface", async () => {
     const home = await Bun.file("app/page.tsx").text();
     const header = await Bun.file("src/components/site-header.tsx").text();
@@ -76,3 +90,24 @@ describe("Ink and Paper design system", () => {
     expect(priorBrief).toContain("Superseded on 2026-07-05");
   });
 });
+
+function contrastRatio(first: string, second: string) {
+  const firstLuminance = relativeLuminance(first);
+  const secondLuminance = relativeLuminance(second);
+
+  return (
+    (Math.max(firstLuminance, secondLuminance) + 0.05) /
+    (Math.min(firstLuminance, secondLuminance) + 0.05)
+  );
+}
+
+function relativeLuminance(hex: string) {
+  const channels = [1, 3, 5].map(
+    (offset) => Number.parseInt(hex.slice(offset, offset + 2), 16) / 255
+  );
+  const [red = 0, green = 0, blue = 0] = channels.map((channel) =>
+    channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+  );
+
+  return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+}
