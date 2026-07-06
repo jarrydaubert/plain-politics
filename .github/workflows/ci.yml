@@ -81,7 +81,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: plain-politics-playwright-chromium-v1
@@ -118,7 +118,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: plain-politics-playwright-chromium-v1
