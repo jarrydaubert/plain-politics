@@ -1,6 +1,7 @@
 import { AlertCircle, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { EvidenceDisclosure } from "@/components/evidence-disclosure";
 import { PageHeader } from "@/components/page-header";
 import { SourceDataNote } from "@/components/source-data-note";
 import { StructuredData } from "@/components/structured-data";
@@ -13,6 +14,7 @@ import {
 } from "@/lib/seo";
 import { cleanOptionalText } from "@/lib/text";
 import { getParliamentPageData, isPanelAvailable } from "@/parliament/page-data";
+import type { PartySeatCount, SourceRecord } from "@/sources/uk-parliament";
 
 export const dynamic = "force-dynamic";
 
@@ -94,6 +96,7 @@ export default async function ParliamentPage() {
               </p>
               <LastChecked value={parliamentData.seatCounts.record.sourceDocument.retrievedAt} />
               <SourceDataNote status={parliamentData.seatCounts.record.dataStatus} />
+              <SeatCountEvidence record={parliamentData.seatCounts.record} />
             </div>
             <div className="relative max-w-full overflow-x-auto">
               <table className="w-full min-w-[560px] border-collapse text-left text-sm">
@@ -285,6 +288,30 @@ export default async function ParliamentPage() {
         </section>
       ) : null}
     </main>
+  );
+}
+
+function SeatCountEvidence({ record }: Readonly<{ record: SourceRecord<PartySeatCount[]> }>) {
+  const [firstRow] = record.data;
+
+  if (!firstRow) {
+    return null;
+  }
+
+  const largestParty = record.data.reduce(
+    (leader, row) => (row.total > leader.total ? row : leader),
+    firstRow
+  );
+
+  return (
+    <EvidenceDisclosure
+      caveat="Seat counts show how many Commons seats are currently recorded for each party. They do not show vote share, opinion polling, or how any MP will vote."
+      checkedAt={record.sourceDocument.retrievedAt}
+      label="Evidence for the largest party row"
+      rawRecordContext={`The source lists ${largestParty.party.name}${largestParty.party.abbreviation ? ` (${largestParty.party.abbreviation})` : ""} with ${String(largestParty.total)} Commons seats.`}
+      sourceName={record.sourceDocument.publisher}
+      sourceUrl={record.sourceDocument.url}
+    />
   );
 }
 

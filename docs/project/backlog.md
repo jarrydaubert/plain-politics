@@ -1,6 +1,6 @@
 # Backlog
 
-Last updated: 2026-07-06
+Last updated: 2026-07-18
 
 This file is only for unfinished todo items. It is not a status report, product spec, or changelog.
 
@@ -31,12 +31,6 @@ For context, use:
   Definition of done: A tester can follow homepage -> glossary -> Parliament -> my area -> source links -> contact/corrections without confusion, dead ends, or unsupported factual claims.
 
 ## V1 Nice-To-Have
-
-- [ ] Add a small evidence popover or drawer for at least one homepage snapshot card.
-  Definition of done: One homepage live-data card exposes its source URL, checked time, and plain-English caveat without cluttering the card.
-
-- [ ] Add a small evidence drawer for at least one Parliament table row.
-  Definition of done: One Parliament row exposes source URL, retrieved time, and raw-record context in an accessible drawer or popover.
 
 - [ ] Add inline glossary links from `/my-area` and `/parliament`.
   Definition of done: Common terms on those pages link to canonical glossary term pages without disrupting reading flow.
