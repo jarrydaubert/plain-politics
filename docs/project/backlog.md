@@ -14,6 +14,7 @@ Rules for this file:
 For context, use:
 
 - v1 scope: `docs/strategy/v1.0.0-scope.md`
+- first policy area decision: `docs/strategy/first-policy-area-decision.md`
 - strategy/current assessment: `docs/strategy/current-assessment.md`
 - source hooks: `docs/strategy/source-hooks.md`
 - technical stack: `docs/engineering/tech-stack.md`
@@ -103,12 +104,6 @@ For context, use:
   Definition of done: Left wing, right wing, centre/centrist and similar terms use UK civic or academic sources, or are explicitly labelled as reviewed editorial definitions with limitations.
 
 ## Parties, Policies, And Comparison
-
-- [ ] Create a feature branch for the first policy area after v1.0.0 is live.
-  Definition of done: The branch exists, has a named first policy area, and keeps policy work out of the launch branch.
-
-- [ ] Choose the first policy area on that feature branch.
-  Definition of done: The chosen area has official source availability, user value, and manageable scope.
 
 - [ ] Capture official party manifesto or policy pages as source snapshots.
   Definition of done: Each included party has source snapshots with URL, retrieval time, hash, and licence/access notes.
