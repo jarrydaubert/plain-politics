@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "generate:og": "bun scripts/generate-og-image.ts",
+    "indexnow:dry": "bun scripts/submit-indexnow.ts",
+    "indexnow:submit": "bun scripts/submit-indexnow.ts --submit",
     "build": "next build",
     "start": "next start",
     "format": "biome format --write .",
