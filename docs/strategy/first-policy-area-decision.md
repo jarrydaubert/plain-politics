@@ -31,7 +31,9 @@ Geographic scope must be labelled: most housing, planning, and renting policy is
 | Conservatives | Yes — PDF | Yes — `conservatives.com/plan` and `policy.conservatives.com` under current leadership (May 2026 content observed) | Yes — Alternative King's Speech PDF | Yes — full |
 | Liberal Democrats | Yes — HTML chapters + accessible PDF + costings | Yes — `libdems.org.uk/policy` policy papers | Conference policy papers | Yes — full |
 | Reform UK | Yes — "Our Contract with You" PDF (text-extractable) | Site blocks non-browser access (HTTP 403 to fetch tools); PDF remains directly accessible | Not verified | Yes — full |
-| Green Party (E&W) | Yes — HTML manifesto pages | **No** — `policy.greenparty.org.uk` (Policies for a Sustainable Society) now redirects to a members-only Auth0 login (verified 2026-07-19) | Not verified | Yes — limited Commons presence (4 MPs) |
+| Green Party (E&W) | Yes — HTML manifesto pages | **No** — `policy.greenparty.org.uk` (Policies for a Sustainable Society) now redirects to a members-only Auth0 login (verified 2026-07-19) | Not verified | Yes — limited Commons presence; 5 MPs at the 2026-07-19 audit date |
+
+Seat counts in this note are dated audit observations, not a data source. The runtime product must read current party seat counts from the live UK Parliament State of the Parties source (as the app already does), never from this decision note.
 
 Source types for the first slice, in trust order:
 
@@ -53,6 +55,7 @@ Source types for the first slice, in trust order:
 - Green Party long-term policy site: `https://policy.greenparty.org.uk/` (redirects to members-only login — treat as unavailable)
 - Renters' Rights Bill record: `https://bills.parliament.uk/bills/3764` (403 to fetch tools; loads in a browser; division data available via the Commons Votes API the app already uses)
 - Commons Votes API (already integrated): `https://commonsvotes-api.parliament.uk/data` (HTTP 200)
+- State of the parties, Commons (public page): `https://members.parliament.uk/parties/commons`; machine-readable record (already integrated): `https://members-api.parliament.uk/api/Parties/StateOfTheParties/1/{date}` (HTTP 200; lists Green Party with 5 MPs on 2026-07-19)
 
 ## Coverage Gaps And Comparison Risks
 
