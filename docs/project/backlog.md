@@ -1,6 +1,6 @@
 # Backlog
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 This file is only for unfinished todo items. It is not a status report, product spec, or changelog.
 
@@ -19,17 +19,6 @@ For context, use:
 - technical stack: `docs/engineering/tech-stack.md`
 - competitive landscape: `docs/market/competitive-landscape.md`
 
-## V1 Launch Blockers
-
-- [ ] Verify `info@plainpolitics.co.uk` receives contact and correction email end to end.
-  Definition of done: A test email sent from an external account arrives in the mailbox, replies work, and the live site points users to the verified address.
-
-- [ ] Submit the sitemap to Google Search Console and Bing Webmaster Tools.
-  Definition of done: Site ownership is verified, the sitemap URL is submitted, and any indexing or sitemap errors are recorded for follow-up.
-
-- [ ] Complete one final beginner walkthrough pass.
-  Definition of done: A tester can follow homepage -> glossary -> Parliament -> my area -> source links -> contact/corrections without confusion, dead ends, or unsupported factual claims.
-
 ## V1 Nice-To-Have
 
 - [ ] Add inline glossary links from `/my-area` and `/parliament`.
@@ -43,9 +32,6 @@ For context, use:
 
 - [ ] Add a lightweight public corrections page.
   Definition of done: A `/corrections` or equivalent page explains how to report source issues and links to the verified correction email.
-
-- [ ] Verify privacy-safe analytics after production deploy.
-  Definition of done: Production analytics records page-level events only, does not store postcode lookups or political opinion signals, and honours the consent controls.
 
 ## Source And Data Foundation
 
@@ -225,6 +211,9 @@ For context, use:
   Definition of done: Explainer pages include Clear, Still confused, and Source issue actions with a mock/local interaction and no backend dependency.
 
 ## Platform And Quality
+
+- [ ] Confirm Vercel Web Analytics is active for the production project or remove it from the layout and docs.
+  Definition of done: Either `/_vercel/insights` (or `va.vercel-scripts.com`) beacons are observed on production page views and the dashboard shows traffic, or the `VercelAnalytics` component and the Vercel Web Analytics claims in `docs/ops/domain-and-analytics.md` and `README.md` are removed. A 2026-07-19 production network capture observed zero Vercel Analytics requests while consent-gated GA4 worked correctly.
 
 - [ ] Add scheduled external source-link checks.
   Definition of done: A rate-limited scheduled job reports broken official source URLs without making third-party availability block normal deploys.
