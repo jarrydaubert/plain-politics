@@ -15,7 +15,7 @@ test("homepage recent-vote evidence disclosure opens with the keyboard and shows
   await page.keyboard.press("Enter");
 
   await expect(sourceLink).toBeVisible();
-  await expect(sourceLink).toHaveAttribute("href", /divisions\.json/);
+  await expect(sourceLink).toHaveAttribute("href", /division\/2394\.json/);
   await expect(sourceLink).toHaveAttribute("target", "_blank");
   await expect(page.getByText(/Checked through the app cache .+ at /).nth(1)).toBeVisible();
   await expect(page.getByText("What this can and cannot prove", { exact: true })).toBeVisible();

@@ -17,6 +17,7 @@ import {
   type PartySeatCount,
   type SourceRecord
 } from "@/sources/uk-parliament";
+import { commonsDivisionRecordUrl } from "@/sources/upstream-endpoints";
 
 const pageMetadata = getRouteMetadata("/");
 
@@ -439,7 +440,7 @@ async function getHeroSnapshot() {
           checkedAt: divisionsRecord.sourceDocument.retrievedAt,
           rawRecordContext: `Division ${String(recentDivision.Number)} on ${formatUkDate(recentDivision.Date)}: ${String(recentDivision.AyeCount)} ayes and ${String(recentDivision.NoCount)} noes, as returned by the source API.`,
           sourceName: divisionsRecord.sourceDocument.publisher,
-          sourceUrl: divisionsRecord.sourceDocument.url
+          sourceUrl: commonsDivisionRecordUrl(recentDivision.DivisionId)
         }
       : null;
 
