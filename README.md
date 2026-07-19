@@ -95,7 +95,7 @@ bun run build
 - A separate non-blocking Playwright job checks the live postcode, Parliament, and data-status sources.
 - Production should deploy from GitHub to Vercel. Cloudflare manages `plainpolitics.co.uk` DNS and email routing.
 - `vercel.json` pins Bun frozen installs and redirects `www.plainpolitics.co.uk` to `plainpolitics.co.uk`.
-- Analytics setup is documented in `docs/ops/domain-and-analytics.md`: Vercel Web Analytics and consent-based GA4.
+- Analytics setup is documented in `docs/ops/domain-and-analytics.md`: consent-based GA4 is verified in production; Vercel Web Analytics is configured but currently emits no beacons (see the backlog item).
 
 ## Live Source Hooks
 

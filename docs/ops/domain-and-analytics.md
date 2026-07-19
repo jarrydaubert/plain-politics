@@ -48,8 +48,8 @@ After production deployment:
 
 ## Current Vercel Status
 
-As of 2026-07-02:
+As of 2026-07-19:
 
-1. Vercel Web Analytics is enabled for `plain-politics`.
+1. Vercel Web Analytics was recorded as enabled for `plain-politics` on 2026-07-02, but a 2026-07-19 production network capture observed no Vercel Analytics requests (`/_vercel/insights` or `va.vercel-scripts.com`) on page views. Consent-gated GA4 worked correctly in the same capture. See the backlog item to confirm the dashboard setting or remove the component.
 2. `NEXT_PUBLIC_ENABLE_ANALYTICS=true` is set for Development, Preview, and Production.
 3. `NEXT_PUBLIC_GA_ID=G-7Q838CKSMN` is set for Development, Preview, and Production.

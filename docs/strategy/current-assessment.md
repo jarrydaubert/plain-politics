@@ -1,6 +1,6 @@
 # Current Product Assessment
 
-Last updated: 2026-07-06
+Last updated: 2026-07-19
 
 ## Short Synopsis
 
@@ -37,9 +37,11 @@ Now present:
 11. GitHub Actions CI, CodeQL, Vercel deployment, and Cloudflare domain/analytics runbook notes
 12. Canonical Ink and Paper visual system, Full Stop identity, responsive QA, and matching install/social assets
 
+The v1.0.0 launch review is complete as of 2026-07-19: contact and correction email was verified end to end, the sitemap was submitted to Google Search Console and Bing Webmaster Tools, IndexNow key and batch submission are live, and the final beginner walkthrough passed against production on mobile and desktop, including consent controls and a network capture confirming no postcode or political-opinion signals reach analytics. Only the release tag itself is outstanding.
+
 Still not yet present:
 
-1. Fully reviewed v1.0.0 public launch
+1. A tagged v1.0.0 release
 2. Persistent ingestion jobs
 3. Database-backed rendering from Supabase
 4. Editorial/reviewer UI
