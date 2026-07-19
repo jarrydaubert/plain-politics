@@ -2,8 +2,9 @@ import { ArrowRight, Landmark, Vote } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { EvidenceDisclosure, type EvidenceDisclosureProps } from "@/components/evidence-disclosure";
 import { StructuredData } from "@/components/structured-data";
-import { formatUkDateTime, maxIsoDate } from "@/lib/format";
+import { formatUkDate, formatUkDateTime, maxIsoDate } from "@/lib/format";
 import { buildWebPageJsonLd, createMetadata, getRouteMetadata } from "@/lib/seo";
 import { cleanOptionalText } from "@/lib/text";
 import {
@@ -14,8 +15,9 @@ import {
   PARLIAMENT_SOURCE_REVALIDATE_SECONDS,
   type ParliamentEvent,
   type PartySeatCount,
-  type SourceRecordStatus
+  type SourceRecord
 } from "@/sources/uk-parliament";
+import { commonsDivisionRecordUrl } from "@/sources/upstream-endpoints";
 
 const pageMetadata = getRouteMetadata("/");
 
@@ -162,15 +164,25 @@ export default async function HomePage() {
                 </div>
                 <div className="mt-2 divide-y divide-[var(--ink-border)]">
                   {snapshot.todayItems.map((item) => (
-                    <TodayRow
-                      detail={item.detail}
-                      href={item.href}
-                      icon={item.icon}
-                      key={item.label}
-                      label={item.label}
-                      meaning={item.meaning}
-                      title={item.title}
-                    />
+                    <div key={item.label}>
+                      <TodayRow
+                        detail={item.detail}
+                        href={item.href}
+                        icon={item.icon}
+                        label={item.label}
+                        meaning={item.meaning}
+                        title={item.title}
+                      />
+                      {item.evidence ? (
+                        <div className="-mt-1 pb-4 sm:px-2">
+                          <EvidenceDisclosure
+                            {...item.evidence}
+                            label="Evidence for this vote"
+                            tone="ink"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
                   ))}
                 </div>
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm">
@@ -420,6 +432,17 @@ async function getHeroSnapshot() {
       .map((record) => record?.sourceDocument.retrievedAt)
       .filter((value): value is string => Boolean(value))
   );
+  const recentVoteEvidence: Omit<EvidenceDisclosureProps, "label" | "tone"> | null =
+    divisionsRecord && recentDivision
+      ? {
+          caveat:
+            "A division records how votes were counted on one question in the Commons. It does not by itself explain why an MP voted that way, or what happens to the issue next.",
+          checkedAt: divisionsRecord.sourceDocument.retrievedAt,
+          rawRecordContext: `Division ${String(recentDivision.Number)} on ${formatUkDate(recentDivision.Date)}: ${String(recentDivision.AyeCount)} ayes and ${String(recentDivision.NoCount)} noes, as returned by the source API.`,
+          sourceName: divisionsRecord.sourceDocument.publisher,
+          sourceUrl: commonsDivisionRecordUrl(recentDivision.DivisionId)
+        }
+      : null;
 
   return {
     checkedAt,
@@ -435,6 +458,7 @@ async function getHeroSnapshot() {
         detail: nextEvent
           ? formatEventDetail(nextEvent)
           : "No upcoming item returned in the next 7 days",
+        evidence: null,
         href: "/parliament" as Route,
         icon: <Landmark aria-hidden="true" size={19} />,
         label: "Next in Parliament",
@@ -445,6 +469,7 @@ async function getHeroSnapshot() {
         detail: recentDivision
           ? `${String(recentDivision.AyeCount)} ayes, ${String(recentDivision.NoCount)} noes`
           : "Recent division feed unavailable",
+        evidence: recentVoteEvidence,
         href: "/parliament" as Route,
         icon: <Vote aria-hidden="true" size={19} />,
         label: "Recent vote",
@@ -457,13 +482,7 @@ async function getHeroSnapshot() {
   };
 }
 
-function getSettledRecord<T>(
-  result: PromiseSettledResult<{
-    data: T;
-    dataStatus: SourceRecordStatus;
-    sourceDocument: { retrievedAt: string };
-  }>
-) {
+function getSettledRecord<T>(result: PromiseSettledResult<SourceRecord<T>>) {
   return result.status === "fulfilled" ? result.value : undefined;
 }
 

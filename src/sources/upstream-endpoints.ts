@@ -11,6 +11,10 @@ export const COMMONS_VOTES_API_BASE = E2E_UPSTREAM_BASE_URL
   ? `${E2E_UPSTREAM_BASE_URL}/commons-votes/data`
   : "https://commonsvotes-api.parliament.uk/data";
 
+export function commonsDivisionRecordUrl(divisionId: number) {
+  return `${COMMONS_VOTES_API_BASE}/division/${String(divisionId)}.json`;
+}
+
 export const WHATSON_API_BASE = E2E_UPSTREAM_BASE_URL
   ? `${E2E_UPSTREAM_BASE_URL}/whatson/calendar/events`
   : "https://whatson-api.parliament.uk/calendar/events";
