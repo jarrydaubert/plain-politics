@@ -1,6 +1,6 @@
 # Current Product Assessment
 
-Last updated: 2026-07-19
+Last updated: 2026-07-21
 
 ## Short Synopsis
 
@@ -36,19 +36,22 @@ Now present:
 10. Deterministic blocking E2E checks plus separate non-blocking live-source smoke tests
 11. GitHub Actions CI, CodeQL, Vercel deployment, and Cloudflare domain/analytics runbook notes
 12. Canonical Ink and Paper visual system, Full Stop identity, responsive QA, and matching install/social assets
+13. The `v1.0.0` release tag, created from the reviewed launch state
+14. Housing selected as the first party-policy area, with a five-party source audit recorded
 
-The v1.0.0 launch review is complete as of 2026-07-19: contact and correction email was verified end to end, the sitemap was submitted to Google Search Console and Bing Webmaster Tools, IndexNow key and batch submission are live, and the final beginner walkthrough passed against production on mobile and desktop, including consent controls and a network capture confirming no postcode or political-opinion signals reach analytics. Only the release tag itself is outstanding.
+The active post-v1 foundation slice is `feature/canonical-political-data`: a minimum canonical people, role, assignment, and immutable evidence model proved through shared noindex leadership pages for the five Housing-audit parties.
+
+The v1.0.0 launch review is complete as of 2026-07-19: contact and correction email was verified end to end, the sitemap was submitted to Google Search Console and Bing Webmaster Tools, IndexNow key and batch submission are live, and the final beginner walkthrough passed against production on mobile and desktop, including consent controls and a network capture confirming no postcode or political-opinion signals reach analytics. The reviewed launch state is tagged `v1.0.0`.
 
 Still not yet present:
 
-1. A tagged v1.0.0 release
-2. Persistent ingestion jobs
-3. Database-backed rendering from Supabase
-4. Editorial/reviewer UI
-5. Full source excerpt drawer
-6. Real manifesto, polling, donation, or change-feed ingestion
-7. Durable last-good-data fallback across deployments and serverless instances
-8. Persisted source-health history and operator alerting
+1. Persistent ingestion jobs
+2. Database-backed rendering from Supabase
+3. Editorial/reviewer UI
+4. A complete public source-excerpt system beyond the leadership proof
+5. Real manifesto, polling, donation, or change-feed ingestion
+6. Durable last-good-data fallback across deployments and serverless instances
+7. Persisted source-health history and operator alerting
 
 ## What Is Already Well Specified
 
@@ -133,12 +136,12 @@ Current v1.0.0 slice:
 6. Basic source failure, empty, unavailable, and freshness states.
 7. CI, deployment, and branch protection strong enough to iterate from a live URL.
 
-Post-v1 proof-of-thesis branch:
+Active post-v1 proof-of-thesis work:
 
-1. One policy area, such as housing, NHS, immigration, or tax.
-2. Four to five UK parties.
+1. Housing as the selected first policy area.
+2. Labour, the Conservatives, the Liberal Democrats, Reform UK, and the Green Party of England and Wales as the audited proof set.
 3. Two to three Tier 1 source types, such as manifesto pages, official party policy pages, Hansard, Commons votes, or written questions.
-4. Party profile cards with plain-English source-backed summaries.
+4. A canonical political-data foundation before party-policy summaries.
 5. Compare view with coverage states.
 6. Source panel or evidence drawer with exact excerpts.
 
@@ -171,4 +174,4 @@ Polling belongs in the product vision, but it should not block v1 unless source 
 
 The project is worth pursuing because the problem is not lack of political content. The problem is lack of verified, comparable, current, non-spin public information in one calm interface.
 
-The public starter now proves the basic route and trust model. The next milestone is to finish the remaining launch checks, then replace process-local source memory with persisted snapshots and durable last-good data.
+The public starter is tagged as `v1.0.0`, Housing is selected, and the canonical political-data foundation is active. The immediate milestone is to prove one editable leadership source, immutable reviewed evidence, effective-dated history, narrow server queries, and shared pages before moving that boundary to Supabase or building Housing comparison copy.

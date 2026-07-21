@@ -1,0 +1,706 @@
+{
+  "version": 1,
+  "asOf": "2026-07-21",
+  "parties": [
+    {
+      "id": "party-labour",
+      "name": "Labour",
+      "officialName": "The Labour Party",
+      "slug": "labour",
+      "sortOrder": 10
+    },
+    {
+      "id": "party-conservative",
+      "name": "Conservatives",
+      "officialName": "The Conservative and Unionist Party",
+      "slug": "conservatives",
+      "sortOrder": 20
+    },
+    {
+      "id": "party-liberal-democrats",
+      "name": "Liberal Democrats",
+      "officialName": "The Liberal Democrats",
+      "slug": "liberal-democrats",
+      "sortOrder": 30
+    },
+    {
+      "id": "party-reform-uk",
+      "name": "Reform UK",
+      "officialName": "Reform UK",
+      "slug": "reform-uk",
+      "sortOrder": 40
+    },
+    {
+      "id": "party-green-england-wales",
+      "name": "Green Party of England and Wales",
+      "officialName": "The Green Party of England and Wales",
+      "slug": "green-party-england-wales",
+      "sortOrder": 50
+    }
+  ],
+  "people": [
+    { "id": "person-andy-burnham", "name": "Andy Burnham" },
+    { "id": "person-daisy-cooper", "name": "Daisy Cooper" },
+    { "id": "person-ed-davey", "name": "Ed Davey" },
+    { "id": "person-keir-starmer", "name": "Keir Starmer" },
+    { "id": "person-kemi-badenoch", "name": "Kemi Badenoch" },
+    { "id": "person-lucy-powell", "name": "Lucy Powell" },
+    { "id": "person-mothin-ali", "name": "Mothin Ali" },
+    { "id": "person-nigel-farage", "name": "Nigel Farage" },
+    { "id": "person-rachel-millward", "name": "Rachel Millward" },
+    { "id": "person-richard-tice", "name": "Richard Tice" },
+    { "id": "person-zack-polanski", "name": "Zack Polanski" }
+  ],
+  "roles": [
+    {
+      "id": "role-labour-leader",
+      "title": "Leader of the Labour Party",
+      "category": "party",
+      "partyId": "party-labour",
+      "scopeLabel": "The Labour Party",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-labour-deputy-leader",
+      "title": "Deputy Leader of the Labour Party",
+      "category": "party",
+      "partyId": "party-labour",
+      "scopeLabel": "The Labour Party",
+      "holderPolicy": "single",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-conservative-leader",
+      "title": "Leader of the Conservative Party",
+      "category": "party",
+      "partyId": "party-conservative",
+      "scopeLabel": "The Conservative Party",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-libdem-leader",
+      "title": "Leader of the Liberal Democrats",
+      "category": "party",
+      "partyId": "party-liberal-democrats",
+      "scopeLabel": "The Liberal Democrats",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-libdem-deputy-leader",
+      "title": "Deputy Leader, Liberal Democrats",
+      "category": "party",
+      "partyId": "party-liberal-democrats",
+      "scopeLabel": "The Liberal Democrats",
+      "holderPolicy": "single",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-reform-leader",
+      "title": "Leader of Reform UK",
+      "category": "party",
+      "partyId": "party-reform-uk",
+      "scopeLabel": "Reform UK",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-reform-deputy-leader",
+      "title": "Deputy Leader of Reform UK",
+      "category": "party",
+      "partyId": "party-reform-uk",
+      "scopeLabel": "Reform UK",
+      "holderPolicy": "single",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-green-leader",
+      "title": "Leader",
+      "category": "party",
+      "partyId": "party-green-england-wales",
+      "scopeLabel": "The Green Party of England and Wales",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-green-deputy-leader",
+      "title": "Deputy Leader",
+      "category": "party",
+      "partyId": "party-green-england-wales",
+      "scopeLabel": "The Green Party of England and Wales",
+      "holderPolicy": "multiple",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-leader-official-opposition",
+      "title": "Leader of HM Official Opposition",
+      "category": "parliamentary",
+      "partyId": null,
+      "scopeLabel": "House of Commons",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-prime-minister",
+      "title": "Prime Minister",
+      "category": "government",
+      "partyId": null,
+      "scopeLabel": "His Majesty’s Government",
+      "holderPolicy": "single",
+      "sortOrder": 10,
+      "description": "The Prime Minister is the leader of His Majesty’s Government and is ultimately responsible for government policy and decisions.",
+      "descriptionEvidenceReferenceId": "evidence-prime-minister-responsibilities"
+    }
+  ],
+  "roleAssignments": [
+    {
+      "id": "assignment-andy-burnham-labour-leader",
+      "partyId": "party-labour",
+      "personId": "person-andy-burnham",
+      "roleId": "role-labour-leader",
+      "effectiveFrom": "2026-07-16",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-andy-burnham-labour-leader"]
+    },
+    {
+      "id": "assignment-lucy-powell-labour-deputy",
+      "partyId": "party-labour",
+      "personId": "person-lucy-powell",
+      "roleId": "role-labour-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-lucy-powell-labour-deputy"]
+    },
+    {
+      "id": "assignment-kemi-badenoch-conservative-leader",
+      "partyId": "party-conservative",
+      "personId": "person-kemi-badenoch",
+      "roleId": "role-conservative-leader",
+      "effectiveFrom": "2024-11-02",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-kemi-badenoch-conservative-leader"]
+    },
+    {
+      "id": "assignment-ed-davey-libdem-leader",
+      "partyId": "party-liberal-democrats",
+      "personId": "person-ed-davey",
+      "roleId": "role-libdem-leader",
+      "effectiveFrom": "2020-08-27",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-ed-davey-libdem-leader"]
+    },
+    {
+      "id": "assignment-daisy-cooper-libdem-deputy",
+      "partyId": "party-liberal-democrats",
+      "personId": "person-daisy-cooper",
+      "roleId": "role-libdem-deputy-leader",
+      "effectiveFrom": "2020-09-13",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-daisy-cooper-libdem-deputy"]
+    },
+    {
+      "id": "assignment-nigel-farage-reform-leader",
+      "partyId": "party-reform-uk",
+      "personId": "person-nigel-farage",
+      "roleId": "role-reform-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-nigel-farage-reform-leader"]
+    },
+    {
+      "id": "assignment-richard-tice-reform-deputy",
+      "partyId": "party-reform-uk",
+      "personId": "person-richard-tice",
+      "roleId": "role-reform-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-richard-tice-reform-deputy"]
+    },
+    {
+      "id": "assignment-zack-polanski-green-leader",
+      "partyId": "party-green-england-wales",
+      "personId": "person-zack-polanski",
+      "roleId": "role-green-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-zack-polanski-green-leader"]
+    },
+    {
+      "id": "assignment-mothin-ali-green-deputy",
+      "partyId": "party-green-england-wales",
+      "personId": "person-mothin-ali",
+      "roleId": "role-green-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-green-deputy-leaders"]
+    },
+    {
+      "id": "assignment-rachel-millward-green-deputy",
+      "partyId": "party-green-england-wales",
+      "personId": "person-rachel-millward",
+      "roleId": "role-green-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-green-deputy-leaders"]
+    },
+    {
+      "id": "assignment-kemi-badenoch-opposition-leader",
+      "partyId": "party-conservative",
+      "personId": "person-kemi-badenoch",
+      "roleId": "role-leader-official-opposition",
+      "effectiveFrom": "2024-11-02",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": [
+        "evidence-kemi-badenoch-opposition-leader",
+        "evidence-kemi-badenoch-conservative-leader"
+      ]
+    },
+    {
+      "id": "assignment-keir-starmer-prime-minister",
+      "partyId": null,
+      "personId": "person-keir-starmer",
+      "roleId": "role-prime-minister",
+      "effectiveFrom": "2024-07-05",
+      "effectiveToExclusive": "2026-07-20",
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-keir-starmer-prime-minister"]
+    },
+    {
+      "id": "assignment-andy-burnham-prime-minister",
+      "partyId": "party-labour",
+      "personId": "person-andy-burnham",
+      "roleId": "role-prime-minister",
+      "effectiveFrom": "2026-07-20",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": [
+        "evidence-andy-burnham-prime-minister",
+        "evidence-andy-burnham-labour-leader"
+      ]
+    }
+  ],
+  "sourceDocuments": [
+    {
+      "id": "source-document-gov-prime-minister",
+      "title": "Prime Minister",
+      "publisher": "GOV.UK",
+      "url": "https://www.gov.uk/government/ministers/prime-minister",
+      "sourceType": "gov_uk",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-gov-keir-starmer",
+      "title": "The Rt Hon Sir Keir Starmer KCB KC MP",
+      "publisher": "GOV.UK",
+      "url": "https://www.gov.uk/government/people/keir-starmer",
+      "sourceType": "gov_uk",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-labour-people",
+      "title": "Labour People",
+      "publisher": "The Labour Party",
+      "url": "https://labour.org.uk/people/",
+      "sourceType": "official_party_page",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-kemi-badenoch",
+      "title": "Parliamentary career for Mrs Kemi Badenoch",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/4597/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-ed-davey",
+      "title": "Parliamentary career for Ed Davey",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/188/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-daisy-cooper",
+      "title": "Parliamentary career for Daisy Cooper",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/4769/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-reform-home",
+      "title": "Our Leadership",
+      "publisher": "Reform UK",
+      "url": "https://www.reformparty.uk/home",
+      "sourceType": "official_party_page",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-green-executive",
+      "title": "The Executive (GPEx)",
+      "publisher": "The Green Party of England and Wales",
+      "url": "https://greenparty.org.uk/about/people/national-executive/",
+      "sourceType": "official_party_page",
+      "sourceTier": "tier_1"
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "id": "source-snapshot-gov-prime-minister-2026-07-21",
+      "sourceDocumentId": "source-document-gov-prime-minister",
+      "capturedAt": "2026-07-21T09:00:00.000+01:00",
+      "contentHash": "c7b34252fcb8b4cb71868905e8c9cee179868ca1296f6e2d71c6d051335aa943",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Prime Minister\nCurrent role holder: The Rt Hon Andy Burnham MP\nThe Prime Minister is the leader of His Majesty’s Government and is ultimately responsible for the policy and decisions of the government.\nAndy Burnham became Prime Minister on 20 July 2026.\nHe returned to Parliament as Member of Parliament for Makerfield in June 2026, and was elected Leader of the Labour Party on 16 July 2026."
+    },
+    {
+      "id": "source-snapshot-gov-keir-starmer-2026-07-21",
+      "sourceDocumentId": "source-document-gov-keir-starmer",
+      "capturedAt": "2026-07-21T09:05:00.000+01:00",
+      "contentHash": "faf58c7a79e35e578e80c7425a9f1932023c3f8d9e63be4dc37ae3f95b87cd61",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Sir Keir Starmer was Prime Minister from 5 July 2024 to 20 July 2026."
+    },
+    {
+      "id": "source-snapshot-labour-people-2026-07-21",
+      "sourceDocumentId": "source-document-labour-people",
+      "capturedAt": "2026-07-21T09:10:00.000+01:00",
+      "contentHash": "5e794bf84fe4cc89d1eef8e4cf07809089b2b26b0257e13995b4226920fd219a",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Labour People\nAndy Burnham, Leader of the Labour Party\nMeet the Deputy Leader of the Labour Party, Lucy Powell"
+    },
+    {
+      "id": "source-snapshot-parliament-kemi-badenoch-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-kemi-badenoch",
+      "capturedAt": "2026-07-21T09:15:00.000+01:00",
+      "contentHash": "1d80289b60f79ea3e3f8e32f7e12a025f90ec894574360b56f2eb0f0f5a07efa",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Other posts\nLeader of the Conservative Party\n2 November 2024 - Present\nOpposition post\nLeader of HM Official Opposition\n2 November 2024 - Present"
+    },
+    {
+      "id": "source-snapshot-parliament-ed-davey-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-ed-davey",
+      "capturedAt": "2026-07-21T09:20:00.000+01:00",
+      "contentHash": "e503c3d34145bf0da33f9d3b890a35e8e75bb7a32516817c7799235601aeecb6",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Other posts\nLeader of the Liberal Democrats\n27 August 2020 - Present"
+    },
+    {
+      "id": "source-snapshot-parliament-daisy-cooper-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-daisy-cooper",
+      "capturedAt": "2026-07-21T09:25:00.000+01:00",
+      "contentHash": "ae28f65807c87f4dcf2108884f893df05579fb17b1e7f4813760b25ae6692caa",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Other posts\nDeputy Leader, Liberal Democrats\n13 September 2020 - Present"
+    },
+    {
+      "id": "source-snapshot-reform-home-2026-07-21",
+      "sourceDocumentId": "source-document-reform-home",
+      "capturedAt": "2026-07-21T09:35:00.000+01:00",
+      "contentHash": "58c6697227c512501cae61db0e74bcb1e3500cfd2b5332bbbeab8fc3c23d4c6c",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Our Leadership\nNigel Farage\nLeader of Reform UK\nRichard Tice\nDeputy Leader of Reform UK\nLee Anderson\nChief Whip"
+    },
+    {
+      "id": "source-snapshot-green-executive-2026-07-21",
+      "sourceDocumentId": "source-document-green-executive",
+      "capturedAt": "2026-07-21T09:40:00.000+01:00",
+      "contentHash": "1a63d20d0fb0641b959c77b520af758e1d668216ee551f2fc4658f42121d4ac8",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "The Green Party elects its Executive Committee each year ahead of our Autumn Conference – the latest members were announced on September 2nd, 2025.\nVoting Members\nLeader | Zack Polanski\nDeputy Leaders | Mothin Ali\nRachel Millward"
+    }
+  ],
+  "evidenceReferences": [
+    {
+      "id": "evidence-andy-burnham-labour-leader",
+      "sourceSnapshotId": "source-snapshot-gov-prime-minister-2026-07-21",
+      "exactQuote": "He returned to Parliament as Member of Parliament for Makerfield in June 2026, and was elected Leader of the Labour Party on 16 July 2026.",
+      "locator": "Current role holder biography",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:00:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-andy-burnham-labour-leader",
+          "expected": {
+            "holder": "person-andy-burnham",
+            "role_title": "Leader of the Labour Party",
+            "effective_from": "2026-07-16"
+          },
+          "fields": ["holder", "role_title", "effective_from"]
+        },
+        {
+          "assignmentId": "assignment-andy-burnham-prime-minister",
+          "expected": { "party": "party-labour" },
+          "fields": ["party"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official record supports the named holder, party role and start date. It does not describe party policy or performance."
+    },
+    {
+      "id": "evidence-lucy-powell-labour-deputy",
+      "sourceSnapshotId": "source-snapshot-labour-people-2026-07-21",
+      "exactQuote": "Meet the Deputy Leader of the Labour Party, Lucy Powell",
+      "locator": "Labour People landing page",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:05:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-lucy-powell-labour-deputy",
+          "expected": {
+            "holder": "person-lucy-powell",
+            "role_title": "Deputy Leader of the Labour Party"
+          },
+          "fields": ["holder", "role_title"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official party page supports the named holder and title at capture time. It does not provide the appointment date, so the assignment begins at the verified date."
+    },
+    {
+      "id": "evidence-kemi-badenoch-conservative-leader",
+      "sourceSnapshotId": "source-snapshot-parliament-kemi-badenoch-2026-07-21",
+      "exactQuote": "Leader of the Conservative Party\n2 November 2024 - Present",
+      "locator": "Current > Other posts",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:10:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-kemi-badenoch-conservative-leader",
+          "expected": {
+            "holder": "person-kemi-badenoch",
+            "role_title": "Leader of the Conservative Party",
+            "effective_from": "2024-11-02"
+          },
+          "fields": ["holder", "role_title", "effective_from"]
+        },
+        {
+          "assignmentId": "assignment-kemi-badenoch-opposition-leader",
+          "expected": { "party": "party-conservative" },
+          "fields": ["party"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This parliamentary career record supports the named holder, party title and start date."
+    },
+    {
+      "id": "evidence-kemi-badenoch-opposition-leader",
+      "sourceSnapshotId": "source-snapshot-parliament-kemi-badenoch-2026-07-21",
+      "exactQuote": "Leader of HM Official Opposition\n2 November 2024 - Present",
+      "locator": "Current > Opposition post",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:10:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-kemi-badenoch-opposition-leader",
+          "expected": {
+            "holder": "person-kemi-badenoch",
+            "role_title": "Leader of HM Official Opposition",
+            "effective_from": "2024-11-02"
+          },
+          "fields": ["holder", "role_title", "effective_from"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This parliamentary career record supports the named holder, parliamentary title and start date. It is distinct from the party leadership assignment."
+    },
+    {
+      "id": "evidence-ed-davey-libdem-leader",
+      "sourceSnapshotId": "source-snapshot-parliament-ed-davey-2026-07-21",
+      "exactQuote": "Leader of the Liberal Democrats\n27 August 2020 - Present",
+      "locator": "Current > Other posts",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:15:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-ed-davey-libdem-leader",
+          "expected": {
+            "holder": "person-ed-davey",
+            "role_title": "Leader of the Liberal Democrats",
+            "effective_from": "2020-08-27"
+          },
+          "fields": ["holder", "role_title", "effective_from"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This parliamentary career record supports the named holder, party title and start date."
+    },
+    {
+      "id": "evidence-daisy-cooper-libdem-deputy",
+      "sourceSnapshotId": "source-snapshot-parliament-daisy-cooper-2026-07-21",
+      "exactQuote": "Deputy Leader, Liberal Democrats\n13 September 2020 - Present",
+      "locator": "Current > Other posts",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:20:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-daisy-cooper-libdem-deputy",
+          "expected": {
+            "holder": "person-daisy-cooper",
+            "role_title": "Deputy Leader, Liberal Democrats",
+            "effective_from": "2020-09-13"
+          },
+          "fields": ["holder", "role_title", "effective_from"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This parliamentary career record supports the named holder, exact title and start date."
+    },
+    {
+      "id": "evidence-nigel-farage-reform-leader",
+      "sourceSnapshotId": "source-snapshot-reform-home-2026-07-21",
+      "exactQuote": "Nigel Farage\nLeader of Reform UK",
+      "locator": "Our Leadership",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:30:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-nigel-farage-reform-leader",
+          "expected": {
+            "holder": "person-nigel-farage",
+            "role_title": "Leader of Reform UK"
+          },
+          "fields": ["holder", "role_title"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official party page supports the named holder and title at capture time. It does not provide the appointment date."
+    },
+    {
+      "id": "evidence-richard-tice-reform-deputy",
+      "sourceSnapshotId": "source-snapshot-reform-home-2026-07-21",
+      "exactQuote": "Richard Tice\nDeputy Leader of Reform UK",
+      "locator": "Our Leadership",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:30:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-richard-tice-reform-deputy",
+          "expected": {
+            "holder": "person-richard-tice",
+            "role_title": "Deputy Leader of Reform UK"
+          },
+          "fields": ["holder", "role_title"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official party page supports the named holder and title at capture time. It does not provide the appointment date."
+    },
+    {
+      "id": "evidence-zack-polanski-green-leader",
+      "sourceSnapshotId": "source-snapshot-green-executive-2026-07-21",
+      "exactQuote": "Leader | Zack Polanski",
+      "locator": "Voting Members table",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:35:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-zack-polanski-green-leader",
+          "expected": {
+            "holder": "person-zack-polanski",
+            "role_title": "Leader"
+          },
+          "fields": ["holder", "role_title"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official party executive page supports the named holder and exact title at capture time. It does not establish the role start date."
+    },
+    {
+      "id": "evidence-green-deputy-leaders",
+      "sourceSnapshotId": "source-snapshot-green-executive-2026-07-21",
+      "exactQuote": "Deputy Leaders | Mothin Ali\nRachel Millward",
+      "locator": "Voting Members table",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:35:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-mothin-ali-green-deputy",
+          "expected": {
+            "holder": "person-mothin-ali",
+            "role_title": "Deputy Leader"
+          },
+          "fields": ["holder", "role_title"]
+        },
+        {
+          "assignmentId": "assignment-rachel-millward-green-deputy",
+          "expected": {
+            "holder": "person-rachel-millward",
+            "role_title": "Deputy Leader"
+          },
+          "fields": ["holder", "role_title"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official party executive page supports both simultaneous deputy holders and the exact title at capture time. It does not establish their role start dates."
+    },
+    {
+      "id": "evidence-keir-starmer-prime-minister",
+      "sourceSnapshotId": "source-snapshot-gov-keir-starmer-2026-07-21",
+      "exactQuote": "Sir Keir Starmer was Prime Minister from 5 July 2024 to 20 July 2026.",
+      "locator": "Biography",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:40:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-keir-starmer-prime-minister",
+          "expected": {
+            "holder": "person-keir-starmer",
+            "role_title": "Prime Minister",
+            "effective_from": "2024-07-05",
+            "effective_to_exclusive": "2026-07-20"
+          },
+          "fields": ["holder", "role_title", "effective_from", "effective_to_exclusive"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official government biography supports the preserved historical holder, title and handover date. The day-level interval uses the replacement date as its exclusive end."
+    },
+    {
+      "id": "evidence-andy-burnham-prime-minister",
+      "sourceSnapshotId": "source-snapshot-gov-prime-minister-2026-07-21",
+      "exactQuote": "Andy Burnham became Prime Minister on 20 July 2026.",
+      "locator": "Current role holder",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:00:00.000+01:00",
+      "assignmentClaims": [
+        {
+          "assignmentId": "assignment-andy-burnham-prime-minister",
+          "expected": {
+            "holder": "person-andy-burnham",
+            "role_title": "Prime Minister",
+            "effective_from": "2026-07-20"
+          },
+          "fields": ["holder", "role_title", "effective_from"]
+        }
+      ],
+      "roleDescriptionIds": [],
+      "whatItSupports": "This official government record supports the named holder, government title and start date."
+    },
+    {
+      "id": "evidence-prime-minister-responsibilities",
+      "sourceSnapshotId": "source-snapshot-gov-prime-minister-2026-07-21",
+      "exactQuote": "The Prime Minister is the leader of His Majesty’s Government and is ultimately responsible for the policy and decisions of the government.",
+      "locator": "Responsibilities",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-07-21T10:00:00.000+01:00",
+      "assignmentClaims": [],
+      "roleDescriptionIds": ["role-prime-minister"],
+      "whatItSupports": "This official role page supports the short role explanation shown with the government assignment."
+    }
+  ]
+}
