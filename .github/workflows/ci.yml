@@ -20,6 +20,29 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - name: Fetch verified political-data baseline
+        shell: bash
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BASE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          base_sha="${PR_BASE_SHA:-${PUSH_BASE_SHA:-}}"
+
+          if [[ ! "$base_sha" =~ ^[0-9a-f]{40}$ ]] || [[ "$base_sha" =~ ^0{40}$ ]]; then
+            echo "::error::A verified GitHub base SHA is required for political-data history validation."
+            exit 1
+          fi
+
+          git fetch --no-tags --depth=1 origin "$base_sha"
+          resolved_sha="$(git rev-parse --verify "$base_sha^{commit}")"
+          if [[ "$resolved_sha" != "$base_sha" ]]; then
+            echo "::error::Fetched political-data baseline did not resolve to the GitHub base SHA."
+            exit 1
+          fi
+
+          echo "POLITICAL_DATA_BASE_REF=$base_sha" >> "$GITHUB_ENV"
+
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:

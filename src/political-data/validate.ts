@@ -1,6 +1,11 @@
 import { createHash } from "node:crypto";
 import { deriveCurrentLeadership, deriveRoleHistory } from "@/political-data/derive";
-import { type PoliticalData, politicalDataSchema } from "@/political-data/model";
+import {
+  type MetadataAmendment,
+  type MetadataEntityType,
+  type PoliticalData,
+  politicalDataSchema
+} from "@/political-data/model";
 
 export type PoliticalDataValidationResult = {
   assignments: number;
@@ -24,6 +29,7 @@ export function validatePoliticalData(input: unknown): PoliticalDataValidationRe
   validateUniqueIds(data, errors);
   validateReferences(data, errors);
   validateSources(data, errors);
+  validateMetadataAmendments(data, errors);
   validateAssignments(data, errors);
   validateDeterministicQueries(data, errors);
 
@@ -44,13 +50,10 @@ export function validatePoliticalDataHistory(previousInput: unknown, currentInpu
   const current = politicalDataSchema.parse(currentInput);
   const errors: string[] = [];
 
-  preserveImmutableRecords("party", previous.parties, current.parties, errors);
-  preserveImmutableRecords("person", previous.people, current.people, errors);
-  preserveImmutableRecords("role", previous.roles, current.roles, errors);
   preserveImmutableRecords(
-    "source document",
-    previous.sourceDocuments,
-    current.sourceDocuments,
+    "metadata amendment",
+    previous.metadataAmendments,
+    current.metadataAmendments,
     errors
   );
   preserveImmutableRecords(
@@ -59,6 +62,63 @@ export function validatePoliticalDataHistory(previousInput: unknown, currentInpu
     current.sourceSnapshots,
     errors
   );
+
+  const previousAmendmentIds = new Set(
+    previous.metadataAmendments.map((amendment) => amendment.id)
+  );
+  const newAmendments = current.metadataAmendments.filter(
+    (amendment) => !previousAmendmentIds.has(amendment.id)
+  );
+  const usedAmendmentIds = new Set<string>();
+
+  preserveAmendableRecords(
+    "party",
+    "party",
+    previous.parties,
+    current.parties,
+    previous.metadataAmendments,
+    newAmendments,
+    usedAmendmentIds,
+    errors
+  );
+  preserveAmendableRecords(
+    "person",
+    "person",
+    previous.people,
+    current.people,
+    previous.metadataAmendments,
+    newAmendments,
+    usedAmendmentIds,
+    errors
+  );
+  preserveAmendableRecords(
+    "role",
+    "role",
+    previous.roles,
+    current.roles,
+    previous.metadataAmendments,
+    newAmendments,
+    usedAmendmentIds,
+    errors
+  );
+  preserveAmendableRecords(
+    "source document",
+    "source_document",
+    previous.sourceDocuments,
+    current.sourceDocuments,
+    previous.metadataAmendments,
+    newAmendments,
+    usedAmendmentIds,
+    errors
+  );
+
+  for (const amendment of newAmendments) {
+    if (!usedAmendmentIds.has(amendment.id)) {
+      errors.push(
+        `Metadata amendment ${amendment.id} does not describe a changed pre-existing record`
+      );
+    }
+  }
   preserveImmutableRecords(
     "reviewed evidence",
     previous.evidenceReferences,
@@ -90,15 +150,16 @@ export function validatePoliticalDataHistory(previousInput: unknown, currentInpu
       evidenceReferenceIds: currentEvidence,
       ...after
     } = currentAssignment;
-    const closesOpenAssignment =
-      previousEnd === null &&
-      currentEnd !== null &&
-      JSON.stringify(before) === JSON.stringify(after) &&
-      previousEvidence.every((evidenceId) => currentEvidence.includes(evidenceId));
+    const preservesCore = JSON.stringify(before) === JSON.stringify(after);
+    const preservesEvidence = previousEvidence.every((evidenceId) =>
+      currentEvidence.includes(evidenceId)
+    );
+    const validEndChange =
+      previousEnd === currentEnd || (previousEnd === null && currentEnd !== null);
 
-    if (!closesOpenAssignment) {
+    if (!preservesCore || !preservesEvidence || !validEndChange) {
       errors.push(
-        `Historical assignment ${previousAssignment.id} was rewritten instead of only being closed`
+        `Historical assignment ${previousAssignment.id} was rewritten instead of only being closed or receiving appended evidence`
       );
     }
   }
@@ -106,6 +167,81 @@ export function validatePoliticalDataHistory(previousInput: unknown, currentInpu
   if (errors.length > 0) {
     throw new Error(`Political data history validation failed:\n- ${errors.join("\n- ")}`);
   }
+}
+
+function preserveAmendableRecords<T extends { id: string }>(
+  label: string,
+  entityType: MetadataEntityType,
+  previousRecords: T[],
+  currentRecords: T[],
+  previousAmendments: MetadataAmendment[],
+  newAmendments: MetadataAmendment[],
+  usedAmendmentIds: Set<string>,
+  errors: string[]
+) {
+  const currentById = new Map(currentRecords.map((record) => [record.id, record]));
+
+  for (const previousRecord of previousRecords) {
+    const currentRecord = currentById.get(previousRecord.id);
+    if (!currentRecord) {
+      errors.push(`Amendable ${label} ${previousRecord.id} was deleted or its stable ID changed`);
+      continue;
+    }
+    if (JSON.stringify(previousRecord) === JSON.stringify(currentRecord)) {
+      continue;
+    }
+
+    const changedFields = changedRecordFields(previousRecord, currentRecord);
+    const matchingAmendments = newAmendments.filter(
+      (amendment) => amendment.entityType === entityType && amendment.entityId === previousRecord.id
+    );
+
+    if (matchingAmendments.length !== 1) {
+      errors.push(
+        `Amendable ${label} ${previousRecord.id} was rewritten without exactly one new reviewed metadata amendment`
+      );
+      continue;
+    }
+
+    const amendment = matchingAmendments[0];
+    if (!amendment) {
+      continue;
+    }
+
+    const previousRevisions = previousAmendments
+      .filter(
+        (candidate) =>
+          candidate.entityType === entityType && candidate.entityId === previousRecord.id
+      )
+      .map((candidate) => candidate.revision);
+    const expectedRevision = Math.max(1, ...previousRevisions) + 1;
+    const declaredFields = [...amendment.changedFields].sort();
+
+    if (amendment.revision !== expectedRevision) {
+      errors.push(
+        `Metadata amendment ${amendment.id} must be revision ${expectedRevision}, not ${amendment.revision}`
+      );
+    }
+    if (JSON.stringify(declaredFields) !== JSON.stringify(changedFields)) {
+      errors.push(
+        `Metadata amendment ${amendment.id} does not explain changed fields ${changedFields.join(", ")}`
+      );
+    }
+
+    usedAmendmentIds.add(amendment.id);
+  }
+}
+
+function changedRecordFields<T extends { id: string }>(previous: T, current: T): string[] {
+  const keys = new Set([...Object.keys(previous), ...Object.keys(current)]);
+
+  return [...keys]
+    .filter(
+      (key) =>
+        key !== "id" &&
+        JSON.stringify(previous[key as keyof T]) !== JSON.stringify(current[key as keyof T])
+    )
+    .sort();
 }
 
 function preserveImmutableRecords<T extends { id: string }>(
@@ -134,7 +270,8 @@ function validateUniqueIds(data: PoliticalData, errors: string[]) {
     ...data.roleAssignments,
     ...data.sourceDocuments,
     ...data.sourceSnapshots,
-    ...data.evidenceReferences
+    ...data.evidenceReferences,
+    ...data.metadataAmendments
   ];
   const seen = new Set<string>();
 
@@ -164,6 +301,12 @@ function validateReferences(data: PoliticalData, errors: string[]) {
   const evidenceById = new Map(data.evidenceReferences.map((evidence) => [evidence.id, evidence]));
   const documentIds = new Set(data.sourceDocuments.map((document) => document.id));
   const snapshotIds = new Set(data.sourceSnapshots.map((snapshot) => snapshot.id));
+  const amendableIds = {
+    party: partyIds,
+    person: personIds,
+    role: new Set(data.roles.map((role) => role.id)),
+    source_document: documentIds
+  } as const;
 
   for (const role of data.roles) {
     if (role.partyId !== null && !partyIds.has(role.partyId)) {
@@ -231,11 +374,44 @@ function validateReferences(data: PoliticalData, errors: string[]) {
       const role = rolesById.get(roleId);
       if (!role) {
         errors.push(`${evidence.id} claims support for missing role description ${roleId}`);
-      } else if (role.descriptionEvidenceReferenceId !== evidence.id) {
+      } else if (
+        role.descriptionEvidenceReferenceId !== evidence.id &&
+        !hasSupersedingRoleDescriptionEvidence(data, role.id)
+      ) {
         errors.push(`${evidence.id} claims ${role.id}, but that role does not link it`);
       }
     }
   }
+
+  for (const amendment of data.metadataAmendments) {
+    if (!amendableIds[amendment.entityType].has(amendment.entityId)) {
+      errors.push(
+        `${amendment.id} references missing ${amendment.entityType} ${amendment.entityId}`
+      );
+    }
+    for (const evidenceId of amendment.evidenceReferenceIds) {
+      if (!evidenceById.has(evidenceId)) {
+        errors.push(`${amendment.id} references missing evidence ${evidenceId}`);
+      }
+    }
+  }
+}
+
+function hasSupersedingRoleDescriptionEvidence(data: PoliticalData, roleId: string): boolean {
+  const role = data.roles.find((candidate) => candidate.id === roleId);
+  if (!role?.descriptionEvidenceReferenceId) {
+    return false;
+  }
+  const currentEvidenceId = role.descriptionEvidenceReferenceId;
+
+  return data.metadataAmendments.some(
+    (amendment) =>
+      amendment.entityType === "role" &&
+      amendment.entityId === roleId &&
+      (amendment.changedFields.includes("description") ||
+        amendment.changedFields.includes("descriptionEvidenceReferenceId")) &&
+      amendment.evidenceReferenceIds.includes(currentEvidenceId)
+  );
 }
 
 function validateSources(data: PoliticalData, errors: string[]) {
@@ -273,6 +449,33 @@ function validateSources(data: PoliticalData, errors: string[]) {
   }
 }
 
+function validateMetadataAmendments(data: PoliticalData, errors: string[]) {
+  const amendmentsByTarget = new Map<string, MetadataAmendment[]>();
+
+  for (const amendment of data.metadataAmendments) {
+    if (toUkDate(amendment.reviewedAt) > data.asOf) {
+      errors.push(`${amendment.id} was reviewed after dataset asOf ${data.asOf}`);
+    }
+
+    const target = `${amendment.entityType}:${amendment.entityId}`;
+    const amendments = amendmentsByTarget.get(target) ?? [];
+    amendments.push(amendment);
+    amendmentsByTarget.set(target, amendments);
+  }
+
+  for (const [target, amendments] of amendmentsByTarget) {
+    const revisions = amendments.map((amendment) => amendment.revision).sort((a, b) => a - b);
+
+    for (let index = 0; index < revisions.length; index += 1) {
+      const expectedRevision = index + 2;
+      if (revisions[index] !== expectedRevision) {
+        errors.push(`${target} metadata revisions must be consecutive from 2`);
+        break;
+      }
+    }
+  }
+}
+
 function validateAssignments(data: PoliticalData, errors: string[]) {
   const evidenceById = new Map(data.evidenceReferences.map((evidence) => [evidence.id, evidence]));
   const rolesById = new Map(data.roles.map((role) => [role.id, role]));
@@ -296,6 +499,24 @@ function validateAssignments(data: PoliticalData, errors: string[]) {
       );
     });
     const claimedFields = new Set(claims.flatMap((claim) => claim.fields));
+    const roleTitleWasAmended = data.metadataAmendments.some(
+      (amendment) =>
+        amendment.entityType === "role" &&
+        amendment.entityId === assignment.roleId &&
+        amendment.changedFields.includes("title")
+    );
+    const currentRoleTitleEvidence = claims.some(
+      ({ evidence, expected, fields }) =>
+        fields.includes("role_title") &&
+        expected.role_title === role?.title &&
+        data.metadataAmendments.some(
+          (amendment) =>
+            amendment.entityType === "role" &&
+            amendment.entityId === assignment.roleId &&
+            amendment.changedFields.includes("title") &&
+            amendment.evidenceReferenceIds.includes(evidence.id)
+        )
+    );
 
     for (const claim of claims) {
       for (const field of claim.fields) {
@@ -307,7 +528,10 @@ function validateAssignments(data: PoliticalData, errors: string[]) {
           role_title: role?.title ?? null
         }[field];
 
-        if (claim.expected[field] !== actual) {
+        const supersededRoleTitle =
+          field === "role_title" && roleTitleWasAmended && currentRoleTitleEvidence;
+
+        if (claim.expected[field] !== actual && !supersededRoleTitle) {
           errors.push(
             `${claim.evidence.id} expects ${assignment.id}.${field} to be ${claim.expected[field]}, not ${actual}`
           );
@@ -319,6 +543,9 @@ function validateAssignments(data: PoliticalData, errors: string[]) {
       if (!claimedFields.has(requiredField)) {
         errors.push(`${assignment.id} lacks reviewed evidence for ${requiredField}`);
       }
+    }
+    if (roleTitleWasAmended && !currentRoleTitleEvidence) {
+      errors.push(`${assignment.id} lacks amendment evidence for the current role title`);
     }
     if (
       assignment.effectiveDateBasis === "official_start" &&
@@ -391,6 +618,7 @@ function validateDeterministicQueries(data: PoliticalData, errors: string[]) {
   const reversed: PoliticalData = {
     ...structuredClone(data),
     evidenceReferences: [...data.evidenceReferences].reverse(),
+    metadataAmendments: [...data.metadataAmendments].reverse(),
     parties: [...data.parties].reverse(),
     people: [...data.people].reverse(),
     roleAssignments: [...data.roleAssignments].reverse(),

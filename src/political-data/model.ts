@@ -106,9 +106,54 @@ const evidenceReferenceSchema = z
     "Evidence must support at least one assignment or role description"
   );
 
+export const metadataEntityTypeSchema = z.enum(["party", "person", "role", "source_document"]);
+
+const amendableFields = {
+  party: new Set(["name", "officialName", "slug", "sortOrder"]),
+  person: new Set(["name"]),
+  role: new Set([
+    "description",
+    "descriptionEvidenceReferenceId",
+    "scopeLabel",
+    "sortOrder",
+    "title"
+  ]),
+  source_document: new Set(["publisher", "sourceTier", "sourceType", "title", "url"])
+} as const;
+
+export const metadataAmendmentSchema = z
+  .object({
+    changedFields: z
+      .array(z.string().min(1))
+      .min(1)
+      .refine((fields) => new Set(fields).size === fields.length, "Changed fields must be unique"),
+    entityId: stableIdSchema,
+    entityType: metadataEntityTypeSchema,
+    evidenceReferenceIds: z.array(stableIdSchema).min(1),
+    id: stableIdSchema,
+    reason: z.string().trim().min(12),
+    reviewStatus: z.literal("reviewed"),
+    reviewedAt: isoDateTimeSchema,
+    revision: z.number().int().min(2)
+  })
+  .superRefine((amendment, context) => {
+    const allowedFields = amendableFields[amendment.entityType];
+
+    for (const field of amendment.changedFields) {
+      if (!allowedFields.has(field)) {
+        context.addIssue({
+          code: "custom",
+          message: `${field} is not amendable metadata for ${amendment.entityType}`,
+          path: ["changedFields"]
+        });
+      }
+    }
+  });
+
 export const politicalDataSchema = z.object({
   asOf: isoDateSchema,
   evidenceReferences: z.array(evidenceReferenceSchema),
+  metadataAmendments: z.array(metadataAmendmentSchema),
   parties: z.array(partySchema),
   people: z.array(personSchema),
   roleAssignments: z.array(roleAssignmentSchema),
@@ -120,6 +165,8 @@ export const politicalDataSchema = z.object({
 
 export type Party = z.infer<typeof partySchema>;
 export type EvidenceReference = z.infer<typeof evidenceReferenceSchema>;
+export type MetadataAmendment = z.infer<typeof metadataAmendmentSchema>;
+export type MetadataEntityType = z.infer<typeof metadataEntityTypeSchema>;
 export type Person = z.infer<typeof personSchema>;
 export type PoliticalData = z.infer<typeof politicalDataSchema>;
 export type Role = z.infer<typeof roleSchema>;

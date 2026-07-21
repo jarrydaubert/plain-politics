@@ -1,0 +1,143 @@
+{
+  "roleAssignments": [
+    {
+      "id": "assignment-andy-burnham-labour-leader",
+      "partyId": "party-labour",
+      "personId": "person-andy-burnham",
+      "roleId": "role-labour-leader",
+      "effectiveFrom": "2026-07-16",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-andy-burnham-labour-leader"]
+    },
+    {
+      "id": "assignment-lucy-powell-labour-deputy",
+      "partyId": "party-labour",
+      "personId": "person-lucy-powell",
+      "roleId": "role-labour-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-lucy-powell-labour-deputy"]
+    },
+    {
+      "id": "assignment-kemi-badenoch-conservative-leader",
+      "partyId": "party-conservative",
+      "personId": "person-kemi-badenoch",
+      "roleId": "role-conservative-leader",
+      "effectiveFrom": "2024-11-02",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-kemi-badenoch-conservative-leader"]
+    },
+    {
+      "id": "assignment-ed-davey-libdem-leader",
+      "partyId": "party-liberal-democrats",
+      "personId": "person-ed-davey",
+      "roleId": "role-libdem-leader",
+      "effectiveFrom": "2020-08-27",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-ed-davey-libdem-leader"]
+    },
+    {
+      "id": "assignment-daisy-cooper-libdem-deputy",
+      "partyId": "party-liberal-democrats",
+      "personId": "person-daisy-cooper",
+      "roleId": "role-libdem-deputy-leader",
+      "effectiveFrom": "2020-09-13",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": ["evidence-daisy-cooper-libdem-deputy"]
+    },
+    {
+      "id": "assignment-nigel-farage-reform-leader",
+      "partyId": "party-reform-uk",
+      "personId": "person-nigel-farage",
+      "roleId": "role-reform-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-nigel-farage-reform-leader"]
+    },
+    {
+      "id": "assignment-richard-tice-reform-deputy",
+      "partyId": "party-reform-uk",
+      "personId": "person-richard-tice",
+      "roleId": "role-reform-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-richard-tice-reform-deputy"]
+    },
+    {
+      "id": "assignment-zack-polanski-green-leader",
+      "partyId": "party-green-england-wales",
+      "personId": "person-zack-polanski",
+      "roleId": "role-green-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-zack-polanski-green-leader"]
+    },
+    {
+      "id": "assignment-mothin-ali-green-deputy",
+      "partyId": "party-green-england-wales",
+      "personId": "person-mothin-ali",
+      "roleId": "role-green-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-green-deputy-leaders"]
+    },
+    {
+      "id": "assignment-rachel-millward-green-deputy",
+      "partyId": "party-green-england-wales",
+      "personId": "person-rachel-millward",
+      "roleId": "role-green-deputy-leader",
+      "effectiveFrom": "2026-07-21",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "verified_from",
+      "evidenceReferenceIds": ["evidence-green-deputy-leaders"]
+    },
+    {
+      "id": "assignment-kemi-badenoch-opposition-leader",
+      "partyId": "party-conservative",
+      "personId": "person-kemi-badenoch",
+      "roleId": "role-leader-official-opposition",
+      "effectiveFrom": "2024-11-02",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": [
+        "evidence-kemi-badenoch-opposition-leader",
+        "evidence-kemi-badenoch-conservative-leader"
+      ]
+    },
+    {
+      "id": "assignment-keir-starmer-prime-minister",
+      "partyId": "party-labour",
+      "personId": "person-keir-starmer",
+      "roleId": "role-prime-minister",
+      "effectiveFrom": "2024-07-05",
+      "effectiveToExclusive": "2026-07-20",
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": [
+        "evidence-keir-starmer-prime-minister",
+        "evidence-keir-starmer-labour-affiliation"
+      ]
+    },
+    {
+      "id": "assignment-andy-burnham-prime-minister",
+      "partyId": "party-labour",
+      "personId": "person-andy-burnham",
+      "roleId": "role-prime-minister",
+      "effectiveFrom": "2026-07-20",
+      "effectiveToExclusive": null,
+      "effectiveDateBasis": "official_start",
+      "evidenceReferenceIds": [
+        "evidence-andy-burnham-prime-minister",
+        "evidence-andy-burnham-labour-leader"
+      ]
+    }
+  ]
+}

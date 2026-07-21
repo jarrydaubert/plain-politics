@@ -1,10 +1,11 @@
 import { describe, expect, test } from "bun:test";
+import { createHash } from "node:crypto";
 import {
   deriveCurrentLeadership,
   deriveRoleHistory,
   findPartyBySlug
 } from "@/political-data/derive";
-import { roleSchema } from "@/political-data/model";
+import { type MetadataEntityType, type PoliticalData, roleSchema } from "@/political-data/model";
 import { buildPartyLeadershipPageData } from "@/political-data/page-data";
 import { loadCanonicalPoliticalData } from "@/political-data/storage";
 import { validatePoliticalData, validatePoliticalDataHistory } from "@/political-data/validate";
@@ -42,14 +43,23 @@ describe("canonical political data", () => {
     const labour = findPartyBySlug(data, "labour");
 
     expect(labour).not.toBeNull();
-    expect(
-      deriveCurrentLeadership(data, labour?.id ?? "", "2026-07-19").map((item) => item.id)
-    ).not.toContain("assignment-andy-burnham-prime-minister");
-    expect(
-      deriveCurrentLeadership(data, labour?.id ?? "", data.asOf).map((item) => item.id)
-    ).toContain("assignment-andy-burnham-prime-minister");
+    const beforeTransition = deriveCurrentLeadership(data, labour?.id ?? "", "2026-07-19").map(
+      (item) => item.id
+    );
+    const afterTransition = deriveCurrentLeadership(data, labour?.id ?? "", data.asOf).map(
+      (item) => item.id
+    );
 
-    const rawData = await Bun.file("src/political-data/canonical-data.json").text();
+    expect(beforeTransition).toContain("assignment-keir-starmer-prime-minister");
+    expect(beforeTransition).not.toContain("assignment-andy-burnham-prime-minister");
+    expect(afterTransition).toContain("assignment-andy-burnham-prime-minister");
+    expect(afterTransition).not.toContain("assignment-keir-starmer-prime-minister");
+
+    const rawDataParts: string[] = [];
+    for await (const path of new Bun.Glob("src/political-data/canonical/*.json").scan(".")) {
+      rawDataParts.push(await Bun.file(path).text());
+    }
+    const rawData = rawDataParts.join("\n");
     expect(rawData).not.toContain('"isCurrent"');
   });
 
@@ -238,7 +248,189 @@ describe("canonical political data", () => {
     expect(() => validatePoliticalData(unreviewed)).toThrow(/schema validation failed/);
   });
 
-  test("preserves immutable evidence history and allows an open assignment to close", () => {
+  test("allows reviewed corrections to every amendable collection while preserving stable IDs", () => {
+    const corrections: Array<{
+      changedField: string;
+      entityId: string;
+      entityType: MetadataEntityType;
+      mutate: (data: PoliticalData) => void;
+    }> = [
+      {
+        changedField: "name",
+        entityId: "party-labour",
+        entityType: "party",
+        mutate: (data) => {
+          const party = data.parties.find((item) => item.id === "party-labour");
+          if (party) party.name = "Labour corrected";
+        }
+      },
+      {
+        changedField: "name",
+        entityId: "person-keir-starmer",
+        entityType: "person",
+        mutate: (data) => {
+          const person = data.people.find((item) => item.id === "person-keir-starmer");
+          if (person) person.name = "Sir Keir Starmer corrected";
+        }
+      },
+      {
+        changedField: "scopeLabel",
+        entityId: "role-prime-minister",
+        entityType: "role",
+        mutate: (data) => {
+          const role = data.roles.find((item) => item.id === "role-prime-minister");
+          if (role) role.scopeLabel = "UK Government corrected";
+        }
+      },
+      {
+        changedField: "title",
+        entityId: "source-document-gov-keir-starmer",
+        entityType: "source_document",
+        mutate: (data) => {
+          const document = data.sourceDocuments.find(
+            (item) => item.id === "source-document-gov-keir-starmer"
+          );
+          if (document) document.title = "Corrected source title";
+        }
+      }
+    ];
+
+    for (const correction of corrections) {
+      const previous = loadCanonicalPoliticalData();
+      const corrected = structuredClone(previous);
+      correction.mutate(corrected);
+      corrected.metadataAmendments.push({
+        changedFields: [correction.changedField],
+        entityId: correction.entityId,
+        entityType: correction.entityType,
+        evidenceReferenceIds: [firstOrThrow(corrected.evidenceReferences, "evidence").id],
+        id: `amendment-${correction.entityType.replaceAll("_", "-")}-test`,
+        reason: "Correct the reviewed metadata while preserving the canonical identity.",
+        reviewStatus: "reviewed",
+        reviewedAt: "2026-07-21T12:00:00.000+01:00",
+        revision: 2
+      });
+
+      expect(() => validatePoliticalDataHistory(previous, corrected)).not.toThrow();
+      expect(
+        [
+          ...corrected.parties,
+          ...corrected.people,
+          ...corrected.roles,
+          ...corrected.sourceDocuments
+        ].some((record) => record.id === correction.entityId)
+      ).toBe(true);
+    }
+  });
+
+  test("allows a reviewed role-title correction without rewriting earlier quotations", () => {
+    const previous = loadCanonicalPoliticalData();
+    const corrected = structuredClone(previous);
+    const title = "Prime Minister of the United Kingdom";
+    const evidenceId = "evidence-prime-minister-title-correction-test";
+    const role = corrected.roles.find((item) => item.id === "role-prime-minister");
+    const assignments = corrected.roleAssignments.filter(
+      (assignment) => assignment.roleId === "role-prime-minister"
+    );
+
+    if (!role || assignments.length === 0) {
+      throw new Error("Missing Prime Minister correction fixtures");
+    }
+
+    role.title = title;
+    corrected.sourceSnapshots.push({
+      capturedAt: "2026-07-21T12:00:00.000+01:00",
+      capturedText: title,
+      contentHash: createHash("sha256").update(title, "utf8").digest("hex"),
+      extractMethod: "manual_reviewed_extract",
+      id: "source-snapshot-prime-minister-title-correction-test",
+      sourceDocumentId: "source-document-gov-prime-minister"
+    });
+    corrected.evidenceReferences.push({
+      assignmentClaims: assignments.map((assignment) => ({
+        assignmentId: assignment.id,
+        expected: { role_title: title },
+        fields: ["role_title"]
+      })),
+      exactQuote: title,
+      id: evidenceId,
+      locator: "Role title correction test",
+      reviewStatus: "reviewed",
+      reviewedAt: "2026-07-21T12:05:00.000+01:00",
+      roleDescriptionIds: [],
+      sourceSnapshotId: "source-snapshot-prime-minister-title-correction-test",
+      whatItSupports: "The appended reviewed evidence supports the corrected role title."
+    });
+    for (const assignment of assignments) {
+      assignment.evidenceReferenceIds.push(evidenceId);
+    }
+    corrected.metadataAmendments.push({
+      changedFields: ["title"],
+      entityId: role.id,
+      entityType: "role",
+      evidenceReferenceIds: [evidenceId],
+      id: "amendment-prime-minister-title-correction-test",
+      reason: "Correct the reviewed role title without replacing its stable identity.",
+      reviewStatus: "reviewed",
+      reviewedAt: "2026-07-21T12:10:00.000+01:00",
+      revision: 2
+    });
+
+    expect(() => validatePoliticalData(corrected)).not.toThrow();
+    expect(() => validatePoliticalDataHistory(previous, corrected)).not.toThrow();
+    expect(role.id).toBe("role-prime-minister");
+    expect(
+      previous.evidenceReferences.find(
+        (evidence) => evidence.id === "evidence-keir-starmer-prime-minister"
+      )?.exactQuote
+    ).toBe(
+      corrected.evidenceReferences.find(
+        (evidence) => evidence.id === "evidence-keir-starmer-prime-minister"
+      )?.exactQuote
+    );
+  });
+
+  test("rejects unreviewed, unexplained or inaccurately described metadata rewrites", () => {
+    const previous = loadCanonicalPoliticalData();
+    const unexplained = structuredClone(previous);
+    firstOrThrow(unexplained.people, "person").name = "Unexplained rewrite";
+    expect(() => validatePoliticalDataHistory(previous, unexplained)).toThrow(
+      /without exactly one new reviewed metadata amendment/
+    );
+
+    const wrongFields = structuredClone(unexplained);
+    wrongFields.metadataAmendments.push({
+      changedFields: ["name"],
+      entityId: firstOrThrow(wrongFields.parties, "party").id,
+      entityType: "party",
+      evidenceReferenceIds: [firstOrThrow(wrongFields.evidenceReferences, "evidence").id],
+      id: "amendment-wrong-target-test",
+      reason: "This review record deliberately targets the wrong canonical record.",
+      reviewStatus: "reviewed",
+      reviewedAt: "2026-07-21T12:00:00.000+01:00",
+      revision: 2
+    });
+    expect(() => validatePoliticalDataHistory(previous, wrongFields)).toThrow(
+      /does not describe a changed pre-existing record/
+    );
+
+    const unreviewed = structuredClone(previous);
+    firstOrThrow(unreviewed.people, "person").name = "Unreviewed rewrite";
+    (unreviewed.metadataAmendments as unknown as Array<Record<string, unknown>>).push({
+      changedFields: ["name"],
+      entityId: firstOrThrow(unreviewed.people, "person").id,
+      entityType: "person",
+      evidenceReferenceIds: [firstOrThrow(unreviewed.evidenceReferences, "evidence").id],
+      id: "amendment-unreviewed-test",
+      reason: "This record has not passed the required review gate.",
+      reviewStatus: "pending",
+      reviewedAt: "2026-07-21T12:00:00.000+01:00",
+      revision: 2
+    });
+    expect(() => validatePoliticalDataHistory(previous, unreviewed)).toThrow(/reviewStatus/);
+  });
+
+  test("keeps source snapshots and reviewed quotations append-only", () => {
     const previous = loadCanonicalPoliticalData();
     const rewrittenSnapshot = structuredClone(previous);
     firstOrThrow(rewrittenSnapshot.sourceSnapshots, "source snapshot").capturedText += " changed";
@@ -246,28 +438,33 @@ describe("canonical political data", () => {
       /Immutable source snapshot.*rewritten/
     );
 
+    const deletedSnapshot = structuredClone(previous);
+    deletedSnapshot.sourceSnapshots.shift();
+    expect(() => validatePoliticalDataHistory(previous, deletedSnapshot)).toThrow(
+      /Immutable source snapshot.*deleted/
+    );
+
+    const rewrittenQuotation = structuredClone(previous);
+    firstOrThrow(rewrittenQuotation.evidenceReferences, "evidence reference").exactQuote +=
+      " changed";
+    expect(() => validatePoliticalDataHistory(previous, rewrittenQuotation)).toThrow(
+      /Immutable reviewed evidence.*rewritten/
+    );
+
+    const deletedQuotation = structuredClone(previous);
+    deletedQuotation.evidenceReferences.shift();
+    expect(() => validatePoliticalDataHistory(previous, deletedQuotation)).toThrow(
+      /Immutable reviewed evidence.*deleted/
+    );
+  });
+
+  test("preserves historical assignments and allows an open assignment to close", () => {
+    const previous = loadCanonicalPoliticalData();
+
     const deletedAssignment = structuredClone(previous);
     deletedAssignment.roleAssignments.shift();
     expect(() => validatePoliticalDataHistory(previous, deletedAssignment)).toThrow(
       /Historical assignment.*deleted/
-    );
-
-    const rewrittenParty = structuredClone(previous);
-    firstOrThrow(rewrittenParty.parties, "party").name = "Rewritten identity";
-    expect(() => validatePoliticalDataHistory(previous, rewrittenParty)).toThrow(
-      /Immutable party.*rewritten/
-    );
-
-    const rewrittenPerson = structuredClone(previous);
-    firstOrThrow(rewrittenPerson.people, "person").name = "Rewritten person";
-    expect(() => validatePoliticalDataHistory(previous, rewrittenPerson)).toThrow(
-      /Immutable person.*rewritten/
-    );
-
-    const rewrittenRole = structuredClone(previous);
-    firstOrThrow(rewrittenRole.roles, "role").title = "Rewritten role";
-    expect(() => validatePoliticalDataHistory(previous, rewrittenRole)).toThrow(
-      /Immutable role.*rewritten/
     );
 
     const closedAssignment = structuredClone(previous);

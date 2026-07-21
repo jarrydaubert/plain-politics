@@ -10,8 +10,8 @@ describe("political data architecture boundaries", () => {
         const source = await Bun.file(path).text();
 
         if (path !== "src/political-data/storage.ts") {
-          expect(source, `${path} cannot import the raw canonical store`).not.toContain(
-            "canonical-data.json"
+          expect(source, `${path} cannot import the raw canonical store`).not.toMatch(
+            /political-data\/canonical\/.+\.json/
           );
         }
         if (path !== "src/political-data/queries.ts") {
@@ -26,7 +26,7 @@ describe("political data architecture boundaries", () => {
   test("pages and components cannot import raw canonical data, storage adapters or database clients", async () => {
     const files = [new Bun.Glob("app/**/*.tsx"), new Bun.Glob("src/components/**/*.tsx")];
     const forbiddenImports = [
-      /canonical-data\.json/,
+      /political-data\/canonical\/.+\.json/,
       /political-data\/storage/,
       /@supabase\//,
       /supabase\/(client|server)/

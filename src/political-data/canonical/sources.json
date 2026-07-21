@@ -1,0 +1,150 @@
+{
+  "sourceDocuments": [
+    {
+      "id": "source-document-gov-prime-minister",
+      "title": "Prime Minister",
+      "publisher": "GOV.UK",
+      "url": "https://www.gov.uk/government/ministers/prime-minister",
+      "sourceType": "gov_uk",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-gov-keir-starmer",
+      "title": "The Rt Hon Sir Keir Starmer KCB KC MP",
+      "publisher": "GOV.UK",
+      "url": "https://www.gov.uk/government/people/keir-starmer",
+      "sourceType": "gov_uk",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-keir-starmer",
+      "title": "Parliamentary career for Sir Keir Starmer",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/4514/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-labour-people",
+      "title": "Labour People",
+      "publisher": "The Labour Party",
+      "url": "https://labour.org.uk/people/",
+      "sourceType": "official_party_page",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-kemi-badenoch",
+      "title": "Parliamentary career for Mrs Kemi Badenoch",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/4597/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-ed-davey",
+      "title": "Parliamentary career for Ed Davey",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/188/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-parliament-daisy-cooper",
+      "title": "Parliamentary career for Daisy Cooper",
+      "publisher": "UK Parliament",
+      "url": "https://members.parliament.uk/member/4769/career",
+      "sourceType": "official_parliamentary_record",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-reform-home",
+      "title": "Our Leadership",
+      "publisher": "Reform UK",
+      "url": "https://www.reformparty.uk/home",
+      "sourceType": "official_party_page",
+      "sourceTier": "tier_1"
+    },
+    {
+      "id": "source-document-green-executive",
+      "title": "The Executive (GPEx)",
+      "publisher": "The Green Party of England and Wales",
+      "url": "https://greenparty.org.uk/about/people/national-executive/",
+      "sourceType": "official_party_page",
+      "sourceTier": "tier_1"
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "id": "source-snapshot-gov-prime-minister-2026-07-21",
+      "sourceDocumentId": "source-document-gov-prime-minister",
+      "capturedAt": "2026-07-21T09:00:00.000+01:00",
+      "contentHash": "c7b34252fcb8b4cb71868905e8c9cee179868ca1296f6e2d71c6d051335aa943",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Prime Minister\nCurrent role holder: The Rt Hon Andy Burnham MP\nThe Prime Minister is the leader of His Majesty’s Government and is ultimately responsible for the policy and decisions of the government.\nAndy Burnham became Prime Minister on 20 July 2026.\nHe returned to Parliament as Member of Parliament for Makerfield in June 2026, and was elected Leader of the Labour Party on 16 July 2026."
+    },
+    {
+      "id": "source-snapshot-gov-keir-starmer-2026-07-21",
+      "sourceDocumentId": "source-document-gov-keir-starmer",
+      "capturedAt": "2026-07-21T09:05:00.000+01:00",
+      "contentHash": "faf58c7a79e35e578e80c7425a9f1932023c3f8d9e63be4dc37ae3f95b87cd61",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Sir Keir Starmer was Prime Minister from 5 July 2024 to 20 July 2026."
+    },
+    {
+      "id": "source-snapshot-parliament-keir-starmer-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-keir-starmer",
+      "capturedAt": "2026-07-21T11:00:00.000+01:00",
+      "contentHash": "80621f7b5acfbd31482c579a7e64235f89ece68cb689a0a294c2ffed134c28ea",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Parliamentary party affiliation\nLAB Labour\n7 May 2015 - Present"
+    },
+    {
+      "id": "source-snapshot-labour-people-2026-07-21",
+      "sourceDocumentId": "source-document-labour-people",
+      "capturedAt": "2026-07-21T09:10:00.000+01:00",
+      "contentHash": "5e794bf84fe4cc89d1eef8e4cf07809089b2b26b0257e13995b4226920fd219a",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Labour People\nAndy Burnham, Leader of the Labour Party\nMeet the Deputy Leader of the Labour Party, Lucy Powell"
+    },
+    {
+      "id": "source-snapshot-parliament-kemi-badenoch-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-kemi-badenoch",
+      "capturedAt": "2026-07-21T09:15:00.000+01:00",
+      "contentHash": "1d80289b60f79ea3e3f8e32f7e12a025f90ec894574360b56f2eb0f0f5a07efa",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Other posts\nLeader of the Conservative Party\n2 November 2024 - Present\nOpposition post\nLeader of HM Official Opposition\n2 November 2024 - Present"
+    },
+    {
+      "id": "source-snapshot-parliament-ed-davey-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-ed-davey",
+      "capturedAt": "2026-07-21T09:20:00.000+01:00",
+      "contentHash": "e503c3d34145bf0da33f9d3b890a35e8e75bb7a32516817c7799235601aeecb6",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Other posts\nLeader of the Liberal Democrats\n27 August 2020 - Present"
+    },
+    {
+      "id": "source-snapshot-parliament-daisy-cooper-2026-07-21",
+      "sourceDocumentId": "source-document-parliament-daisy-cooper",
+      "capturedAt": "2026-07-21T09:25:00.000+01:00",
+      "contentHash": "ae28f65807c87f4dcf2108884f893df05579fb17b1e7f4813760b25ae6692caa",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Other posts\nDeputy Leader, Liberal Democrats\n13 September 2020 - Present"
+    },
+    {
+      "id": "source-snapshot-reform-home-2026-07-21",
+      "sourceDocumentId": "source-document-reform-home",
+      "capturedAt": "2026-07-21T09:35:00.000+01:00",
+      "contentHash": "58c6697227c512501cae61db0e74bcb1e3500cfd2b5332bbbeab8fc3c23d4c6c",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "Our Leadership\nNigel Farage\nLeader of Reform UK\nRichard Tice\nDeputy Leader of Reform UK\nLee Anderson\nChief Whip"
+    },
+    {
+      "id": "source-snapshot-green-executive-2026-07-21",
+      "sourceDocumentId": "source-document-green-executive",
+      "capturedAt": "2026-07-21T09:40:00.000+01:00",
+      "contentHash": "1a63d20d0fb0641b959c77b520af758e1d668216ee551f2fc4658f42121d4ac8",
+      "extractMethod": "manual_reviewed_extract",
+      "capturedText": "The Green Party elects its Executive Committee each year ahead of our Autumn Conference – the latest members were announced on September 2nd, 2025.\nVoting Members\nLeader | Zack Polanski\nDeputy Leaders | Mothin Ali\nRachel Millward"
+    }
+  ]
+}
