@@ -1,0 +1,188 @@
+{
+  "parties": [
+    {
+      "id": "party-labour",
+      "name": "Labour",
+      "officialName": "The Labour Party",
+      "slug": "labour",
+      "sortOrder": 10
+    },
+    {
+      "id": "party-conservative",
+      "name": "Conservatives",
+      "officialName": "The Conservative and Unionist Party",
+      "slug": "conservatives",
+      "sortOrder": 20
+    },
+    {
+      "id": "party-liberal-democrats",
+      "name": "Liberal Democrats",
+      "officialName": "The Liberal Democrats",
+      "slug": "liberal-democrats",
+      "sortOrder": 30
+    },
+    {
+      "id": "party-reform-uk",
+      "name": "Reform UK",
+      "officialName": "Reform UK",
+      "slug": "reform-uk",
+      "sortOrder": 40
+    },
+    {
+      "id": "party-green-england-wales",
+      "name": "Green Party of England and Wales",
+      "officialName": "The Green Party of England and Wales",
+      "slug": "green-party-england-wales",
+      "sortOrder": 50
+    }
+  ],
+  "people": [
+    {
+      "id": "person-andy-burnham",
+      "name": "Andy Burnham"
+    },
+    {
+      "id": "person-daisy-cooper",
+      "name": "Daisy Cooper"
+    },
+    {
+      "id": "person-ed-davey",
+      "name": "Ed Davey"
+    },
+    {
+      "id": "person-keir-starmer",
+      "name": "Keir Starmer"
+    },
+    {
+      "id": "person-kemi-badenoch",
+      "name": "Kemi Badenoch"
+    },
+    {
+      "id": "person-lucy-powell",
+      "name": "Lucy Powell"
+    },
+    {
+      "id": "person-mothin-ali",
+      "name": "Mothin Ali"
+    },
+    {
+      "id": "person-nigel-farage",
+      "name": "Nigel Farage"
+    },
+    {
+      "id": "person-rachel-millward",
+      "name": "Rachel Millward"
+    },
+    {
+      "id": "person-richard-tice",
+      "name": "Richard Tice"
+    },
+    {
+      "id": "person-zack-polanski",
+      "name": "Zack Polanski"
+    }
+  ],
+  "roles": [
+    {
+      "id": "role-labour-leader",
+      "title": "Leader of the Labour Party",
+      "category": "party",
+      "partyId": "party-labour",
+      "scopeLabel": "The Labour Party",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-labour-deputy-leader",
+      "title": "Deputy Leader of the Labour Party",
+      "category": "party",
+      "partyId": "party-labour",
+      "scopeLabel": "The Labour Party",
+      "holderPolicy": "single",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-conservative-leader",
+      "title": "Leader of the Conservative Party",
+      "category": "party",
+      "partyId": "party-conservative",
+      "scopeLabel": "The Conservative Party",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-libdem-leader",
+      "title": "Leader of the Liberal Democrats",
+      "category": "party",
+      "partyId": "party-liberal-democrats",
+      "scopeLabel": "The Liberal Democrats",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-libdem-deputy-leader",
+      "title": "Deputy Leader, Liberal Democrats",
+      "category": "party",
+      "partyId": "party-liberal-democrats",
+      "scopeLabel": "The Liberal Democrats",
+      "holderPolicy": "single",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-reform-leader",
+      "title": "Leader of Reform UK",
+      "category": "party",
+      "partyId": "party-reform-uk",
+      "scopeLabel": "Reform UK",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-reform-deputy-leader",
+      "title": "Deputy Leader of Reform UK",
+      "category": "party",
+      "partyId": "party-reform-uk",
+      "scopeLabel": "Reform UK",
+      "holderPolicy": "single",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-green-leader",
+      "title": "Leader",
+      "category": "party",
+      "partyId": "party-green-england-wales",
+      "scopeLabel": "The Green Party of England and Wales",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-green-deputy-leader",
+      "title": "Deputy Leader",
+      "category": "party",
+      "partyId": "party-green-england-wales",
+      "scopeLabel": "The Green Party of England and Wales",
+      "holderPolicy": "multiple",
+      "sortOrder": 20
+    },
+    {
+      "id": "role-leader-official-opposition",
+      "title": "Leader of HM Official Opposition",
+      "category": "parliamentary",
+      "partyId": null,
+      "scopeLabel": "House of Commons",
+      "holderPolicy": "single",
+      "sortOrder": 10
+    },
+    {
+      "id": "role-prime-minister",
+      "title": "Prime Minister",
+      "category": "government",
+      "partyId": null,
+      "scopeLabel": "His Majesty’s Government",
+      "holderPolicy": "single",
+      "sortOrder": 10,
+      "description": "The Prime Minister is the leader of His Majesty’s Government and is ultimately responsible for government policy and decisions.",
+      "descriptionEvidenceReferenceId": "evidence-prime-minister-responsibilities"
+    }
+  ]
+}

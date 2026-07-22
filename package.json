@@ -8,6 +8,7 @@
     "generate:og": "bun scripts/generate-og-image.ts",
     "indexnow:dry": "bun scripts/submit-indexnow.ts",
     "indexnow:submit": "bun scripts/submit-indexnow.ts --submit",
+    "validate:political-data": "bun scripts/validate-political-data.ts",
     "build": "next build",
     "start": "next start",
     "format": "biome format --write .",
@@ -22,7 +23,7 @@
     "test:e2e:ci": "playwright test --project=blocking --reporter=blob",
     "test:e2e:live": "LIVE_E2E=1 playwright test --project=live",
     "test:e2e:live:ci": "LIVE_E2E=1 playwright test --project=live --reporter=blob",
-    "check:repo": "bun run format:check && bun run lint:biome && bun run typecheck && bun run test:no-coverage",
+    "check:repo": "bun run format:check && bun run lint:biome && bun run typecheck && bun run validate:political-data && bun run test:no-coverage",
     "check": "bun run check:repo && bun run build",
     "ci": "bun run check"
   },
