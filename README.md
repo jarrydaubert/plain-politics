@@ -108,7 +108,7 @@ bun run build
 
 ## Public Routes
 
-- Core journeys: `/`, `/my-area`, `/parliament`, `/parties`, `/glossary`, and `/explainers`
+- Core journeys: `/`, `/how-politics-works`, `/my-area`, `/parliament`, `/parties`, `/glossary`, and `/explainers`
 - Trust and operations: `/sources`, `/status`, `/privacy`, and `/about`
 - Generated content: `/glossary/[slug]` and `/explainers/[slug]`
 - Machine-readable routes: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, and `/api/data-status`

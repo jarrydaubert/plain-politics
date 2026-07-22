@@ -1,15 +1,15 @@
 # Beginner-First Product Direction
 
-Last updated: 2026-07-06
+Last updated: 2026-07-22
 
 ## Product Shift
 
-The product should feel less like a static research database and more like a guided politics starter for people who know little or nothing about UK politics.
+The product should behave like a maintained civic answer for people who know little or nothing about UK politics: guide understanding, keep current truth in the right data source and make confidence inspectable.
 
 The core promise:
 
 ```text
-Start with my postcode or an issue, explain the basics, show the public evidence, and let me go deeper without getting lost.
+Show me how UK politics fits together, connect it to my representative, and let me inspect the public evidence without getting lost.
 ```
 
 ## Experience Direction
@@ -18,20 +18,22 @@ The v1 interface should feel like guided curiosity: inviting enough for younger 
 
 It should not feel like a children's game, a campaign product, a news dashboard, a methodology document, or a lesson app with progress bars. Exploration should feel open and self-directed.
 
-The current homepage shape is:
+The primary journey is:
 
 1. A plain promise: `British politics, without the fog.`
-2. A compact live `Today, translated` panel.
-3. Three beginner routes: start where you live, decode the jargon, and watch what happens.
-4. Short evergreen explainers that make civic traditions feel approachable.
-5. Quiet source confidence through labels, timestamps, links, and evidence affordances rather than repeated trust copy.
+2. One maintained orientation answer showing how representation, Parliament, Government, parties and elections relate.
+3. Clear next actions into My Area, current Parliament records, the glossary and sources.
+4. Deeper published explainers only when the beginner path needs them.
+5. Quiet source confidence through labels, dates, links, conventions and limitations rather than repeated trust copy.
+
+Live public records can support the journey, but they are not the organising model. Routine political activity does not create a publishing obligation.
 
 ## Core Journey
 
-1. User starts from a postcode, an issue, or `I do not know where to start`.
-2. The site shows the user's constituency, current MP, party, and Commons membership start date.
-3. The page explains the basic vocabulary in-line: MP, constituency, party, division, sitting day, written question, manifesto.
-4. The user sees recent source-backed public activity: votes, written questions, debate activity, upcoming Parliament business, and coverage gaps.
+1. A user who does not know where to start opens the maintained Politics Basics orientation; a user with a local question can start with a postcode.
+2. The orientation distinguishes the user's MP and constituency, Parliament, Government, political parties, elections and Government formation.
+3. My Area shows the user's constituency, current MP, party and selected public records from current reference data.
+4. The journey explains basic vocabulary inline and links to the glossary when a term needs more context.
 5. The user can open the evidence behind any factual claim.
 6. The user can jump sideways to the party, constituency, policy area, or source page.
 7. The user always has an obvious way back to the previous level.
@@ -110,4 +112,4 @@ Safer v1 wording:
 5. Keep the tone plain and friendly without becoming childish or condescending.
 6. Show gaps openly. `Cannot verify from available public sources` is a trust feature.
 7. Treat the glossary as part of navigation, not as a separate dictionary: link terms from pages where users encounter them.
-8. Use recurring civic explainers as annual return points: State Opening, PMQs, sessions, recess, Budget, party conferences, election deadlines, and major parliamentary traditions.
+8. Publish a bounded civic explainer only when an event helps a beginner understand the system; do not create a newsroom cadence around routine political activity.

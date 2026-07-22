@@ -1,7 +1,7 @@
 # Plain Politics: Idea Brief
 
 ## One-Line Concept
-A free, source-backed, beginner-friendly UK politics starter that helps people understand the basics, start from their postcode, learn who represents them, see what parties stand for, and track what changed across polls, policies, donors, votes, and public records.
+A maintained, source-backed civic guide that helps UK politics beginners understand how the system fits together, find their representative and inspect the evidence behind material claims.
 
 ## Problem
 Political information is fragmented across official publications, parliamentary records, and media summaries. Users can rarely:
@@ -39,15 +39,10 @@ The product grows from beginner understanding into public party leadership, sour
 5. Corrections workflow and public-facing methodology.
 
 ## Product Differentiator
-1. Beginner-first journeys that make politics approachable without condescension.
-2. Postcode-led local relevance before abstract national comparison.
-3. Low-pressure exploration without progress bars, badges, or unlock mechanics.
-4. Claim-to-source traceability for factual output.
-5. Source trust tiers with explicit coverage gaps.
-6. Neutrality standards applied as operational QA rules.
-7. Freshness policies and visible `last verified` indicators.
-8. Polling and political movement explained with source metadata and uncertainty.
-9. A first-class `cannot verify from available public sources` state.
+1. Guided understanding: one coherent beginner path connects institutions, representatives, terms and deeper records instead of publishing disconnected summaries.
+2. Maintained truth: evergreen explanation owns how the system works, while canonical or live reference data owns what is true now.
+3. Inspectable confidence: material claims link to the strongest appropriate public evidence and identify convention, uncertainty, freshness and coverage gaps.
+4. Calm civic utility: no newsroom cadence, encyclopaedic breadth, course mechanics, prediction or voting advice.
 
 ## Success Signals
 1. Source-link CTR >= 25% on evidence-backed pages.

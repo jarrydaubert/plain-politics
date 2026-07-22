@@ -64,6 +64,7 @@ test("crawl files expose robots, llms and sitemap routes", async ({ page }) => {
   await page.goto("/sitemap.xml");
   const sitemapText = await page.locator("body").innerText();
   expect(sitemapText).toContain("https://plainpolitics.co.uk/glossary/mp");
+  expect(sitemapText).toContain("https://plainpolitics.co.uk/how-politics-works");
   expect(sitemapText).toContain("https://plainpolitics.co.uk/explainers/what-is-pmqs");
   expect(sitemapText).not.toContain("https://plainpolitics.co.uk/policies");
 });
