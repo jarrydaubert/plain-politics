@@ -1,12 +1,12 @@
 # Plain Politics v2 Product Requirements
 
-Last updated: 2026-07-06
+Last updated: 2026-07-22
 
 ## 1) Product Objective
 
-Build a neutral, source-first, beginner-friendly UK politics information tracker that helps users understand political basics, start from their postcode or an issue, see who represents them, what parties stand for, how popular they are, and how public political evidence changes over time.
+Build a neutral, source-first, maintained civic answer that gives UK politics beginners guided understanding, maintained truth and inspectable confidence. The active objective is one coherent, evidence-backed Politics Basics path that explains how representation, Parliament, Government, parties and elections fit together and leads users to their own representative.
 
-The product is informational only. It uses public sources, structured data, plain-English editorial/template summaries, charts, maps, tables, and source links.
+The product is informational only. It is not a smaller Wikipedia, daily newsroom, political course or collection of disconnected summaries.
 
 ## 2) Problem Statement
 
@@ -237,12 +237,13 @@ The core provenance chain is:
 
 `docs/project/backlog.md` is the only authority for current phases, activation and unfinished delivery order. These are durable product constraints, not a parallel plan:
 
-1. Beginner understanding precedes policy depth.
-2. Public party and leadership context precedes source-led manifesto and policy discovery.
-3. Shared comparison headings emerge from reviewed official sources rather than being chosen in advance.
-4. Housing remains the first eventual comparison proof after its dependencies are met.
-5. Data and platform work activates only when the current or imminent product phase requires it.
-6. Polling, political finance, alignment scoring and stored political-opinion signals require their documented source, neutrality, consent and privacy gates before activation.
+1. The active Politics Basics phase begins with a maintained orientation answer, then connects deeper institutional explanations and the user’s representative.
+2. Beginner understanding precedes policy depth.
+3. Public party and leadership context precedes source-led manifesto and policy discovery.
+4. Shared comparison headings emerge from reviewed official sources rather than being chosen in advance.
+5. Housing remains the first eventual comparison proof after its dependencies are met.
+6. Data and platform work activates only when the current or imminent product phase requires it.
+7. Polling, political finance, alignment scoring and stored political-opinion signals require their documented source, neutrality, consent and privacy gates before activation.
 
 ## 21) Ingestion Strategy
 

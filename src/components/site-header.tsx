@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PlainPoliticsMark } from "@/components/plain-politics-logo";
 
 const navItems = [
+  { href: "/how-politics-works", label: "Basics" },
   { href: "/my-area", label: "My area" },
   { href: "/parliament", label: "Parliament" },
   { href: "/glossary", label: "Glossary" },

@@ -49,11 +49,11 @@ const primaryJourneys = [
 
 const normalQuestions = [
   {
-    cta: "Find yours",
-    description: "See your constituency and current MP before the Westminster machinery.",
-    eyebrow: "Your MP",
-    href: "/my-area",
-    question: "What does my MP actually do?"
+    cta: "See the map",
+    description: "Distinguish your MP, Parliament, Government, parties and elections.",
+    eyebrow: "Start here",
+    href: "/how-politics-works",
+    question: "How does UK politics fit together?"
   },
   {
     cta: "Read votes",
@@ -128,7 +128,7 @@ export default async function HomePage() {
                 </Link>
                 <Link
                   className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[var(--ink-border)] px-5 py-3 text-sm font-semibold text-[var(--paper-on-ink)] transition hover:bg-[var(--ink-panel)]"
-                  href="/glossary"
+                  href="/how-politics-works"
                 >
                   Learn the basics
                 </Link>

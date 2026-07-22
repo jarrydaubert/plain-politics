@@ -5,7 +5,7 @@ import type { GlossaryTerm } from "@/data/glossary";
 const SITE_NAME = "Plain Politics";
 export const SITE_URL = "https://plainpolitics.co.uk";
 const DEFAULT_OG_IMAGE = "/og-image.png";
-export const CONTENT_LAST_REVIEWED = "2026-07-04";
+export const CONTENT_LAST_REVIEWED = "2026-07-22";
 
 export type RouteMetadataConfig = {
   path: string;
@@ -25,6 +25,15 @@ export const routeMetadata = [
     path: "/",
     priority: 1,
     title: "Plain Politics - UK politics in plain English"
+  },
+  {
+    changeFrequency: "monthly",
+    description:
+      "A concise, source-backed guide to MPs, Parliament, Government, political parties, elections and Government formation in the UK.",
+    index: true,
+    path: "/how-politics-works",
+    priority: 0.95,
+    title: "How UK politics works - Plain Politics"
   },
   {
     changeFrequency: "weekly",

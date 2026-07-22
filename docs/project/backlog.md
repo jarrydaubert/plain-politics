@@ -52,7 +52,6 @@ The product should be a calm route into politics, not a pundit, prediction engin
 - [ ] **Publish the central Politics Basics path.**
   - **Definition of done:** A single public starting surface introduces the spine, orders the core explanations and makes the next useful step obvious for someone who does not know political vocabulary.
   - Supporting tasks:
-    - Publish an orientation that begins with who governs and how institutions relate.
     - Connect short glossary definitions to fuller explanations without duplicating either.
     - Use recurring civic moments only where they clarify the central path; unpublished topics do not create placeholder routes.
 
