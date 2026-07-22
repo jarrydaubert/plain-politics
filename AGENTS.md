@@ -35,15 +35,16 @@ UK-focused, source-first political information tracker with auditable public sou
 - Bugs: add a regression test when it fits.
 - If you cannot run tests, say so explicitly in the PR/summary.
 
-## Delivery And Branch Hygiene
+## Delivery and Branch Hygiene
 
-- Routine work completes the full delivery loop: implement, validate, review, resolve findings, open a normal PR, merge when required checks pass, and delete the feature branch.
-- Do not leave a completed green PR open or in draft for routine manual approval.
-- Prefer a normal PR over a draft once the work is complete.
-- Use auto-merge when checks are pending; merge directly when all requirements are already satisfied.
-- Stop before merge only for destructive migrations, unresolved security/privacy issues, disputed factual or neutrality decisions, or when the task explicitly requests a review pause.
-- After merge, delete the remote branch and prune local tracking refs. Do not retain merged or abandoned branches without a documented reason.
-- Before deleting an old branch, confirm its PR is merged or closed and that it contains no commits absent from `main`.
+- When a task explicitly authorises delivery, routine work completes implementation, validation, review, merge, and short-lived branch deletion.
+- Repository protection, required checks, and required reviews remain authoritative; never weaken or bypass them to deliver.
+- Completed green work uses a normal PR and does not remain draft or open without a concrete hold reason.
+- Use auto-merge when delivery is authorised and auto-merge is available.
+- Pause for failed checks, destructive changes, unresolved security, privacy, or accessibility issues, disputed political facts or neutrality decisions, or an explicit review requirement.
+- Delete merged short-lived branches and prune stale remote-tracking references.
+- Preserve branches with open PRs, commits not otherwise retained on `main`, or a documented long-lived purpose; confirm merged work contains or demonstrably supersedes a branch before deletion.
+- This section is not blanket authority to merge future tasks that do not explicitly authorise delivery.
 
 ## Security Checks (When Relevant)
 
