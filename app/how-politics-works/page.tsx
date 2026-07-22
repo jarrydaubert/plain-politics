@@ -341,7 +341,13 @@ export default function HowPoliticsWorksPage() {
           <Link className="font-semibold text-[var(--accent)]" href="/explainers/what-is-a-bill">
             bills
           </Link>
-          .
+          . To see how the two institutions differ in full, read{" "}
+          <Link
+            className="font-semibold text-[var(--accent)]"
+            href="/explainers/parliament-vs-government"
+          >
+            Parliament and Government: what&apos;s the difference?
+          </Link>
         </p>
       </section>
 

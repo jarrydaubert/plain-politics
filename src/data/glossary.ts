@@ -1,3 +1,8 @@
+export type GlossaryRelatedExplainer = {
+  slug: string;
+  label: string;
+};
+
 export type GlossaryTerm = {
   term: string;
   category: "Elections" | "Parliament" | "Parties" | "Traditions";
@@ -5,6 +10,12 @@ export type GlossaryTerm = {
   whyItMatters: string;
   sourceName: string;
   sourceUrl: string;
+  relatedExplainers?: GlossaryRelatedExplainer[];
+};
+
+const parliamentVsGovernmentExplainer: GlossaryRelatedExplainer = {
+  label: "Parliament and Government: what's the difference?",
+  slug: "parliament-vs-government"
 };
 
 export const glossaryTerms: GlossaryTerm[] = [
@@ -223,6 +234,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Parties",
     plainEnglish:
       "The Government is usually formed by the party, or parties, that can command support in the House of Commons and run government departments.",
+    relatedExplainers: [parliamentVsGovernmentExplainer],
     sourceName: "UK Parliament glossary",
     sourceUrl: "https://www.parliament.uk/site-information/glossary/",
     term: "Government",
@@ -233,6 +245,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Parties",
     plainEnglish:
       "The Opposition is made up of MPs and parties that are not in government. The largest opposition party is called the Official Opposition.",
+    relatedExplainers: [parliamentVsGovernmentExplainer],
     sourceName: "UK Parliament glossary",
     sourceUrl: "https://www.parliament.uk/site-information/glossary/",
     term: "Opposition",
@@ -297,6 +310,59 @@ export const glossaryTerms: GlossaryTerm[] = [
     term: "Devolution",
     whyItMatters:
       "It helps users understand why health, education or transport may be decided differently in different parts of the UK."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "Parliament is the UK's law-making body, made up of the House of Commons, the House of Lords and the Crown. It debates issues, examines the work of government and considers new laws.",
+    relatedExplainers: [parliamentVsGovernmentExplainer],
+    sourceName: "How Parliament works",
+    sourceUrl: "https://www.parliament.uk/about/how/",
+    term: "Parliament",
+    whyItMatters:
+      "Parliament is not the same as the Government: the Government proposes and runs things, while Parliament debates, scrutinises and decides on laws."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "In Parliament, the Crown is the formal constitutional role of the monarch, which includes opening Parliament and giving Royal Assent so a bill agreed by both Houses can become an Act.",
+    relatedExplainers: [parliamentVsGovernmentExplainer],
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Crown",
+    whyItMatters:
+      "The Crown is one of the three parts of Parliament, but by convention the monarch acts on ministers' advice and stays out of party politics."
+  },
+  {
+    category: "Parties",
+    plainEnglish:
+      "A minister is a member of the Government, usually an MP or a member of the House of Lords, who is given responsibility for a department or an area of policy.",
+    relatedExplainers: [parliamentVsGovernmentExplainer],
+    sourceName: "GOV.UK — How government works",
+    sourceUrl: "https://www.gov.uk/government/how-government-works",
+    term: "Minister",
+    whyItMatters:
+      "Ministers lead the political side of government, but most MPs and members of the Lords are not ministers."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "An Act of Parliament is a law that has been passed by the House of Commons and the House of Lords and has received Royal Assent.",
+    sourceName: "UK Parliament glossary",
+    sourceUrl: "https://www.parliament.uk/site-information/glossary/",
+    term: "Act",
+    whyItMatters:
+      "An Act shows that a proposal has become law, but some of its provisions may only take effect later through commencement."
+  },
+  {
+    category: "Parliament",
+    plainEnglish:
+      "Commencement is the point at which the provisions of an Act come into force. This can happen on a set date, or later through commencement regulations, rather than automatically at Royal Assent.",
+    sourceName: "legislation.gov.uk — Understanding legislation",
+    sourceUrl: "https://www.legislation.gov.uk/understanding-legislation",
+    term: "Commencement",
+    whyItMatters:
+      "It explains why a new Act does not always change everyday rules straight away, even after it has become law."
   }
 ];
 

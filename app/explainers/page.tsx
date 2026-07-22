@@ -42,7 +42,31 @@ export default function ExplainersPage() {
         </aside>
       </section>
 
-      <section className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <Link
+        className="group mt-10 block rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 transition hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"
+        href="/explainers/parliament-vs-government"
+      >
+        <span className="inline-flex rounded-md bg-[var(--surface-soft)] px-2.5 py-1 font-mono text-xs font-semibold text-[var(--muted)]">
+          In depth
+        </span>
+        <h2 className="mt-4 font-serif text-2xl font-semibold">
+          Parliament and Government: what&apos;s the difference?
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+          They are connected but not the same. See what each does, who belongs to each, and what
+          manifestos, votes, Acts and implemented policy really prove.
+        </p>
+        <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">
+          Read explainer
+          <ArrowRight
+            aria-hidden="true"
+            className="transition group-hover:translate-x-0.5"
+            size={15}
+          />
+        </span>
+      </Link>
+
+      <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {explainers.map((explainer) => (
           <Link
             className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:border-[var(--accent)] hover:shadow-[var(--shadow-soft)]"

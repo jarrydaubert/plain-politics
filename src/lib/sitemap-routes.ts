@@ -35,7 +35,16 @@ export function getSitemapRoutes(_now = new Date()): SitemapRoute[] {
     priority: 0.7
   }));
 
-  return [...staticRoutes, ...glossaryRoutes, ...explainerRoutes].sort((a, b) =>
-    a.path.localeCompare(b.path)
+  const bespokeExplainerRoutes = [
+    {
+      changeFrequency: "monthly" as const,
+      lastModified: contentReviewedAt,
+      path: "/explainers/parliament-vs-government",
+      priority: 0.75
+    }
+  ];
+
+  return [...staticRoutes, ...glossaryRoutes, ...explainerRoutes, ...bespokeExplainerRoutes].sort(
+    (a, b) => a.path.localeCompare(b.path)
   );
 }

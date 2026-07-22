@@ -77,6 +77,16 @@ export default async function ParliamentPage() {
                 : "Seats currently listed by UK Parliament"}
             </div>
           </div>
+          <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
+            New to this? These are Parliament&apos;s records, not the Government&apos;s.{" "}
+            <Link
+              className="font-semibold text-[var(--accent)]"
+              href="/explainers/parliament-vs-government"
+            >
+              See how Parliament and Government differ
+            </Link>
+            .
+          </p>
         </section>
 
         {isPanelAvailable(parliamentData.seatCounts) ? (

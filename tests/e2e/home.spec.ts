@@ -178,9 +178,15 @@ test("glossary page renders sourced political terms", async ({ page }) => {
   await page.goto("/glossary");
 
   await expect(page.getByRole("heading", { name: /political glossary/i })).toBeVisible();
-  await expect(page.getByRole("heading", { exact: true, name: "Parliament" })).toBeVisible();
-  await expect(page.getByRole("heading", { exact: true, name: "Elections" })).toBeVisible();
-  await expect(page.getByRole("heading", { exact: true, name: "Traditions" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { exact: true, level: 2, name: "Parliament" })
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { exact: true, level: 2, name: "Elections" })
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { exact: true, level: 2, name: "Traditions" })
+  ).toBeVisible();
   await expect(page.getByRole("heading", { name: "First Past the Post" })).toBeVisible();
   await expect(page.getByText(/UK Parliament glossary/i).first()).toBeVisible();
 });
