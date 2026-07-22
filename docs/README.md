@@ -1,27 +1,44 @@
 # Documentation
 
-This directory holds product truth, project plans, operating standards, and implementation-support material for Plain Politics.
+This directory separates current product truth and operating procedure from delivery priorities and historical observations.
+
+## Evergreen documentation policy
+
+| Document type | Owns |
+| --- | --- |
+| Runtime data | Current factual truth. Documentation does not duplicate changing political facts. |
+| Methodology | How truth is established, reviewed and presented. |
+| Runbooks | The current procedure for recurring work. |
+| ADRs | Decisions and consequences. Supersede an ADR rather than rewriting its history. |
+| `BACKLOG` | The only list of unfinished priorities, phase order, activation conditions and outcomes. |
+| Dated reports | Point-in-time observations and historical delivery records. |
+| Issues and PRs | Implementation detail, source evidence, discussion and verification. |
+| `README` | Product entry point, current public capability and setup. |
+| Generated status | Derived output that is never independently edited. |
+
+Evergreen documents change with the behaviour, decision or procedure they describe. Dated reports remain historical. No other document may maintain a competing roadmap or todo list.
 
 ## Sections
 
-- `product/` - product requirements, idea brief, success metrics, and audience framing.
-- `project/` - phased action plan and todo-only delivery backlog.
-- `engineering/` - technical stack, data model, repo housekeeping, deployment notes, GBrain policy, Cloudflare notes, and Vercel plugin skill policy.
-- `ops/` - domain, deployment, analytics, and operator runbook notes.
-- `methodology/` - source trust, source-reference, neutrality, polling, and privacy standards.
-- `quality/` - release gates and feature readiness checks.
-- `brand/` - logo, palette, and identity-system notes.
-- `market/` - competitive landscape and product-positioning tracking.
-- `strategy/` - current assessment, v1.0.0 scope, beginner-first product direction, civic explainer calendar, source hooks, datapoints, product thesis, and proof-of-thesis slice.
+- `product/` - durable product requirements, audience framing and success measures.
+- `project/` - the authoritative evergreen backlog plus retirement pointers for historical plans.
+- `engineering/` - current technical baseline, architecture decisions, data model and maintenance guidance.
+- `ops/` - current operator runbooks.
+- `methodology/` - source trust, citation, neutrality, polling and privacy standards.
+- `quality/` - reusable release and feature-readiness gates.
+- `brand/` - current identity and visual-system guidance plus dated research inputs.
+- `market/` - competitive research and observations, never delivery priority.
+- `strategy/` - durable product direction, source inventories and decision notes, never delivery order.
+- `reports/` - dated assessments and historical delivery plans.
 
-## Canonical Docs
+## Canonical entry points
 
 - Product requirements: `product/prd-v2.md`
 - Idea brief: `product/idea-brief.md`
-- Delivery plan: `project/action-plan.md`
-- Delivery backlog: `project/backlog.md`
+- Unfinished priorities and order: `project/backlog.md`
 - Technical baseline: `engineering/tech-stack.md`
+- Documentation ownership: this file
 
-## Root Convention
+## Root convention
 
-The repository root is reserved for entrypoint docs, app/tooling config, lockfiles, environment examples, and deploy config. Product, planning, methodology, strategy, quality, market, brand, and engineering documentation belongs under `docs/`.
+The repository root is reserved for entrypoint documentation, app/tooling configuration, lockfiles, environment examples and deploy configuration. Product, planning, methodology, strategy, quality, market, brand, report and engineering documentation belongs under `docs/`.

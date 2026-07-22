@@ -2,6 +2,8 @@
 
 Last updated: 2026-07-01
 
+This is a candidate subject inventory, not a publishing schedule or priority list. `docs/project/backlog.md` controls activation and order.
+
 ## Purpose
 
 Recurring political events and traditions should become evergreen, source-backed explainers. These pages help beginners understand what is happening, give search engines durable content, and create natural moments to bring users back.
@@ -17,7 +19,7 @@ Each explainer should answer:
 5. What changed since last time?
 6. Which glossary terms does the user need?
 
-## Priority Explainers
+## Candidate Explainers
 
 ### Parliament And Traditions
 

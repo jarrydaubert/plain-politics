@@ -233,15 +233,16 @@ The core provenance chain is:
 5. Core views meet keyboard navigation and screen-reader labelling requirements.
 6. Charts and maps include accessible table or text equivalents.
 
-## 20) Delivery Strategy
+## 20) Product Sequence Constraints
 
-1. v1.0.0 public starter: beginner homepage, postcode-to-MP, glossary, live Parliament records, sources/about/contact, deployment, and basic quality gates.
-2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, durable status history, and last-good-data fallbacks.
-3. First policy feature branch: one issue, reviewed party/public sources, source excerpts, party profile sections, and Compare only after provenance UI is reusable.
-4. Later expansion: Polling and Momentum, Money, Calendar, change feeds, public API, search, and selected Parliament views.
-5. Privacy-sensitive features: quiz hardening, optional consent workflows, and any party-alignment scoring only after methodology and DPIA review.
+`docs/project/backlog.md` is the only authority for current phases, activation and unfinished delivery order. These are durable product constraints, not a parallel plan:
 
-Polling belongs in the product vision but should not block v1.0.0 unless source access and metadata are straightforward.
+1. Beginner understanding precedes policy depth.
+2. Public party and leadership context precedes source-led manifesto and policy discovery.
+3. Shared comparison headings emerge from reviewed official sources rather than being chosen in advance.
+4. Housing remains the first eventual comparison proof after its dependencies are met.
+5. Data and platform work activates only when the current or imminent product phase requires it.
+6. Polling, political finance, alignment scoring and stored political-opinion signals require their documented source, neutrality, consent and privacy gates before activation.
 
 ## 21) Ingestion Strategy
 
@@ -255,6 +256,8 @@ Polling belongs in the product vision but should not block v1.0.0 unless source 
 ---
 
 # Engineering Ticket Set With Acceptance Criteria
+
+These acceptance criteria are a requirements reference, not an implementation queue. Active delivery detail belongs in issues and PRs mapped to an outcome in `docs/project/backlog.md`.
 
 ## FEAT-001 Home Starter Dashboard
 
@@ -399,7 +402,7 @@ Acceptance criteria:
 4. Each feature page links back to methodology.
 5. Methodology changelog captures dated updates to scoring, sourcing, polling, and freshness policies.
 6. Source inclusion/removal criteria and correction policy are published.
-7. Architecture and product trade-off follow-ups are captured as unfinished todo items in `docs/project/backlog.md` or in the relevant feature document.
+7. Architecture and product trade-off follow-ups are captured as unfinished outcomes in `docs/project/backlog.md`; implementation detail belongs in the relevant issue or PR.
 
 ## FEAT-009 Privacy, Consent, And Rights Workflows
 

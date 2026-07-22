@@ -1,238 +1,232 @@
-# Backlog
-
-Last updated: 2026-07-19
-
-This file is only for unfinished todo items. It is not a status report, product spec, or changelog.
-
-Rules for this file:
-
-1. Keep only work that still needs doing.
-2. Remove an item once its definition of done is met.
-3. Give every item a clear definition of done.
-4. Put context, decisions, and review notes in the linked docs, not here.
-
-For context, use:
-
-- v1 scope: `docs/strategy/v1.0.0-scope.md`
-- first policy area decision: `docs/strategy/first-policy-area-decision.md`
-- strategy/current assessment: `docs/strategy/current-assessment.md`
-- source hooks: `docs/strategy/source-hooks.md`
-- technical stack: `docs/engineering/tech-stack.md`
-- competitive landscape: `docs/market/competitive-landscape.md`
-
-## V1 Nice-To-Have
-
-- [ ] Add inline glossary links from `/my-area` and `/parliament`.
-  Definition of done: Common terms on those pages link to canonical glossary term pages without disrupting reading flow.
-
-- [ ] Add a glossary search input.
-  Definition of done: Users can filter glossary terms by term, category, and plain-English text; the control is keyboard accessible and does not log or persist queries.
-
-- [ ] Add lightweight next-step guidance after postcode lookup.
-  Definition of done: `/my-area` results point users to the MP, constituency, relevant glossary terms, source records, and corrections route without implying extra live tracking is already available.
-
-- [ ] Add a lightweight public corrections page.
-  Definition of done: A `/corrections` or equivalent page explains how to report source issues and links to the verified correction email.
-
-## Source And Data Foundation
-
-- [ ] Convert current live Parliament fetches into a snapshot-first ingestion pipeline.
-  Definition of done: Parliament seats, members, divisions, and upcoming business are fetched by an ingestion job before pages read them.
-
-- [ ] Persist source documents, snapshots, excerpts, display facts, and ingestion runs to Supabase.
-  Definition of done: The Supabase schema stores each entity type with stable IDs, source URLs, retrieval timestamps, and parser metadata.
-
-- [ ] Ensure public pages can read last-good data from Supabase when a live source fails.
-  Definition of done: A failed Parliament or postcode-adjacent source read shows the last successful persisted data with a visible stale/degraded note.
-
-- [ ] Persist data-status check history beyond the current server process.
-  Definition of done: `/status` can show last successful check and last attempted check after a cold start, deployment, or serverless instance change.
-
-- [ ] Separate source retrieval time from app-cache check time.
-  Definition of done: Public timestamps distinguish when Plain Politics checked its app cache from when the upstream source was last fetched or persisted.
-
-- [ ] Add source cadence config for Parliament seats, members, divisions, and upcoming business.
-  Definition of done: Each source family has an explicit expected refresh cadence, freshness threshold, and owner-facing failure threshold.
-
-- [ ] Add golden fixture tests for each parser.
-  Definition of done: Parser tests cover representative success, empty, malformed, stale, and suspicious data cases using checked-in fixtures.
-
-- [ ] Add source registry metadata for every active and candidate source.
-  Definition of done: Each source has publisher, licence/access notes, source tier, cadence, fields used, limitations, and public source URL.
-
-- [ ] Add parser version tracking to persisted records.
-  Definition of done: Ingested records can be traced to the parser version that created them.
-
-- [ ] Add source hash dedupe.
-  Definition of done: Unchanged source snapshots do not create duplicate persisted records.
-
-## Change Tracking
-
-- [ ] Add semantic diffing between consecutive source snapshots.
-  Definition of done: The system can classify new, changed, removed, and unchanged records for at least one source family.
-
-- [ ] Add a public `What changed` feed after snapshots and diffs exist.
-  Definition of done: A public page lists recent verified changes with source links and checked times.
-
-- [ ] Add Atom/RSS feeds for change events after the public feed exists.
-  Definition of done: Feed readers can subscribe to verified change events with stable URLs and source links.
-
-- [ ] Add filtered feeds for party, policy, bill, constituency, source family, and corrections.
-  Definition of done: Users can open scoped feeds once those entities exist in persisted data.
-
-## Beginner Product
-
-- [ ] Expand `/my-area` with clearer explanations for recent votes and written questions.
-  Definition of done: The page explains what each record type can and cannot prove, with links to source records and glossary terms.
-
-- [ ] Add constituency pages after postcode lookup has persisted source data.
-  Definition of done: Each constituency page has a stable URL, current MP, source links, and coverage-gap messaging.
-
-- [ ] Add MP detail pages after member records are persisted.
-  Definition of done: Each MP page has stable identity, constituency, party, current Commons membership, recent public records, and source links.
-
-- [ ] Add local navigation for beginner journeys.
-  Definition of done: Users can move between area, MP, constituency, glossary, Parliament, and sources without losing context.
-
-- [ ] Add a local no-account learning trail if it can stay privacy-safe.
-  Definition of done: The trail stores only local browser state, avoids political opinion profiling, and can be cleared by the user.
-
-- [ ] Add more beginner glossary terms as they appear in real pages.
-  Definition of done: New public pages do not introduce unexplained political or parliamentary jargon.
-
-- [ ] Restore broad ideology glossary terms with stronger sourcing.
-  Definition of done: Left wing, right wing, centre/centrist and similar terms use UK civic or academic sources, or are explicitly labelled as reviewed editorial definitions with limitations.
-
-## Parties, Policies, And Comparison
-
-- [ ] Capture official party manifesto or policy pages as source snapshots.
-  Definition of done: Each included party has source snapshots with URL, retrieval time, hash, and licence/access notes.
-
-- [ ] Map reviewed excerpts to party positions for the first policy area.
-  Definition of done: Every displayed party-position summary links to reviewed source excerpts.
-
-- [ ] Build source-backed party profile sections with identical structure across parties.
-  Definition of done: Party pages use the same section structure and show coverage gaps where evidence is missing.
-
-- [ ] Build the first Compare view after evidence drawers/source excerpts work.
-  Definition of done: The Compare view shows sourced positions side by side without voting advice or unsupported claims.
-
-- [ ] Add coverage-gap states for missing or unverified party-policy evidence.
-  Definition of done: Missing evidence is visibly labelled rather than silently omitted or inferred.
-
-- [ ] Keep public-record side-by-side context non-judgemental unless reviewed manually.
-  Definition of done: Review confirms the page does not score, rank, shame, or endorse parties.
-
-## Parliament And Civic Calendar
-
-- [ ] Add a dedicated upcoming dates/calendar page powered by reviewed sources.
-  Definition of done: The page lists upcoming civic/parliamentary dates with source links, checked times, and coverage gaps.
-
-- [ ] Separate upcoming Parliament business from recent GOV.UK or No. 10 activity.
-  Definition of done: Calendar data sources are labelled by institution and never mixed under one ambiguous heading.
-
-- [ ] Add civic explainer hooks for State Opening, PMQs, recess, Budget, elections, and party conferences.
-  Definition of done: Relevant pages link to published source-backed explainers; unpublished topics do not create public placeholder routes.
-
-- [ ] Add bill and Hansard context after the evidence drawer can show exact source records.
-  Definition of done: Bill/debate references include source URLs, record dates, and plain-English limitations.
-
-## Polling, Money, And Wider Context
-
-- [ ] Decide the first reliable free/public polling source strategy.
-  Definition of done: The chosen source strategy documents licence/access, metadata availability, update cadence, and limitations.
-
-- [ ] Implement polling only after required metadata can be captured.
-  Definition of done: Polling records include fieldwork dates, sample size, pollster, client, method, geography, question wording, and source links.
-
-- [ ] Add cautious polling language and no-forecast labels before showing polling movement.
-  Definition of done: Polling pages explain uncertainty and avoid seat or election predictions unless a reviewed methodology exists.
-
-- [ ] Research Electoral Commission donation data ingestion.
-  Definition of done: A short technical note covers data access, fields, publication lag, entity resolution, and caveats.
-
-- [ ] Add political finance only after entity resolution and source caveats are understood.
-  Definition of done: Donation/finance records display source caveats, publication lag, and entity matching confidence.
-
-- [ ] Design a public honesty dashboard beyond the current data-status badge.
-  Definition of done: The design covers coverage, freshness, source gaps, corrections, and ingestion health without overwhelming users.
-
-## Guided Civic Check
-
-- [ ] Decide whether the guided civic check is a learning path only or may later include party-alignment scoring.
-  Definition of done: The decision is recorded with privacy, neutrality, and methodology implications.
-
-- [ ] Write methodology before building any party-match or alignment result.
-  Definition of done: The methodology explains sources, scoring limits, neutrality safeguards, and privacy treatment.
-
-- [ ] Build a source-backed question bank if the feature survives methodology review.
-  Definition of done: Every question has a source rationale, neutral wording review, and coverage-gap handling.
-
-- [ ] Keep answers anonymous by default and deletable locally.
-  Definition of done: No answer leaves the browser unless the user explicitly opts in.
-
-- [ ] Complete a DPIA before storing political opinions, quiz answers, or personalisation.
-  Definition of done: The DPIA is reviewed and any required controls are implemented before storage exists.
-
-## Search And Discovery
-
-- [ ] Add beginner-friendly site search once there are enough live pages and source records to search.
-  Definition of done: Search returns useful pages for glossary terms, explainers, Parliament records, sources, and area/MP routes.
-
-- [ ] Start with structured filters and Postgres full-text search when persisted records exist.
-  Definition of done: Search can filter by entity type, source family, date, and coverage state.
-
-- [ ] Revisit a dedicated search service only if users cannot reliably find key records.
-  Definition of done: A search evaluation shows Postgres search is insufficient for parties, policies, sources, votes, events, or polling records.
-
-## Competitor-Inspired Experiments
-
-- [ ] Design The Plain Week briefing.
-  Definition of done: A page or prototype has sections for what Parliament did, what is coming next, one vote explained, and three terms decoded, each with source links.
-
-- [ ] Design Ask Plain Politics.
-  Definition of done: A prototype lets users submit a question, shows example questions, and explains that answered questions may become public explainers.
-
-- [ ] Design share-card templates for glossary terms, explainers, and Commons votes.
-  Definition of done: Templates include title, plain-English meaning, source, checked time, and canonical URL.
-
-- [ ] Design a My MP Watch concept module outside the public route surface.
-  Definition of done: A reviewed prototype specifies votes, debates, written questions, and constituency mentions without adding non-functional cards to `/my-area`.
-
-- [ ] Prototype Who can fix this.
-  Definition of done: A neutral guided page maps common issues to council, MP/Parliament, devolved government, regulator, private provider, or court responsibility with source links.
-
-- [ ] Add feedback buttons to explainers.
-  Definition of done: Explainer pages include Clear, Still confused, and Source issue actions with a mock/local interaction and no backend dependency.
-
-## Platform And Quality
-
-- [ ] Confirm Vercel Web Analytics is active for the production project or remove it from the layout and docs.
-  Definition of done: Either `/_vercel/insights` (or `va.vercel-scripts.com`) beacons are observed on production page views and the dashboard shows traffic, or the `VercelAnalytics` component and the Vercel Web Analytics claims in `docs/ops/domain-and-analytics.md` and `README.md` are removed. A 2026-07-19 production network capture observed zero Vercel Analytics requests while consent-gated GA4 worked correctly.
-
-- [ ] Add scheduled external source-link checks.
-  Definition of done: A rate-limited scheduled job reports broken official source URLs without making third-party availability block normal deploys.
-
-- [ ] Add accessibility smoke checks for core pages.
-  Definition of done: Core routes pass automated accessibility checks for landmarks, headings, labels, colour contrast, and keyboard navigation.
-
-- [ ] Add source-reference validation for public factual pages.
-  Definition of done: CI fails when configured factual content lacks an approved source reference.
-
-- [ ] Add neutrality lint or review checks for reviewed party/policy content.
-  Definition of done: Party and policy content has a documented review step for partisan framing, unsupported judgement, and asymmetric wording.
-
-- [ ] Add API/source health email alerts after ingestion runs are persisted.
-  Definition of done: Operators receive deduped alerts when critical source checks fail beyond the configured threshold.
-
-- [ ] Add alert dedupe and cooldown before sending repeated health emails.
-  Definition of done: Repeated failures do not create alert spam and recovery messages are clear.
-
-- [ ] Add deployment notes for Vercel, Cloudflare DNS, Email Routing, and required env vars.
-  Definition of done: A maintainer can redeploy the app and verify DNS/email settings from the documentation.
-
-- [ ] Decide and document the AI training-crawler policy beyond OpenAI bots.
-  Definition of done: `robots.txt`, `/llms.txt`, and source policy agree on whether non-search training crawlers are allowed or blocked.
-
-- [ ] Keep `.env.example` aligned with any Supabase or public runtime configuration.
-  Definition of done: Every required environment variable is documented with safe placeholder values and no secrets.
+# Plain Politics Evergreen Backlog
+
+## 1. Purpose and maintenance
+
+This is the only authoritative list of unfinished Plain Politics outcomes and their order. Product requirements, strategy notes, methodology, ADRs, runbooks and dated reports provide context or constraints; they do not set current priorities.
+
+Maintain this file as follows:
+
+1. Keep outcomes, activation conditions, dependencies and definitions of done here.
+2. Nest supporting tasks under the outcome they enable. Do not promote every small change into a milestone.
+3. Remove completed outcomes. Preserve delivery history in issues, PRs, git, releases or dated reports.
+4. Move delivery detail, source evidence, review notes and verification output into the implementing issue or PR.
+5. Reclassify work when its trigger changes. Do not activate platform work without a current or imminent product need.
+6. Do not maintain another roadmap, delivery plan or todo list. If another document identifies unfinished work, add or reconcile it here.
+
+## 2. Product goal
+
+Build a neutral, source-first, beginner-friendly UK politics product that helps someone understand the basics, start from where they live, identify who represents and governs them, inspect what parties officially publish, and follow public political evidence without being told what to think.
+
+The product should be a calm route into politics, not a pundit, prediction engine, campaign tool or public-affairs platform.
+
+## 3. Working rules
+
+1. Beginner understanding comes before policy depth.
+2. Institutional basics may follow the real constitutional structure; party priorities remain source-led.
+3. No public factual claim appears without reviewed evidence.
+4. Government, Parliament and parties remain distinct.
+5. Runtime data owns current facts; documentation does not duplicate them.
+6. `BACKLOG` owns priorities; issues and PRs own implementation detail, source evidence and verification.
+7. Feature PRs map to a backlog outcome, except for small maintenance fixes.
+8. Completed outcomes leave this file; history belongs in PRs, git, releases or dated reports.
+9. No other document owns a competing roadmap or todo list.
+10. Environment examples, runbooks and evergreen reference docs change with the behaviour or procedure they describe.
+
+## 4. Current: Politics Basics Spine
+
+**Activation condition:** Active by product decision. Beginner understanding is the current product constraint.
+
+**Exit condition:** “A first-time visitor can follow one coherent, evidence-backed path explaining who governs the UK, what Parliament and Government each do, how elections and law-making work, and how to find their own representative.”
+
+**Current non-goals:** Policy comparison, polling, political finance, alignment scoring, political profiling, general search infrastructure and speculative ingestion, unless required by the beginner journey.
+
+- [ ] **Define the beginner journey and information architecture.**
+  - **Definition of done:** One documented route hierarchy takes a first-time visitor from orientation to the Politics Basics spine, their representative, relevant terms and deeper evidence without a dead end or competing learning path.
+  - Supporting tasks:
+    - Define the central sequence, entry points, contextual next steps and routes back to orientation.
+    - Add lightweight next-step guidance after postcode lookup.
+    - Add local navigation among My Area, glossary, Parliament, Politics Basics and the future public leadership destination.
+    - Add an accessible glossary filter when it materially helps the spine rather than introducing general search infrastructure.
+    - Keep exploration self-directed, with no progress bars, badges, streaks or unlock mechanics.
+
+- [ ] **Publish the central Politics Basics path.**
+  - **Definition of done:** A single public starting surface introduces the spine, orders the core explanations and makes the next useful step obvious for someone who does not know political vocabulary.
+  - Supporting tasks:
+    - Publish an orientation that begins with who governs and how institutions relate.
+    - Connect short glossary definitions to fuller explanations without duplicating either.
+    - Use recurring civic moments only where they clarify the central path; unpublished topics do not create placeholder routes.
+
+- [ ] **Explain institutions, elections, law-making, devolution and evidence types.**
+  - **Definition of done:** The spine has reviewed, source-backed explanations of Government, Parliament, parties, elections, making a law, devolved responsibility and the difference between manifestos, official records, government publications and party publications.
+  - Supporting tasks:
+    - Explain Government, Parliament and political parties as separate institutions and evidence producers.
+    - Cover the Commons, Lords, elections and voting systems, the bill-to-law path, and the limits of UK-wide claims under devolution.
+    - Add the civic terms and traditions a beginner meets in the path, including inline links from My Area and Parliament.
+    - Restore broad ideology terms only with stronger civic or academic sourcing and explicit limitations.
+    - Test a source-backed “Who can fix this?” responsibility map if it makes council, Westminster, devolved government, regulator, court and private-provider boundaries clearer.
+
+- [ ] **Connect My Area, glossary, Parliament and leadership.**
+  - **Definition of done:** A visitor can move between their representative, the public parliamentary record, definitions, institutional explanations and leadership context while retaining where they came from.
+  - Supporting tasks:
+    - Explain what recent votes and written questions can and cannot prove.
+    - Improve verification for ambiguous, devolved, boundary-edge and Northern Ireland postcode cases when the beginner path exposes a gap.
+    - Add plain-English labels for parliamentary procedure and local-relevance limits.
+    - Define the hand-off to public party and leadership pages without exposing unfinished content.
+
+- [ ] **Prove comprehension, sourcing, mobile and accessibility.**
+  - **Definition of done:** A recorded beginner walkthrough shows that first-time visitors can complete the phase exit journey, identify the institutional distinctions, find their representative and open the evidence; core flows also pass mobile, keyboard and automated accessibility checks.
+  - Supporting tasks:
+    - Run comprehension checks with representative first-time users and record misunderstandings against the relevant outcome.
+    - Add lightweight explainer feedback for “clear”, “still confused” and “source issue” without collecting political opinions.
+    - Publish a lightweight corrections route linked from factual surfaces.
+    - Activate the source-reference, link, mobile and accessibility gates in Enabling Platform Work for this phase.
+
+## 5. Next: Parties and Political Leadership
+
+**Activation condition:** Activate only after the Politics Basics Spine exit condition is met.
+
+**Exit condition:** A first-time visitor can find every in-scope party’s public leadership, distinguish party, parliamentary and government roles, inspect reviewed evidence and dates, and understand any coverage gap on identically structured pages.
+
+- [ ] **Publish consistent party and leadership pages.**
+  - **Definition of done:** Every in-scope party uses the same public structure for party, parliamentary and government leadership, with shared navigation, evidence access and explicit missing-data states.
+  - Supporting tasks:
+    - Promote the checked-in leadership proof into the public information architecture only after neutrality and accessibility review.
+    - Keep Government, Parliament and party roles visibly separate even when one person holds several roles.
+    - Add source-backed party profile basics without introducing policy comparison.
+
+- [ ] **Make leadership history and correction handling trustworthy.**
+  - **Definition of done:** Current and historical role assignments render from runtime data for arbitrary supported dates; reviewed metadata corrections preserve stable IDs; evidence history and coverage gaps remain inspectable.
+  - Supporting tasks:
+    - Extend reviewed evidence coverage where public pages expose a role or transition.
+    - Show effective or verified dates and explain their meaning in beginner language.
+    - Use the canonical editing runbook for amendments, transitions and source changes.
+
+- [ ] **Deepen representative and constituency context.**
+  - **Definition of done:** Stable MP and constituency destinations can be reached from My Area and leadership pages, show current runtime facts with sources, and avoid treating parliamentary activity as proof of local impact.
+  - Supporting tasks:
+    - Add constituency pages after their source data is durable enough for stable public URLs.
+    - Add MP detail pages after member identity and membership records are durable.
+    - Expand votes, written questions, debates, committees, bills or events only where reliable source mapping and limitations exist.
+
+## 6. Later: Manifestos and Policy Discovery
+
+**Activation condition:** Activate only after public leadership meets its exit condition and the source capture and editorial review capabilities required for official party documents are ready.
+
+**Exit condition:** Every in-scope party has a source-faithful manifesto or official-policy discovery surface whose topics come from reviewed official material and whose excerpts, dates, locators, evidence types and coverage gaps can be inspected without comparison framing.
+
+- [ ] **Capture official manifesto and policy material faithfully.**
+  - **Definition of done:** Included documents have stable source identities, immutable snapshots, retrieval and publication context, hashes, access notes, reviewed excerpts and visible gaps.
+  - Supporting tasks:
+    - Use official party publications as the default source and record PDF, browser-only, gated or unavailable access honestly.
+    - Keep party publications, parliamentary records and government publications as separate evidence types.
+    - Activate durable source storage and editorial review work only to the extent this phase needs it.
+
+- [ ] **Let party-policy topics emerge from official sources.**
+  - **Definition of done:** The discovery taxonomy records how reviewed source headings and concepts map to neutral canonical topics; no comparison heading is selected first and then backfilled with party evidence.
+  - Supporting tasks:
+    - Inventory source language across all in-scope parties before creating shared topic labels.
+    - Version taxonomy changes and record asymmetric source coverage.
+    - Preserve aspirations, targets, actions and outcomes as distinct claim types.
+
+- [ ] **Publish source-led party policy discovery.**
+  - **Definition of done:** Identically structured party surfaces let users browse what each party officially published, open exact reviewed excerpts and see when no verified source is available.
+  - Supporting tasks:
+    - Keep summaries editorially reviewed or template-rendered from structured records.
+    - Add bills and Hansard only as labelled public-record context, never as automatic proof of party belief or delivery.
+    - Keep source dates, geographic scope and evidence limitations visible.
+
+**Housing dependency:** Housing remains the first eventual policy-area proof. It stays inactive until the Politics Basics Spine, public leadership and source-faithful manifesto discovery have all met their exit conditions.
+
+## 7. Later: Fair Policy Comparison and Change Tracking
+
+**Activation condition:** Activate only after Manifestos and Policy Discovery exits, Housing source coverage has been revalidated, and shared comparison headings have emerged from official sources.
+
+**Exit condition:** The first Housing comparison presents every in-scope party in the same reviewed structure, with exact source support or an explicit gap for every cell, and can show a verified change between source snapshots without scoring, ranking or advice.
+
+- [ ] **Prove fair comparison with Housing.**
+  - **Definition of done:** The first bounded Housing topic compares all in-scope parties using source-derived headings, identical ordering, geographic caveats, reviewed excerpts and visible coverage gaps.
+  - Supporting tasks:
+    - Map reviewed excerpts to the first source-derived Housing topics.
+    - Keep manifesto promises, current party publications, government action and parliamentary outcomes in separate labelled layers.
+    - Add neutrality review for asymmetric wording, unsupported judgement, rankings, motive claims and implied voting advice.
+    - Use `unknown` until evidence supports a stronger lifecycle state.
+
+- [ ] **Track source-backed policy changes.**
+  - **Definition of done:** Consecutive comparable snapshots can be classified as new, changed, removed or unchanged; low-confidence changes require review; public wording links to both the change and its evidence.
+  - Supporting tasks:
+    - Add semantic diffing, parser confidence and reviewed correction handling.
+    - Keep document changes separate from claims about implementation or broken promises.
+
+- [ ] **Publish verified change discovery.**
+  - **Definition of done:** A public “What changed” surface lists reviewed changes with stable URLs, source links and checked times; syndication appears only after the public feed is reliable.
+  - Supporting tasks:
+    - Add Atom or RSS after the public change feed exists.
+    - Add filters for party, policy, bill, constituency, source family and corrections only when those entities have durable records.
+
+## 8. Enabling Platform Work
+
+**Activation condition:** Activate an enabling outcome only when a Current or imminent Next/Later outcome cannot meet its definition of done without it.
+
+**Exit condition:** The activating product outcome uses the capability in production, its failure modes and operating procedure are verified, and no unused parallel platform or data path remains.
+
+- [ ] **Enforce evidence, accessibility and neutrality gates for the active phase.**
+  - **Activation:** Required now for the Politics Basics Spine and before public leadership.
+  - **Definition of done:** CI or the documented review process catches missing factual sources, broken approved links, inaccessible core interactions and asymmetric party framing before publication.
+  - Supporting tasks:
+    - Add source-reference validation for configured factual pages.
+    - Add scheduled, rate-limited checks for official source links without blocking deploys on third-party outages.
+    - Add automated accessibility smoke checks for core routes and retain keyboard/mobile review.
+    - Add a documented neutrality review gate before party or policy content ships.
+    - Add golden fixtures when a parser becomes part of an activated outcome.
+
+- [ ] **Build durable source ingestion only when an activated phase needs it.**
+  - **Activation:** Required before stable MP/constituency records or manifesto discovery depend on persisted upstream data.
+  - **Definition of done:** Activated source families run through fetch, immutable snapshot, parse, normalize, provenance, quality checks and publish; repeated content deduplicates and every record identifies its parser version and source registry entry.
+  - Supporting tasks:
+    - Convert required live Parliament reads to snapshot-first ingestion.
+    - Persist source documents, snapshots, excerpts, display facts and ingestion runs in Supabase.
+    - Record source tier, licence/access notes, cadence, freshness threshold, fields used and limitations.
+    - Add parser-version tracking, content-hash dedupe and representative malformed, empty, stale and suspicious fixtures.
+    - Keep one canonical write path during any checked-in-store to Supabase migration.
+
+- [ ] **Add durable resilience and source operations after ingestion exists.**
+  - **Activation:** Activate when a persisted source family becomes user-facing.
+  - **Definition of done:** Public pages can use last-good persisted data across deployments, distinguish upstream retrieval from app-cache checks, retain status history and alert operators without duplicate noise.
+  - Supporting tasks:
+    - Persist successful and attempted source checks across cold starts.
+    - Configure refresh cadence, freshness and owner-facing failure thresholds by active source family.
+    - Add deduplicated failure, recovery and threshold alerts with cooldowns.
+    - Expand the public status surface only when persisted coverage and freshness data can support it.
+
+- [ ] **Establish editorial review at the first scale point.**
+  - **Activation:** Activate before manifesto or policy material exceeds a reviewable checked-in workflow.
+  - **Definition of done:** Reviewers can approve, reject, correct or escalate source excerpts and metadata with stable IDs, audit history and public correction links where interpretation changes.
+  - Supporting tasks:
+    - Define review states and source-excerpt validation.
+    - Add reviewer tooling only when manual checked-in review no longer supports the imminent phase.
+    - Preserve immutable evidence and append reviewed amendments rather than rewriting history.
+
+- [ ] **Close current deployment and analytics ownership gaps.**
+  - **Activation:** Required by the current public spine for maintainable production operations and privacy-safe learning signals.
+  - **Definition of done:** A maintainer can verify Vercel, Cloudflare DNS, Email Routing, required environment variables and privacy-safe analytics from current runbooks; undocumented or inactive analytics code is removed.
+  - Supporting tasks:
+    - Confirm production Vercel Web Analytics traffic or remove its component and claims.
+    - Document redeployment, DNS, email and safe environment configuration.
+    - Keep `.env.example` synchronized whenever runtime configuration changes.
+
+## 9. Parked Work
+
+Parked work is valid product or platform work with no current activation. It must not acquire implementation tasks until its trigger is met.
+
+- **Polling and popularity:** Activate only after a reliable free/public source strategy passes licence, metadata, inclusion, averaging and uncertainty review. Any tracker must separate fieldwork, publication and retrieval dates and must not predict elections.
+- **Political finance:** Activate only after Electoral Commission access, publication lag, export limits, stable references and donor entity resolution are understood. Public records must expose caveats and matching confidence.
+- **Guided civic checks, alignment scoring and political profiling:** Activate a learning-only path only if Politics Basics comprehension research shows a guided interaction is needed. Alignment results or storage require published methodology, neutrality review, explicit consent boundaries and a completed DPIA. Answers remain local and deletable by default.
+- **General search infrastructure:** Activate only when user research or benchmark queries show that navigation, glossary filtering and structured browsing cannot find the reviewed corpus. Start with Postgres full-text search and filters; consider a dedicated service only after measured failure.
+- **Live civic calendar and additional event feeds:** Activate after the Politics Basics event explanations are stable and authoritative date ownership, update cadence and cancellation handling are defined. Parliament business, GOV.UK activity, party events and election deadlines must remain separate.
+- **Speculative source ingestion:** Activate a new family such as broad Hansard, bills, No. 10 activity, election data or devolved/local feeds only when a named imminent outcome requires its fields and source authority is settled.
+- **Local learning trail:** Activate only if comprehension research shows that users need resumable progress and the design remains account-free, local, clearable and free of political preference profiling.
+- **Retention and distribution experiments:** Activate The Plain Week only when a reliable weekly source cadence exists; Ask Plain Politics only with editorial and moderation capacity; share cards only after stable canonical content; My MP Watch only after durable MP records and change feeds; classroom materials only after the basics spine is proven.
+- **Public data API, bulk downloads and reusable feeds:** Activate after reviewed records have stable schemas, licences, correction history and operating capacity.
+- **Expanded public honesty dashboard:** Activate after durable coverage, freshness, correction and ingestion-health histories exist and user research shows the current status surface is insufficient.
+- **User accounts and stored personalisation:** Activate only for a validated user need that cannot be met locally, followed by rights workflows, retention controls, abuse protection and privacy review.
+- **AI training-crawler policy expansion:** Activate when crawler behaviour, legal policy or source licensing creates a concrete gap beyond the current published rules.

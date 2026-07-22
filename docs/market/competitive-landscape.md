@@ -2,6 +2,8 @@
 
 Last reviewed: 2026-07-03
 
+> This is a point-in-time market research input, not a product roadmap. `docs/project/backlog.md` is the only authority for unfinished outcomes and order.
+
 ## Positioning Hypothesis
 
 Plain Politics should become a free, source-backed UK politics information tracker that explains what parties stand for, what their manifestos say, how popular they are, and what changed across polls, policies, donors, votes, and public records.
@@ -199,7 +201,9 @@ The product should differentiate on:
 7. Search and explainer pages that show coverage gaps instead of unsupported claims.
 8. Visible freshness and coverage gaps.
 
-## Recommended MVP Slice
+## Historical MVP Recommendation
+
+The following recommendation is preserved as research context from the review date. It does not activate work or override the evergreen backlog.
 
 Start narrow enough to be excellent:
 

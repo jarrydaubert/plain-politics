@@ -12,7 +12,7 @@ The core promise:
 Start with my postcode or an issue, explain the basics, show the public evidence, and let me go deeper without getting lost.
 ```
 
-## Current V1 Design Direction
+## Experience Direction
 
 The v1 interface should feel like guided curiosity: inviting enough for younger or politics-averse users to take a look, but still calm and useful for adults, researchers, and civic users.
 

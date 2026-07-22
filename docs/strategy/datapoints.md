@@ -2,6 +2,8 @@
 
 Last updated: 2026-06-30
 
+This catalogue describes possible data coverage and provenance fields. It does not activate implementation; `docs/project/backlog.md` owns unfinished outcomes and order.
+
 ## Purpose
 
 This catalogue lists the public political datapoints Plain Politics should aim to collect, normalize, display, and trace back to source records.
