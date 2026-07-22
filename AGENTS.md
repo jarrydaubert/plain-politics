@@ -35,6 +35,16 @@ UK-focused, source-first political information tracker with auditable public sou
 - Bugs: add a regression test when it fits.
 - If you cannot run tests, say so explicitly in the PR/summary.
 
+## Delivery And Branch Hygiene
+
+- Routine work completes the full delivery loop: implement, validate, review, resolve findings, open a normal PR, merge when required checks pass, and delete the feature branch.
+- Do not leave a completed green PR open or in draft for routine manual approval.
+- Prefer a normal PR over a draft once the work is complete.
+- Use auto-merge when checks are pending; merge directly when all requirements are already satisfied.
+- Stop before merge only for destructive migrations, unresolved security/privacy issues, disputed factual or neutrality decisions, or when the task explicitly requests a review pause.
+- After merge, delete the remote branch and prune local tracking refs. Do not retain merged or abandoned branches without a documented reason.
+- Before deleting an old branch, confirm its PR is merged or closed and that it contains no commits absent from `main`.
+
 ## Security Checks (When Relevant)
 
 - Scan for hardcoded secrets in `src/`.
