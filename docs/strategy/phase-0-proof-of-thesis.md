@@ -2,6 +2,8 @@
 
 Last updated: 2026-07-04
 
+Status: Historical proof-of-thesis framing; not a current delivery plan. See `docs/project/backlog.md` for unfinished outcomes and order.
+
 ## Purpose
 
 Phase 0 exists to prove the core trust experience before attempting the full MVP. v1.0.0 is the first barebones public release inside Phase 0, and policy-area comparison follows after that on a feature branch. It should answer one question:
@@ -99,7 +101,9 @@ Do not include in Phase 0:
 9. Gamified persuasion or ideological scoring.
 10. Policy-area comparison as a v1.0.0 blocker.
 
-## Build Order When Ready
+## Historical Build Order
+
+This sequence records the dependency reasoning at the time of the note. The evergreen backlog controls whether and when any outcome is active.
 
 1. Finish the barebones v1 public app shell.
 2. Deploy a public preview and test it with beginners.

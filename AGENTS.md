@@ -112,8 +112,9 @@ Start with:
 - `README.md` - Repo entry point and current state
 - `docs/product/prd-v2.md` - Product requirements
 - `docs/product/idea-brief.md` - Project brief and success metrics
-- `docs/project/action-plan.md` - Phased execution plan
-- `docs/project/backlog.md` - Todo-only delivery backlog
+- `docs/project/backlog.md` - Only authoritative list of unfinished outcomes and phase order
+- `docs/README.md` - Documentation ownership and evergreen/history policy
 - `docs/engineering/tech-stack.md` - Technical baseline
-- `docs/strategy/` - Current assessment, v1.0.0 scope, and post-v1 proof-of-thesis guidance
+- `docs/strategy/` - Durable product direction, source inventories, and decision notes
+- `docs/reports/` - Dated assessments and historical delivery plans
 - `docs/market/` - Competitive landscape tracker

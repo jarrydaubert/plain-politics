@@ -25,10 +25,11 @@ Political information is fragmented across official publications, parliamentary 
 5. Sources and About pages that explain limits, attribution, contact, and corrections without making the homepage about methodology.
 6. Public Vercel deployment, Cloudflare DNS/email, privacy-safe analytics, and basic CI quality gates.
 
-## Phase Plan
-1. v1.0.0 (public starter): homepage, my area, glossary, Parliament records, sources/about/contact, deployment, and basic quality gates.
-2. Post-v1 foundation: persisted source snapshots, parser fixtures, evidence drawers, durable status history, and last-good-data fallbacks.
-3. Feature branches: first policy area, party profiles, Compare, change feed, polling, money, calendar, and any guided civic check expansion.
+## Product Evolution Context
+
+This describes the product concept's broad evolution. It is not the current roadmap; `docs/project/backlog.md` owns unfinished outcomes, activation and order.
+
+The product grows from beginner understanding into public party leadership, source-faithful manifesto and policy discovery, and only then fair comparison and change tracking. Platform capabilities are supporting work, activated when the current or imminent product outcome requires them. Polling, political finance, guided civic checks and broader discovery remain possible extensions rather than assumed milestones.
 
 ## Trust and Compliance Principles
 1. Source-first and source-gated factual content.

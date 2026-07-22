@@ -10,15 +10,16 @@ Plain Politics is deployed at `https://plainpolitics.co.uk`. The Bun/Next.js app
 
 - Product requirements: `docs/product/prd-v2.md`
 - Idea brief and success metrics: `docs/product/idea-brief.md`
-- Delivery plan: `docs/project/action-plan.md`
-- Delivery backlog: `docs/project/backlog.md`
+- Unfinished priorities and phase order: `docs/project/backlog.md`
 - Technical baseline: `docs/engineering/tech-stack.md`
 - Visual system: `docs/brand/design-system.md`
 - Brand identity: `docs/brand/logo.md`
 - GBrain usage policy: `docs/engineering/gbrain.md`
 - Vercel plugin skill policy: `docs/engineering/vercel-plugin-skills.md`
 - Methodology standards: `docs/methodology/`
-- Strategy and current assessment: `docs/strategy/`
+- Durable strategy and source inventories: `docs/strategy/`
+- Dated assessments and historical plans: `docs/reports/`
+- Documentation ownership policy: `docs/README.md`
 - Competitive landscape: `docs/market/`
 - Agent instructions: `AGENTS.md`
 
@@ -50,9 +51,9 @@ Plain Politics is deployed at `https://plainpolitics.co.uk`. The Bun/Next.js app
 |   |   |-- idea-brief.md
 |   |   `-- prd-v2.md
 |   |-- project/
-|   |   |-- action-plan.md
 |   |   `-- backlog.md
 |   |-- quality/
+|   |-- reports/
 |   `-- strategy/
 |-- public/
 |-- src/

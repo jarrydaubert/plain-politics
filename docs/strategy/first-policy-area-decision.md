@@ -1,8 +1,10 @@
 # First Policy Area Decision: Housing
 
 Last updated: 2026-07-19
-Status: decided on `feature/first-policy-area`; implementation not started
+Status: Accepted decision; inactive until the activation conditions in `docs/project/backlog.md` are met
 Access dates: all source URLs verified live on 2026-07-19 unless noted
+
+> This record explains why Housing is the first eventual policy-area proof. It does not set current delivery order; the evergreen backlog owns activation and priority.
 
 ## Decision
 

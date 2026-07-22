@@ -395,14 +395,10 @@ Review needed:
 3. How quickly official announcements are reflected in downstream civic datasets.
 4. How to represent uncertain or not-yet-formally-announced dates.
 
-## Priority Order
+## Backlog Ownership
 
-1. Add postcode and current-MP lookup for the beginner `my area` journey.
-2. Keep expanding official Parliament APIs, especially member votes and written questions.
-3. Add manifesto and party-policy ingestion for the plain-English party pages.
-4. Add bills and Hansard to connect policies to live parliamentary action.
-5. Add election/civic deadline sources after source authority rules are clear.
-6. Add Electoral Commission finance once terms and exports are clear.
-7. Add polling only when source access and metadata quality are good enough.
+This inventory records source readiness, constraints and possible uses. Labels such as `Candidate Next`, `Planned use`, `Still needed` and `Review needed` describe the source, not delivery priority or activation.
 
-The first user-facing win is not "all data everywhere." It is one page where every table row or summary visibly links back to an official source chain.
+`docs/project/backlog.md` is the only authority for unfinished outcomes and order. A source family becomes active only when the current or imminent phase requires it.
+
+The product rule remains: the useful outcome is not "all data everywhere," but a public surface where each factual row or summary visibly links to an approved source chain.
