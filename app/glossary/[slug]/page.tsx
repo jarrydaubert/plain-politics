@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -98,6 +98,24 @@ export default async function GlossaryTermPage({
                 key={relatedTerm.term}
               >
                 {relatedTerm.term}
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {term.relatedExplainers && term.relatedExplainers.length > 0 ? (
+        <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
+          <h2 className="text-xl font-semibold">Read the full explainer</h2>
+          <div className="mt-4 grid gap-3">
+            {term.relatedExplainers.map((related) => (
+              <Link
+                className="flex items-center justify-between gap-4 border-t border-[var(--border)] pt-3 text-sm font-medium transition hover:text-[var(--accent)]"
+                href={`/explainers/${related.slug}`}
+                key={related.slug}
+              >
+                <span>{related.label}</span>
+                <ArrowRight aria-hidden="true" size={16} />
               </Link>
             ))}
           </div>
